@@ -1,4 +1,4 @@
-package bbdd;
+package modelo;
 
 public class conexion {
 
