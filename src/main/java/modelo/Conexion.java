@@ -20,11 +20,10 @@ public class Conexion {
 	private String password = "PepeJeans";
 	private String url = "jdbc:mysql://localhost:3306/"+bd+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	
-	Connection connection = null;
+	private Connection connection = null;
 	
 	public Conexion() {
-		
-		// intentamos conectarnos a la base de datos si la conexion no es correcta lanzamos una excepcion
+		// nos conectanos a la base de datos, si la conexion no es correcta lanzamos una excepcion
 		try {
 			this.connection = DriverManager.getConnection(url, username, password);
 		} catch (SQLException e) {
@@ -32,9 +31,13 @@ public class Conexion {
 		}
 	}
 	
-	public Conexion(String bd, String username, String password) {
-		//constructor que utilizaremos para pasarle los datos de conexion obtenidos desde el archivo
-		
+	public void conectar() {
+		// nos conectanos a la base de datos, si la conexion no es correcta lanzamos una excepcion
+		try {
+			this.connection = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+		    throw new IllegalStateException("Cannot connect the database!", e);
+		}
 	}
 	
 	/**Permite retornar la conexión*/
