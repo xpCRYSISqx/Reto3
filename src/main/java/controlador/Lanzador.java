@@ -1,10 +1,13 @@
 package controlador;
 
+import javax.swing.JFrame;
+
 import vista.VentanaPrincipal;
 
 public class Lanzador {
 
 	VentanaPrincipal vista;
+	JFrame ventana;
 	
 	
 	/**
@@ -17,5 +20,6 @@ public class Lanzador {
 	
 	private void Iniciar() {
 		vista = new VentanaPrincipal();
+		vista.ventana.setVisible(true);
 	}
 }

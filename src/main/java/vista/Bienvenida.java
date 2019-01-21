@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Bienvenida extends JPanel {
 	
@@ -22,13 +25,16 @@ public class Bienvenida extends JPanel {
 		bienvenida.setBounds(100, 100, 1280, 720);
 		
 		JButton btnNewButton = new JButton("Continuar");
-		btnNewButton.setBounds(794, 577, 89, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setBounds(0, 0, 1280, 720);
 		bienvenida.add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("Hola");
-		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 87));
-		lblNewLabel.setBounds(436, 113, 247, 337);
-		bienvenida.add(lblNewLabel);
 	}
 	public JComponent PasarBienvenida() {
 		return bienvenida;

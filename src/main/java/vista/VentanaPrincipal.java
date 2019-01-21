@@ -7,7 +7,7 @@ import java.awt.CardLayout;
 
 public class VentanaPrincipal {
 
-	private JFrame ventana;
+	public JFrame ventana;
 	
 
 	/**
