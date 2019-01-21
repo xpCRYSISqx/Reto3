@@ -18,7 +18,7 @@ public class LineaDAO {
 		this.connection = connection;
 	}
 	
-	public ArrayList<Linea> selectLineasAll() {
+	public ArrayList<Linea> getLineas() {
 
 		// preparamos la consulta SQL a la base de datos
 		try {
