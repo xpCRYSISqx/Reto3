@@ -1,7 +1,9 @@
 package vista;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JLabel;
 
 public class Lineas extends JPanel {
 
@@ -9,9 +11,12 @@ public class Lineas extends JPanel {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public Lineas() {
+	public void CrearLineas() {
 		lineas.setVisible(false);
 		lineas.setLayout(null);
-		lineas.setBounds(100, 100, 1280, 720);
+		lineas.setBounds(0, 0, 800, 300);
+	}
+	public JComponent PasarLineas() {
+		return lineas;
 	}
 }

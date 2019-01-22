@@ -9,10 +9,6 @@ public class Lanzador {
 	VentanaPrincipal vista;
 	JFrame ventana;
 	
-	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		Lanzador iniciar = new Lanzador();
 		iniciar.Iniciar();
