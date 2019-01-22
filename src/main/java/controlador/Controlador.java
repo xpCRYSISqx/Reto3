@@ -2,8 +2,7 @@ package controlador;
 
 import java.util.ArrayList;
 
-import modelo.Linea;
-import modelo.Modelo;
+import modelo.*;
 
 public class Controlador {
 	
@@ -20,11 +19,16 @@ public class Controlador {
 	public void inicializarEventos() {
 		
 		ArrayList<Linea> lineas = modelo.getLineas();
+//		ArrayList<Parada> paradas = modelo.getParadas("L1");
 		
 		for (int i = 0; i < lineas.size(); i++) { 		      
 	      System.out.print(lineas.get(i).getCodLinea()+": ");
 	      System.out.println(lineas.get(i).getNombre()); 
 		}
+		
+//		for (int i = 0; i < paradas.size(); i++) { 		      
+//		      System.out.print(paradas.get(i).getCodParada()+": ");
+//		}
 		
 	}
 
