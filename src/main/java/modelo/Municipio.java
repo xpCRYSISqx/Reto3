@@ -2,30 +2,20 @@ package modelo;
 
 public class Municipio {
 	
-	private String codLinea;
 	private String nombre;
-	private int[] codAutobuses;
-	private int[] codMunicipios;
+	private int codPostal;
+	private int[] codParadas;
 	
 	public Municipio() {
 		
 	}
 	
-	public Municipio(String codLinea, String nombre, int[] codAutobuses, int[] codMunicipios) {
-		this.codLinea = codLinea;
+	public Municipio(String nombre, int codPostal, int[] codParadas) {
 		this.nombre = nombre;
-		this.codAutobuses = codAutobuses;
-		this.codMunicipios = codMunicipios;
+		this.codPostal = codPostal;
+		this.codParadas = codParadas;
 	}
 
-	public String getCodLinea() {
-		return codLinea;
-	}
-
-	public void setCodLinea(String codLinea) {
-		this.codLinea = codLinea;
-	}
-	
 	public String getNombre() {
 		return nombre;
 	}
@@ -34,20 +24,21 @@ public class Municipio {
 		this.nombre = nombre;
 	}
 
-	public int[] getCodAutobuses() {
-		return codAutobuses;
+	public int getCodPostal() {
+		return codPostal;
 	}
 
-	public void setCodAutobuses(int[] codAutobuses) {
-		this.codAutobuses = codAutobuses;
+	public void setCodPostal(int codPostal) {
+		this.codPostal = codPostal;
 	}
 
-	public int[] getCodMunicipios() {
-		return codMunicipios;
+	public int[] getCodParadas() {
+		return codParadas;
 	}
 
-	public void setCodMunicipios(int[] codMunicipios) {
-		this.codMunicipios = codMunicipios;
+	public void setCodParadas(int[] codParadas) {
+		this.codParadas = codParadas;
 	}
 
+	
 }
