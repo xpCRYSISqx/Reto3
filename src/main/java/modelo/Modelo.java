@@ -107,4 +107,65 @@ public class Modelo {
 		
 	}
 	
+	public ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		Autobus autobus = null;
+		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
+
+		try {
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT Cod_bus FROM `linea_autobus` where Cod_Linea = ?");
+			stmt.setString(1, codLinea);
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				autobus = new Autobus();
+				autobus.setCodBus(result.getInt("Cod_bus"));
+				autobus = getInfoAutobus(autobus);
+				autobuses.add(autobus);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
+		
+		return autobuses;
+		
+	}
+	
+public Autobus getInfoAutobus(Autobus autobus) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT N_plazas, Consumo_km, Color FROM autobus where Cod_bus = ?");
+			stmt.setInt(1, autobus.getCodBus());
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				autobus.setNumPlazas(result.getInt("N_plazas"));
+				autobus.setConsumo(result.getFloat("Consumo_km"));
+				autobus.setColor(result.getString("Color"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
+		
+		return autobus;
+		
+	}
+	
 }

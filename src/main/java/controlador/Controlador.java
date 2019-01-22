@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import modelo.*;
 
+/*
+ * Esta clase hace uso del paquete vista que no estara disponible hasta que hagamos merge con la rama interfaz
+ * Todas las instancias de la clase vista estan comentadas 
+ */
 public class Controlador {
 	
 	public Modelo modelo;
@@ -17,6 +21,10 @@ public class Controlador {
 	}
 	
 	public void inicializarEventos() {
+		
+		/*
+		 * El siguiente codigo es de PRUEBA, para probar los metodos del modelo antes de usarlos con las vistas
+		 */
 		
 		// carga y muestra las lineas
 		ArrayList<Linea> lineas = modelo.getLineas();
@@ -35,6 +43,16 @@ public class Controlador {
 		      System.out.print(paradas.get(i).getCalle()+", ");
 		      System.out.print(paradas.get(i).getLatitud()+", ");
 		      System.out.println(paradas.get(i).getLongitud());
+		}
+		
+		// carga y muestra los autobuses de la linea seleccionada
+		ArrayList<Autobus> autobuses = modelo.getAutobusesByLinea("L3");
+		
+		for (int i = 0; i < autobuses.size(); i++) { 		      
+		      System.out.print(autobuses.get(i).getCodBus()+": ");
+		      System.out.print(autobuses.get(i).getNumPlazas()+", ");
+		      System.out.print(autobuses.get(i).getConsumo()+", ");
+		      System.out.println(autobuses.get(i).getColor());
 		}
 		
 	}
