@@ -9,19 +9,16 @@ import java.util.ArrayList;
 public class Modelo {
 	
 	private Connection connection = null;
-	private Linea linea = null;
-	private Parada parada = null;
 	
 	public Modelo() {
 		connection = new Conexion().getConnection();
-		linea = new Linea(); 
-		parada = new Parada(); 
 	}
 	
 	public ArrayList<Linea> getLineas() {
 		
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		Linea linea = null;
 		ArrayList<Linea> lineas = new ArrayList<Linea>();
 
 		try {
@@ -32,12 +29,12 @@ public class Modelo {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos linea con los resultados y los añade a un arrayList
+			// crea objetos con los resultados y los añade a un arrayList
 			while (result.next()) {
-				this.linea = new Linea();
-				this.linea.setCodLinea(result.getString("Cod_Linea"));
-				this.linea.setNombre(result.getString("Nombre"));
-				lineas.add(this.linea);
+				linea = new Linea();
+				linea.setCodLinea(result.getString("Cod_Linea"));
+				linea.setNombre(result.getString("Nombre"));
+				lineas.add(linea);
 			}
 			
 		} catch (SQLException e) {
@@ -48,34 +45,66 @@ public class Modelo {
 		
 	}
 	
-//	public ArrayList<Parada> getParadas(String codLinea) {
-//		
-//		PreparedStatement stmt = null;
-//		ResultSet result = null;
-//		ArrayList<Parada> paradas = new ArrayList<Parada>();
-//
-//		try {
-//			
-//			// preparamos la consulta SQL a la base de datos
-//			stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM linea-parada where Cod_Linea = L1");
-//			stmt.setString(1, codLinea);
-//			
-//			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-//			result = stmt.executeQuery();
-//			
-//			// crea objetos linea con los resultados y los añade a un arrayList
-//			while (result.next()) {
-//				this.parada = new Parada();
-//				this.parada.setCodParada(result.getInt("Cod_Parada"));
-//				paradas.add(this.parada);
-//			}
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}           
-//		
-//		return paradas;
-//		
-//	}
+	public ArrayList<Parada> getParadasByLinea(String codLinea) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		Parada parada = null;
+		ArrayList<Parada> paradas = new ArrayList<Parada>();
+
+		try {
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
+			stmt.setString(1, codLinea);
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				parada = new Parada();
+				parada.setCodParada(result.getInt("Cod_Parada"));
+				parada = getInfoParada(parada);
+				paradas.add(parada);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
+		
+		return paradas;
+		
+	}
+	
+	public Parada getInfoParada(Parada parada) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT Nombre, Calle, Latitud, Longitud FROM parada where Cod_Parada = ?");
+			stmt.setInt(1, parada.getCodParada());
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				parada.setNombre(result.getString("Nombre"));
+				parada.setCalle(result.getString("Calle"));
+				parada.setLatitud(result.getFloat("Latitud"));
+				parada.setLongitud(result.getFloat("Longitud"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
+		
+		return parada;
+		
+	}
 	
 }

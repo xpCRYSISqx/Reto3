@@ -18,17 +18,24 @@ public class Controlador {
 	
 	public void inicializarEventos() {
 		
+		// carga y muestra las lineas
 		ArrayList<Linea> lineas = modelo.getLineas();
-//		ArrayList<Parada> paradas = modelo.getParadas("L1");
 		
 		for (int i = 0; i < lineas.size(); i++) { 		      
 	      System.out.print(lineas.get(i).getCodLinea()+": ");
 	      System.out.println(lineas.get(i).getNombre()); 
 		}
 		
-//		for (int i = 0; i < paradas.size(); i++) { 		      
-//		      System.out.print(paradas.get(i).getCodParada()+": ");
-//		}
+		// carga y muestra las paradas de la linea seleccionada
+		ArrayList<Parada> paradas = modelo.getParadasByLinea("L1");
+		
+		for (int i = 0; i < paradas.size(); i++) { 		      
+		      System.out.print(paradas.get(i).getCodParada()+": ");
+		      System.out.print(paradas.get(i).getNombre()+", ");
+		      System.out.print(paradas.get(i).getCalle()+", ");
+		      System.out.print(paradas.get(i).getLatitud()+", ");
+		      System.out.println(paradas.get(i).getLongitud());
+		}
 		
 	}
 
