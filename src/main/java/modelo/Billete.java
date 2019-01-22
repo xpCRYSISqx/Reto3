@@ -1,21 +1,39 @@
 package modelo;
 
+import java.util.Date;
+
 public class Billete {
 	
+	private int codBillete;
+	private String Ntrayecto;
 	private String codLinea;
+	private int codBus;
 	private String nombre;
-	private int[] codAutobuses;
-	private int[] codMunicipios;
+	private int codParadaInicio;
+	private int codParadaFin;
+	private Date fecha;
+	private Date hora;
+	private String dni;
+	private float precio;
 	
 	public Billete() {
 		
 	}
-	
-	public Billete(String codLinea, String nombre, int[] codAutobuses, int[] codMunicipios) {
-		this.codLinea = codLinea;
-		this.nombre = nombre;
-		this.codAutobuses = codAutobuses;
-		this.codMunicipios = codMunicipios;
+
+	public int getCodBillete() {
+		return codBillete;
+	}
+
+	public void setCodBillete(int codBillete) {
+		this.codBillete = codBillete;
+	}
+
+	public String getNtrayecto() {
+		return Ntrayecto;
+	}
+
+	public void setNtrayecto(String ntrayecto) {
+		Ntrayecto = ntrayecto;
 	}
 
 	public String getCodLinea() {
@@ -25,7 +43,15 @@ public class Billete {
 	public void setCodLinea(String codLinea) {
 		this.codLinea = codLinea;
 	}
-	
+
+	public int getCodBus() {
+		return codBus;
+	}
+
+	public void setCodBus(int codBus) {
+		this.codBus = codBus;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -34,20 +60,53 @@ public class Billete {
 		this.nombre = nombre;
 	}
 
-	public int[] getCodAutobuses() {
-		return codAutobuses;
+	public int getCodParadaInicio() {
+		return codParadaInicio;
 	}
 
-	public void setCodAutobuses(int[] codAutobuses) {
-		this.codAutobuses = codAutobuses;
+	public void setCodParadaInicio(int codParadaInicio) {
+		this.codParadaInicio = codParadaInicio;
 	}
 
-	public int[] getCodMunicipios() {
-		return codMunicipios;
+	public int getCodParadaFin() {
+		return codParadaFin;
 	}
 
-	public void setCodMunicipios(int[] codMunicipios) {
-		this.codMunicipios = codMunicipios;
+	public void setCodParadaFin(int codParadaFin) {
+		this.codParadaFin = codParadaFin;
 	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public Date getHora() {
+		return hora;
+	}
+
+	public void setHora(Date hora) {
+		this.hora = hora;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
 
 }
