@@ -11,6 +11,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JButton;
 
 public class Registro extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
