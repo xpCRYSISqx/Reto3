@@ -1,18 +1,18 @@
 package modelo;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 public class Billete {
 	
 	private int codBillete;
-	private String Ntrayecto;
+	private int nTrayecto;
 	private String codLinea;
 	private int codBus;
-	private String nombre;
 	private int codParadaInicio;
 	private int codParadaFin;
 	private Date fecha;
-	private Date hora;
+	private Time hora;
 	private String dni;
 	private float precio;
 	
@@ -28,12 +28,12 @@ public class Billete {
 		this.codBillete = codBillete;
 	}
 
-	public String getNtrayecto() {
-		return Ntrayecto;
+	public int getNTrayecto() {
+		return nTrayecto;
 	}
 
-	public void setNtrayecto(String ntrayecto) {
-		Ntrayecto = ntrayecto;
+	public void setNTrayecto(int nTrayecto) {
+		this.nTrayecto = nTrayecto;
 	}
 
 	public String getCodLinea() {
@@ -50,14 +50,6 @@ public class Billete {
 
 	public void setCodBus(int codBus) {
 		this.codBus = codBus;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public int getCodParadaInicio() {
@@ -84,11 +76,11 @@ public class Billete {
 		this.fecha = fecha;
 	}
 
-	public Date getHora() {
+	public Time getHora() {
 		return hora;
 	}
 
-	public void setHora(Date hora) {
+	public void setHora(Time hora) {
 		this.hora = hora;
 	}
 

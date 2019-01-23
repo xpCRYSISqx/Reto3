@@ -1,5 +1,12 @@
 package controlador;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import modelo.*;
@@ -53,6 +60,23 @@ public class Controlador {
 		      System.out.print(autobuses.get(i).getNumPlazas()+", ");
 		      System.out.print(autobuses.get(i).getConsumo()+", ");
 		      System.out.println(autobuses.get(i).getColor());
+		}
+		
+		// crea un objeto billete y lo inserta en bbdd
+		try {
+			// creamos la fecha y hora
+			DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+			java.sql.Date fecha = new java.sql.Date(df.parse("02-04-2015").getTime());
+			java.sql.Time time = java.sql.Time.valueOf( "18:05:00" );
+			
+			// creamos el objeto billete
+			Billete billete = modelo.crearBillete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
+			
+			// insertamos los datos del billete en la bbdd
+			//modelo.insertarBillete(billete);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 		
 	}

@@ -1,9 +1,11 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class Modelo {
@@ -139,7 +141,7 @@ public class Modelo {
 		
 	}
 	
-public Autobus getInfoAutobus(Autobus autobus) {
+	public Autobus getInfoAutobus(Autobus autobus) {
 		
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -166,6 +168,58 @@ public Autobus getInfoAutobus(Autobus autobus) {
 		
 		return autobus;
 		
+	}
+	
+	public Billete crearBillete(int codBillete, int nTrayecto, String codLinea, int codBus, int codParadaInicio, int codParadaFin, Date fecha, Time hora, String dni, float precio) {
+		
+		// crea un objeto billete
+		Billete billete = new Billete();
+		
+		// rellena los atributos del objeto billete
+		billete.setCodBillete(codBillete);
+		billete.setNTrayecto(nTrayecto);
+		billete.setCodLinea(codLinea);
+		billete.setCodBus(codBus);
+		billete.setCodParadaInicio(codParadaInicio);
+		billete.setCodParadaFin(codParadaFin);
+		billete.setFecha(fecha);
+		billete.setHora(hora);
+		billete.setDni(dni);
+		billete.setPrecio(precio);
+		
+		// devuelve el objeto billete
+		return billete;
+		
+	}
+	
+	public void insertarBillete(Billete billete) {
+		
+		PreparedStatement stmt = null;
+
+		try {
+			
+			// preparamos la consulta INSERT
+			stmt = this.connection.prepareStatement("INSERT INTO billete (Cod_Billete, NTrayecto, Cod_Linea, Cod_Bus, Cod_Parada_Inicio, Cod_Parada_Fin, Fecha, Hora, DNI, Precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			
+			// añadimos los valores a insertar
+			stmt.setInt(1, billete.getCodBillete());
+			stmt.setInt(2, billete.getNTrayecto());
+			stmt.setString(3, billete.getCodLinea());
+			stmt.setInt(4, billete.getCodBus());
+			stmt.setInt(5, billete.getCodParadaInicio());
+			stmt.setInt(6, billete.getCodParadaFin());
+			stmt.setDate(7, billete.getFecha());
+			stmt.setTime(8, billete.getHora());
+			stmt.setString(9, billete.getDni());
+			stmt.setFloat(10, billete.getPrecio());
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			stmt.executeUpdate();
+			System.out.println("Gracias por su compra!");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
 	}
 	
 }
