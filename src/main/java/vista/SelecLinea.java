@@ -54,6 +54,7 @@ public class SelecLinea extends JPanel {
 		lblNewLabel.setBounds(10, 23, 314, 53);
 		add(lblNewLabel);
 		
+		//¿¿¿Añadir temporizador en caso de inactividad???
 	
 	}
 }

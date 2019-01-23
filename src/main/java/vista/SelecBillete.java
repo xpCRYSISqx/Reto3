@@ -63,6 +63,10 @@ public class SelecBillete extends JPanel {
 		JList list_1 = new JList();
 		list_1.setBounds(308, 283, 121, 189);
 		add(list_1);
+		
+		JButton btnNewButton_1 = new JButton("Atr\u00E1s");
+		btnNewButton_1.setBounds(10, 483, 89, 23);
+		add(btnNewButton_1);
 
 	}
 }

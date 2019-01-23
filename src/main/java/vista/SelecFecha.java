@@ -6,6 +6,13 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import com.toedter.components.JLocaleChooser;
+import com.toedter.calendar.JYearChooser;
+import com.toedter.components.JSpinField;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JMonthChooser;
 
 public class SelecFecha extends JPanel {
 	private JTextField textField;
@@ -60,7 +67,32 @@ public class SelecFecha extends JPanel {
 		textField_1.setColumns(10);
 		textField_1.setBounds(30, 209, 248, 20);
 		add(textField_1);
-
+		
+		JCalendar calendar = new JCalendar();
+		calendar.setBounds(30, 314, 184, 153);
+		add(calendar);
+		
+		JLabel lblSeleccioneFecha = new JLabel("Seleccione fecha");
+		lblSeleccioneFecha.setBounds(40, 289, 80, 14);
+		add(lblSeleccioneFecha);
+		
+		// Panel interno con calendario solo para seleccionar fecha de vuelta en caso de haber seleccionado billete tipo: Ida/Vuelta en el paso anterior.
+		// Billete simple = Este panel debera estar OCULTO
+		// Billete ida/ve
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(258, 289, 262, 178);
+		add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Seleccione vuelta");
+		lblNewLabel.setBounds(0, 0, 83, 14);
+		panel.add(lblNewLabel);
+		
+		JCalendar calendar_1 = new JCalendar();
+		calendar_1.setBounds(10, 25, 184, 153);
+		panel.add(calendar_1);
+	
+	
 	}
-
 }
