@@ -5,8 +5,6 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 import modelo.*;
@@ -77,6 +75,23 @@ public class Controlador {
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
+		}
+		
+		// buscar un cliente
+		Cliente cliente = modelo.getClienteByDNI("15236985K");
+		
+		// Imprimir datos cliente
+		try {
+			
+			System.out.println(cliente.getDni());
+			System.out.println(cliente.getNombre());
+			System.out.println(cliente.getApellidos());
+			System.out.println(cliente.getFechaNacimiento());
+			System.out.println(cliente.getSexo());
+			System.out.println(cliente.getContraseña());
+			
+		} catch (NullPointerException e) {
+			System.out.println("No estas registrado");
 		}
 		
 	}

@@ -222,4 +222,38 @@ public class Modelo {
 		}           
 	}
 	
+	public Cliente getClienteByDNI(String dni) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		Cliente cliente = null;
+
+		try {
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT * FROM cliente where DNI = ?");
+			stmt.setString(1, dni);
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				cliente = new Cliente();
+				cliente.setDni(result.getString("DNI"));
+				cliente.setNombre(result.getString("Nombre"));
+				cliente.setApellidos(result.getString("Apellidos"));
+				cliente.setFechaNacimiento(result.getDate("Fecha_nac"));
+				cliente.setSexo(result.getString("Sexo").charAt(0));
+				cliente.setContraseña(result.getString("Contraseña"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
+		
+		return cliente;
+		
+	}
+	
 }
