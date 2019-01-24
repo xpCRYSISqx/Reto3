@@ -10,17 +10,17 @@ import controlador.Botones;
 import java.awt.CardLayout;
 import javax.swing.JComboBox;
 
-public class VentanaPrincipal {
+public class FramePrincipal {
 
 	public JFrame ventana;
-	public JPanel bienvenida;
-	public JPanel lineas;
+	public Bienvenida bienvenida;
+	public SelecLinea lineas;
 	
 
 	/**
 	 * Create the application.
 	 */
-	public VentanaPrincipal() {
+	public FramePrincipal() {
 		
 		ventana = new JFrame();
 		ventana.setBounds(100, 100, 1280, 720);
@@ -28,5 +28,8 @@ public class VentanaPrincipal {
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.getContentPane().setLayout(new CardLayout(0, 0));
 		
+		this.bienvenida = new Bienvenida();
+		this.ventana.getContentPane().add(bienvenida);
+		// this.ventana.setContentPane(bienvenida); Esto va en el controlador para cambiar de panel
 	}
 }

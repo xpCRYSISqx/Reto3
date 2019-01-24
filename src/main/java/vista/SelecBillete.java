@@ -48,20 +48,20 @@ public class SelecBillete extends JPanel {
 		
 		JLabel lblOrigen = new JLabel("Origen");
 		lblOrigen.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblOrigen.setBounds(72, 249, 84, 23);
+		lblOrigen.setBounds(71, 208, 84, 23);
 		add(lblOrigen);
 		
 		JLabel lblNewLabel_1 = new JLabel("Destino");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblNewLabel_1.setBounds(330, 249, 66, 23);
+		lblNewLabel_1.setBounds(329, 208, 66, 23);
 		add(lblNewLabel_1);
 		
 		JList list = new JList();
-		list.setBounds(53, 283, 121, 189);
+		list.setBounds(52, 242, 121, 189);
 		add(list);
 		
 		JList list_1 = new JList();
-		list_1.setBounds(308, 283, 121, 189);
+		list_1.setBounds(307, 242, 121, 189);
 		add(list_1);
 		
 		JButton btnNewButton_1 = new JButton("Atr\u00E1s");

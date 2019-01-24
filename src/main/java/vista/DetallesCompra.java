@@ -7,16 +7,28 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.JTable;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.UIManager;
 
 public class DetallesCompra extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
 	public DetallesCompra() {
+		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		
 		JButton button = new JButton("Atr\u00E1s");
@@ -45,38 +57,33 @@ public class DetallesCompra extends JPanel {
 		lblDetallesDe.setBounds(10, 11, 462, 53);
 		add(lblDetallesDe);
 		
-		JLabel label = new JLabel("Origen");
-		label.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		label.setBounds(30, 143, 84, 23);
-		add(label);
-		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(40, 168, 218, 20);
-		add(textField);
-		
-		JLabel label_1 = new JLabel("Destino");
-		label_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		label_1.setBounds(30, 199, 66, 23);
-		add(label_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(40, 222, 218, 20);
-		add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(20, 111, 248, 20);
-		add(textField_2);
-		
-		JLabel lblLnea = new JLabel("L\u00CDNEA");
-		lblLnea.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblLnea.setBounds(10, 86, 84, 23);
-		add(lblLnea);
+		table = new JTable();
+		table.setEnabled(false);
+		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Autob\u00FAs", "L\u00EDnea", "Origen", "Destino", "Fecha ida", "Fecha vuelta", "C\u00F3digo billete"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, String.class, Object.class, String.class, String.class, Object.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.getColumnModel().getColumn(0).setPreferredWidth(60);
+		table.getColumnModel().getColumn(1).setPreferredWidth(35);
+		table.getColumnModel().getColumn(2).setPreferredWidth(140);
+		table.getColumnModel().getColumn(3).setPreferredWidth(140);
+		table.getColumnModel().getColumn(6).setPreferredWidth(90);
+		table.setBackground(SystemColor.inactiveCaption);
+		table.setBounds(30, 179, 591, 53);
+		add(table);
 
 	}
 }

@@ -2,11 +2,11 @@ package controlador;
 
 import javax.swing.JFrame;
 
-import vista.VentanaPrincipal;
+import vista.FramePrincipal;
 
 public class Lanzador {
 
-	VentanaPrincipal vista;
+	FramePrincipal vista;
 	JFrame ventana;
 	
 	public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class Lanzador {
 	}
 	
 	private void Iniciar() {
-		vista = new VentanaPrincipal();
+		vista = new FramePrincipal();
 		vista.ventana.setVisible(true);
 	}
 }
