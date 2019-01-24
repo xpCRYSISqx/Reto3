@@ -11,6 +11,13 @@ public class Autobus {
 		
 	}
 	
+	public Autobus(int codBus, int numPlazas, float consumo, String color) {
+		this.codBus = codBus;
+		this.numPlazas = numPlazas;
+		this.consumo = consumo;
+		this.color = color;
+	}
+	
 	public int getCodBus() {
 		return codBus;
 	}
@@ -42,13 +49,4 @@ public class Autobus {
 	public void setColor(String color) {
 		this.color = color;
 	}
-
-	public Autobus(int codBus, int numPlazas, float consumo, String color) {
-		this.codBus = codBus;
-		this.numPlazas = numPlazas;
-		this.consumo = consumo;
-		this.color = color;
-	}
-
-	
 }
