@@ -77,6 +77,22 @@ public class Controlador {
 			e.printStackTrace();
 		}
 		
+		// crea un objeto cliente y lo inserta en bbdd
+		try {
+			// creamos la fecha
+			DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+			java.sql.Date fecha = new java.sql.Date(df.parse("02-04-2015").getTime());
+			
+			// creamos el objeto cliente
+			Cliente cliente = modelo.crearCliente("23236985K", "Laura", "Moreno Gonzalez", fecha, 'M', "12345678");
+			
+			// insertamos los datos del cliente en la bbdd
+			modelo.insertarCliente(cliente);
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		// buscar un cliente
 		Cliente cliente = modelo.getClienteByDNI("15236985K");
 		
