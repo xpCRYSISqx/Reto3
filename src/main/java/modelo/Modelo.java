@@ -256,4 +256,48 @@ public class Modelo {
 		
 	}
 	
+	public Cliente crearCliente( String dni, String nombre, String apellidos, Date fechaNacimiento, char sexo, String contraseña) {
+		
+		// crea un objeto billete
+		Cliente cliente = new Cliente();
+		
+		// rellena los atributos del objeto billete
+		cliente.setDni(dni);
+		cliente.setNombre(nombre);
+		cliente.setApellidos(apellidos);
+		cliente.setFechaNacimiento(fechaNacimiento);
+		cliente.setSexo(sexo);
+		cliente.setContraseña(contraseña);
+		
+		// devuelve el objeto billete
+		return cliente;
+		
+	}
+	
+	public void insertarCliente(Cliente cliente) {
+		
+		PreparedStatement stmt = null;
+
+		try {
+			
+			// preparamos la consulta INSERT
+			stmt = this.connection.prepareStatement("INSERT INTO cliente (DNI, Nombre, Apellidos, Fecha_nac, Sexo, Contraseña) VALUES (?, ?, ?, ?, ?, ?)");
+			
+			// añadimos los valores a insertar
+			stmt.setString(1, cliente.getDni());
+			stmt.setString(2, cliente.getNombre());
+			stmt.setString(3, cliente.getApellidos());
+			stmt.setDate(4, cliente.getFechaNacimiento());
+			stmt.setString(5, String.valueOf(cliente.getSexo()));
+			stmt.setString(6, cliente.getContraseña());
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			stmt.executeUpdate();
+			System.out.println("Gracias por registrarse!");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
+	}
+	
 }
