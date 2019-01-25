@@ -8,12 +8,15 @@ import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
 
-public class SelecBillete extends JPanel {
+public class PanSelBillete extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public SelecBillete() {
+	
+	JPanel sel_billete = new JPanel();
+	
+	public PanSelBillete() {
 		setLayout(null);
 		
 		JButton btnInicioDeSesin = new JButton("Inicio de Sesi\u00F3n");

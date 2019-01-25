@@ -18,12 +18,15 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JLabel;
 
-public class SelecLinea extends JPanel {
+public class PanSelLinea extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public SelecLinea() {
+	
+	JPanel sel_linea = new JPanel();
+	
+	public PanSelLinea() {
 		setLayout(null);
 		
 		JComboBox comboBox = new JComboBox();

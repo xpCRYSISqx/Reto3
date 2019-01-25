@@ -14,14 +14,18 @@ import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JMonthChooser;
 
-public class SelecFecha extends JPanel {
+public class PanSelFecha extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 
 	/**
 	 * Create the panel.
 	 */
-	public SelecFecha() {
+	
+	JPanel sel_fecha = new JPanel();
+	
+	
+	public PanSelFecha() {
 		setLayout(null);
 		
 		JLabel lblSeleccinDeFecha = new JLabel("SELECCI\u00D3N DE FECHA");

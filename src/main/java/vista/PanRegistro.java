@@ -10,10 +10,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JButton;
 
-public class Registro extends JPanel {
+public class PanRegistro extends JPanel {
 	/**
 	 * 
 	 */
+	
+	JPanel registro = new JPanel();
+	
 	private static final long serialVersionUID = 1L;
 	private JTextField textField_2;
 	private JTextField textField_3;
@@ -24,7 +27,7 @@ public class Registro extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Registro() {
+	public PanRegistro() {
 		setLayout(null);
 		
 		JLabel lblRegistro = new JLabel("REGISTRO");

@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
-public class Bienvenida extends JPanel {
+public class PanBienvenida extends JPanel {
 	
 	JPanel bienvenida = new JPanel();
 	public JButton btnCont;

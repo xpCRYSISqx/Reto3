@@ -7,7 +7,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class FinalizarPago extends JPanel {
+public class PanFinPago extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -15,7 +15,11 @@ public class FinalizarPago extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public FinalizarPago() {
+	
+	JPanel fin_pago = new JPanel();
+	
+	
+	public PanFinPago() {
 		setLayout(null);
 		
 		JLabel lblPagar = new JLabel("FINALIZAR PAGO");

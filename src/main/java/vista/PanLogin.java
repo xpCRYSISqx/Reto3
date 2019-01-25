@@ -21,7 +21,10 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class Login extends JPanel {
+public class PanLogin extends JPanel {
+	
+	JPanel login = new JPanel();
+	
 	public JTextField textField;
 	public JPasswordField passwordField;
 	public JButton button;
@@ -29,7 +32,7 @@ public class Login extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Login() {
+	public PanLogin() {
 		setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Usuario (DNI)");

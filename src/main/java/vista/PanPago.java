@@ -16,6 +16,10 @@ public class PanPago extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	
+	JPanel pago = new JPanel();
+	
+	
 	public PanPago() {
 		setLayout(null);
 		

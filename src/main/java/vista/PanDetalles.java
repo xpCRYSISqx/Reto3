@@ -22,13 +22,16 @@ import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import javax.swing.JList;
 
-public class DetallesCompra extends JPanel {
+public class PanDetalles extends JPanel {
 	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
-	public DetallesCompra() {
+	
+	JPanel detalles_compra = new JPanel();
+	
+	public PanDetalles() {
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		
