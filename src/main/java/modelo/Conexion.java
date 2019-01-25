@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class Conexion {
 	
 	// datos de conexion
-	private String bd = "reto3_termibus";
+	private String bd = "termibus";
 	private String username = "hr";
 	private String password = "PepeJeans";
 	private String params = "useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -25,11 +25,12 @@ public class Conexion {
 		// nos conectanos a la base de datos, si la conexion no es correcta lanzamos una excepcion
 		try {
 			this.connection = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) {
 		    throw new IllegalStateException("Cannot connect the database!", e);
 		}
 	}
-	
+
 	public Connection getConnection(){
 		return connection;
 	}
@@ -37,5 +38,4 @@ public class Conexion {
 	public void desconectar(){
 		connection = null;
 	}
-
 }
