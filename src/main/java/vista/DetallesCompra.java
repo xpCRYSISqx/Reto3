@@ -20,6 +20,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
+import javax.swing.JList;
 
 public class DetallesCompra extends JPanel {
 	private JTable table;
@@ -82,7 +83,7 @@ public class DetallesCompra extends JPanel {
 		table.getColumnModel().getColumn(3).setPreferredWidth(140);
 		table.getColumnModel().getColumn(6).setPreferredWidth(90);
 		table.setBackground(SystemColor.inactiveCaption);
-		table.setBounds(30, 179, 591, 53);
+		table.setBounds(30, 179, 591, 140);
 		add(table);
 
 	}
