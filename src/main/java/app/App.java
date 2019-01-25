@@ -11,6 +11,5 @@ public class App {
 //		Vista vista = new Vista();
 		Controlador controlador = new Controlador(modelo/*,vista*/);
 		controlador.inicializarEventos();
-
 	}
 }
