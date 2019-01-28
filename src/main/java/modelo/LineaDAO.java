@@ -44,7 +44,6 @@ public class LineaDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-
 		return this.lineas;
 		
 	}
