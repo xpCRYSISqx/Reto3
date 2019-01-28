@@ -6,5 +6,8 @@
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="lib" path="C:/workspace/Reto3/External JAR/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="C:/workspace/Reto3/lib/mysql-connector-java-8.0.13.jar"/>
+	<classpathentry kind="lib" path="C:/workspace/Reto3/External JAR/mockito-all-1.8.4.jar"/>
+	<classpathentry kind="lib" path="C:/workspace/Reto3/External JAR/mockito-core-2.7.22.jar"/>
+	<classpathentry kind="lib" path="C:/workspace/Reto3/External JAR/powermock-mockito-release-full-1.5.4-full.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
