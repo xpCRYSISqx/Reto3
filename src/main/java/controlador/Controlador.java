@@ -40,7 +40,7 @@ public class Controlador {
 		}
 		
 		// carga y muestra las paradas de la linea seleccionada
-		ArrayList<Parada> paradas = modelo.getParadasByLinea("L1");
+		ArrayList<Parada> paradas = modelo.getParadasByLinea("L2");
 		
 		for (int i = 0; i < paradas.size(); i++) { 		      
 		      System.out.print(paradas.get(i).getCodParada()+": ");

@@ -262,6 +262,7 @@ public class Modelo {
 		
 		// crea un objeto billete
 		Cliente cliente = new Cliente();
+		Encriptacion encriptar = new Encriptacion();
 		
 		// rellena los atributos del objeto billete
 		cliente.setDni(dni);
@@ -269,6 +270,7 @@ public class Modelo {
 		cliente.setApellidos(apellidos);
 		cliente.setFechaNacimiento(fechaNacimiento);
 		cliente.setSexo(sexo);
+		contraseña = encriptar.Encriptacion(contraseña);
 		cliente.setContraseña(contraseña);
 		
 		// devuelve el objeto billete
