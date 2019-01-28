@@ -37,6 +37,5 @@ public class PrepararTicket {
 			if(lineas.get(i).getCodLinea() == codLinea)
 				this.nombreLinea = lineas.get(i).getNombre();
 		}
-		
 	}
 }

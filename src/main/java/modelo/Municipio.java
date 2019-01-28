@@ -38,7 +38,5 @@ public class Municipio {
 
 	public void setCodParadas(int[] codParadas) {
 		this.codParadas = codParadas;
-	}
-
-	
+	}	
 }

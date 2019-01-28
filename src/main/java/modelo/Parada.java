@@ -59,6 +59,4 @@ public class Parada {
 	public void setLongitud(float longitud) {
 		this.longitud = longitud;
 	}
-
-
 }

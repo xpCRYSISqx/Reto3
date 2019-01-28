@@ -57,7 +57,9 @@ public class Modelo {
 		try {
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
+			stmt = this.connection.prepareStatement("SELECT Cod_Parada, SQRT(POWER(Latitud-(SELECT Latitud FROM `parada` WHERE Cod_Parada = 1),2)+POWER(Longitud-(SELECT Longitud FROM `parada` WHERE Cod_Parada = 1),2))\"Distancia\""
+					+ " FROM `parada` WHERE Cod_Parada IN (SELECT Cod_Parada FROM `linea-parada` WHERE Cod_Linea = ?) ORDER BY Distancia ASC");
+			//stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
 			stmt.setString(1, codLinea);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -299,5 +301,4 @@ public class Modelo {
 			e.printStackTrace();
 		}           
 	}
-	
 }

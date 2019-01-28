@@ -26,7 +26,6 @@ public class Encriptacion {
         catch (NoSuchAlgorithmException e){
             e.printStackTrace();
         }
-        System.out.println(contraseñaGenerada);
         return contraseñaGenerada;
     }
 }
