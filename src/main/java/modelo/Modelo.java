@@ -1,5 +1,8 @@
 package modelo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -7,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+
+import org.json.*;
 
 public class Modelo {
 	
@@ -302,5 +307,31 @@ public class Modelo {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}           
+	}
+	
+	public String getConnectionInfo() {
+		
+		JSONObject obj = null;
+		String[] datos = new String[4];
+		ClassLoader classLoader = getClass().getClassLoader();
+		File file = new File(classLoader.getResource("./resources/datosBBDD.json").getFile());
+		
+		
+		try {
+			obj = new JSONObject(new FileReader(file));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		String username = obj.getString("username");
+
+//		JSONArray arr = obj.getJSONArray("posts");
+//		for (int i = 0; i < arr.length(); i++)
+//		{
+//		    String post_id = arr.getJSONObject(i).getString("post_id");
+//		}
+		
+		return username;
+		
 	}
 }

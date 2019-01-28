@@ -87,28 +87,31 @@ public class Controlador {
 			Cliente cliente = modelo.crearCliente("23236985K", "Laura", "Moreno Gonzalez", fecha, 'M', "12345678");
 			
 			// insertamos los datos del cliente en la bbdd
-			modelo.insertarCliente(cliente);
+			//modelo.insertarCliente(cliente);
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
 		// buscar un cliente
-		Cliente cliente = modelo.getClienteByDNI("15236985K");
+		//Cliente cliente = modelo.getClienteByDNI("15236985K");
 		
 		// Imprimir datos cliente
-		try {
-			
-			System.out.println(cliente.getDni());
-			System.out.println(cliente.getNombre());
-			System.out.println(cliente.getApellidos());
-			System.out.println(cliente.getFechaNacimiento());
-			System.out.println(cliente.getSexo());
-			System.out.println(cliente.getContraseña());
-			
-		} catch (NullPointerException e) {
-			System.out.println("No estas registrado");
-		}
+//		try {
+//			
+//			System.out.println(cliente.getDni());
+//			System.out.println(cliente.getNombre());
+//			System.out.println(cliente.getApellidos());
+//			System.out.println(cliente.getFechaNacimiento());
+//			System.out.println(cliente.getSexo());
+//			System.out.println(cliente.getContraseña());
+//			
+//		} catch (NullPointerException e) {
+//			System.out.println("No estas registrado");
+//		}
+		
+		String user = modelo.getConnectionInfo();
+		System.out.println(user);
 		
 	}
 
