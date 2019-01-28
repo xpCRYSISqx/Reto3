@@ -264,21 +264,20 @@ public class Modelo {
 	}
 	
 	public Cliente crearCliente( String dni, String nombre, String apellidos, Date fechaNacimiento, char sexo, String contraseña) {
-		
-		// crea un objeto billete
+			
+		// crea un objeto cliente
 		Cliente cliente = new Cliente();
 		Encriptacion encriptar = new Encriptacion();
-		
-		// rellena los atributos del objeto billete
+			
+		// rellena los atributos del objeto cliente
 		cliente.setDni(dni);
 		cliente.setNombre(nombre);
 		cliente.setApellidos(apellidos);
 		cliente.setFechaNacimiento(fechaNacimiento);
 		cliente.setSexo(sexo);
 		contraseña = encriptar.Encriptacion(contraseña);
-		cliente.setContraseña(contraseña);
-		
-		// devuelve el objeto billete
+		cliente.setContraseña(contraseña);			
+		// devuelve el objeto cliente
 		return cliente;
 		
 	}
