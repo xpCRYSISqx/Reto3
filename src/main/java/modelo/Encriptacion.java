@@ -5,23 +5,22 @@ import java.security.NoSuchAlgorithmException;
 
 public class Encriptacion {
 
-	public String Encriptacion(){
-        String ContraseñaAEncriptar = "12345678";
+	public String Encriptacion(String contraseñaAEncriptar){
         String contraseñaGenerada = null;
         try {
-            // Create MessageDigest instance for MD5
+        	// Crea una instancia de MessageDigest para MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
-            //Add password bytes to digest
-            md.update(ContraseñaAEncriptar.getBytes());
-            //Get the hash's bytes
+            // Agrega la contraseña separada en bytes para separarla
+            md.update(contraseñaAEncriptar.getBytes());
+            // Saca los bytes separados
             byte[] bytes = md.digest();
-            //This bytes[] has bytes in decimal format;
-            //Convert it to hexadecimal format
+            // bytes[] almacena los bytes en formato decimal
+            // Los bytes en decimal pasan a hexadecimal
             StringBuilder sb = new StringBuilder();
             for(int i=0; i< bytes.length ;i++){
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
-            //Get complete hashed password in hex format
+            // Coge los bytes separados de la contraseña en hexadecimal y los junta en un string
             contraseñaGenerada = sb.toString();
         }
         catch (NoSuchAlgorithmException e){

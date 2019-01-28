@@ -60,4 +60,13 @@ public class Botones {
 			}
 		});
 	}
+	
+	public void BotonInicioSesion(JButton boton, JPanel panSalida, JPanel panInicioSesion) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panInicioSesion.setVisible(true);
+				panSalida.setVisible(false);
+			}
+		});
+	}
 }
