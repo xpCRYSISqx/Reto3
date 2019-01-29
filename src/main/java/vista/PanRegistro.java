@@ -9,6 +9,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JButton;
+import com.toedter.calendar.JDateChooser;
 
 public class PanRegistro extends JPanel {
 	/**
@@ -38,7 +39,7 @@ public class PanRegistro extends JPanel {
 		
 		JLabel label_1 = new JLabel("Password");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(150, 317, 46, 14);
+		label_1.setBounds(165, 408, 46, 14);
 		add(label_1);
 		
 		JLabel lblNombre = new JLabel("Nombre");
@@ -81,7 +82,7 @@ public class PanRegistro extends JPanel {
 		add(rdbtnFemenino);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(215, 314, 140, 20);
+		passwordField.setBounds(230, 405, 140, 20);
 		add(passwordField);
 		
 		JProgressBar progressBar = new JProgressBar();
@@ -89,24 +90,32 @@ public class PanRegistro extends JPanel {
 		add(progressBar);
 		
 		JButton btnNewButton = new JButton("Registrar");
-		btnNewButton.setBounds(215, 389, 103, 43);
+		btnNewButton.setBounds(230, 482, 103, 43);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
-		btnNewButton_1.setBounds(10, 463, 89, 23);
+		btnNewButton_1.setBounds(0, 686, 89, 23);
 		add(btnNewButton_1);
 		
 		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(215, 345, 140, 20);
+		passwordField_1.setBounds(230, 436, 140, 20);
 		add(passwordField_1);
 		
 		JLabel lblVuelvaAIntroducir = new JLabel("Confirmar password");
-		lblVuelvaAIntroducir.setBounds(99, 348, 96, 14);
+		lblVuelvaAIntroducir.setBounds(114, 439, 96, 14);
 		add(lblVuelvaAIntroducir);
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(429, 39, 89, 23);
 		add(btnLogin);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(215, 275, 180, 20);
+		add(dateChooser);
+		
+		JLabel lblFechaDeNacimiento = new JLabel("Fecha nacimiento");
+		lblFechaDeNacimiento.setBounds(123, 281, 88, 14);
+		add(lblFechaDeNacimiento);
 
 	}
 }

@@ -37,17 +37,17 @@ public class PanLogin extends JPanel {
 		
 		JLabel lblUsuario = new JLabel("Usuario (DNI)");
 		lblUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUsuario.setBounds(95, 128, 70, 20);
+		lblUsuario.setBounds(100, 302, 70, 20);
 		add(lblUsuario);
 		
 		textField = new JTextField();
-		textField.setBounds(175, 128, 216, 20);
+		textField.setBounds(180, 302, 216, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setBounds(105, 159, 53, 14);
+		lblPassword.setBounds(110, 333, 53, 14);
 		add(lblPassword);
 		
 		JLabel lblInicioDeSesin = new JLabel("INICIO DE SESI\u00D3N");
@@ -57,11 +57,11 @@ public class PanLogin extends JPanel {
 		add(lblInicioDeSesin);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(175, 159, 216, 14);
+		passwordField.setBounds(180, 333, 216, 14);
 		add(passwordField);
 		
 		JButton btnNewButton = new JButton("Iniciar Sesi\u00F3n");
-		btnNewButton.setBounds(175, 194, 114, 42);
+		btnNewButton.setBounds(180, 368, 114, 42);
 		add(btnNewButton);
 		
 		button = new JButton("Cancelar");
