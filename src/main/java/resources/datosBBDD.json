@@ -1,8 +1,4 @@
-{
-   "datos": {
-         "bd": "termibus",
-         "username": "hr",
-         "password": "PepeJeans",
-         "host": "localhost"
-    }
-}
+"bd": "termibus",
+"username": "hr",
+"password": "PepeJeans",
+"host": "localhost"

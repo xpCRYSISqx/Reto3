@@ -110,8 +110,12 @@ public class Controlador {
 //			System.out.println("No estas registrado");
 //		}
 		
-		String user = modelo.getConnectionInfo();
-		System.out.println(user);
+		String[] user = modelo.getConnectionInfo();
+		
+		for (int i = 0; i < user.length; i++) { 		      
+	      System.out.print(user[i]); 
+		}
+		
 		
 	}
 

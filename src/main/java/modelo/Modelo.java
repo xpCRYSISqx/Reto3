@@ -1,8 +1,10 @@
 package modelo;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -11,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 
-import org.json.*;
 
 public class Modelo {
 	
@@ -308,29 +309,30 @@ public class Modelo {
 		}           
 	}
 	
-	public String getConnectionInfo() {
+	public String[] getConnectionInfo() {
 		
-		JSONObject obj = null;
-		String[] datos = new String[4];
 		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource("./resources/datosBBDD.json").getFile());
-		
+		File file = new File(classLoader.getResource("./resources/datosBBDD.txt").getFile());
+		BufferedReader br = null;
+		String[] datos = new String[4];
+		int count = 0;
 		
 		try {
-			obj = new JSONObject(new FileReader(file));
+			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
+		} 
+		   
+		try {
+			while ( br.readLine() != null) {
+				datos[count] = br.readLine();
+				count++;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 		
-		String username = obj.getString("username");
-
-//		JSONArray arr = obj.getJSONArray("posts");
-//		for (int i = 0; i < arr.length(); i++)
-//		{
-//		    String post_id = arr.getJSONObject(i).getString("post_id");
-//		}
-		
-		return username;
+		return datos;
 		
 	}
 }
