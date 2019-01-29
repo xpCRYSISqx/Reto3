@@ -15,14 +15,15 @@ import vista.MainFrame;
  * Todas las instancias de la clase vista estan comentadas 
  */
 public class Controlador {
-	
+	//Atributos
 	public Modelo modelo;
 	public MainFrame vista;
 	
+	//Constructor con parametros
 	public Controlador(Modelo modelo, MainFrame vista) {
-		
 		this.modelo = modelo;
 		this.vista = vista;
+		
 		
 	}
 	
