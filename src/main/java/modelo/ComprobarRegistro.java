@@ -25,5 +25,16 @@ public class ComprobarRegistro {
 		contStringConfirmar = encriptar.Encriptacion(contStringConfirmar);
 		
 		cliente = modelo.getClienteByDNI(dni);
+		if(cliente == null) {
+			if(contString.equals(contStringConfirmar))
+				// Al retornar 0 le dice al programa que todos los datos has sido introducidos correctamente por lo que puede continuar
+				return 0;
+			else
+				// Al retornar 2 le dice al programa que la contraseña de confirmacion no coincide con la contraseña introducida
+				return 2;
+		}
+		else
+			// Al retornar 1 le dice al programa que el usuario que intenta registrar ya existe, por lo que no puede registrarlo
+			return 1;
 	}
 }
