@@ -27,27 +27,28 @@ public class PanSelFecha extends JPanel {
 	
 	public PanSelFecha() {
 		setLayout(null);
+		setBounds(0, 0, 800, 600);
 		
 		JLabel lblSeleccinDeFecha = new JLabel("SELECCI\u00D3N DE FECHA");
 		lblSeleccinDeFecha.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSeleccinDeFecha.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblSeleccinDeFecha.setBounds(10, 11, 361, 53);
+		lblSeleccinDeFecha.setBounds(10, 11, 780, 62);
 		add(lblSeleccinDeFecha);
 		
 		JButton button = new JButton("Inicio de Sesi\u00F3n");
-		button.setBounds(413, 11, 107, 23);
+		button.setBounds(683, 11, 107, 23);
 		add(button);
 		
 		JButton button_1 = new JButton("Registrar");
-		button_1.setBounds(413, 45, 107, 23);
+		button_1.setBounds(683, 34, 107, 23);
 		add(button_1);
 		
 		JButton button_2 = new JButton("Continuar");
-		button_2.setBounds(413, 522, 107, 23);
+		button_2.setBounds(683, 566, 107, 23);
 		add(button_2);
 		
 		JButton button_3 = new JButton("Cancelar");
-		button_3.setBounds(10, 522, 89, 23);
+		button_3.setBounds(10, 566, 89, 23);
 		add(button_3);
 		
 		JLabel label = new JLabel("Origen");
@@ -85,7 +86,7 @@ public class PanSelFecha extends JPanel {
 		// Billete ida/ve
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(258, 289, 262, 178);
+		panel.setBounds(429, 289, 262, 178);
 		add(panel);
 		panel.setLayout(null);
 		

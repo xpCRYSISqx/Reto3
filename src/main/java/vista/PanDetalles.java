@@ -32,33 +32,34 @@ public class PanDetalles extends JPanel {
 	JPanel detalles_compra = new JPanel();
 	
 	public PanDetalles() {
+		setBounds(0, 0, 800, 600);
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		
 		JButton button = new JButton("Atr\u00E1s");
-		button.setBounds(10, 449, 89, 23);
+		button.setBounds(10, 542, 89, 23);
 		add(button);
 		
 		JButton button_1 = new JButton("Cancelar");
-		button_1.setBounds(10, 473, 89, 23);
+		button_1.setBounds(10, 566, 89, 23);
 		add(button_1);
 		
 		JButton button_2 = new JButton("Continuar");
-		button_2.setBounds(514, 473, 107, 23);
+		button_2.setBounds(683, 566, 107, 23);
 		add(button_2);
 		
 		JButton button_3 = new JButton("Inicio de Sesi\u00F3n");
-		button_3.setBounds(514, 11, 107, 23);
+		button_3.setBounds(683, 11, 107, 23);
 		add(button_3);
 		
 		JButton button_4 = new JButton("Registrar");
-		button_4.setBounds(514, 45, 107, 23);
+		button_4.setBounds(683, 45, 107, 23);
 		add(button_4);
 		
 		JLabel lblDetallesDe = new JLabel("DETALLES DE BILLETE");
 		lblDetallesDe.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDetallesDe.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblDetallesDe.setBounds(10, 11, 462, 53);
+		lblDetallesDe.setBounds(10, 11, 780, 69);
 		add(lblDetallesDe);
 		
 		table = new JTable();
@@ -86,7 +87,7 @@ public class PanDetalles extends JPanel {
 		table.getColumnModel().getColumn(3).setPreferredWidth(140);
 		table.getColumnModel().getColumn(6).setPreferredWidth(90);
 		table.setBackground(SystemColor.inactiveCaption);
-		table.setBounds(30, 179, 591, 140);
+		table.setBounds(94, 230, 591, 140);
 		add(table);
 
 	}

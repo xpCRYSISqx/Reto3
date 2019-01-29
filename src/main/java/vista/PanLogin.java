@@ -34,34 +34,35 @@ public class PanLogin extends JPanel {
 	 */
 	public PanLogin() {
 		setLayout(null);
+		setBounds(0, 0, 800, 600);
 		
 		JLabel lblUsuario = new JLabel("Usuario (DNI)");
 		lblUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUsuario.setBounds(100, 302, 70, 20);
+		lblUsuario.setBounds(237, 297, 70, 20);
 		add(lblUsuario);
 		
 		textField = new JTextField();
-		textField.setBounds(180, 302, 216, 20);
+		textField.setBounds(317, 297, 216, 20);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setBounds(110, 333, 53, 14);
+		lblPassword.setBounds(247, 328, 53, 14);
 		add(lblPassword);
 		
 		JLabel lblInicioDeSesin = new JLabel("INICIO DE SESI\u00D3N");
 		lblInicioDeSesin.setFont(new Font("Mistral", Font.PLAIN, 44));
 		lblInicioDeSesin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInicioDeSesin.setBounds(0, 36, 475, 81);
+		lblInicioDeSesin.setBounds(0, 36, 790, 81);
 		add(lblInicioDeSesin);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(180, 333, 216, 14);
+		passwordField.setBounds(317, 328, 216, 14);
 		add(passwordField);
 		
 		JButton btnNewButton = new JButton("Iniciar Sesi\u00F3n");
-		btnNewButton.setBounds(180, 368, 114, 42);
+		btnNewButton.setBounds(317, 363, 114, 42);
 		add(btnNewButton);
 		
 		button = new JButton("Cancelar");

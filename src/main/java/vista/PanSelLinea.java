@@ -28,33 +28,34 @@ public class PanSelLinea extends JPanel {
 	
 	public PanSelLinea() {
 		setLayout(null);
+		setBounds(0, 0, 800, 600);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"L1: Termibus - Plentzia", "L2: Termibus - Muskiz", "L3: Termibus - Balmaseda", "L4: Termibus - Durango"}));
 		comboBox.setMaximumRowCount(4);
-		comboBox.setBounds(61, 112, 263, 20);
+		comboBox.setBounds(274, 111, 263, 20);
 		add(comboBox);
 		
 		JTextPane textPane = new JTextPane();
-		textPane.setBounds(61, 155, 263, 259);
+		textPane.setBounds(274, 154, 263, 336);
 		add(textPane);
 		
 		JButton btnInicioSesin = new JButton("Inicio Sesi\u00F3n");
-		btnInicioSesin.setBounds(384, 11, 99, 23);
+		btnInicioSesin.setBounds(691, 11, 99, 23);
 		add(btnInicioSesin);
 		
 		JButton btnNewButton = new JButton("Registrarse");
-		btnNewButton.setBounds(384, 45, 99, 23);
+		btnNewButton.setBounds(691, 34, 99, 23);
 		add(btnNewButton);
 		
 		JButton btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(384, 391, 89, 23);
+		btnContinuar.setBounds(701, 566, 89, 23);
 		add(btnContinuar);
 		
 		JLabel lblNewLabel = new JLabel("L\u00CDNEAS");
 		lblNewLabel.setFont(new Font("Mistral", Font.PLAIN, 45));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 23, 314, 53);
+		lblNewLabel.setBounds(10, 23, 780, 53);
 		add(lblNewLabel);
 		
 		//¿¿¿Añadir temporizador en caso de inactividad???

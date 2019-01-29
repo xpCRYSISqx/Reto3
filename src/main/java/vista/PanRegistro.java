@@ -30,67 +30,68 @@ public class PanRegistro extends JPanel {
 	 */
 	public PanRegistro() {
 		setLayout(null);
+		setBounds(0, 0, 800, 600);
 		
 		JLabel lblRegistro = new JLabel("REGISTRO");
 		lblRegistro.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistro.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblRegistro.setBounds(0, 39, 528, 81);
+		lblRegistro.setBounds(10, 36, 790, 81);
 		add(lblRegistro);
 		
 		JLabel label_1 = new JLabel("Password");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(165, 408, 46, 14);
+		label_1.setBounds(321, 409, 46, 14);
 		add(label_1);
 		
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(123, 156, 46, 14);
+		lblNombre.setBounds(279, 157, 46, 14);
 		add(lblNombre);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(179, 153, 216, 20);
+		textField_2.setBounds(335, 154, 216, 20);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
 		JLabel lblApellidos = new JLabel("Apellidos");
-		lblApellidos.setBounds(123, 187, 46, 14);
+		lblApellidos.setBounds(279, 188, 46, 14);
 		add(lblApellidos);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(179, 184, 216, 20);
+		textField_3.setBounds(335, 185, 216, 20);
 		add(textField_3);
 		textField_3.setColumns(10);
 		
 		JLabel lblDni = new JLabel("DNI");
-		lblDni.setBounds(123, 218, 46, 14);
+		lblDni.setBounds(279, 219, 46, 14);
 		add(lblDni);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(179, 215, 216, 20);
+		textField_4.setBounds(335, 216, 216, 20);
 		add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Sexo");
-		lblNewLabel.setBounds(123, 249, 46, 14);
+		lblNewLabel.setBounds(279, 250, 46, 14);
 		add(lblNewLabel);
 		
 		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
-		rdbtnMasculino.setBounds(205, 245, 86, 23);
+		rdbtnMasculino.setBounds(361, 246, 86, 23);
 		add(rdbtnMasculino);
 		
 		JRadioButton rdbtnFemenino = new JRadioButton("Femenino");
-		rdbtnFemenino.setBounds(293, 245, 77, 23);
+		rdbtnFemenino.setBounds(449, 246, 77, 23);
 		add(rdbtnFemenino);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(230, 405, 140, 20);
+		passwordField.setBounds(386, 406, 140, 20);
 		add(passwordField);
 		
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(10, 11, 508, 14);
+		progressBar.setBounds(129, 11, 508, 14);
 		add(progressBar);
 		
 		JButton btnNewButton = new JButton("Registrar");
-		btnNewButton.setBounds(230, 482, 103, 43);
+		btnNewButton.setBounds(386, 483, 103, 43);
 		add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
@@ -98,23 +99,23 @@ public class PanRegistro extends JPanel {
 		add(btnNewButton_1);
 		
 		passwordField_1 = new JPasswordField();
-		passwordField_1.setBounds(230, 436, 140, 20);
+		passwordField_1.setBounds(386, 437, 140, 20);
 		add(passwordField_1);
 		
 		JLabel lblVuelvaAIntroducir = new JLabel("Confirmar password");
-		lblVuelvaAIntroducir.setBounds(114, 439, 96, 14);
+		lblVuelvaAIntroducir.setBounds(270, 440, 96, 14);
 		add(lblVuelvaAIntroducir);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(429, 39, 89, 23);
+		btnLogin.setBounds(701, 11, 89, 23);
 		add(btnLogin);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(215, 275, 180, 20);
+		dateChooser.setBounds(371, 276, 180, 20);
 		add(dateChooser);
 		
 		JLabel lblFechaDeNacimiento = new JLabel("Fecha nacimiento");
-		lblFechaDeNacimiento.setBounds(123, 281, 88, 14);
+		lblFechaDeNacimiento.setBounds(279, 282, 88, 14);
 		add(lblFechaDeNacimiento);
 
 	}

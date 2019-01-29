@@ -34,7 +34,7 @@ public class PanBienvenida extends JPanel {
 		btnCont.setContentAreaFilled(false);
 		btnCont.setBorderPainted(false);
 		btnCont.setBackground(SystemColor.window);
-		btnCont.setBounds(0, 0, 1280, 720);
+		btnCont.setBounds(-10, 0, 1280, 720);
 		bienvenida.add(btnCont);
 	}
 	public JComponent PasarBienvenida() {
