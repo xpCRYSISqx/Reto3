@@ -8,20 +8,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import modelo.*;
+import vista.MainFrame;
 
 /*
  * Esta clase hace uso del paquete vista que no estara disponible hasta que hagamos merge con la rama interfaz
  * Todas las instancias de la clase vista estan comentadas 
  */
 public class Controlador {
-	
+	//Atributos
 	public Modelo modelo;
-	//public Vista vista;
+	public MainFrame vista;
 	
-	public Controlador(Modelo modelo/*, Vista vista*/) {
-		
+	//Constructor con parametros
+	public Controlador(Modelo modelo, MainFrame vista) {
 		this.modelo = modelo;
-		//this.vista = vista;
+		this.vista = vista;
+		
 		
 	}
 	
