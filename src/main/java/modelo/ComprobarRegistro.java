@@ -26,9 +26,11 @@ public class ComprobarRegistro {
 		
 		cliente = modelo.getClienteByDNI(dni);
 		if(cliente == null) {
-			if(contString.equals(contStringConfirmar))
+			if(contString.equals(contStringConfirmar)) {
+				
 				// Al retornar 0 le dice al programa que todos los datos has sido introducidos correctamente por lo que puede continuar
 				return 0;
+			}
 			else
 				// Al retornar 2 le dice al programa que la contraseña de confirmacion no coincide con la contraseña introducida
 				return 2;
