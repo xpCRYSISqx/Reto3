@@ -10,6 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
+import javax.swing.ButtonGroup;
 
 public class PanRegistro extends JPanel {
 	/**
@@ -24,6 +25,7 @@ public class PanRegistro extends JPanel {
 	private JTextField textField_4;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Create the panel.
@@ -74,10 +76,12 @@ public class PanRegistro extends JPanel {
 		add(lblNewLabel);
 		
 		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
+		buttonGroup.add(rdbtnMasculino);
 		rdbtnMasculino.setBounds(205, 245, 86, 23);
 		add(rdbtnMasculino);
 		
 		JRadioButton rdbtnFemenino = new JRadioButton("Femenino");
+		buttonGroup.add(rdbtnFemenino);
 		rdbtnFemenino.setBounds(293, 245, 77, 23);
 		add(rdbtnFemenino);
 		
