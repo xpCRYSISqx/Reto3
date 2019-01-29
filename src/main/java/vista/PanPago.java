@@ -25,6 +25,7 @@ public class PanPago extends JPanel {
 	
 	public PanPago() {
 		setLayout(null);
+		setBounds(0, 0, 800, 600);
 		
 		JButton button = new JButton("200 \u20AC");
 		button.setFont(new Font("Agency FB", Font.PLAIN, 30));
@@ -97,7 +98,7 @@ public class PanPago extends JPanel {
 		add(button_13);
 		
 		JButton button_14 = new JButton("Atr\u00E1s");
-		button_14.setBounds(10, 587, 89, 23);
+		button_14.setBounds(10, 566, 89, 23);
 		add(button_14);
 		
 		JButton button_15 = new JButton("Cancelar");
