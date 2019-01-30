@@ -139,9 +139,9 @@ public class Controlador {
 		Botones botones = new Botones();
 		botones.BotonContinuar(vista.bienvenida.btnCont, vista.bienvenida, vista.sel_linea);
 		botones.BotonContinuar(vista.sel_linea.btnContinuar, vista.sel_linea, vista.sel_billete);
-		botones.BotonContinuar(vista.bienvenida.btnCont, vista.bienvenida, vista.sel_linea);
-		botones.BotonContinuar(vista.bienvenida.btnCont, vista.bienvenida, vista.sel_linea);
-		botones.BotonContinuar(vista.bienvenida.btnCont, vista.bienvenida, vista.sel_linea);
+		//botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
+		//botones.BotonContinuar(vista.sel_fecha.button_2, vista.sel_fecha, vista.detalles_compra);
+		botones.BotonContinuar(vista.bienvenida.btnCont, vista.detalles_compra, vista.login);
 		botones.BotonContinuar(vista.bienvenida.btnCont, vista.bienvenida, vista.sel_linea);
 		botones.BotonContinuar(vista.bienvenida.btnCont, vista.bienvenida, vista.sel_linea);
 		
