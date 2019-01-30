@@ -1,10 +1,5 @@
 package modelo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -309,30 +304,4 @@ public class Modelo {
 		}           
 	}
 	
-	public String[] getConnectionInfo() {
-		
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource("./resources/datosBBDD.txt").getFile());
-		BufferedReader br = null;
-		String[] datos = new String[4];
-		int count = 0;
-		
-		try {
-			br = new BufferedReader(new FileReader(file));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		   
-		try {
-			while ( br.readLine() != null) {
-				datos[count] = br.readLine();
-				count++;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		
-		return datos;
-		
-	}
 }
