@@ -15,5 +15,6 @@ public class App {
 		
 		controlador.inicializarEventos();		
 		controlador.inicializarInterfaz();
+		controlador.manejoInterfaz();
 	}
 }
