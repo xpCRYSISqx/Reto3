@@ -1,10 +1,5 @@
 package modelo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -200,6 +195,37 @@ public class Modelo {
 		
 	}
 	
+	public Boolean comprobarFechasBillete(Billete billete) {
+		
+		Boolean disponible = false;
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT * FROM billete WHERE Cod_bus = ? AND Fecha = ? AND Hora = ?");
+			stmt.setInt(1, billete.getCodBus());
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+//				billete.setNumPlazas(result.getInt("N_plazas"));
+//				billete.setConsumo(result.getFloat("Consumo_km"));
+//				billete.setColor(result.getString("Color"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
+		
+		return disponible;
+		
+	}
+	
 	public void insertarBillete(Billete billete) {
 		
 		PreparedStatement stmt = null;
@@ -277,7 +303,8 @@ public class Modelo {
 		cliente.setFechaNacimiento(fechaNacimiento);
 		cliente.setSexo(sexo);
 		contraseña = encriptar.Encriptacion(contraseña);
-		cliente.setContraseña(contraseña);			
+		cliente.setContraseña(contraseña);
+		
 		// devuelve el objeto cliente
 		return cliente;
 		
@@ -309,30 +336,4 @@ public class Modelo {
 		}           
 	}
 	
-	public String[] getConnectionInfo() {
-		
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource("./resources/datosBBDD.txt").getFile());
-		BufferedReader br = null;
-		String[] datos = new String[4];
-		int count = 0;
-		
-		try {
-			br = new BufferedReader(new FileReader(file));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		   
-		try {
-			while ( br.readLine() != null) {
-				datos[count] = br.readLine();
-				count++;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		
-		return datos;
-		
-	}
 }
