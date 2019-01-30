@@ -205,17 +205,17 @@ public class Modelo {
 		try {
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = this.connection.prepareStatement("SELECT * FROM billete WHERE Cod_bus = ? AND Fecha = ? AND Hora = ?");
+			stmt = this.connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ?");
 			stmt.setInt(1, billete.getCodBus());
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
+			System.out.println(result);
+			
 			// crea objetos con los resultados y los añade a un arrayList
 			while (result.next()) {
-//				billete.setNumPlazas(result.getInt("N_plazas"));
-//				billete.setConsumo(result.getFloat("Consumo_km"));
-//				billete.setColor(result.getString("Color"));
+				//disponible = result.getInt('1');
 			}
 			
 		} catch (SQLException e) {
