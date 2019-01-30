@@ -10,11 +10,8 @@ import java.util.ArrayList;
 import modelo.*;
 import vista.MainFrame;
 
-/*
- * Esta clase hace uso del paquete vista que no estara disponible hasta que hagamos merge con la rama interfaz
- * Todas las instancias de la clase vista estan comentadas 
- */
 public class Controlador {
+	
 	//Atributos
 	public Modelo modelo;
 	public MainFrame vista;
@@ -71,6 +68,9 @@ public class Controlador {
 		botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);
 		botones.BotonContinuar(vista.detalles_compra.btnContinuar, vista.detalles_compra, vista.login);
+		botones.BotonInicioSesion(vista.login.btnInicioSesion, vista.login, vista.pago);
+		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
+		botones.BotonContinuar(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur);
 		
 	}
 

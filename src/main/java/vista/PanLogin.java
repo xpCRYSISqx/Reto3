@@ -1,21 +1,8 @@
 package vista;
 
 import javax.swing.JPanel;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.GridLayout;
-import javax.swing.JComboBox;
-import javax.swing.JTable;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import javax.swing.JScrollBar;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JInternalFrame;
-import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JPasswordField;
@@ -25,49 +12,62 @@ public class PanLogin extends JPanel {
 	
 	JPanel login = new JPanel();
 	
-	public JTextField textField;
+	public JLabel lblInicioSesion;
+	public JLabel lblUsuario;
+	public JLabel lblPassword;
+	public JTextField userField;
 	public JPasswordField passwordField;
-	public JButton button;
+	public JButton btnInicioSesion;
+	public JButton btnCancelar;
 
 	/**
 	 * Create the panel.
 	 */
 	public PanLogin() {
+		
+		// configuracion del panel
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		JLabel lblUsuario = new JLabel("Usuario (DNI)");
+		// label titulo panel
+		lblInicioSesion = new JLabel("INICIO DE SESI\u00D3N");
+		lblInicioSesion.setFont(new Font("Mistral", Font.PLAIN, 44));
+		lblInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInicioSesion.setBounds(0, 36, 790, 81);
+		add(lblInicioSesion);
+		
+		// label usuario
+		lblUsuario = new JLabel("Usuario (DNI)");
 		lblUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUsuario.setBounds(237, 297, 70, 20);
+		lblUsuario.setBounds(317, 265, 215, 25);
 		add(lblUsuario);
 		
-		textField = new JTextField();
-		textField.setBounds(317, 297, 216, 20);
-		add(textField);
-		textField.setColumns(10);
+		// campo usuario
+		userField = new JTextField();
+		userField.setBounds(317, 290, 215, 30);
+		add(userField);
+		userField.setColumns(10);
 		
-		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setBounds(247, 328, 53, 14);
+		// label password
+		lblPassword = new JLabel("Password");
+		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPassword.setBounds(317, 335, 215, 25);
 		add(lblPassword);
 		
-		JLabel lblInicioDeSesin = new JLabel("INICIO DE SESI\u00D3N");
-		lblInicioDeSesin.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblInicioDeSesin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInicioDeSesin.setBounds(0, 36, 790, 81);
-		add(lblInicioDeSesin);
-		
+		// campo password
 		passwordField = new JPasswordField();
-		passwordField.setBounds(317, 328, 216, 14);
+		passwordField.setBounds(317, 360, 215, 30);
 		add(passwordField);
 		
-		JButton btnNewButton = new JButton("Iniciar Sesi\u00F3n");
-		btnNewButton.setBounds(317, 363, 114, 42);
-		add(btnNewButton);
+		// boton de iniciar sesion
+		btnInicioSesion = new JButton("Iniciar Sesi\u00F3n");
+		btnInicioSesion.setBounds(317, 405, 114, 42);
+		add(btnInicioSesion);
 		
-		button = new JButton("Cancelar");
-		button.setBounds(10, 686, 89, 23);
-		add(button);
+		// boton cancelar
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(317, 455, 114, 42);
+		add(btnCancelar);
 
 	}
 }
