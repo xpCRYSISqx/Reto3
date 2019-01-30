@@ -23,6 +23,7 @@ public class PanSelFecha extends JPanel {
 	 */
 	
 	JPanel sel_fecha = new JPanel();
+	public JButton btnContinuar;
 	
 	
 	public PanSelFecha() {
@@ -43,9 +44,9 @@ public class PanSelFecha extends JPanel {
 		button_1.setBounds(683, 34, 107, 23);
 		add(button_1);
 		
-		JButton button_2 = new JButton("Continuar");
-		button_2.setBounds(683, 566, 107, 23);
-		add(button_2);
+		btnContinuar = new JButton("Continuar");
+		btnContinuar.setBounds(683, 566, 107, 23);
+		add(btnContinuar);
 		
 		JButton button_3 = new JButton("Cancelar");
 		button_3.setBounds(10, 566, 89, 23);

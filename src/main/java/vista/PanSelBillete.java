@@ -15,6 +15,7 @@ public class PanSelBillete extends JPanel {
 	 */
 	
 	JPanel sel_billete = new JPanel();
+	public JButton btnContinuar;
 	
 	public PanSelBillete() {
 		setLayout(null);
@@ -28,7 +29,7 @@ public class PanSelBillete extends JPanel {
 		btnNewButton.setBounds(683, 42, 107, 23);
 		add(btnNewButton);
 		
-		JButton btnContinuar = new JButton("Continuar");
+		btnContinuar = new JButton("Continuar");
 		btnContinuar.setBounds(683, 566, 107, 23);
 		add(btnContinuar);
 		

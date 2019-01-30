@@ -21,6 +21,7 @@ public class PanPago extends JPanel {
 	 */
 	
 	JPanel pago = new JPanel();
+	public JButton btnContinuar;
 	
 	
 	public PanPago() {
@@ -105,9 +106,9 @@ public class PanPago extends JPanel {
 		button_15.setBounds(10, 614, 89, 23);
 		add(button_15);
 		
-		JButton button_16 = new JButton("Continuar");
-		button_16.setBounds(669, 614, 107, 23);
-		add(button_16);
+		btnContinuar = new JButton("Continuar");
+		btnContinuar.setBounds(669, 614, 107, 23);
+		add(btnContinuar);
 		
 		JButton btnCancelarPago = new JButton("Cancelar Pago");
 		btnCancelarPago.setBounds(10, 469, 101, 23);

@@ -22,15 +22,15 @@ public class PanBienvenida extends JPanel {
 	 */
 	
 	JPanel sel_linea = new JPanel();
-	public JButton btnCont;
+	public JButton btnContinuar;
 	
 	public PanBienvenida() {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		btnCont = new JButton("Continuar");
-		btnCont.setBounds(0, 0, 1024, 720);
-		add(btnCont);
+		btnContinuar = new JButton("Continuar");
+		btnContinuar.setBounds(0, 0, 1024, 720);
+		add(btnContinuar);
 		
 		//¿¿¿Añadir temporizador en caso de inactividad???
 	

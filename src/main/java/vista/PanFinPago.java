@@ -17,6 +17,7 @@ public class PanFinPago extends JPanel {
 	 */
 	
 	JPanel fin_pago = new JPanel();
+	public JButton btnContinuar;
 	
 	
 	public PanFinPago() {
@@ -29,9 +30,9 @@ public class PanFinPago extends JPanel {
 		lblPagar.setBounds(10, 11, 780, 75);
 		add(lblPagar);
 		
-		JButton button = new JButton("Continuar");
-		button.setBounds(683, 566, 107, 23);
-		add(button);
+		btnContinuar = new JButton("Continuar");
+		btnContinuar.setBounds(683, 566, 107, 23);
+		add(btnContinuar);
 		
 		JLabel lblImporteTotal = new JLabel("IMPORTE TOTAL");
 		lblImporteTotal.setBounds(277, 179, 101, 23);
