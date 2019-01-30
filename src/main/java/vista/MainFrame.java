@@ -46,7 +46,7 @@ public class MainFrame extends JFrame{
 		detalles_compra = new PanDetalles();
 		pago = new PanPago();
 		fin_pago = new PanFinPago();
-		agur = new PanDespedida();			
+		agur = new PanDespedida();
 	}
 	
 	private void AddPaneles() {
