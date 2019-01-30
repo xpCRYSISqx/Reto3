@@ -13,5 +13,6 @@ public class App {
 		Controlador controlador = new Controlador(modelo, vista);
 		controlador.inicializarEventos();
 		controlador.inicializarInterfaz();
+		controlador.manejoInterfaz();
 	}
 }
