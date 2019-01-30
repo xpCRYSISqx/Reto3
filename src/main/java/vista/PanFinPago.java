@@ -21,7 +21,7 @@ public class PanFinPago extends JPanel {
 	
 	public PanFinPago() {
 		setLayout(null);
-		setBounds(0, 0, 800, 600);
+		setBounds(0, 0, 1024, 720);
 		
 		JLabel lblPagar = new JLabel("FINALIZAR PAGO");
 		lblPagar.setHorizontalAlignment(SwingConstants.CENTER);

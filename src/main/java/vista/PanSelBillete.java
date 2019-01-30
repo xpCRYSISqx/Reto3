@@ -18,7 +18,7 @@ public class PanSelBillete extends JPanel {
 	
 	public PanSelBillete() {
 		setLayout(null);
-		setBounds(0, 0, 800, 600);
+		setBounds(0, 0, 1024, 720);
 		
 		JButton btnInicioDeSesin = new JButton("Inicio de Sesi\u00F3n");
 		btnInicioDeSesin.setBounds(683, 15, 107, 23);

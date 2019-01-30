@@ -26,10 +26,10 @@ public class PanBienvenida extends JPanel {
 	
 	public PanBienvenida() {
 		setLayout(null);
-		setBounds(0, 0, 800, 600);
+		setBounds(0, 0, 1024, 720);
 		
 		btnCont = new JButton("Continuar");
-		btnCont.setBounds(0, 0, 800, 600);
+		btnCont.setBounds(0, 0, 1024, 720);
 		add(btnCont);
 		
 		//¿¿¿Añadir temporizador en caso de inactividad???

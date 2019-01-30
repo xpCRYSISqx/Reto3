@@ -32,7 +32,7 @@ public class PanRegistro extends JPanel {
 	 */
 	public PanRegistro() {
 		setLayout(null);
-		setBounds(0, 0, 800, 600);
+		setBounds(0, 0, 1024, 720);
 		
 		JLabel lblRegistro = new JLabel("REGISTRO");
 		lblRegistro.setHorizontalAlignment(SwingConstants.CENTER);

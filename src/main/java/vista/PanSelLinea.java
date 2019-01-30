@@ -29,7 +29,7 @@ public class PanSelLinea extends JPanel {
 	
 	public PanSelLinea() {
 		setLayout(null);
-		setBounds(0, 0, 800, 600);
+		setBounds(0, 0, 1024, 720);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"L1: Termibus - Plentzia", "L2: Termibus - Muskiz", "L3: Termibus - Balmaseda", "L4: Termibus - Durango"}));

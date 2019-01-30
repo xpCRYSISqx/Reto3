@@ -25,7 +25,7 @@ public class PanPago extends JPanel {
 	
 	public PanPago() {
 		setLayout(null);
-		setBounds(0, 0, 800, 600);
+		setBounds(0, 0, 1024, 720);
 		
 		JButton button = new JButton("200 \u20AC");
 		button.setFont(new Font("Agency FB", Font.PLAIN, 30));

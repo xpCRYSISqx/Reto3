@@ -32,7 +32,7 @@ public class PanDetalles extends JPanel {
 	JPanel detalles_compra = new JPanel();
 	
 	public PanDetalles() {
-		setBounds(0, 0, 800, 600);
+		setBounds(0, 0, 1024, 720);
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		

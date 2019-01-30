@@ -27,7 +27,7 @@ public class PanSelFecha extends JPanel {
 	
 	public PanSelFecha() {
 		setLayout(null);
-		setBounds(0, 0, 800, 600);
+		setBounds(0, 0, 1024, 720);
 		
 		JLabel lblSeleccinDeFecha = new JLabel("SELECCI\u00D3N DE FECHA");
 		lblSeleccinDeFecha.setHorizontalAlignment(SwingConstants.CENTER);
