@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 public class Botones {
 	
-	public void BotonContinuarBienvenida(JButton boton, JPanel panSalida, JPanel panDeseado) {
+	public void BotonContinuar(JButton boton, JPanel panSalida, JPanel panDeseado) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panDeseado.setVisible(true);

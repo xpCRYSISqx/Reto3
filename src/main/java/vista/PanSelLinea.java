@@ -25,6 +25,7 @@ public class PanSelLinea extends JPanel {
 	 */
 	
 	JPanel sel_linea = new JPanel();
+	public JButton btnContinuar;
 	
 	public PanSelLinea() {
 		setLayout(null);
@@ -48,7 +49,7 @@ public class PanSelLinea extends JPanel {
 		btnNewButton.setBounds(691, 34, 99, 23);
 		add(btnNewButton);
 		
-		JButton btnContinuar = new JButton("Continuar");
+		btnContinuar = new JButton("Continuar");
 		btnContinuar.setBounds(701, 566, 89, 23);
 		add(btnContinuar);
 		
