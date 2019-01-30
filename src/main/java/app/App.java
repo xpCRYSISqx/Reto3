@@ -12,9 +12,8 @@ public class App {
 		MainFrame vista = new MainFrame();
 		Modelo modelo = new Modelo();
 		Controlador controlador = new Controlador(modelo, vista);
-		controlador.inicializarEventos();
 		
-		// Hacer la vista visible 
-		vista.setVisible(true);
+		controlador.inicializarEventos();		
+		controlador.inicializarInterfaz();
 	}
 }
