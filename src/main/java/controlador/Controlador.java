@@ -120,5 +120,19 @@ public class Controlador {
 		
 		
 	}
+	
+	public void inicializarInterfaz() {
+		vista.setVisible(true);
+		vista.bienvenida.setVisible(true);
+		vista.sel_linea.setVisible(false);
+		vista.sel_billete.setVisible(false);
+		vista.sel_fecha.setVisible(false);
+		vista.detalles_compra.setVisible(false);
+		vista.login.setVisible(false);
+		vista.registro.setVisible(false);
+		vista.pago.setVisible(false);
+		vista.fin_pago.setVisible(false);
+		vista.agur.setVisible(false);
+	}
 
 }
