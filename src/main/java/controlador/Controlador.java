@@ -26,6 +26,8 @@ public class Controlador {
 	
 	public void inicializarEventos() {
 		
+		Boolean disponible;
+		
 		// crea un objeto billete y lo inserta en bbdd
 		try {
 			// creamos la fecha y hora
@@ -36,7 +38,8 @@ public class Controlador {
 			// creamos el objeto billete
 			Billete billete = modelo.crearBillete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
 			
-			modelo.comprobarFechasBillete(billete);
+			disponible = modelo.comprobarPlazasBillete(billete);
+			System.out.println(disponible);
 			
 			// insertamos los datos del billete en la bbdd
 			//modelo.insertarBillete(billete);

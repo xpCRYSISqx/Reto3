@@ -195,12 +195,13 @@ public class Modelo {
 		
 	}
 	
-	public Boolean comprobarFechasBillete(Billete billete) {
-		
-		Boolean disponible = false;
+	public Boolean comprobarPlazasBillete(Billete billete) {
 		
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		Boolean disponible = false;
+		int plazasOcupadas = 0;
+		int plazasTotales = 0;
 
 		try {
 			
@@ -208,19 +209,41 @@ public class Modelo {
 			stmt = this.connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ?");
 			stmt.setInt(1, billete.getCodBus());
 			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet
 			result = stmt.executeQuery();
-			
-			System.out.println(result);
 			
 			// crea objetos con los resultados y los añade a un arrayList
 			while (result.next()) {
-				//disponible = result.getInt('1');
+				plazasOcupadas = result.getInt(1);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}           
+		}
+		
+		try {
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT N_plazas FROM autobus WHERE Cod_bus = ?");
+			stmt.setInt(1, billete.getCodBus());
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				plazasTotales = result.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if (plazasOcupadas < plazasTotales)  {
+			disponible = true;
+		} else {
+			disponible = false;
+		}
 		
 		return disponible;
 		
