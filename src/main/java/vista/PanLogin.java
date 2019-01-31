@@ -17,14 +17,10 @@ public class PanLogin extends JPanel {
 
 	JPanel login = new JPanel();
 	
-	public JLabel lblTitulo;
-	public JLabel lblUsuario;
-	public JLabel lblPassword;
+	public JLabel lblTitulo,lblUsuario,lblPassword;
 	public JTextField userField;
 	public JPasswordField password;
-	public JButton btnLogin;
-	public JButton btnCancelar;
-	public JButton btnRegistrar;
+	public JButton btnLogin,btnRegistrar,btnCancelar;
 
 	/**
 	 * Create the panel.

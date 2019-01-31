@@ -16,50 +16,52 @@ public class PanDetalles extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private JTable table;
+	public JTable tablaDatos;
 
 	/**
 	 * Create the panel.
 	 */
 	
 	JPanel detalles_compra = new JPanel();
-	public JButton btnContinuar;
+	
+	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
+	public JLabel lblTitulo;
 	
 	public PanDetalles() {
 		setBounds(0, 0, 1024, 720);
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		
-		JButton button = new JButton("Atr\u00E1s");
-		button.setBounds(10, 542, 89, 23);
-		add(button);
+		btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.setBounds(10, 673, 89, 23);
+		add(btnAtras);
 		
-		JButton button_1 = new JButton("Cancelar");
-		button_1.setBounds(10, 566, 89, 23);
-		add(button_1);
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(10, 697, 89, 23);
+		add(btnCancelar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(683, 566, 107, 23);
+		btnContinuar.setBounds(907, 686, 107, 23);
 		add(btnContinuar);
 		
-		JButton button_3 = new JButton("Inicio de Sesi\u00F3n");
-		button_3.setBounds(907, 11, 107, 23);
-		add(button_3);
+		btnLogin = new JButton("Inicio de Sesi\u00F3n");
+		btnLogin.setBounds(907, 11, 107, 23);
+		add(btnLogin);
 		
-		JButton button_4 = new JButton("Registrar");
-		button_4.setBounds(907, 45, 107, 23);
-		add(button_4);
+		btnRegistro = new JButton("Registrar");
+		btnRegistro.setBounds(907, 45, 107, 23);
+		add(btnRegistro);
 		
-		JLabel lblDetallesDe = new JLabel("DETALLES DE BILLETE");
-		lblDetallesDe.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDetallesDe.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblDetallesDe.setBounds(10, 11, 780, 69);
-		add(lblDetallesDe);
+		lblTitulo = new JLabel("DETALLES DE BILLETE");
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
+		lblTitulo.setBounds(10, 11, 780, 69);
+		add(lblTitulo);
 		
-		table = new JTable();
-		table.setEnabled(false);
-		table.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-		table.setModel(new DefaultTableModel(
+		tablaDatos = new JTable();
+		tablaDatos.setEnabled(false);
+		tablaDatos.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		tablaDatos.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
@@ -68,21 +70,27 @@ public class PanDetalles extends JPanel {
 				"Autob\u00FAs", "L\u00EDnea", "Origen", "Destino", "Fecha ida", "Fecha vuelta", "C\u00F3digo billete"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
 				Integer.class, String.class, String.class, Object.class, String.class, String.class, Object.class
 			};
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
-		table.getColumnModel().getColumn(0).setPreferredWidth(60);
-		table.getColumnModel().getColumn(1).setPreferredWidth(35);
-		table.getColumnModel().getColumn(2).setPreferredWidth(140);
-		table.getColumnModel().getColumn(3).setPreferredWidth(140);
-		table.getColumnModel().getColumn(6).setPreferredWidth(90);
-		table.setBackground(SystemColor.inactiveCaption);
-		table.setBounds(94, 230, 591, 140);
-		add(table);
+		tablaDatos.getColumnModel().getColumn(0).setPreferredWidth(60);
+		tablaDatos.getColumnModel().getColumn(1).setPreferredWidth(35);
+		tablaDatos.getColumnModel().getColumn(2).setPreferredWidth(140);
+		tablaDatos.getColumnModel().getColumn(3).setPreferredWidth(140);
+		tablaDatos.getColumnModel().getColumn(6).setPreferredWidth(90);
+		tablaDatos.setBackground(SystemColor.inactiveCaption);
+		tablaDatos.setBounds(94, 230, 591, 140);
+		add(tablaDatos);
 
 	}
 }
