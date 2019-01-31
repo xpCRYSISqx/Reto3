@@ -5,15 +5,18 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTable;
 import java.awt.SystemColor;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 public class PanPago extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JTable table;
 
 	/**
@@ -126,6 +129,10 @@ public class PanPago extends JPanel {
 				"Autob\u00FAs", "L\u00EDnea", "Origen", "Destino", "Fecha ida", "Fecha vuelta", "C\u00F3digo billete"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] {
 				Integer.class, String.class, String.class, Object.class, String.class, String.class, Object.class
 			};

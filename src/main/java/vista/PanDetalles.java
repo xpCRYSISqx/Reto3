@@ -5,24 +5,17 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import com.toedter.calendar.JDateChooser;
 import javax.swing.JTable;
-import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
-import javax.swing.JList;
 
 public class PanDetalles extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private JTable table;
 
 	/**
@@ -50,11 +43,11 @@ public class PanDetalles extends JPanel {
 		add(btnContinuar);
 		
 		JButton button_3 = new JButton("Inicio de Sesi\u00F3n");
-		button_3.setBounds(683, 11, 107, 23);
+		button_3.setBounds(907, 11, 107, 23);
 		add(button_3);
 		
 		JButton button_4 = new JButton("Registrar");
-		button_4.setBounds(683, 45, 107, 23);
+		button_4.setBounds(907, 45, 107, 23);
 		add(button_4);
 		
 		JLabel lblDetallesDe = new JLabel("DETALLES DE BILLETE");

@@ -10,6 +10,11 @@ import javax.swing.JButton;
 
 public class PanLogin extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	JPanel login = new JPanel();
 	
 	public JLabel lblInicioSesion;
