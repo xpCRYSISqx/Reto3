@@ -10,6 +10,11 @@ import javax.swing.JButton;
 
 public class PanLogin extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	JPanel login = new JPanel();
 	
 	public JLabel lblInicioSesion;
@@ -62,16 +67,16 @@ public class PanLogin extends JPanel {
 		
 		// boton de iniciar sesion
 		btnInicioSesion = new JButton("Iniciar Sesi\u00F3n");
-		btnInicioSesion.setBounds(453, 399, 114, 42);
+		btnInicioSesion.setBounds(453, 399, 115, 40);
 		add(btnInicioSesion);
 		
 		// boton cancelar
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 684, 89, 25);
+		btnCancelar.setBounds(10, 684, 90, 30);
 		add(btnCancelar);
 		
 		btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(925, 11, 89, 23);
+		btnRegistrar.setBounds(925, 11, 90, 30);
 		add(btnRegistrar);
 
 	}
