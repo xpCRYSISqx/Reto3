@@ -72,8 +72,15 @@ public class Controlador {
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);
 		botones.BotonContinuar(vista.detalles_compra.btnContinuar, vista.detalles_compra, vista.login);
 		botones.BotonInicioSesion(vista.login.btnInicioSesion, vista.login, vista.pago);
+		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
+		botones.BotonRegistro(vista.sel_linea.btnRegistro, vista.sel_linea, vista.registro);
+		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
+		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
+		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
+		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
+		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
-		botones.BotonContinuar(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur);
+		botones.BotonContinuarFinal(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur, vista.bienvenida);
 		
 	}
 

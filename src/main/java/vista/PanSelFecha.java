@@ -23,6 +23,7 @@ public class PanSelFecha extends JPanel {
 	 */
 	
 	JPanel sel_fecha = new JPanel();
+	
 	public JButton btnContinuar;
 	
 	
@@ -36,31 +37,31 @@ public class PanSelFecha extends JPanel {
 		lblSeleccinDeFecha.setBounds(10, 11, 780, 62);
 		add(lblSeleccinDeFecha);
 		
-		JButton button = new JButton("Inicio de Sesi\u00F3n");
-		button.setBounds(683, 11, 107, 23);
-		add(button);
+		JButton btnInicioSesion = new JButton("Inicio de Sesi\u00F3n");
+		btnInicioSesion.setBounds(887, 11, 130, 30);
+		add(btnInicioSesion);
 		
-		JButton button_1 = new JButton("Registrar");
-		button_1.setBounds(683, 34, 107, 23);
-		add(button_1);
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setBounds(887, 43, 130, 30);
+		add(btnRegistrar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(683, 566, 107, 23);
+		btnContinuar.setBounds(907, 686, 90, 30);
 		add(btnContinuar);
 		
-		JButton button_3 = new JButton("Cancelar");
-		button_3.setBounds(10, 566, 89, 23);
-		add(button_3);
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(10, 686, 130, 30);
+		add(btnCancelar);
 		
-		JLabel label = new JLabel("Origen");
-		label.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		label.setBounds(20, 111, 84, 23);
-		add(label);
+		JLabel lblOrigen = new JLabel("Origen");
+		lblOrigen.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+		lblOrigen.setBounds(20, 111, 84, 23);
+		add(lblOrigen);
 		
-		JLabel label_1 = new JLabel("Destino");
-		label_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		label_1.setBounds(20, 186, 66, 23);
-		add(label_1);
+		JLabel lblDestino = new JLabel("Destino");
+		lblDestino.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+		lblDestino.setBounds(20, 186, 66, 23);
+		add(lblDestino);
 		
 		textField = new JTextField();
 		textField.setEditable(false);
@@ -74,30 +75,30 @@ public class PanSelFecha extends JPanel {
 		textField_1.setBounds(30, 209, 248, 20);
 		add(textField_1);
 		
-		JCalendar calendar = new JCalendar();
-		calendar.setBounds(30, 314, 184, 153);
-		add(calendar);
+		JCalendar fechaIda = new JCalendar();
+		fechaIda.setBounds(30, 314, 184, 153);
+		add(fechaIda);
 		
 		JLabel lblSeleccioneFecha = new JLabel("Seleccione fecha");
-		lblSeleccioneFecha.setBounds(40, 289, 80, 14);
+		lblSeleccioneFecha.setBounds(40, 289, 174, 14);
 		add(lblSeleccioneFecha);
 		
 		// Panel interno con calendario solo para seleccionar fecha de vuelta en caso de haber seleccionado billete tipo: Ida/Vuelta en el paso anterior.
 		// Billete simple = Este panel debera estar OCULTO
-		// Billete ida/ve
+		// Billete ida/vuelta
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(429, 289, 262, 178);
-		add(panel);
-		panel.setLayout(null);
+		JPanel panFechaVuelta = new JPanel();
+		panFechaVuelta.setBounds(528, 289, 455, 260);
+		add(panFechaVuelta);
+		panFechaVuelta.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Seleccione vuelta");
-		lblNewLabel.setBounds(0, 0, 83, 14);
-		panel.add(lblNewLabel);
+		JLabel lblSeleccioneVuelta = new JLabel("Seleccione vuelta");
+		lblSeleccioneVuelta.setBounds(0, 0, 252, 14);
+		panFechaVuelta.add(lblSeleccioneVuelta);
 		
-		JCalendar calendar_1 = new JCalendar();
-		calendar_1.setBounds(10, 25, 184, 153);
-		panel.add(calendar_1);
+		JCalendar fechaVuelta = new JCalendar();
+		fechaVuelta.setBounds(10, 25, 184, 153);
+		panFechaVuelta.add(fechaVuelta);
 	
 	
 	}
