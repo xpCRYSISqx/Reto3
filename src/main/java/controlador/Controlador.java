@@ -20,8 +20,6 @@ public class Controlador {
 	public Controlador(Modelo modelo, MainFrame vista) {
 		this.modelo = modelo;
 		this.vista = vista;
-		
-		
 	}
 	
 	public void inicializarEventos() {

@@ -1,24 +1,20 @@
 package vista;
 
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JSlider;
-import javax.swing.JProgressBar;
-import javax.swing.JTree;
-import javax.swing.JList;
 import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JLabel;
 
 public class PanSelLinea extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Create the panel.
@@ -49,15 +45,15 @@ public class PanSelLinea extends JPanel {
 		add(textPaneParadas);
 		
 		btnInicioSesion = new JButton("Inicio Sesi\u00F3n");
-		btnInicioSesion.setBounds(691, 11, 99, 23);
+		btnInicioSesion.setBounds(895, 11, 119, 23);
 		add(btnInicioSesion);
 		
 		btnRegistro = new JButton("Registro");
-		btnRegistro.setBounds(691, 34, 99, 23);
+		btnRegistro.setBounds(895, 34, 119, 23);
 		add(btnRegistro);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(701, 566, 89, 23);
+		btnContinuar.setBounds(881, 686, 89, 23);
 		add(btnContinuar);
 		
 		lblLineas = new JLabel("L\u00CDNEAS");
