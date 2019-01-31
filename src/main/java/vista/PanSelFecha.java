@@ -37,11 +37,11 @@ public class PanSelFecha extends JPanel {
 		add(lblSeleccinDeFecha);
 		
 		JButton button = new JButton("Inicio de Sesi\u00F3n");
-		button.setBounds(683, 11, 107, 23);
+		button.setBounds(907, 11, 107, 23);
 		add(button);
 		
 		JButton button_1 = new JButton("Registrar");
-		button_1.setBounds(683, 34, 107, 23);
+		button_1.setBounds(907, 35, 107, 23);
 		add(button_1);
 		
 		btnContinuar = new JButton("Continuar");
@@ -79,7 +79,7 @@ public class PanSelFecha extends JPanel {
 		add(calendar);
 		
 		JLabel lblSeleccioneFecha = new JLabel("Seleccione fecha");
-		lblSeleccioneFecha.setBounds(40, 289, 80, 14);
+		lblSeleccioneFecha.setBounds(40, 289, 174, 14);
 		add(lblSeleccioneFecha);
 		
 		// Panel interno con calendario solo para seleccionar fecha de vuelta en caso de haber seleccionado billete tipo: Ida/Vuelta en el paso anterior.
@@ -92,7 +92,7 @@ public class PanSelFecha extends JPanel {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Seleccione vuelta");
-		lblNewLabel.setBounds(0, 0, 83, 14);
+		lblNewLabel.setBounds(0, 0, 252, 14);
 		panel.add(lblNewLabel);
 		
 		JCalendar calendar_1 = new JCalendar();

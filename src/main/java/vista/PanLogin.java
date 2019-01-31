@@ -19,6 +19,7 @@ public class PanLogin extends JPanel {
 	public JPasswordField passwordField;
 	public JButton btnInicioSesion;
 	public JButton btnCancelar;
+	public JButton btnRegistrar;
 
 	/**
 	 * Create the panel.
@@ -33,41 +34,45 @@ public class PanLogin extends JPanel {
 		lblInicioSesion = new JLabel("INICIO DE SESI\u00D3N");
 		lblInicioSesion.setFont(new Font("Mistral", Font.PLAIN, 44));
 		lblInicioSesion.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInicioSesion.setBounds(0, 36, 790, 81);
+		lblInicioSesion.setBounds(0, 11, 1014, 81);
 		add(lblInicioSesion);
 		
 		// label usuario
 		lblUsuario = new JLabel("Usuario (DNI)");
 		lblUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUsuario.setBounds(317, 265, 215, 25);
+		lblUsuario.setBounds(397, 263, 215, 25);
 		add(lblUsuario);
 		
 		// campo usuario
 		userField = new JTextField();
-		userField.setBounds(317, 290, 215, 30);
+		userField.setBounds(397, 288, 215, 30);
 		add(userField);
 		userField.setColumns(10);
 		
 		// label password
 		lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPassword.setBounds(317, 335, 215, 25);
+		lblPassword.setBounds(397, 333, 215, 25);
 		add(lblPassword);
 		
 		// campo password
 		passwordField = new JPasswordField();
-		passwordField.setBounds(317, 360, 215, 30);
+		passwordField.setBounds(397, 358, 215, 30);
 		add(passwordField);
 		
 		// boton de iniciar sesion
 		btnInicioSesion = new JButton("Iniciar Sesi\u00F3n");
-		btnInicioSesion.setBounds(317, 405, 114, 42);
+		btnInicioSesion.setBounds(453, 399, 114, 42);
 		add(btnInicioSesion);
 		
 		// boton cancelar
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(317, 455, 114, 42);
+		btnCancelar.setBounds(10, 684, 89, 25);
 		add(btnCancelar);
+		
+		btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setBounds(925, 11, 89, 23);
+		add(btnRegistrar);
 
 	}
 }
