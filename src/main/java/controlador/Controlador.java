@@ -70,7 +70,7 @@ public class Controlador {
 		botones.BotonContinuar(vista.detalles_compra.btnContinuar, vista.detalles_compra, vista.login);
 		botones.BotonInicioSesion(vista.login.btnInicioSesion, vista.login, vista.pago);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.sel_linea.btnRegistrar, vista.sel_linea, vista.registro);
+		botones.BotonRegistro(vista.sel_linea.btnRegistro, vista.sel_linea, vista.registro);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
