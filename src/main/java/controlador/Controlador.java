@@ -1,9 +1,11 @@
 package controlador;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
 import modelo.*;
 import vista.MainFrame;
 
@@ -12,6 +14,7 @@ public class Controlador {
 	//Atributos
 	public Modelo modelo;
 	public MainFrame vista;
+	public boolean logeado;
 	
 	//Constructor con parametros
 	public Controlador(Modelo modelo, MainFrame vista) {
@@ -20,24 +23,6 @@ public class Controlador {
 	}
 	
 	public void inicializarInterfaz() {
-		java.sql.Date fecha = null;
-		java.sql.Time time = null;
-		try {
-			// creamos la fecha y hora
-			DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-			fecha = new java.sql.Date(df.parse("02-04-2015").getTime());
-			time = java.sql.Time.valueOf( "18:05:00" );
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// creamos el objeto billete
-		Billete billete = modelo.consultas.crearBillete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
-		
-		// imprimir billete
-		modelo.ficheros.imprimirBillete(billete);
-		
 		vista.setVisible(true);
 		vista.bienvenida.setVisible(true);
 		vista.sel_linea.setVisible(false);
@@ -61,15 +46,9 @@ public class Controlador {
 		botones.BotonInicioSesion(vista.login.btnLogin, vista.login, vista.pago);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonRegistro(vista.sel_linea.btnRegistro, vista.sel_linea, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
 		botones.BotonContinuarFinal(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur, vista.bienvenida);
 		
 		
 	}
-
 }
