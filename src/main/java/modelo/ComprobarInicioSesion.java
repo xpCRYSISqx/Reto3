@@ -6,7 +6,7 @@ import javax.swing.JTextField;
 
 public class ComprobarInicioSesion {
 	
-	Modelo modelo;
+	Consultas consultas;
 	Cliente cliente;
 	
 	public boolean comprobarInicio(JTextField usuario, JPasswordField contraseña) {
@@ -20,7 +20,7 @@ public class ComprobarInicioSesion {
 		cont = contraseña.getPassword();
 		contString = new String(cont);
 		contString = encriptar.Encriptacion(contString);
-		cliente = modelo.getClienteByDNI(dni);
+		cliente = consultas.getClienteByDNI(dni);
 		if(cliente != null) {
 			if(contString.equals(cliente.getContraseña()))
 				return true;

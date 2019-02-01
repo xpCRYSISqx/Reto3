@@ -1,11 +1,8 @@
 package controlador;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import modelo.*;
 import vista.MainFrame;
@@ -20,8 +17,6 @@ public class Controlador {
 	public Controlador(Modelo modelo, MainFrame vista) {
 		this.modelo = modelo;
 		this.vista = vista;
-		
-		
 	}
 	
 	public void inicializarEventos() {
@@ -44,13 +39,17 @@ public class Controlador {
 			// insertamos los datos del billete en la bbdd
 			//modelo.insertarBillete(billete);
 			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}		
+			// creamos el objeto billete
+			Billete billete = modelo.consultas.crearBillete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
+			
+			// imprimir billete
+			modelo.ficheros.imprimirBillete(billete);
 		
+		}
 	}
-	
+			
 	public void inicializarInterfaz() {
+		
 		vista.setVisible(true);
 		vista.bienvenida.setVisible(true);
 		vista.sel_linea.setVisible(false);
@@ -71,7 +70,7 @@ public class Controlador {
 		botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);
 		botones.BotonContinuar(vista.detalles_compra.btnContinuar, vista.detalles_compra, vista.login);
-		botones.BotonInicioSesion(vista.login.btnInicioSesion, vista.login, vista.pago);
+		botones.BotonInicioSesion(vista.login.btnLogin, vista.login, vista.pago);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonRegistro(vista.sel_linea.btnRegistro, vista.sel_linea, vista.registro);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);

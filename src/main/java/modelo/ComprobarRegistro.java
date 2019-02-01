@@ -10,7 +10,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class ComprobarRegistro {
 	
-	Modelo modelo;
+	Consultas consultas;
 	Cliente cliente;
 	
 	public int comprobarRegistro(JTextField nombre0, JTextField apellidos0, JDateChooser fecha0, JTextField dni0,JRadioButton femenino0, JRadioButton masculino, JPasswordField contraseña, JPasswordField contraseña2) {
@@ -40,7 +40,7 @@ public class ComprobarRegistro {
 			sexo = 'M';
 		else
 			sexo = 'V';
-		cliente = modelo.getClienteByDNI(dni);
+		cliente = consultas.getClienteByDNI(dni);
 		if(cliente == null) {
 			if(contString.equals(contStringConfirmar)) {
 				fecha = (Date) fecha0.getDate();

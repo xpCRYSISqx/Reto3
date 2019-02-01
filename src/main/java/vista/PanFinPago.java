@@ -8,63 +8,66 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 public class PanFinPago extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Create the panel.
 	 */
 	
 	JPanel fin_pago = new JPanel();
-	public JButton btnContinuar;
 	
+	public JLabel lblTitulo,lblTotal,lblPagado,lblADevolver;
+	public JButton btnContinuar,btnSeparador;
+	public JTextField txtTotal,txtPagado,txtDevolver;
 	
 	public PanFinPago() {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		JLabel lblPagar = new JLabel("FINALIZAR PAGO");
-		lblPagar.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPagar.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblPagar.setBounds(10, 11, 780, 75);
-		add(lblPagar);
+		lblTitulo = new JLabel("FINALIZAR PAGO");
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
+		lblTitulo.setBounds(10, 11, 780, 75);
+		add(lblTitulo);
 		
 		btnContinuar = new JButton("Continuar");
 		btnContinuar.setBounds(683, 566, 107, 23);
 		add(btnContinuar);
 		
-		JLabel lblImporteTotal = new JLabel("IMPORTE TOTAL");
-		lblImporteTotal.setBounds(277, 179, 101, 23);
-		add(lblImporteTotal);
+		lblTotal = new JLabel("IMPORTE TOTAL");
+		lblTotal.setBounds(277, 179, 101, 23);
+		add(lblTotal);
 		
-		textField = new JTextField();
-		textField.setBounds(388, 179, 132, 22);
-		add(textField);
-		textField.setColumns(10);
+		txtTotal = new JTextField();
+		txtTotal.setBounds(388, 179, 132, 22);
+		add(txtTotal);
+		txtTotal.setColumns(10);
 		
-		JLabel lblPagado = new JLabel("PAGADO");
+		lblPagado = new JLabel("PAGADO");
 		lblPagado.setBounds(277, 213, 101, 23);
 		add(lblPagado);
 		
-		JLabel lblADevolver = new JLabel("A DEVOLVER");
+		lblADevolver = new JLabel("A DEVOLVER");
 		lblADevolver.setBounds(277, 267, 101, 23);
 		add(lblADevolver);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(388, 212, 132, 22);
-		add(textField_1);
+		txtPagado = new JTextField();
+		txtPagado.setColumns(10);
+		txtPagado.setBounds(388, 212, 132, 22);
+		add(txtPagado);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(388, 267, 132, 22);
-		add(textField_2);
+		txtDevolver = new JTextField();
+		txtDevolver.setColumns(10);
+		txtDevolver.setBounds(388, 267, 132, 22);
+		add(txtDevolver);
 		
-		JButton button_1 = new JButton("");
-		button_1.setEnabled(false);
-		button_1.setBounds(277, 247, 243, 9);
-		add(button_1);
+		btnSeparador = new JButton("");
+		btnSeparador.setEnabled(false);
+		btnSeparador.setBounds(277, 247, 243, 9);
+		add(btnSeparador);
 
 	}
 

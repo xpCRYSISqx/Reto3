@@ -21,65 +21,53 @@ public class Conexion {
 	private String bd;
 	private String username;
 	private String password;
-	private String localhost;
+	private String host;
 	private String url;
 	private String[] datosConexion;
-	private String params = "serverTimezone=UTC";
+	private String params;
 	
-	private Connection connection = null;
+	// variable que almacenara la conexion
+	private Connection connection;
+	private Ficheros ficheros;
 	
 	public Conexion() {
 		
-		// cargamos los datos de conexion del archivo datosBBDD.txt
-		this.datosConexion = getConnectionInfo();
-		this.bd = datosConexion[0];
-		this.username = datosConexion[1];
-		this.password = datosConexion[2];
-		this.localhost = datosConexion[3];
-		this.url = "jdbc:mysql://"+localhost+":3306/"+bd+"?"+params;
+		// cargamos los datos de conexion a la base de datos
+		ficheros = new Ficheros();
+		datosConexion = ficheros.getConnectionInfo();
 		
-		// nos conectanos a la base de datos, si la conexion no es correcta lanzamos una excepcion
+		// inicializamos los atributos
+		connection = null;
+		host = datosConexion[3];
+		bd = datosConexion[0];
+		username = datosConexion[1];
+		password = datosConexion[2];
+		params = "serverTimezone=UTC"; // https://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue
+		url = "jdbc:mysql://"+host+":3306/"+bd+"?"+params;
+		
+		// nos conectanos a la base de datos
+		conectar();
+	}
+
+	public Connection getConnection(){
+		return connection;
+	}
+	
+	private void conectar(){
 		try {
-			this.connection = DriverManager.getConnection(url, username, password);
+			connection = DriverManager.getConnection(url, username, password);
 		} 
 		catch (SQLException e) {
 		    throw new IllegalStateException("Cannot connect the database!", e);
 		}
 	}
 
-	public Connection getConnection(){
-		return connection;
+	public void desconectar(){
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public void desconectar(){
-		connection = null;
-	}
-	
-	public String[] getConnectionInfo() {
-		
-		ClassLoader classLoader = getClass().getClassLoader();
-		File file = new File(classLoader.getResource("./resources/datosBBDD.txt").getFile());
-		BufferedReader br = null;
-		String[] datos = new String[4];
-		int count = 0;
-		String st;
-		
-		try {
-			br = new BufferedReader(new FileReader(file));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		   
-		try {
-			while ((st = br.readLine()) != null) {
-				datos[count] = st.substring(st.indexOf(":") + 1, st.indexOf(",")).replace(" ", "");
-				count++;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		
-		return datos;
-		
-	}
 }
