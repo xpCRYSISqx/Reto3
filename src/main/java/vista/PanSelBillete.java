@@ -45,7 +45,7 @@ public class PanSelBillete extends JPanel {
 		lbltitulo = new JLabel("SELECCI\u00D3N DE BILLETE");
 		lbltitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lbltitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lbltitulo.setBounds(10, 15, 780, 60);
+		lbltitulo.setBounds(10, 15, 1004, 87);
 		add(lbltitulo);
 		
 		btnCancelar = new JButton("Cancelar");

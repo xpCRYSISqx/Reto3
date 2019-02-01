@@ -1,5 +1,7 @@
 package vista;
 
+import java.io.IOException;
+
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
@@ -27,8 +29,9 @@ public class MainFrame extends JFrame{
 	public MainFrame() {
 		//Parámetros del Frame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1024, 720);
+		setBounds(0, 0, 1024, 720);
 		setLocationRelativeTo(null);
+		
 		
 		InstanciarPaneles();
 		AddPaneles();
@@ -37,7 +40,12 @@ public class MainFrame extends JFrame{
 	
 	
 	private void InstanciarPaneles() {
-		bienvenida = new PanBienvenida();
+		try {
+			bienvenida = new PanBienvenida();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		login = new PanLogin();
 		registro = new PanRegistro();
 		sel_linea = new PanSelLinea();
@@ -61,6 +69,7 @@ public class MainFrame extends JFrame{
 		getContentPane().add(fin_pago);
 		getContentPane().add(agur);		
 	}
+	
 	
 	
 	

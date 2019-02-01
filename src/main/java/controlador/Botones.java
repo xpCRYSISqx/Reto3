@@ -1,26 +1,49 @@
 package controlador;
 
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+import java.util.ArrayList;
+=======
 import java.sql.Date;
+>>>>>>> bad47dffdb0155732ecba99259ecedba0dcffd53
 import java.util.Timer;
 import java.util.TimerTask;
 import modelo.*;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JPanel;
+<<<<<<< HEAD
+import javax.swing.JTextPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+=======
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
+>>>>>>> bad47dffdb0155732ecba99259ecedba0dcffd53
 
+import com.google.common.util.concurrent.ListenableScheduledFuture;
+
+import modelo.Linea;
+import modelo.Modelo;
+import modelo.Parada;
 import vista.MainFrame;
+import vista.PanSelLinea;
 
 public class Botones {
 	public MainFrame vista;
+<<<<<<< HEAD
+	public Modelo modelo;
+=======
 	public boolean logeado;
 	public int registrado;
 	private JPanel panDeseadoInicio;
+>>>>>>> bad47dffdb0155732ecba99259ecedba0dcffd53
 	
 	public void BotonContinuar(JButton boton, JPanel panSalida, JPanel panDeseado) {
 		boton.addActionListener(new ActionListener() {
@@ -92,6 +115,29 @@ public class Botones {
 			}
 		});
 	}
+<<<<<<< HEAD
+	
+	public void BotonMostrarLinea(JList<?> lineas,JPanel sel_linea) {
+		lineas.addListSelectionListener(new ListSelectionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CargarLineas(lineas, sel_linea);
+			}
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+	}
+	
+	private void CargarLineas(JLi st<?> lineas, JPanel sel_linea) {
+		ArrayList<Linea> lineas = modelo.consultas.getLineas();
+		
+	}
+}
+=======
 	public void IniciarSesion(JButton boton, JTextField usuario, JPasswordField contrasena, JPanel panLogin) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -185,3 +231,4 @@ public class Botones {
 		return this.panDeseadoInicio;
 	}
 }
+>>>>>>> bad47dffdb0155732ecba99259ecedba0dcffd53
