@@ -4,15 +4,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import com.toedter.components.JLocaleChooser;
-import com.toedter.calendar.JYearChooser;
-import com.toedter.components.JSpinField;
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JDayChooser;
-import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JMonthChooser;
 
 public class PanSelFecha extends JPanel {
 	
@@ -47,7 +41,7 @@ public class PanSelFecha extends JPanel {
 		add(btnRegistrar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(907, 686, 90, 30);
+		btnContinuar.setBounds(907, 586, 90, 30);
 		add(btnContinuar);
 		
 		btnCancelar = new JButton("Cancelar");

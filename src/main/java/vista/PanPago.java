@@ -5,11 +5,9 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTable;
 import java.awt.SystemColor;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
@@ -110,7 +108,7 @@ public class PanPago extends JPanel {
 		add(btnCancelar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(907, 686, 107, 23);
+		btnContinuar.setBounds(907, 586, 107, 23);
 		add(btnContinuar);
 		
 		btnCancelarPago = new JButton("Cancelar Pago");
@@ -147,9 +145,9 @@ public class PanPago extends JPanel {
 		add(table);
 		
 		btnSeparador = new JButton("");
-		button_17.setEnabled(false);
-		button_17.setBounds(449, 295, 8, 163);
-		add(button_17);
+		btnSeparador.setEnabled(false);
+		btnSeparador.setBounds(449, 295, 8, 163);
+		add(btnSeparador);
 		
 		lblTitulo = new JLabel("SISTEMA DE PAGO");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);

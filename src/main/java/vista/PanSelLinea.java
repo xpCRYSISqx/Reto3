@@ -53,7 +53,7 @@ public class PanSelLinea extends JPanel {
 		add(btnRegistro);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(881, 686, 89, 23);
+		btnContinuar.setBounds(895, 586, 89, 23);
 		add(btnContinuar);
 		
 		lblLineas = new JLabel("L\u00CDNEAS");
