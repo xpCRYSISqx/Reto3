@@ -6,7 +6,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import modelo.*;
 import vista.MainFrame;
 
@@ -30,8 +29,8 @@ public class Controlador {
 		try {
 			// creamos la fecha y hora
 			DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-			java.sql.Date fecha = new java.sql.Date(df.parse("02-04-2015").getTime());
-			java.sql.Time time = java.sql.Time.valueOf( "18:05:00" );
+			Date fecha = new Date(df.parse("02-04-2015").getTime());
+			Time time = Time.valueOf( "18:05:00" );
 			
 			// creamos el objeto billete
 			Billete billete = modelo.crearBillete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
@@ -71,11 +70,6 @@ public class Controlador {
 		botones.BotonInicioSesion(vista.login.btnInicioSesion, vista.login, vista.pago);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonRegistro(vista.sel_linea.btnRegistro, vista.sel_linea, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
 		botones.BotonContinuarFinal(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur, vista.bienvenida);
 		
