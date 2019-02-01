@@ -1,8 +1,11 @@
 package controlador;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import modelo.*;
 import vista.MainFrame;
@@ -21,31 +24,13 @@ public class Controlador {
 	
 	public void inicializarEventos() {
 		
-		Boolean disponible;
-		
-		// crea un objeto billete y lo inserta en bbdd
-		try {
-			// creamos la fecha y hora
-			DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-			java.sql.Date fecha = new java.sql.Date(df.parse("02-04-2015").getTime());
-			java.sql.Time time = java.sql.Time.valueOf( "18:05:00" );
-			
-			// creamos el objeto billete
-			Billete billete = modelo.crearBillete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
-			
-			disponible = modelo.comprobarPlazasBillete(billete);
-			System.out.println(disponible);
-			
-			// insertamos los datos del billete en la bbdd
-			//modelo.insertarBillete(billete);
-			
-			// creamos el objeto billete
-			Billete billete = modelo.consultas.crearBillete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
-			
-			// imprimir billete
-			modelo.ficheros.imprimirBillete(billete);
-		
+		ArrayList<Linea> lineas = modelo.consultas.getLineas();
+		for (int i = 0; i < lineas.size(); i++) { 		      
+	      System.out.print(lineas.get(i).getCodLinea()+": ");
+	      System.out.println(lineas.get(i).getNombre()); 
 		}
+		
+			
 	}
 			
 	public void inicializarInterfaz() {

@@ -11,6 +11,7 @@ public class Modelo {
 		consultas = new Consultas();
 		billete = new Billete();
 		ficheros = new Ficheros();
+		
 	}
 	
 }

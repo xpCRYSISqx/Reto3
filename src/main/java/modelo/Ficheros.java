@@ -2,10 +2,12 @@ package modelo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Ficheros {
 	
@@ -47,49 +49,33 @@ public class Ficheros {
 	}
 	
 	public void imprimirBillete(Billete billete) {
+		
 		FileWriter fichero = null;	
-		BufferedWriter linea = null;
+		PrintWriter writer = null;
+		String file = "src/main/java/resources/billete-" + billete.getDni() + "-" + billete.getFecha() + ".txt";
 		
 		try {
 			
-			fichero = new FileWriter("c:/Billetes/billete-" + billete.getDni() + "-" + billete.getFecha() + ".txt");
-			linea = new BufferedWriter(fichero);
+			fichero = new FileWriter(file);
+			writer = new PrintWriter(fichero);
 			
-			linea.write("=== BILLETE ===");
-			linea.newLine();
-			linea.write("------------------------------");
-			linea.newLine();
+			writer.println("=== DATOS DEL BILLETE ===");
+			writer.println();
+			writer.println("Línea: " + billete.getCodLinea());
+			writer.println("Origen: " + billete.getCodParadaInicio());
+			writer.println("Destino: " + billete.getCodParadaFin());
+			writer.println("Fecha: " + billete.getFecha());
+			writer.println();
+			writer.println();
+			writer.println("=== DATOS DEL CLIENTE ===");
+			writer.println();
+			writer.println("DNI: " + billete.getDni());
+			writer.println("Nombre: ");
+			writer.println("Apellidos: ");
+			writer.println("Fecha nacimiento: ");
+			writer.println("Sexo: ");
 			
-			linea.write("=== DATOS DEL TRAYECTO ===");
-			linea.newLine();
-			linea.write("------------------------------");
-			linea.newLine();
-			linea.write("Línea: " + billete.getCodLinea());
-			linea.newLine();
-			linea.write("Origen: " + billete.getCodParadaInicio());
-			linea.newLine();
-			linea.write("Destino: " + billete.getCodParadaFin());
-			linea.newLine();
-			linea.write("Fecha: " + billete.getFecha());
-			linea.newLine();
-			linea.newLine();
-			
-			linea.write("=== DATOS DEL CLIENTE ===");
-			linea.newLine();
-			linea.write("------------------------------");
-			linea.newLine();
-			linea.write("DNI: " + billete.getDni());
-			linea.newLine();
-//			linea.write("Nombre: ");
-//			linea.newLine();
-//			linea.write("Apellidos: ");
-//			linea.newLine();
-//			linea.write("Fecha nacimiento: ");
-//			linea.newLine();
-//			linea.write("Sexo: ");
-//			linea.newLine();
-			
-			linea.flush();
+			writer.flush();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,8 +84,8 @@ public class Ficheros {
 				if (fichero != null) {
 					fichero.close();
 				}
-				if (linea != null) {
-					linea.close();
+				if (writer != null) {
+					writer.close();
 				}
 				} catch (Exception e) {
 					e.getStackTrace();

@@ -12,7 +12,8 @@ public class App {
 		MainFrame vista = new MainFrame();
 		Modelo modelo = new Modelo();
 		Controlador controlador = new Controlador(modelo, vista);
-				
+		
+		controlador.inicializarEventos();
 		controlador.inicializarInterfaz();
 		controlador.manejoInterfaz();
 	}
