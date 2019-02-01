@@ -41,5 +41,6 @@ public class Controlador {
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
 		botones.BotonContinuarFinal(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur, vista.bienvenida);
 		
+		
 	}
 }

@@ -2,25 +2,40 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.util.ArrayList;
+
 import java.sql.Date;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import modelo.*;
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JPanel;
+
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
 
+
+import modelo.Linea;
+import modelo.Modelo;
 import vista.MainFrame;
 
 public class Botones {
 	public MainFrame vista;
+
+	public Modelo modelo;
+
 	public boolean logeado;
 	public int registrado;
 	private JPanel panDeseadoInicio;
+
 	
 	public void BotonContinuar(JButton boton, JPanel panSalida, JPanel panDeseado) {
 		boton.addActionListener(new ActionListener() {
@@ -92,6 +107,29 @@ public class Botones {
 			}
 		});
 	}
+
+	
+	public void BotonMostrarLinea(JList<?> lineas,JPanel sel_linea) {
+		lineas.addListSelectionListener(new ListSelectionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CargarLineas(lineas, sel_linea);
+			}
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+	}
+	
+	private void CargarLineas(JList<?> lineas, JPanel sel_linea) {
+		ArrayList<Linea> lineas1 = modelo.consultas.getLineas();
+		
+	}
+
+
 	public void IniciarSesion(JButton boton, JTextField usuario, JPasswordField contrasena, JPanel panLogin) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -185,3 +223,4 @@ public class Botones {
 		return this.panDeseadoInicio;
 	}
 }
+

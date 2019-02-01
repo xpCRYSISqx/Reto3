@@ -32,72 +32,72 @@ public class PanPago extends JPanel {
 		
 		btn200 = new JButton("200 \u20AC");
 		btn200.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn200.setBounds(263, 295, 83, 40);
+		btn200.setBounds(523, 295, 83, 40);
 		add(btn200);
 		
 		btn100 = new JButton("100 \u20AC");
 		btn100.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn100.setBounds(263, 346, 83, 40);
+		btn100.setBounds(523, 346, 83, 40);
 		add(btn100);
 		
 		btn50 = new JButton("50 \u20AC");
 		btn50.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn50.setBounds(263, 397, 83, 40);
+		btn50.setBounds(523, 397, 83, 40);
 		add(btn50);
 		
 		btn20 = new JButton("20 \u20AC");
 		btn20.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn20.setBounds(356, 295, 78, 40);
+		btn20.setBounds(616, 295, 78, 40);
 		add(btn20);
 		
 		btn10 = new JButton("10 \u20AC");
 		btn10.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn10.setBounds(356, 346, 83, 40);
+		btn10.setBounds(616, 346, 83, 40);
 		add(btn10);
 		
 		bbtn5 = new JButton("5 \u20AC");
 		bbtn5.setFont(new Font("Dialog", Font.PLAIN, 18));
-		bbtn5.setBounds(356, 397, 83, 40);
+		bbtn5.setBounds(616, 397, 83, 40);
 		add(bbtn5);
 		
 		btn001 = new JButton("0,01 \u20AC");
 		btn001.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn001.setBounds(665, 346, 89, 40);
+		btn001.setBounds(925, 346, 89, 40);
 		add(btn001);
 		
 		btn002 = new JButton("0,02 \u20AC");
 		btn002.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn002.setBounds(665, 295, 89, 40);
+		btn002.setBounds(925, 295, 89, 40);
 		add(btn002);
 		
 		btn005 = new JButton("0,05 \u20AC");
 		btn005.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn005.setBounds(566, 397, 89, 40);
+		btn005.setBounds(826, 397, 89, 40);
 		add(btn005);
 		
 		btn010 = new JButton("0,10 \u20AC");
 		btn010.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn010.setBounds(566, 346, 89, 40);
+		btn010.setBounds(826, 346, 89, 40);
 		add(btn010);
 		
 		btn020 = new JButton("0,20 \u20AC");
 		btn020.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn020.setBounds(566, 295, 89, 40);
+		btn020.setBounds(826, 295, 89, 40);
 		add(btn020);
 		
 		btn050 = new JButton("0,50 \u20AC");
 		btn050.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn050.setBounds(467, 397, 89, 40);
+		btn050.setBounds(727, 397, 89, 40);
 		add(btn050);
 		
 		btn1e = new JButton("1 \u20AC");
 		btn1e.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn1e.setBounds(467, 346, 83, 40);
+		btn1e.setBounds(727, 346, 83, 40);
 		add(btn1e);
 		
 		btn2e = new JButton("2 \u20AC");
 		btn2e.setFont(new Font("Dialog", Font.PLAIN, 18));
-		btn2e.setBounds(467, 295, 83, 40);
+		btn2e.setBounds(727, 295, 83, 40);
 		add(btn2e);
 		
 		btnAtras = new JButton("Atr\u00E1s");
@@ -109,11 +109,11 @@ public class PanPago extends JPanel {
 		add(btnCancelar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(907, 586, 107, 23);
+		btnContinuar.setBounds(895, 686, 107, 23);
 		add(btnContinuar);
 		
 		btnCancelarPago = new JButton("Cancelar Pago");
-		btnCancelarPago.setBounds(10, 469, 101, 23);
+		btnCancelarPago.setBounds(64, 469, 101, 23);
 		add(btnCancelarPago);
 		
 		tablaDatosBillete = new JTable();
@@ -153,7 +153,7 @@ public class PanPago extends JPanel {
 		
 		btnSeparador = new JButton("");
 		btnSeparador.setEnabled(false);
-		btnSeparador.setBounds(449, 295, 8, 163);
+		btnSeparador.setBounds(709, 295, 8, 163);
 		add(btnSeparador);
 		
 		lblTitulo = new JLabel("SISTEMA DE PAGO");
@@ -165,7 +165,7 @@ public class PanPago extends JPanel {
 		//Panel donde se muestran los datos del pago al instante: total a pagar, dinero introducido y dinero restante	
 		panelTotal = new JPanel();
 		panelTotal.setBackground(SystemColor.inactiveCaption);
-		panelTotal.setBounds(10, 295, 243, 163);
+		panelTotal.setBounds(64, 295, 291, 163);
 		add(panelTotal);
 		panelTotal.setLayout(null);
 		
