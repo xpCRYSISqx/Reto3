@@ -14,36 +14,12 @@ public class Controlador {
 	//Atributos
 	public Modelo modelo;
 	public MainFrame vista;
+	public boolean logeado;
 	
 	//Constructor con parametros
 	public Controlador(Modelo modelo, MainFrame vista) {
 		this.modelo = modelo;
 		this.vista = vista;
-		
-		
-	}
-	
-	public void inicializarEventos() {
-		
-		// crea un objeto billete y lo inserta en bbdd
-		try {
-			// creamos la fecha y hora
-			DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-			Date fecha = new Date(df.parse("02-04-2015").getTime());
-			Time time = Time.valueOf( "18:05:00" );
-			
-			// creamos el objeto billete
-			Billete billete = modelo.crearBillete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
-			
-			modelo.comprobarFechasBillete(billete);
-			
-			// insertamos los datos del billete en la bbdd
-			//modelo.insertarBillete(billete);
-			
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}		
-		
 	}
 	
 	public void inicializarInterfaz() {
@@ -67,12 +43,11 @@ public class Controlador {
 		botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);
 		botones.BotonContinuar(vista.detalles_compra.btnContinuar, vista.detalles_compra, vista.login);
-		botones.BotonInicioSesion(vista.login.btnInicioSesion, vista.login, vista.pago);
+		botones.BotonInicioSesion(vista.login.btnLogin, vista.login, vista.pago);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonRegistro(vista.sel_linea.btnRegistro, vista.sel_linea, vista.registro);
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
 		botones.BotonContinuarFinal(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur, vista.bienvenida);
 		
 	}
-
 }

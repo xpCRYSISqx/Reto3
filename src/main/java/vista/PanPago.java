@@ -5,119 +5,121 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTable;
 import java.awt.SystemColor;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 public class PanPago extends JPanel {
-	private JTable table;
 
+	private static final long serialVersionUID = 1L;
+	
 	/**
 	 * Create the panel.
 	 */
 	
 	JPanel pago = new JPanel();
-	public JButton btnContinuar;
 	
+	public JTable tablaDatosBillete;
+	public JPanel panelTotal;
+	public JButton btnContinuar, btnCancelar, btnCancelarPago, btnAtras, btnSeparador, btn200, btn100, btn50, btn20, btn10, bbtn5, btn2e, btn1e, btn050, btn020, btn010, btn005, btn002, btn001;
+	public JLabel lblTitulo, lblTotal, lblDineroTotal, lblIntroducido, lblDineroIntro, lblRestante, lblDineroRest;
 	
 	public PanPago() {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		JButton button = new JButton("200 \u20AC");
-		button.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button.setBounds(263, 295, 83, 40);
-		add(button);
+		btn200 = new JButton("200 \u20AC");
+		btn200.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn200.setBounds(263, 295, 83, 40);
+		add(btn200);
 		
-		JButton button_1 = new JButton("100 \u20AC");
-		button_1.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_1.setBounds(263, 346, 83, 40);
-		add(button_1);
+		btn100 = new JButton("100 \u20AC");
+		btn100.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn100.setBounds(263, 346, 83, 40);
+		add(btn100);
 		
-		JButton button_2 = new JButton("50 \u20AC");
-		button_2.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_2.setBounds(263, 397, 83, 40);
-		add(button_2);
+		btn50 = new JButton("50 \u20AC");
+		btn50.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn50.setBounds(263, 397, 83, 40);
+		add(btn50);
 		
-		JButton button_3 = new JButton("20 \u20AC");
-		button_3.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_3.setBounds(356, 295, 78, 40);
-		add(button_3);
+		btn20 = new JButton("20 \u20AC");
+		btn20.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn20.setBounds(356, 295, 78, 40);
+		add(btn20);
 		
-		JButton button_4 = new JButton("10 \u20AC");
-		button_4.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_4.setBounds(356, 346, 83, 40);
-		add(button_4);
+		btn10 = new JButton("10 \u20AC");
+		btn10.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn10.setBounds(356, 346, 83, 40);
+		add(btn10);
 		
-		JButton button_5 = new JButton("5 \u20AC");
-		button_5.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_5.setBounds(356, 397, 83, 40);
-		add(button_5);
+		bbtn5 = new JButton("5 \u20AC");
+		bbtn5.setFont(new Font("Dialog", Font.PLAIN, 18));
+		bbtn5.setBounds(356, 397, 83, 40);
+		add(bbtn5);
 		
-		JButton button_6 = new JButton("0,01 \u20AC");
-		button_6.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_6.setBounds(665, 346, 89, 40);
-		add(button_6);
+		btn001 = new JButton("0,01 \u20AC");
+		btn001.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn001.setBounds(665, 346, 89, 40);
+		add(btn001);
 		
-		JButton button_7 = new JButton("0,02 \u20AC");
-		button_7.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_7.setBounds(665, 295, 89, 40);
-		add(button_7);
+		btn002 = new JButton("0,02 \u20AC");
+		btn002.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn002.setBounds(665, 295, 89, 40);
+		add(btn002);
 		
-		JButton button_8 = new JButton("0,05 \u20AC");
-		button_8.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_8.setBounds(566, 397, 89, 40);
-		add(button_8);
+		btn005 = new JButton("0,05 \u20AC");
+		btn005.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn005.setBounds(566, 397, 89, 40);
+		add(btn005);
 		
-		JButton button_9 = new JButton("0,10 \u20AC");
-		button_9.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_9.setBounds(566, 346, 89, 40);
-		add(button_9);
+		btn010 = new JButton("0,10 \u20AC");
+		btn010.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn010.setBounds(566, 346, 89, 40);
+		add(btn010);
 		
-		JButton button_10 = new JButton("0,20 \u20AC");
-		button_10.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_10.setBounds(566, 295, 89, 40);
-		add(button_10);
+		btn020 = new JButton("0,20 \u20AC");
+		btn020.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn020.setBounds(566, 295, 89, 40);
+		add(btn020);
 		
-		JButton button_11 = new JButton("0,50 \u20AC");
-		button_11.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_11.setBounds(467, 397, 89, 40);
-		add(button_11);
+		btn050 = new JButton("0,50 \u20AC");
+		btn050.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn050.setBounds(467, 397, 89, 40);
+		add(btn050);
 		
-		JButton button_12 = new JButton("1 \u20AC");
-		button_12.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_12.setBounds(467, 346, 83, 40);
-		add(button_12);
+		btn1e = new JButton("1 \u20AC");
+		btn1e.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn1e.setBounds(467, 346, 83, 40);
+		add(btn1e);
 		
-		JButton button_13 = new JButton("2 \u20AC");
-		button_13.setFont(new Font("Agency FB", Font.PLAIN, 30));
-		button_13.setBounds(467, 295, 83, 40);
-		add(button_13);
+		btn2e = new JButton("2 \u20AC");
+		btn2e.setFont(new Font("Dialog", Font.PLAIN, 18));
+		btn2e.setBounds(467, 295, 83, 40);
+		add(btn2e);
 		
-		JButton button_14 = new JButton("Atr\u00E1s");
-		button_14.setBounds(10, 566, 89, 23);
-		add(button_14);
+		btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.setBounds(10, 652, 89, 23);
+		add(btnAtras);
 		
-		JButton button_15 = new JButton("Cancelar");
-		button_15.setBounds(10, 614, 89, 23);
-		add(button_15);
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(10, 686, 89, 23);
+		add(btnCancelar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(669, 614, 107, 23);
+		btnContinuar.setBounds(907, 586, 107, 23);
 		add(btnContinuar);
 		
-		JButton btnCancelarPago = new JButton("Cancelar Pago");
+		btnCancelarPago = new JButton("Cancelar Pago");
 		btnCancelarPago.setBounds(10, 469, 101, 23);
 		add(btnCancelarPago);
 		
-		table = new JTable();
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setEnabled(false);
-		table.setModel(new DefaultTableModel(
+		tablaDatosBillete = new JTable();
+		tablaDatosBillete.setBorder(new LineBorder(new Color(0, 0, 0)));
+		tablaDatosBillete.setEnabled(false);
+		tablaDatosBillete.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null, null, null},
 				{null, null, null, null, null, null, null},
@@ -126,72 +128,79 @@ public class PanPago extends JPanel {
 				"Autob\u00FAs", "L\u00EDnea", "Origen", "Destino", "Fecha ida", "Fecha vuelta", "C\u00F3digo billete"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
 				Integer.class, String.class, String.class, Object.class, String.class, String.class, Object.class
 			};
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
-		table.setRowHeight(1, 30);
-		table.getColumnModel().getColumn(0).setPreferredWidth(60);
-		table.getColumnModel().getColumn(1).setPreferredWidth(35);
-		table.getColumnModel().getColumn(2).setPreferredWidth(140);
-		table.getColumnModel().getColumn(3).setPreferredWidth(140);
-		table.getColumnModel().getColumn(6).setPreferredWidth(90);
-		table.setBackground(SystemColor.menu);
-		table.setBounds(20, 121, 756, 140);
-		add(table);
+		tablaDatosBillete.setRowHeight(50, 30);
+		tablaDatosBillete.getColumnModel().getColumn(0).setPreferredWidth(60);
+		tablaDatosBillete.getColumnModel().getColumn(1).setPreferredWidth(35);
+		tablaDatosBillete.getColumnModel().getColumn(2).setPreferredWidth(140);
+		tablaDatosBillete.getColumnModel().getColumn(3).setPreferredWidth(140);
+		tablaDatosBillete.getColumnModel().getColumn(6).setPreferredWidth(90);
+		tablaDatosBillete.setBackground(SystemColor.menu);
+		tablaDatosBillete.setBounds(20, 121, 994, 140);
+		add(tablaDatosBillete);
 		
-		JButton button_17 = new JButton("");
-		button_17.setEnabled(false);
-		button_17.setBounds(449, 295, 8, 163);
-		add(button_17);
+		btnSeparador = new JButton("");
+		btnSeparador.setEnabled(false);
+		btnSeparador.setBounds(449, 295, 8, 163);
+		add(btnSeparador);
 		
-		JLabel lblSistemaDePago = new JLabel("SISTEMA DE PAGO");
-		lblSistemaDePago.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSistemaDePago.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblSistemaDePago.setBounds(10, 11, 737, 72);
-		add(lblSistemaDePago);
+		lblTitulo = new JLabel("SISTEMA DE PAGO");
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
+		lblTitulo.setBounds(10, 11, 1004, 72);
+		add(lblTitulo);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(SystemColor.inactiveCaption);
-		panel.setBounds(10, 295, 243, 163);
-		add(panel);
-		panel.setLayout(null);
+		//Panel donde se muestran los datos del pago al instante: total a pagar, dinero introducido y dinero restante	
+		panelTotal = new JPanel();
+		panelTotal.setBackground(SystemColor.inactiveCaption);
+		panelTotal.setBounds(10, 295, 243, 163);
+		add(panelTotal);
+		panelTotal.setLayout(null);
 		
-		JLabel label = new JLabel("Total");
-		label.setFont(new Font("Arial", Font.PLAIN, 20));
-		label.setBounds(10, 11, 101, 32);
-		panel.add(label);
+		lblTotal = new JLabel("Total");
+		lblTotal.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblTotal.setBounds(10, 11, 101, 32);
+		panelTotal.add(lblTotal);
 		
-		JLabel label_1 = new JLabel("Introducido");
-		label_1.setFont(new Font("Arial", Font.PLAIN, 20));
-		label_1.setBounds(10, 66, 101, 32);
-		panel.add(label_1);
+		lblDineroTotal = new JLabel("0 \u20AC");
+		lblDineroTotal.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDineroTotal.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDineroTotal.setBounds(108, 11, 121, 32);
+		panelTotal.add(lblDineroTotal);
 		
-		JLabel label_2 = new JLabel("Restante");
-		label_2.setFont(new Font("Arial", Font.PLAIN, 20));
-		label_2.setBounds(10, 126, 101, 32);
-		panel.add(label_2);
+		lblIntroducido = new JLabel("Introducido");
+		lblIntroducido.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblIntroducido.setBounds(10, 66, 101, 32);
+		panelTotal.add(lblIntroducido);
 		
-		JLabel label_3 = new JLabel("0 \u20AC");
-		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setFont(new Font("Arial", Font.PLAIN, 20));
-		label_3.setBounds(108, 11, 121, 32);
-		panel.add(label_3);
+		lblDineroIntro = new JLabel("0 \u20AC");
+		lblDineroIntro.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDineroIntro.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDineroIntro.setBounds(108, 66, 121, 32);
+		panelTotal.add(lblDineroIntro);
 		
-		JLabel label_4 = new JLabel("0 \u20AC");
-		label_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_4.setFont(new Font("Arial", Font.PLAIN, 20));
-		label_4.setBounds(108, 66, 121, 32);
-		panel.add(label_4);
+		lblRestante = new JLabel("Restante");
+		lblRestante.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblRestante.setBounds(10, 126, 101, 32);
+		panelTotal.add(lblRestante);
 		
-		JLabel label_5 = new JLabel("0 \u20AC");
-		label_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_5.setFont(new Font("Arial", Font.PLAIN, 20));
-		label_5.setBounds(108, 126, 121, 32);
-		panel.add(label_5);
+		lblDineroRest = new JLabel("0 \u20AC");
+		lblDineroRest.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblDineroRest.setFont(new Font("Arial", Font.PLAIN, 20));
+		lblDineroRest.setBounds(108, 126, 121, 32);
+		panelTotal.add(lblDineroRest);
 
 	}
 }

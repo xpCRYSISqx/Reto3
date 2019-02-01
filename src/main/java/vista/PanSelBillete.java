@@ -5,73 +5,84 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.JCheckBox;
 import javax.swing.JList;
+import javax.swing.JRadioButton;
 
 public class PanSelBillete extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Create the panel.
 	 */
 	
 	JPanel sel_billete = new JPanel();
-	public JButton btnContinuar;
+	
+	public JLabel lbltitulo,lblOrigen,lblDestino;
+	public JButton btnLogin,btnregistro,btnContinuar,btnAtras,btnCancelar;
+	public JRadioButton rbtnIda,rbtnVuelta;
+	public JList listaOrigen,listaDestino;
 	
 	public PanSelBillete() {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		JButton btnInicioDeSesin = new JButton("Inicio de Sesi\u00F3n");
-		btnInicioDeSesin.setBounds(683, 15, 107, 23);
-		add(btnInicioDeSesin);
+		btnLogin = new JButton("Inicio de Sesi\u00F3n");
+		btnLogin.setBounds(907, 11, 107, 23);
+		add(btnLogin);
 		
-		JButton btnNewButton = new JButton("Registrar");
-		btnNewButton.setBounds(683, 42, 107, 23);
-		add(btnNewButton);
+		btnregistro = new JButton("Registrar");
+		btnregistro.setBounds(907, 38, 107, 23);
+		add(btnregistro);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(683, 566, 107, 23);
+		btnContinuar.setBounds(907, 686, 107, 23);
 		add(btnContinuar);
 		
-		JLabel lblNewLabel = new JLabel("SELECCI\u00D3N DE BILLETE");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblNewLabel.setBounds(10, 15, 780, 60);
-		add(lblNewLabel);
+		lbltitulo = new JLabel("SELECCI\u00D3N DE BILLETE");
+		lbltitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lbltitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
+		lbltitulo.setBounds(10, 15, 780, 60);
+		add(lbltitulo);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 566, 89, 23);
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(10, 686, 89, 23);
 		add(btnCancelar);
 		
-		JCheckBox chckbxSimple = new JCheckBox("Simple");
-		chckbxSimple.setBounds(306, 147, 97, 23);
-		add(chckbxSimple);
-		
-		JCheckBox chckbxIdaVuelta = new JCheckBox("Ida / Vuelta");
-		chckbxIdaVuelta.setBounds(422, 147, 97, 23);
-		add(chckbxIdaVuelta);
-		
-		JLabel lblOrigen = new JLabel("Origen");
+		lblOrigen = new JLabel("Origen");
 		lblOrigen.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblOrigen.setBounds(227, 201, 84, 23);
+		lblOrigen.setBounds(322, 265, 84, 23);
 		add(lblOrigen);
 		
-		JLabel lblNewLabel_1 = new JLabel("Destino");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblNewLabel_1.setBounds(485, 201, 66, 23);
-		add(lblNewLabel_1);
+		lblDestino = new JLabel("Destino");
+		lblDestino.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
+		lblDestino.setBounds(522, 265, 66, 23);
+		add(lblDestino);
 		
-		JList list = new JList();
-		list.setBounds(208, 235, 121, 189);
-		add(list);
+		listaOrigen = new JList();
+		listaOrigen.setBounds(273, 299, 170, 289);
+		add(listaOrigen);
 		
-		JList list_1 = new JList();
-		list_1.setBounds(463, 235, 121, 189);
-		add(list_1);
+		listaDestino = new JList();
+		listaDestino.setBounds(479, 299, 170, 289);
+		add(listaDestino);
 		
-		JButton btnNewButton_1 = new JButton("Atr\u00E1s");
-		btnNewButton_1.setBounds(10, 539, 89, 23);
-		add(btnNewButton_1);
+		btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.setBounds(10, 659, 89, 23);
+		add(btnAtras);
+		
+		rbtnIda = new JRadioButton("Ida");
+		rbtnIda.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		rbtnIda.setBounds(770, 173, 109, 56);
+		add(rbtnIda);
+		
+		rbtnVuelta = new JRadioButton("Ida / Vuelta");
+		rbtnVuelta.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		rbtnVuelta.setBounds(770, 232, 164, 56);
+		add(rbtnVuelta);
 
 	}
 }
