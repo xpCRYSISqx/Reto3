@@ -15,6 +15,7 @@ public class Controlador {
 	//Atributos
 	public Modelo modelo;
 	public MainFrame vista;
+	public boolean logeado;
 	
 	//Constructor con parametros
 	public Controlador(Modelo modelo, MainFrame vista) {
@@ -58,14 +59,8 @@ public class Controlador {
 		botones.BotonInicioSesion(vista.login.btnLogin, vista.login, vista.pago);
 		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonRegistro(vista.sel_linea.btnRegistro, vista.sel_linea, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
-		botones.BotonRegistro(vista.login.btnRegistrar, vista.login, vista.registro);
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
 		botones.BotonContinuarFinal(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur, vista.bienvenida);
 		
 	}
-
 }
