@@ -1,17 +1,31 @@
 package controlador;
 
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import com.google.common.util.concurrent.ListenableScheduledFuture;
+
+import modelo.Linea;
+import modelo.Modelo;
+import modelo.Parada;
 import vista.MainFrame;
+import vista.PanSelLinea;
 
 public class Botones {
 	public MainFrame vista;
+	public Modelo modelo;
 	
 	public void BotonContinuar(JButton boton, JPanel panSalida, JPanel panDeseado) {
 		boton.addActionListener(new ActionListener() {
@@ -64,5 +78,25 @@ public class Botones {
 				panSalida.setVisible(false);
 			}
 		});
+	}
+	
+	public void BotonMostrarLinea(JList<?> lineas,JPanel sel_linea) {
+		lineas.addListSelectionListener(new ListSelectionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CargarLineas(lineas, sel_linea);
+			}
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+	}
+	
+	private void CargarLineas(JLi st<?> lineas, JPanel sel_linea) {
+		ArrayList<Linea> lineas = modelo.consultas.getLineas();
+		
 	}
 }

@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JList;
 
 public class PanSelLinea extends JPanel {
 
@@ -23,24 +24,13 @@ public class PanSelLinea extends JPanel {
 	JPanel sel_linea = new JPanel();
 	
 	public JButton btnlogin,btnContinuar,btnRegistro;
-	public JComboBox boxLineas;
-	public JTextPane textPaneParadas;
 	public JLabel lblLineas;
+	public JList<?> listLineas,listParadas;
 	
 	
 	public PanSelLinea() {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
-		
-		boxLineas = new JComboBox();
-		boxLineas.setModel(new DefaultComboBoxModel(new String[] {"L1: Termibus - Plentzia", "L2: Termibus - Muskiz", "L3: Termibus - Balmaseda", "L4: Termibus - Durango"}));
-		boxLineas.setMaximumRowCount(4);
-		boxLineas.setBounds(274, 111, 263, 20);
-		add(boxLineas);
-		
-		textPaneParadas = new JTextPane();
-		textPaneParadas.setBounds(274, 154, 263, 336);
-		add(textPaneParadas);
 		
 		btnlogin = new JButton("Inicio Sesi\u00F3n");
 		btnlogin.setBounds(895, 11, 119, 23);
@@ -51,7 +41,7 @@ public class PanSelLinea extends JPanel {
 		add(btnRegistro);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(895, 586, 89, 23);
+		btnContinuar.setBounds(900, 634, 89, 23);
 		add(btnContinuar);
 		
 		lblLineas = new JLabel("L\u00CDNEAS");
@@ -59,6 +49,14 @@ public class PanSelLinea extends JPanel {
 		lblLineas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLineas.setBounds(10, 23, 780, 53);
 		add(lblLineas);
+		
+		listLineas = new JList();
+		listLineas.setBounds(226, 251, 200, 240);
+		add(listLineas);
+		
+		listParadas = new JList();
+		listParadas.setBounds(436, 251, 200, 240);
+		add(listParadas);
 		
 		//¿¿¿Añadir temporizador en caso de inactividad???
 	
