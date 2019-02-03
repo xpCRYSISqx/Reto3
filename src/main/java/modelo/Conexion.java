@@ -18,18 +18,12 @@ public class Conexion {
 	private String password;
 	private String host;
 	private String url;
-	private String[] datosConexion;
 	private String params;
 	
 	// variable que almacenara la conexion
 	private Connection connection;
-	private Ficheros ficheros;
 	
-	public Conexion() {
-		
-		// cargamos los datos de conexion a la base de datos
-		ficheros = new Ficheros();
-		datosConexion = ficheros.getConnectionInfo();
+	public Conexion(String[] datosConexion) {
 		
 		// inicializamos los atributos
 		connection = null;
@@ -39,30 +33,20 @@ public class Conexion {
 		password = datosConexion[2];
 		params = "serverTimezone=UTC"; // https://stackoverflow.com/questions/26515700/mysql-jdbc-driver-5-1-33-time-zone-issue
 		url = "jdbc:mysql://"+host+":3306/"+bd+"?"+params;
-		
-		// nos conectanos a la base de datos
-		conectar();
-	}
-
-	public Connection getConnection(){
-		return connection;
 	}
 	
-	private void conectar(){
+	protected Connection conectar(){
 		try {
 			connection = DriverManager.getConnection(url, username, password);
 		} 
 		catch (SQLException e) {
 		    throw new IllegalStateException("Cannot connect the database!", e);
 		}
+		return connection;
 	}
 
-	public void desconectar(){
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	protected void desconectar(){
+		if (connection != null) try { connection.close();} catch (SQLException e) {e.printStackTrace();}
 	}
 
 }

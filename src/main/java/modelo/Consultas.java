@@ -1,16 +1,24 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 
 public class Consultas {
 	
-	public ResultSet result = null;
+	private Conexion conexion;
+	private Connection connection;
+	private PreparedStatement stmt;
+	private ResultSet result;
+	
+	public Consultas(Conexion conexion) {
+		this.conexion = conexion;
+		this.connection = null;
+		this.stmt = null;
+		this.result = null;
+	}
 	
 	/****************************************************************************************************************
 	 * 
@@ -20,13 +28,13 @@ public class Consultas {
 	
 	public ArrayList<Linea> getLineas() {
 		
-		Connection connection = new Conexion().getConnection();
-		PreparedStatement stmt = null;
-		ResultSet result = null;
 		Linea linea = null;
 		ArrayList<Linea> lineas = new ArrayList<Linea>();
 
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT * FROM linea");
@@ -45,9 +53,13 @@ public class Consultas {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			
+			// cerramos los objetos ResultSet y PreparedStatement
 		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		    
+		    // cerramos la conexion
+		    conexion.desconectar();
 		}       
 		
 		return lineas;
@@ -55,14 +67,14 @@ public class Consultas {
 	}
 	
 	public ArrayList<Parada> getParadasByLinea(String codLinea) {
-		
-		Connection connection = new Conexion().getConnection();
-		PreparedStatement stmt = null;
-		ResultSet result = null;
+	
 		Parada parada = null;
 		ArrayList<Parada> paradas = new ArrayList<Parada>();
 
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT Cod_Parada, SQRT(POWER(Latitud-(SELECT Latitud FROM `parada` WHERE Cod_Parada = 1),2)+POWER(Longitud-(SELECT Longitud FROM `parada` WHERE Cod_Parada = 1),2))\"Distancia\""
@@ -94,12 +106,11 @@ public class Consultas {
 	}
 	
 	public Parada getInfoParada(Parada parada) {
-		
-		Connection connection = new Conexion().getConnection();
-		PreparedStatement stmt = null;
-		ResultSet result = null;
 
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT Nombre, Calle, Latitud, Longitud FROM parada where Cod_Parada = ?");
@@ -130,13 +141,13 @@ public class Consultas {
 	
 	public ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
 		
-		Connection connection = new Conexion().getConnection();
-		PreparedStatement stmt = null;
-		ResultSet result = null;
 		Autobus autobus = null;
 		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
 
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT Cod_bus FROM `linea_autobus` where Cod_Linea = ?");
@@ -166,12 +177,11 @@ public class Consultas {
 	}
 	
 	public Autobus getInfoAutobus(Autobus autobus) {
-		
-		Connection connection = new Conexion().getConnection();
-		PreparedStatement stmt = null;
-		ResultSet result = null;
 
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT N_plazas, Consumo_km, Color FROM autobus where Cod_bus = ?");
@@ -201,12 +211,12 @@ public class Consultas {
 	
 	public Boolean comprobarFechasBillete(Billete billete) {
 		
-		Connection connection = new Conexion().getConnection();
 		Boolean disponible = false;
-		PreparedStatement stmt = null;
-		ResultSet result = null;
 
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ?");
@@ -236,12 +246,12 @@ public class Consultas {
 	
 	public Cliente getClienteByDNI(String dni) {
 		
-		Connection connection = new Conexion().getConnection();
-		PreparedStatement stmt = null;
-		ResultSet result = null;
 		Cliente cliente = null;
 
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT * FROM cliente where DNI = ?");
@@ -281,11 +291,11 @@ public class Consultas {
 	
 	// inserta los atributos de un objetos cliente en la BBDD
 	public void insertarCliente(Cliente cliente) {
-		
-		Connection connection = new Conexion().getConnection();
-		PreparedStatement stmt = null;
 
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 			
 			// preparamos la consulta INSERT
 			stmt = connection.prepareStatement("INSERT INTO cliente (DNI, Nombre, Apellidos, Fecha_nac, Sexo, Contraseña) VALUES (?, ?, ?, ?, ?, ?)");
@@ -312,26 +322,25 @@ public class Consultas {
 	
 	// inserta los atributos de un objetos billete en la BBDD
 	public void insertarBillete(Billete billete) {
-		
-		Connection connection = new Conexion().getConnection();
-		PreparedStatement stmt = null;
 
 		try {
 			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
 			// preparamos la consulta INSERT
-			stmt = connection.prepareStatement("INSERT INTO billete (Cod_Billete, NTrayecto, Cod_Linea, Cod_Bus, Cod_Parada_Inicio, Cod_Parada_Fin, Fecha, Hora, DNI, Precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			stmt = connection.prepareStatement("INSERT INTO billete (NTrayecto, Cod_Linea, Cod_Bus, Cod_Parada_Inicio, Cod_Parada_Fin, Fecha, Hora, DNI, Precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			// añadimos los valores a insertar
-			stmt.setInt(1, billete.getCodBillete());
-			stmt.setInt(2, billete.getNTrayecto());
-			stmt.setString(3, billete.getCodLinea());
-			stmt.setInt(4, billete.getCodBus());
-			stmt.setInt(5, billete.getCodParadaInicio());
-			stmt.setInt(6, billete.getCodParadaFin());
-			stmt.setDate(7, billete.getFecha());
-			stmt.setTime(8, billete.getHora());
-			stmt.setString(9, billete.getDni());
-			stmt.setFloat(10, billete.getPrecio());
+			stmt.setInt(1, billete.getNTrayecto());
+			stmt.setString(2, billete.getCodLinea());
+			stmt.setInt(3, billete.getCodBus());
+			stmt.setInt(4, billete.getCodParadaInicio());
+			stmt.setInt(5, billete.getCodParadaFin());
+			stmt.setDate(6, billete.getFecha());
+			stmt.setTime(7, billete.getHora());
+			stmt.setString(8, billete.getDni());
+			stmt.setFloat(9, billete.getPrecio());
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			stmt.executeUpdate();
@@ -343,58 +352,6 @@ public class Consultas {
 		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}                 
-	}
-	
-	
-	
-	/****************************************************************************************************************
-	 * 
-	 * Metodos para crear objetos cliente y billete a partir de los datos introducidos por el usuario en la interfaz
-	 * 
-	 ****************************************************************************************************************/
-	
-	// crea y devuelve un objeto cliente
-	public Cliente crearCliente( String dni, String nombre, String apellidos, Date fechaNacimiento, char sexo, String contraseña) {
-		
-		// crea un objeto cliente
-		Cliente cliente = new Cliente();
-		Encriptacion encriptar = new Encriptacion();
-			
-		// rellena los atributos del objeto cliente
-		cliente.setDni(dni);
-		cliente.setNombre(nombre);
-		cliente.setApellidos(apellidos);
-		cliente.setFechaNacimiento(fechaNacimiento);
-		cliente.setSexo(sexo);
-		contraseña = encriptar.Encriptacion(contraseña);
-		cliente.setContraseña(contraseña);
-		
-		// devuelve el objeto cliente
-		return cliente;
-		
-	}
-	
-	// crea y devuelve un objeto billete
-	public Billete crearBillete(int codBillete, int nTrayecto, String codLinea, int codBus, int codParadaInicio, int codParadaFin, Date fecha, Time hora, String dni, float precio) {
-		
-		// crea un objeto billete
-		Billete billete = new Billete();
-		
-		// rellena los atributos del objeto billete
-		billete.setCodBillete(codBillete);
-		billete.setNTrayecto(nTrayecto);
-		billete.setCodLinea(codLinea);
-		billete.setCodBus(codBus);
-		billete.setCodParadaInicio(codParadaInicio);
-		billete.setCodParadaFin(codParadaFin);
-		billete.setFecha(fecha);
-		billete.setHora(hora);
-		billete.setDni(dni);
-		billete.setPrecio(precio);
-		
-		// devuelve el objeto billete
-		return billete;
-		
 	}
 
 }

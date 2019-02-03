@@ -12,12 +12,12 @@ import vista.MainFrame;
 
 public class Controlador {
 	
-	//Atributos
+	// Atributos
 	public Modelo modelo;
 	public MainFrame vista;
 	public boolean logeado;
 	
-	//Constructor con parametros
+	// Constructor con parametros
 	public Controlador(Modelo modelo, MainFrame vista) {
 		this.modelo = modelo;
 		this.vista = vista;
@@ -25,13 +25,8 @@ public class Controlador {
 	
 	public void inicializarEventos() {
 		
-		ArrayList<Linea> lineas = modelo.consultas.getLineas();
-		for (int i = 0; i < lineas.size(); i++) { 		      
-	      System.out.print(lineas.get(i).getCodLinea()+": ");
-	      System.out.println(lineas.get(i).getNombre()); 
-		}
 		
-			
+
 	}
 			
 	public void inicializarInterfaz() {
@@ -59,7 +54,5 @@ public class Controlador {
 		botones.Registrar(vista.registro.btnRegistro, vista.registro, vista.registro.txtNombre, vista.registro.txtApellidos, vista.registro.dateChooser, vista.registro.txtDni, vista.registro.rbtnFem, vista.registro.rbtnMasc, vista.registro.passwordField, vista.registro.passwordField2);
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
 		botones.BotonContinuarFinal(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur, vista.bienvenida);
-		
-		
 	}
 }
