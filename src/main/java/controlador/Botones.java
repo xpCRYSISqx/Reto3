@@ -16,9 +16,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
-import modelo.Linea;
-import modelo.Modelo;
 import vista.MainFrame;
+import vista.PanSelLinea;
+import controlador.*;
 
 public class Botones {
 	public MainFrame vista;
@@ -26,7 +26,12 @@ public class Botones {
 	public boolean logeado;
 	public int registrado;
 	private JPanel panDeseadoInicio;
+	private ArrayList<Linea> lineas1;
 
+	public Botones (Modelo modelo, MainFrame vista) {
+		this.vista = vista;
+		this.modelo = modelo;
+	}
 	
 	public void BotonContinuar(JButton boton, JPanel panSalida, JPanel panDeseado) {
 		boton.addActionListener(new ActionListener() {
@@ -46,7 +51,8 @@ public class Botones {
 			}
 		});
 	}
-	public void BotonContinuarFinal(JButton boton, JPanel panSalida, JPanel panDeseado, JPanel panContador) {
+	
+	public void BotonContinuarInicio(JButton boton, JPanel panSalida, JPanel panDeseado) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panDeseado.setVisible(true);
@@ -54,16 +60,18 @@ public class Botones {
 				TimerTask tarea=new TimerTask(){
 					public void run(){
 						panDeseado.setVisible(false);
-						panContador.setVisible(true);
+						panSalida.setVisible(true);
 					}
 				};
 				//se crea un objeto de tipo timer
 				Timer tiempo=new Timer();
 				//se indica la tarea a ejecutar y el retardo
-				tiempo.schedule(tarea, 5000);
+				tiempo.schedule(tarea, 60000);
 			}
 		});
 	}
+	
+	
 	public void BotonIrRegistro(JButton boton, JPanel panSalida, JPanel panRegistro) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -108,29 +116,27 @@ public class Botones {
 		});
 	}
 
-	
-	public void BotonMostrarLinea(JList<?> lineas,JPanel sel_linea) {
-		lineas.addListSelectionListener(new ListSelectionListener() {
-			public void addListSelectionListener (ListSelectionListener  x) {
-				setPanDeseadoInicio(sel_linea);
-				CargarLineas(lineas, sel_linea);
-			}
-			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				// TODO Auto-generated method stub
-				
-				//addListSelectionListener(ListSelectionListener x)
-			}
-		});
-		
-	}
-	
-	private void CargarLineas(JList<?> lineas, JPanel sel_linea) {
-		ArrayList<Linea> lineas1 = modelo.consultas.getLineas();
-		
-	}
 
+	public void IrBienveLineas(JList<?> lista,JButton boton, JPanel bienvenida, JPanel lineas) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lineas.setVisible(true);
+				bienvenida.setVisible(false);
+//				lista.addListSelectionListener(new ListSelectionListener() {
+//					public void valueChanged(ListSelectionEvent arg0) {
+						lineas1 = modelo.consultas.getLineas();
+						String nombre;
+						vista.sel_linea.modelo.removeAllElements();
+						for(int i=0; i<lineas1.size(); i++) {
+							nombre = lineas1.get(i).getNombre();
+							System.out.println(i);
+							vista.sel_linea.modelo.addElement(nombre);
+							vista.sel_linea.listLineas.setModel(vista.sel_linea.modelo);
+						}
+						
+					}
+		});
+	}
 	public void IniciarSesion(JButton boton, JTextField usuario, JPasswordField contrasena, JPanel panLogin) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
