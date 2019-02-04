@@ -5,7 +5,7 @@ import java.sql.Time;
 
 public class Billete {
 	
-	private int codBillete;
+	private Integer codBillete;
 	private int nTrayecto;
 	private String codLinea;
 	private int codBus;
@@ -16,8 +16,18 @@ public class Billete {
 	private String dni;
 	private float precio;
 	
-	public Billete() {
-		
+
+	public Billete(Integer codBillete, int nTrayecto, String codLinea, int codBus, int codParadaInicio, int codParadaFin, Date fecha, Time hora, String dni, float precio) {
+		this.codBillete = codBillete;
+		this.nTrayecto = nTrayecto;
+		this.codLinea = codLinea;
+		this.codBus = codBus;
+		this.codParadaInicio = codParadaInicio;
+		this.codParadaFin = codParadaFin;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.dni = dni;
+		this.precio = precio;
 	}
 
 	public int getCodBillete() {

@@ -3,6 +3,7 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -25,8 +26,9 @@ public class PanSelLinea extends JPanel {
 	
 	public JButton btnlogin,btnContinuar,btnRegistro;
 	public JLabel lblLineas;
-	public JList<?> listLineas,listParadas;
-	
+	public DefaultListModel<String> modeloLineas = new DefaultListModel<String>();
+	public DefaultListModel<String> modeloParadas = new DefaultListModel<String>();
+	public JList<String> listLineas,listParadas;
 	
 	public PanSelLinea() {
 		setLayout(null);
@@ -50,11 +52,11 @@ public class PanSelLinea extends JPanel {
 		lblLineas.setBounds(10, 23, 780, 53);
 		add(lblLineas);
 		
-		listLineas = new JList();
+		listLineas = new JList<String>();
 		listLineas.setBounds(226, 251, 200, 240);
 		add(listLineas);
 		
-		listParadas = new JList();
+		listParadas = new JList<String>();
 		listParadas.setBounds(436, 251, 200, 240);
 		add(listParadas);
 		

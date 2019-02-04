@@ -20,7 +20,7 @@ public class PanRegistro extends JPanel {
 	
 	JPanel registro = new JPanel();
 		
-	public JLabel lblTitulo, lblNombre, lblApellidos, lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac;
+	public JLabel lblTitulo, lblNombre, lblApellidos, lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac, lblErrorDNI, lblErrorContrasenas, lblErrorSexo;
 	public JTextField txtNombre, txtApellidos, txtDni;
 	public JButton btnLogin, btnRegistro, btnCancelar;
 	public JRadioButton rbtnMasc, rbtnFem;
@@ -125,6 +125,21 @@ public class PanRegistro extends JPanel {
 		lblfechaNac = new JLabel("Fecha nacimiento");
 		lblfechaNac.setBounds(279, 282, 88, 14);
 		add(lblfechaNac);
+		
+		lblErrorDNI = new JLabel("Ya existe un usuario con ese DNI");
+		lblErrorDNI.setBounds(561, 216, 273, 20);
+		lblErrorDNI.setVisible(false);
+		add(lblErrorDNI);
+		
+		lblErrorContrasenas = new JLabel("Las contrase\u00F1as no coinciden, vuelva a introducirlas");
+		lblErrorContrasenas.setBounds(536, 406, 371, 20);
+		lblErrorContrasenas.setVisible(false);
+		add(lblErrorContrasenas);
+		
+		lblErrorSexo = new JLabel("Tiene que seleccionar su sexo para poder registrarse");
+		lblErrorSexo.setBounds(561, 250, 336, 14);
+		lblErrorSexo.setVisible(false);
+		add(lblErrorSexo);
 
 	}
 }
