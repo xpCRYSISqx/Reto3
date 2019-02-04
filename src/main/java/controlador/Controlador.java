@@ -61,6 +61,7 @@ public class Controlador {
 	public void manejoInterfaz() {
 		Botones botones = new Botones(modelo, vista);
 		botones.IrBienveLineas(vista.sel_linea.listLineas, vista.bienvenida.btnContinuar, vista.bienvenida, vista.sel_linea);
+		botones.MostrarParadas(vista.sel_linea.listLineas, vista.sel_linea.listParadas);
 		botones.BotonContinuar(vista.sel_linea.btnContinuar, vista.sel_linea, vista.sel_billete);
 		botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);
