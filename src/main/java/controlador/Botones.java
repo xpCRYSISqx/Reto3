@@ -27,6 +27,7 @@ public class Botones {
 	public int registrado;
 	private JPanel panDeseadoInicio;
 	private ArrayList<Linea> lineas1;
+	private ArrayList<Parada> paradas;
 
 	public Botones (Modelo modelo, MainFrame vista) {
 		this.vista = vista;
@@ -122,19 +123,33 @@ public class Botones {
 			public void actionPerformed(ActionEvent arg0) {
 				lineas.setVisible(true);
 				bienvenida.setVisible(false);
-//				lista.addListSelectionListener(new ListSelectionListener() {
-//					public void valueChanged(ListSelectionEvent arg0) {
-						lineas1 = modelo.consultas.getLineas();
-						String nombre;
-						vista.sel_linea.modelo.removeAllElements();
-						for(int i=0; i<lineas1.size(); i++) {
-							nombre = lineas1.get(i).getNombre();
-							System.out.println(i);
-							vista.sel_linea.modelo.addElement(nombre);
-							vista.sel_linea.listLineas.setModel(vista.sel_linea.modelo);
-						}
-						
-					}
+				lineas1 = modelo.consultas.getLineas();
+				String nombre;
+				vista.sel_linea.modeloLineas.removeAllElements();
+				for(int i=0; i<lineas1.size(); i++) {
+					nombre = lineas1.get(i).getCodLinea();
+					//nombre = "[" + nombre + "]" + " " + lineas1.get(i).getNombre();
+					System.out.println(i);
+					vista.sel_linea.modeloLineas.addElement(nombre);
+					vista.sel_linea.listLineas.setModel(vista.sel_linea.modeloLineas);
+				}
+				
+			}
+		});
+	}
+	
+	public void MostrarParadas(JList<?> lineas ,JList<?> listaParadas) {
+		lineas.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				vista.sel_linea.modeloParadas.removeAllElements();
+				String codLinea = vista.sel_linea.listLineas.getSelectedValue();
+				paradas = modelo.consultas.getParadasByLinea(codLinea);
+				for(int i=0; i<paradas.size(); i++) {
+//					vista.sel_linea.modeloParadas.addElement(paradas.get(i).getNombre());
+//					vista.sel_linea.modeloParadas.addElement(paradas.get(i).getCodParada());
+					vista.sel_linea.listParadas.setModel(vista.sel_linea.modeloParadas);
+				}
+			}
 		});
 	}
 	public void IniciarSesion(JButton boton, JTextField usuario, JPasswordField contrasena, JPanel panLogin) {

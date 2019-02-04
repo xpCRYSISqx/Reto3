@@ -33,7 +33,7 @@ public class InteraccionesInterfaz {
 						for(int i=0; i<lineas1.size(); i++) {
 							nombre = lineas1.get(i).getNombre();
 							System.out.println(i);
-							vista.sel_linea.modelo.addElement(nombre);
+							vista.sel_linea.modeloLineas.addElement(nombre);
 						}
 //						vista.sel_linea.listLineas.setModel(vista.sel_linea.modelo);
 					}
