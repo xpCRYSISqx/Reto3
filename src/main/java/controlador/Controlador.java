@@ -1,12 +1,5 @@
 package controlador;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-
 import modelo.*;
 import vista.MainFrame;
 
@@ -21,12 +14,6 @@ public class Controlador {
 	public Controlador(Modelo modelo, MainFrame vista) {
 		this.modelo = modelo;
 		this.vista = vista;
-	}
-	
-	public void inicializarEventos() {
-		
-		
-
 	}
 			
 	public void inicializarInterfaz() {
@@ -45,8 +32,8 @@ public class Controlador {
 	}
 	
 	public void manejoInterfaz() {
-		Botones botones = new Botones();
-		botones.BotonContinuar(vista.bienvenida.btnContinuar, vista.bienvenida, vista.sel_linea);
+		Botones botones = new Botones(modelo, vista);
+		botones.IrBienveLineas(vista.sel_linea.listLineas, vista.bienvenida.btnContinuar, vista.bienvenida, vista.sel_linea);
 		botones.BotonContinuar(vista.sel_linea.btnContinuar, vista.sel_linea, vista.sel_billete);
 		botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);
@@ -67,6 +54,5 @@ public class Controlador {
 		botones.Registrar(vista.registro.btnRegistro, vista.registro, vista.registro.txtNombre, vista.registro.txtApellidos, vista.registro.dateChooser, vista.registro.txtDni, vista.registro.rbtnFem, vista.registro.rbtnMasc, vista.registro.passwordField, vista.registro.passwordField2, vista.registro.lblErrorContrasenas, vista.registro.lblErrorDNI, vista.registro.lblErrorSexo);
 		botones.IniciarSesion(vista.login.btnLogin, vista.login.userField, vista.login.password, vista.login);
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
-		botones.BotonContinuarFinal(vista.fin_pago.btnContinuar, vista.fin_pago, vista.agur, vista.bienvenida);
 	}
 }
