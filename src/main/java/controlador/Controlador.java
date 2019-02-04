@@ -19,20 +19,33 @@ public class Controlador {
 	
 	public void inicializarEventos() {
 		
+		/*
+		 * Como sacar los datos de las lineas
+		 */
+		
+		// cargamos las lineas en un array list
 		ArrayList<Linea> lineas = modelo.consultas.getLineas();
+		
+		// estas variables las usaremos para almacenar los codigos de autobuses y municipios que pertenecen a esa linea
 		ArrayList<Integer> codAutobuses;
 		ArrayList<Integer> codMunicipios;
 		
+		
+		// recorremos el array list de lineas
 		for (int i = 0; i < lineas.size(); i++) { 		      
 	      System.out.print(lineas.get(i).getCodLinea()+": ");
 	      System.out.println(lineas.get(i).getNombre());
 	     
+	      // el atributo codAutobuses del objeto linea es un array list
+	      // lo almacenamos en la variable que hemos creado antes y lo recorremos con un for
 	      System.out.println("Autobuses:");
 	      codAutobuses = lineas.get(i).getCodAutobuses();
 	      for (int j = 0; j < codAutobuses.size(); j++) {
 	    	  System.out.println(codAutobuses.get(j));
 	      }
 	      
+	      // lo mismo para los codigos de los municipio
+	      // los guardamos en un array list y lo recorremos con un for
 	      System.out.println("Municipios:");
 	      codMunicipios = lineas.get(i).getCodMunicipios();
 	      for (int j = 0; j < codMunicipios.size(); j++) {

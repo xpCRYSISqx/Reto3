@@ -26,9 +26,9 @@ public class Consultas {
 		
 		Linea linea = null;
 		ArrayList<Linea> lineas = new ArrayList<Linea>();
-		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
-		ArrayList<Municipio> municipios = new ArrayList<Municipio>();
-		ArrayList<Integer> codMunicipios = new ArrayList<Integer>();
+		ArrayList<Autobus> autobuses;
+		ArrayList<Municipio> municipios;
+		ArrayList<Integer> codMunicipios;
 		ArrayList<Integer> codAutobuses;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -88,7 +88,7 @@ public class Consultas {
 		
 	}
 	
-	public ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
+	private ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
 		
 		Autobus autobus = null;
 		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
@@ -127,7 +127,7 @@ public class Consultas {
 		
 	}
 	
-	public Autobus getInfoAutobus(Autobus autobus) {
+	private Autobus getInfoAutobus(Autobus autobus) {
 		
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -163,7 +163,103 @@ public class Consultas {
 		
 	}
 	
-	public ArrayList<Parada> getParadasByLinea(String codLinea) {
+	private ArrayList<Municipio> getMunicipiosByLinea(String codLinea) {
+		
+		Municipio municipio = null;
+		ArrayList<Municipio> municipios = new ArrayList<Municipio>();
+		ArrayList<Parada> paradas = new ArrayList<Parada>();
+		ArrayList<Integer> codParadas;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("SELECT * FROM `poblacion_parada`");
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			paradas = getParadasByLinea(codLinea);
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				for(int i = 0;i<paradas.size();i++) {
+					if (result.getInt("Cod_Parada") == paradas.get(i).getCodParada()) {
+						municipio = new Municipio();
+						municipio.setCodPostal(result.getInt("Cod_Postal"));
+	//					municipio = getInfoAutobus(municipio);
+						municipios.add(municipio);
+					}
+				}
+			}
+			
+			// cargamos los codigos de las paradas
+			for(int i = 0;i<municipios.size();i++) {
+				codParadas = new ArrayList<Integer>();
+				paradas = getParadasByMunicipio(municipios.get(i).getCodPostal());
+				for(int j = 0;j<paradas.size();j++) {
+					codParadas.add(paradas.get(j).getCodParada());
+				}
+				municipios.get(i).setCodParadas(codParadas);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}                
+		
+		return municipios;
+		
+	}
+	
+	private ArrayList<Parada> getParadasByMunicipio(int codMunicipio) {
+		
+		Parada parada = null;
+		ArrayList<Parada> paradas = new ArrayList<Parada>();
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("Select Cod_parada from `poblacion_parada` where Cod_Postal = ?");
+			//stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
+			stmt.setInt(1, codMunicipio);
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				parada = new Parada();
+				parada.setCodParada(result.getInt("Cod_Parada"));
+				parada = getInfoParada(parada);
+				paradas.add(parada);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}       
+		
+		return paradas;
+		
+	}
+	
+	private ArrayList<Parada> getParadasByLinea(String codLinea) {
 		
 		Parada parada = null;
 		ArrayList<Parada> paradas = new ArrayList<Parada>();
@@ -204,7 +300,7 @@ public class Consultas {
 		
 	}
 	
-	public Parada getInfoParada(Parada parada) {
+	private Parada getInfoParada(Parada parada) {
 		
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -238,51 +334,6 @@ public class Consultas {
 		}                 
 		
 		return parada;
-		
-	}
-	
-	public ArrayList<Municipio> getMunicipiosByLinea(String codLinea) {
-		
-		Municipio municipio = null;
-		ArrayList<Municipio> municipios = new ArrayList<Municipio>();
-		ArrayList<Parada> paradas = new ArrayList<Parada>();
-		PreparedStatement stmt = null;
-		ResultSet result = null;
-
-		try {
-			
-			// abrimos una conexion
-			connection = conexion.conectar();
-			
-			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT * FROM `poblacion_parada`");
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-			result = stmt.executeQuery();
-			
-			paradas = getParadasByLinea(codLinea);
-			
-			// crea objetos con los resultados y los añade a un arrayList
-			while (result.next()) {
-				for(int i = 0;i<paradas.size();i++) {
-					if (result.getInt("Cod_Parada") == paradas.get(i).getCodParada()) {
-						municipio = new Municipio();
-						municipio.setCodPostal(result.getInt("Cod_Postal"));
-	//					municipio = getInfoAutobus(municipio);
-						municipios.add(municipio);
-					}
-				}
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}                
-		
-		return municipios;
 		
 	}
 	
