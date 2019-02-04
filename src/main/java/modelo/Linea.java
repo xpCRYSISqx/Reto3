@@ -8,7 +8,7 @@ public class Linea {
 	private int[] codMunicipios;
 	
 	public Linea() {
-		
+	
 	}
 	
 	public Linea(String codLinea, String nombre, int[] codAutobuses, int[] codMunicipios) {

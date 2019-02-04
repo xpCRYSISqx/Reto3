@@ -29,14 +29,11 @@ import vista.MainFrame;
 
 public class Botones {
 	public MainFrame vista;
-
 	public Modelo modelo;
-
 	public boolean logeado;
 	public int registrado;
 	private JPanel panDeseadoInicio;
 
-	
 	public void BotonContinuar(JButton boton, JPanel panSalida, JPanel panDeseado) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -118,7 +115,6 @@ public class Botones {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 		});
 		
@@ -180,9 +176,9 @@ public class Botones {
 		femenino = femenino0.isSelected();
 		masculino = masculino0.isSelected();
 		if(femenino == true)
-			sexo = 'M';
+			sexo = 'F';
 		else if(masculino == true)
-			sexo = 'V';
+			sexo = 'M';
 		else
 			sexo = 'n';
 		
