@@ -1,16 +1,18 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Municipio {
 	
 	private String nombre;
 	private int codPostal;
-	private int[] codParadas;
+	private ArrayList<Integer> codParadas;
 	
 	public Municipio() {
 		
 	}
 	
-	public Municipio(String nombre, int codPostal, int[] codParadas) {
+	public Municipio(String nombre, int codPostal, ArrayList<Integer> codParadas) {
 		this.nombre = nombre;
 		this.codPostal = codPostal;
 		this.codParadas = codParadas;
@@ -32,11 +34,11 @@ public class Municipio {
 		this.codPostal = codPostal;
 	}
 
-	public int[] getCodParadas() {
+	public ArrayList<Integer> getCodParadas() {
 		return codParadas;
 	}
 
-	public void setCodParadas(int[] codParadas) {
+	public void setCodParadas(ArrayList<Integer> codParadas) {
 		this.codParadas = codParadas;
 	}	
 }
