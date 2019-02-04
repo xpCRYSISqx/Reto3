@@ -1,11 +1,12 @@
 package modelo;
 
 import java.sql.Date;
+import modelo.*;
 
 public class ComprobarRegistro {
 	
-	Consultas consultas;
-	Cliente cliente;
+	Modelo modelo = new Modelo();
+	Cliente cliente = new Cliente();
 	
 	public int comprobarRegistro(String nombre, String apellidos, Date fecha, String dni, char sexo, String contraseña, String contraseña2) {
 		boolean sexoSeleccionado;
@@ -16,11 +17,11 @@ public class ComprobarRegistro {
 		else
 			sexoSeleccionado = false;
 		if(sexoSeleccionado == true) {
-			cliente = consultas.getClienteByDNI(dni);
+			cliente = modelo.consultas.getClienteByDNI(dni);
 			if(cliente == null) {
 				if(contraseña.equals(contraseña2)) {
 					cliente = new Cliente(dni, nombre, apellidos, fecha, sexo, contraseña);
-					consultas.insertarCliente(cliente);
+					modelo.consultas.insertarCliente(cliente);
 					// Al retornar 0 le dice al programa que todos los datos has sido introducidos correctamente por lo que puede continuar
 					return 0;
 				}
