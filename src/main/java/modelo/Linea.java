@@ -1,17 +1,19 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Linea {
 	
 	private String codLinea;
 	private String nombre;
-	private int[] codAutobuses;
-	private int[] codMunicipios;
+	private ArrayList<Integer> codAutobuses;
+	private ArrayList<Integer> codMunicipios;
 	
 	public Linea() {
 		
 	}
 	
-	public Linea(String codLinea, String nombre, int[] codAutobuses, int[] codMunicipios) {
+	public Linea(String codLinea, String nombre, ArrayList<Integer> codAutobuses, ArrayList<Integer> codMunicipios) {
 		this.codLinea = codLinea;
 		this.nombre = nombre;
 		this.codAutobuses = codAutobuses;
@@ -34,19 +36,19 @@ public class Linea {
 		this.nombre = nombre;
 	}
 
-	public int[] getCodAutobuses() {
+	public ArrayList<Integer> getCodAutobuses() {
 		return codAutobuses;
 	}
 
-	public void setCodAutobuses(int[] codAutobuses) {
+	public void setCodAutobuses(ArrayList<Integer> codAutobuses) {
 		this.codAutobuses = codAutobuses;
 	}
 
-	public int[] getCodMunicipios() {
+	public ArrayList<Integer> getCodMunicipios() {
 		return codMunicipios;
 	}
 
-	public void setCodMunicipios(int[] codMunicipios) {
+	public void setCodMunicipios(ArrayList<Integer> codMunicipios) {
 		this.codMunicipios = codMunicipios;
 	}
 

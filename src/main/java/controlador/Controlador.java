@@ -1,10 +1,5 @@
 package controlador;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import modelo.*;
@@ -25,8 +20,17 @@ public class Controlador {
 	
 	public void inicializarEventos() {
 		
-		
-
+		ArrayList<Linea> lineas = modelo.consultas.getLineas();
+		ArrayList<Integer> codAutobuses;
+		for (int i = 0; i < lineas.size(); i++) { 		      
+	      System.out.print(lineas.get(i).getCodLinea()+": ");
+	      System.out.println(lineas.get(i).getNombre());
+	      System.out.println("Autobuses:");
+	      codAutobuses = lineas.get(i).getCodAutobuses();
+	      for (int j = 0; j < codAutobuses.size(); j++) {		      
+	    	  System.out.print(codAutobuses.get(i));
+	      }
+		}
 	}
 			
 	public void inicializarInterfaz() {

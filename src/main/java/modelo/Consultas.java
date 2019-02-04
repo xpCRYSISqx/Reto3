@@ -30,6 +30,9 @@ public class Consultas {
 		
 		Linea linea = null;
 		ArrayList<Linea> lineas = new ArrayList<Linea>();
+		String codLinea;
+		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
+		ArrayList<Integer> codAutobuses = new ArrayList<Integer>();
 
 		try {
 			
@@ -44,9 +47,23 @@ public class Consultas {
 			
 			// crea objetos con los resultados y los añade a un arrayList
 			while (result.next()) {
+				codLinea = result.getString("Cod_Linea");
+				autobuses = getAutobusesByLinea(result.getString(codLinea));
+				for(int i = 0;i<autobuses.size();i++) {
+					codAutobuses.add(autobuses.get(i).getCodBus());
+				}
+			}
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
 				linea = new Linea();
 				linea.setCodLinea(result.getString("Cod_Linea"));
 				linea.setNombre(result.getString("Nombre"));
+				autobuses = getAutobusesByLinea(result.getString(result.getString("Cod_Linea")));
+				for(int i = 0;i<autobuses.size();i++) {
+					codAutobuses.add(autobuses.get(i).getCodBus());
+				}
+				linea.setCodAutobuses(codAutobuses);
 				lineas.add(linea);
 			}
 			
@@ -63,79 +80,6 @@ public class Consultas {
 		}       
 		
 		return lineas;
-		
-	}
-	
-	public ArrayList<Parada> getParadasByLinea(String codLinea) {
-	
-		Parada parada = null;
-		ArrayList<Parada> paradas = new ArrayList<Parada>();
-
-		try {
-			
-			// abrimos una conexion
-			connection = conexion.conectar();
-			
-			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT Cod_Parada, SQRT(POWER(Latitud-(SELECT Latitud FROM `parada` WHERE Cod_Parada = 1),2)+POWER(Longitud-(SELECT Longitud FROM `parada` WHERE Cod_Parada = 1),2))\"Distancia\""
-					+ " FROM `parada` WHERE Cod_Parada IN (SELECT Cod_Parada FROM `linea-parada` WHERE Cod_Linea = ?) ORDER BY Distancia ASC");
-			//stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
-			stmt.setString(1, codLinea);
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-			result = stmt.executeQuery();
-			
-			// crea objetos con los resultados y los añade a un arrayList
-			while (result.next()) {
-				parada = new Parada();
-				parada.setCodParada(result.getInt("Cod_Parada"));
-				parada = getInfoParada(parada);
-				paradas.add(parada);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}       
-		
-		return paradas;
-		
-	}
-	
-	public Parada getInfoParada(Parada parada) {
-
-		try {
-			
-			// abrimos una conexion
-			connection = conexion.conectar();
-			
-			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT Nombre, Calle, Latitud, Longitud FROM parada where Cod_Parada = ?");
-			stmt.setInt(1, parada.getCodParada());
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-			result = stmt.executeQuery();
-			
-			// crea objetos con los resultados y los añade a un arrayList
-			while (result.next()) {
-				parada.setNombre(result.getString("Nombre"));
-				parada.setCalle(result.getString("Calle"));
-				parada.setLatitud(result.getFloat("Latitud"));
-				parada.setLongitud(result.getFloat("Longitud"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}                 
-		
-		return parada;
 		
 	}
 	
@@ -206,6 +150,79 @@ public class Consultas {
 		}                  
 		
 		return autobus;
+		
+	}
+	
+	public ArrayList<Parada> getParadasByLinea(String codLinea) {
+		
+		Parada parada = null;
+		ArrayList<Parada> paradas = new ArrayList<Parada>();
+
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("SELECT Cod_Parada, SQRT(POWER(Latitud-(SELECT Latitud FROM `parada` WHERE Cod_Parada = 1),2)+POWER(Longitud-(SELECT Longitud FROM `parada` WHERE Cod_Parada = 1),2))\"Distancia\""
+					+ " FROM `parada` WHERE Cod_Parada IN (SELECT Cod_Parada FROM `linea-parada` WHERE Cod_Linea = ?) ORDER BY Distancia ASC");
+			//stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
+			stmt.setString(1, codLinea);
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				parada = new Parada();
+				parada.setCodParada(result.getInt("Cod_Parada"));
+				parada = getInfoParada(parada);
+				paradas.add(parada);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}       
+		
+		return paradas;
+		
+	}
+	
+	public Parada getInfoParada(Parada parada) {
+
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("SELECT Nombre, Calle, Latitud, Longitud FROM parada where Cod_Parada = ?");
+			stmt.setInt(1, parada.getCodParada());
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				parada.setNombre(result.getString("Nombre"));
+				parada.setCalle(result.getString("Calle"));
+				parada.setLatitud(result.getFloat("Latitud"));
+				parada.setLongitud(result.getFloat("Longitud"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}                 
+		
+		return parada;
 		
 	}
 	
