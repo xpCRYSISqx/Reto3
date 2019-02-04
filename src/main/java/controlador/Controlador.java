@@ -22,15 +22,26 @@ public class Controlador {
 		
 		ArrayList<Linea> lineas = modelo.consultas.getLineas();
 		ArrayList<Integer> codAutobuses;
+		ArrayList<Integer> codMunicipios;
+		
 		for (int i = 0; i < lineas.size(); i++) { 		      
 	      System.out.print(lineas.get(i).getCodLinea()+": ");
 	      System.out.println(lineas.get(i).getNombre());
+	     
 	      System.out.println("Autobuses:");
 	      codAutobuses = lineas.get(i).getCodAutobuses();
-	      for (int j = 0; j < codAutobuses.size(); j++) {		      
-	    	  System.out.print(codAutobuses.get(i));
+	      for (int j = 0; j < codAutobuses.size(); j++) {
+	    	  System.out.println(codAutobuses.get(j));
 	      }
+	      
+	      System.out.println("Municipios:");
+	      codMunicipios = lineas.get(i).getCodMunicipios();
+	      for (int j = 0; j < codMunicipios.size(); j++) {
+	    	  System.out.println(codMunicipios.get(j));
+	      }
+	      
 		}
+		
 	}
 			
 	public void inicializarInterfaz() {
