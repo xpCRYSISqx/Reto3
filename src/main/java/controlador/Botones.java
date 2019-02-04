@@ -69,7 +69,7 @@ public class Botones {
 			public void actionPerformed(ActionEvent arg0) {
 				panRegistro.setVisible(true);
 				panSalida.setVisible(false);
-				setPanDeseadoInicio(panSalida);
+				setPanDeseado(panSalida);
 			}
 		});
 	}
@@ -86,7 +86,16 @@ public class Botones {
 			public void actionPerformed(ActionEvent arg0) {
 				panInicioSesion.setVisible(true);
 				panSalida.setVisible(false);
-				setPanDeseadoInicio(panSalida);
+				setPanDeseado(panSalida);
+			}
+		});
+	}
+	public void CancelarInicioSesion(JButton boton, JPanel panInicio) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JPanel panDeseado = getPanDeseado();
+				panDeseado.setVisible(true);
+				panInicio.setVisible(false);
 			}
 		});
 	}
@@ -122,7 +131,6 @@ public class Botones {
 		
 	}
 
-
 	public void IniciarSesion(JButton boton, JTextField usuario, JPasswordField contrasena, JPanel panLogin) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -130,7 +138,7 @@ public class Botones {
 				String contString;
 				char[] cont;
 				boolean logeado;
-				JPanel panDeseado = getPanDeseadoInicio();
+				JPanel panDeseado = getPanDeseado();
 				
 				dni = usuario.getText();
 				cont = contrasena.getPassword();
@@ -158,7 +166,7 @@ public class Botones {
 		char[] contConfirmar;
 		int registrado;
 		Encriptacion encriptar = new Encriptacion();
-		JPanel panDeseado = getPanDeseadoInicio();
+		JPanel panDeseado = getPanDeseado();
 		
 		dni = dni0.getText();
 		nombre = nom.getText();
@@ -209,10 +217,10 @@ public class Botones {
 	public int getRegistrado() {
 		return this.registrado;
 	}
-	private void setPanDeseadoInicio(JPanel panDeseado) {
+	private void setPanDeseado(JPanel panDeseado) {
 		this.panDeseadoInicio = panDeseado;
 	}
-	private JPanel getPanDeseadoInicio() {
+	private JPanel getPanDeseado() {
 		return this.panDeseadoInicio;
 	}
 }

@@ -125,6 +125,19 @@ public class PanRegistro extends JPanel {
 		lblfechaNac = new JLabel("Fecha nacimiento");
 		lblfechaNac.setBounds(279, 282, 88, 14);
 		add(lblfechaNac);
+		
+		JLabel lblErrorDNI = new JLabel("Ya existe un usuario con ese DNI");
+		lblErrorDNI.setBounds(561, 216, 273, 20);
+		add(lblErrorDNI);
+		
+		JLabel lblErrorContraseñas = new JLabel("Las contrase\u00F1as no coinciden, vuelva a introducirlas");
+		lblErrorContraseñas.setBounds(536, 406, 371, 20);
+		add(lblErrorContraseñas);
+		
+		JLabel lblErrorSexo = new JLabel("Tiene que seleccionar su sexo para poder registrarse");
+		lblErrorSexo.setBounds(561, 250, 336, 14);
+		lblErrorSexo.setVisible(false);
+		add(lblErrorSexo);
 
 	}
 }
