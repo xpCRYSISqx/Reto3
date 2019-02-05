@@ -44,7 +44,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Linea con los resultados y los añade a un arrayList
 			while (result.next()) {
 				linea = new Linea();
 				linea.setCodLinea(result.getString("Cod_Linea"));
@@ -107,7 +107,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Autobus con los resultados y los añade a un arrayList
 			while (result.next()) {
 				autobus = new Autobus();
 				autobus.setCodBus(result.getInt("Cod_bus"));
@@ -144,7 +144,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// rellena los objetos Autobus con los resultados y los añade a un arrayList
 			while (result.next()) {
 				autobus.setNumPlazas(result.getInt("N_plazas"));
 				autobus.setConsumo(result.getFloat("Consumo_km"));
@@ -185,7 +185,7 @@ public class Consultas {
 			
 			paradas = getParadasByLinea(codLinea);
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Municipio con los resultados y los añade a un arrayList
 			while (result.next()) {
 				for(int i = 0;i<paradas.size();i++) {
 					if (result.getInt("Cod_Parada") == paradas.get(i).getCodParada()) {
@@ -239,7 +239,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada = new Parada();
 				parada.setCodParada(result.getInt("Cod_Parada"));
@@ -280,7 +280,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada = new Parada();
 				parada.setCodParada(result.getInt("Cod_Parada"));
@@ -317,7 +317,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// rellena los objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada.setNombre(result.getString("Nombre"));
 				parada.setCalle(result.getString("Calle"));
@@ -355,8 +355,6 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			System.out.println(result);
-			
 			// crea objetos con los resultados y los añade a un arrayList
 			while (result.next()) {
 				//disponible = result.getInt('1');
@@ -372,6 +370,61 @@ public class Consultas {
 		
 		return disponible;
 		
+	}
+	
+	public Boolean comprobarPlazasBillete(Billete billete) {
+
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+		Boolean disponible = false;
+		int plazasOcupadas = 0;
+		int plazasTotales = 0;
+
+		// comprobar las plazas ocupadas en un billete
+		try {
+
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ? and Fecha = ?");
+			stmt.setInt(1, billete.getCodBus());
+			stmt.setDate(2, billete.getFecha());
+  
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet
+			result = stmt.executeQuery();
+
+			while (result.next()) {
+				plazasOcupadas = result.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		// comprobar las plazas totales en un billete
+		try {
+
+			// preparamos la consulta SQL a la base de datos
+			stmt = this.connection.prepareStatement("SELECT N_plazas FROM autobus WHERE Cod_bus = ?");
+			stmt.setInt(1, billete.getCodBus());
+
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				plazasTotales = result.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}           
+
+		if (plazasOcupadas < plazasTotales)  {
+			disponible = true;
+		} else {
+			disponible = false;
+		}
+
+		return disponible;
 	}
 	
 	public Cliente getClienteByDNI(String dni) {

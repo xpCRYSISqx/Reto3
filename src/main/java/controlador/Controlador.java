@@ -1,5 +1,10 @@
 package controlador;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import modelo.*;
 import vista.MainFrame;
@@ -51,8 +56,38 @@ public class Controlador {
 	      for (int j = 0; j < codMunicipios.size(); j++) {
 	    	  System.out.println(codMunicipios.get(j));
 	      }
-	      
 		}
+		
+		/*
+		 * Como comprobar que haya plazas disponibles para el billete seleccionado
+		 */
+		
+			// creamos la fecha y hora
+			DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+			Date fecha = null;
+			try {
+				fecha = new Date(df.parse("02-04-2015").getTime());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			Time time = Time.valueOf( "18:05:00" );
+			Boolean disponible;
+
+			// creamos el objeto billete
+			Billete billete = new Billete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
+			
+			// comprobamos si hay plazas disponibles para el autobus y la fecha seleccionada
+			disponible = modelo.consultas.comprobarPlazasBillete(billete);
+			System.out.println(disponible);
+
+			// insertamos los datos del billete en la bbdd
+			//modelo.insertarBillete(billete);
+
+			// imprimir billete
+			modelo.ficheros.imprimirBillete(billete);
+		
+		
+		
 		
 	}
 			
