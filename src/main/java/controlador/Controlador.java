@@ -110,7 +110,7 @@ public class Controlador {
 		//Boton para ir a Log in cuendo se esta en registro
 		botones.IrRegistroAInicioSesion(vista.registro.btnLogin, vista.login, vista.registro);
 		//boton para registrar un usuario
-		botones.Registrar(vista.registro.btnRegistro, vista.registro, vista.registro.txtNombre, vista.registro.txtApellidos, vista.registro.dateChooser, vista.registro.txtDni, vista.registro.rbtnFem, vista.registro.rbtnMasc, vista.registro.passwordField, vista.registro.passwordField2, vista.registro.lblErrorContrasenas, vista.registro.lblErrorDNI, vista.registro.lblErrorSexo);
+		botones.Registrar(vista.registro.btnRegistro, vista.registro, vista.registro.txtNombre, vista.registro.txtApellidos, vista.registro.dateChooser, vista.registro.txtDni, vista.registro.rbtnFem, vista.registro.rbtnMasc, vista.registro.passwordField, vista.registro.passwordField2, vista.registro.lblErrorContrasenas, vista.registro.lblErrorDNI, vista.registro.lblErrorSexo, vista.registro.lblErrorDNINoIntroducido);
 		//Boton para iniciar sesion
 		botones.IniciarSesion(vista.login.btnLogin, vista.login.userField, vista.login.password, vista.login);
 		//Boton para ir de la ventana de pago a la de finalizar el pago

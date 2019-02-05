@@ -17,7 +17,11 @@ public class ComprobarRegistro {
 		else
 			sexoSeleccionado = false;
 		if(sexoSeleccionado == true) {
-			if(dni != null) {
+			if(dni.equals("")) {
+				// Al retornar 4 le dice al programa que no se ha introducido un DNI
+				return 4;
+			}
+			else {
 				cliente = modelo.consultas.getClienteByDNI(dni);
 				if(cliente == null) {
 					if(contraseña.equals(contraseña2)) {
@@ -34,11 +38,10 @@ public class ComprobarRegistro {
 					// Al retornar 1 le dice al programa que el usuario que intenta registrar ya existe, por lo que no puede registrarlo
 					return 1;
 			}
-			else
-				// Al retornar 3 le dice al programa que el sexo no ha sido seleccionado
-				return 3;
+				
 		}
 		else
-			
+			// Al retornar 3 le dice al programa que el sexo no ha sido seleccionado
+			return 3;
 	}
 }
