@@ -17,8 +17,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import vista.MainFrame;
-import vista.PanSelLinea;
-import controlador.*;
 import modelo.*;
 
 public class Botones {
@@ -116,7 +114,6 @@ public class Botones {
 			}
 		});
 	}
-
 	public void IrBienveLineas(JList<?> lista,JButton boton, JPanel bienvenida, JPanel lineas) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -135,7 +132,6 @@ public class Botones {
 			}
 		});
 	}
-	
 	public void MostrarParadas(JList<?> lineas ,JList<?> listaParadas) {
 		lineas.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
