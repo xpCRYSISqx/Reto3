@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.mockito.internal.configuration.InjectingAnnotationEngine;
+
 public class Consultas {
 	
 	private Conexion conexion;
@@ -337,41 +339,6 @@ public class Consultas {
 		
 	}
 	
-	public Boolean comprobarFechasBillete(Billete billete) {
-		
-		Boolean disponible = false;
-		PreparedStatement stmt = null;
-		ResultSet result = null;
-
-		try {
-			
-			// abrimos una conexion
-			connection = conexion.conectar();
-			
-			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ?");
-			stmt.setInt(1, billete.getCodBus());
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-			result = stmt.executeQuery();
-			
-			// crea objetos con los resultados y los añade a un arrayList
-			while (result.next()) {
-				//disponible = result.getInt('1');
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}              
-		
-		return disponible;
-		
-	}
-	
 	public Boolean comprobarPlazasBillete(Billete billete) {
 
 		PreparedStatement stmt = null;
@@ -380,11 +347,14 @@ public class Consultas {
 		int plazasOcupadas = 0;
 		int plazasTotales = 0;
 
-		// comprobar las plazas ocupadas en un billete
+		// comprobar las plazas ocupadas en un autobus
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 
 			// preparamos la consulta SQL a la base de datos
-			stmt = this.connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ? and Fecha = ?");
+			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ? and Fecha = ?");
 			stmt.setInt(1, billete.getCodBus());
 			stmt.setDate(2, billete.getFecha());
   
@@ -397,13 +367,20 @@ public class Consultas {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}   
 		
-		// comprobar las plazas totales en un billete
+		// comprobar las plazas totales de un autobus
 		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
 
 			// preparamos la consulta SQL a la base de datos
-			stmt = this.connection.prepareStatement("SELECT N_plazas FROM autobus WHERE Cod_bus = ?");
+			stmt = connection.prepareStatement("SELECT N_plazas FROM autobus WHERE Cod_bus = ?");
 			stmt.setInt(1, billete.getCodBus());
 
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -416,6 +393,10 @@ public class Consultas {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}           
 
 		if (plazasOcupadas < plazasTotales)  {
@@ -467,6 +448,31 @@ public class Consultas {
 		return cliente;
 		
 	}
+	
+	public int calcularPrecioBillete() {
+		
+		int precio = 0;
+		int distancia;
+		int consumo;
+		int beneficio;
+		
+		distancia = calcularDistancia();
+		
+		return precio;
+	}
+	
+	public int calcularDistancia() {
+		int distancia = 0;
+		
+		return distancia;
+	}
+	
+	public int calcularConsumo() {
+		int consumo = 0;
+		
+		return consumo;
+	}
+
 	
 	/****************************************************************************************************************
 	 * 

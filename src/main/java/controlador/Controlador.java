@@ -26,7 +26,7 @@ public class Controlador {
 		
 		/*
 		 * Como sacar los datos de las lineas
-		 */
+		 *
 		
 		// cargamos las lineas en un array list
 		ArrayList<Linea> lineas = modelo.consultas.getLineas();
@@ -57,35 +57,41 @@ public class Controlador {
 	    	  System.out.println(codMunicipios.get(j));
 	      }
 		}
+		*/
+		
 		
 		/*
-		 * Como comprobar que haya plazas disponibles para el billete seleccionado
-		 */
+		 * Como crear un billete, comprobar que haya plazas disponibles, insertarlo en la BBDD e imprimirlo
+		 *
 		
 			// creamos la fecha y hora
 			DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+			Time time = Time.valueOf( "18:05:00" );
 			Date fecha = null;
+			Boolean disponible;
+			
 			try {
 				fecha = new Date(df.parse("02-04-2015").getTime());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			Time time = Time.valueOf( "18:05:00" );
-			Boolean disponible;
 
 			// creamos el objeto billete
-			Billete billete = new Billete(1234, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
+			Billete billete = new Billete(null, 2, "L2", 1002, 3, 6, fecha, time, "15236985K", 45.5f);
 			
 			// comprobamos si hay plazas disponibles para el autobus y la fecha seleccionada
 			disponible = modelo.consultas.comprobarPlazasBillete(billete);
-			System.out.println(disponible);
+			
+			if (disponible) {
+				
+				// insertamos los datos del billete en la bbdd
+				modelo.consultas.insertarBillete(billete);
 
-			// insertamos los datos del billete en la bbdd
-			//modelo.insertarBillete(billete);
-
-			// imprimir billete
-			modelo.ficheros.imprimirBillete(billete);
-		
+				// imprimir billete
+				modelo.ficheros.imprimirBillete(billete);
+				
+			}	
+			*/
 		
 		
 		
