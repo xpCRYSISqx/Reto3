@@ -259,7 +259,7 @@ public class Consultas {
 		
 	}
 	
-	private ArrayList<Parada> getParadasByLinea(String codLinea) {
+	public ArrayList<Parada> getParadasByLinea(String codLinea) {
 		
 		Parada parada = null;
 		ArrayList<Parada> paradas = new ArrayList<Parada>();

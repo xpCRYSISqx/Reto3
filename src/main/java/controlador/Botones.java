@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import modelo.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -20,6 +19,7 @@ import com.toedter.calendar.JDateChooser;
 import vista.MainFrame;
 import vista.PanSelLinea;
 import controlador.*;
+import modelo.*;
 
 public class Botones {
 	public MainFrame vista;
@@ -117,7 +117,6 @@ public class Botones {
 				for(int i=0; i<lineas1.size(); i++) {
 					nombre = lineas1.get(i).getCodLinea();
 					//nombre = "[" + nombre + "]" + " " + lineas1.get(i).getNombre();
-					System.out.println(i);
 					vista.sel_linea.modeloLineas.addElement(nombre);
 					vista.sel_linea.listLineas.setModel(vista.sel_linea.modeloLineas);
 				}
@@ -133,7 +132,7 @@ public class Botones {
 				String codLinea = vista.sel_linea.listLineas.getSelectedValue();
 				paradas = modelo.consultas.getParadasByLinea(codLinea);
 				for(int i=0; i<paradas.size(); i++) {
-//					vista.sel_linea.modeloParadas.addElement(paradas.get(i).getNombre());
+					vista.sel_linea.modeloParadas.addElement(paradas.get(i).getNombre());
 //					vista.sel_linea.modeloParadas.addElement(paradas.get(i).getCodParada());
 					vista.sel_linea.listParadas.setModel(vista.sel_linea.modeloParadas);
 				}
