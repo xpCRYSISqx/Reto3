@@ -159,6 +159,27 @@ public class Botones {
 			}
 		});
 	}
+	
+	public void MostrarOrigen (JList<?> listaParadas, JList<?> listaLineas, JButton boton, JPanel linea, JPanel billete) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				billete.setVisible(true);
+				linea.setVisible(false);
+				vista.sel_billete.modeloOrigen.removeAllElements();
+				lineas1 = modelo.consultas.getLineas();
+				
+				String codLinea = vista.sel_linea.listLineas.getSelectedValue();
+				paradas = modelo.consultas.getParadasByLinea(codLinea); 				
+				for(int i=0; i<lineas1.size(); i++) {
+					
+					vista.sel_linea.modeloLineas.addElement(codLinea);
+					vista.sel_linea.listLineas.setModel(vista.sel_linea.modeloLineas);
+				}
+				
+			}
+		});
+	}
+	
 	public void IniciarSesion(JButton boton, JTextField usuario, JPasswordField contrasena, JPanel panLogin) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -1,6 +1,7 @@
 package vista;
 
 import javax.swing.JPanel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -20,6 +21,9 @@ public class PanSelBillete extends JPanel {
 	 */
 	
 	JPanel sel_billete = new JPanel();
+	
+	public DefaultListModel<String> modeloOrigen = new DefaultListModel<String>();
+	public DefaultListModel<String> modeloDestino = new DefaultListModel<String>();
 	
 	public JLabel lbltitulo,lblOrigen,lblDestino;
 	public JButton btnLogin,btnregistro,btnContinuar,btnAtras,btnCancelar;
@@ -45,7 +49,7 @@ public class PanSelBillete extends JPanel {
 		lbltitulo = new JLabel("SELECCI\u00D3N DE BILLETE");
 		lbltitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lbltitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lbltitulo.setBounds(10, 15, 1004, 87);
+		lbltitulo.setBounds(10, 11, 1004, 91);
 		add(lbltitulo);
 		
 		btnCancelar = new JButton("Cancelar");
