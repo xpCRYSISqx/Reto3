@@ -24,7 +24,7 @@ import controlador.*;
 public class Botones {
 	public MainFrame vista;
 	public Modelo modelo;
-	public boolean logeado;
+	public boolean logeado = false;
 	public int registrado;
 	private JPanel panDeseadoInicio;
 	private ArrayList<Linea> lineas1;
@@ -78,6 +78,17 @@ public class Botones {
 			}
 		});
 	}
+	public void IrDetallesBilleteAPago(JButton boton, JPanel detalles, JPanel pago, JPanel inicioSesion) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean logeado = getLogeado();
+				if(logeado == true) {
+					pago.setVisible(true);
+					detalles.setVisible(false);
+				}
+			}
+		});
+	}
 	public void BotonIrInicioSesion(JButton boton, JPanel panSalida, JPanel panInicioSesion) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -120,6 +131,14 @@ public class Botones {
 					vista.sel_linea.listLineas.setModel(vista.sel_linea.modelo);
 				}
 						
+			}
+		});
+	}
+	public void AtrasBilleteLineas(JButton boton, JPanel lineas, JPanel billete) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lineas.setVisible(true);
+				billete.setVisible(false);
 			}
 		});
 	}

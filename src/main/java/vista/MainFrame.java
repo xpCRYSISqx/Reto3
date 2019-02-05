@@ -43,7 +43,6 @@ public class MainFrame extends JFrame{
 		try {
 			bienvenida = new PanBienvenida();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		login = new PanLogin();
