@@ -10,14 +10,10 @@ public class Consultas {
 	
 	private Conexion conexion;
 	private Connection connection;
-	private PreparedStatement stmt;
-	private ResultSet result;
 	
 	public Consultas(Conexion conexion) {
 		this.conexion = conexion;
 		this.connection = null;
-		this.stmt = null;
-		this.result = null;
 	}
 	
 	/****************************************************************************************************************
@@ -30,6 +26,12 @@ public class Consultas {
 		
 		Linea linea = null;
 		ArrayList<Linea> lineas = new ArrayList<Linea>();
+		ArrayList<Autobus> autobuses;
+		ArrayList<Municipio> municipios;
+		ArrayList<Integer> codMunicipios;
+		ArrayList<Integer> codAutobuses;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
 
 		try {
 			
@@ -46,8 +48,28 @@ public class Consultas {
 			while (result.next()) {
 				linea = new Linea();
 				linea.setCodLinea(result.getString("Cod_Linea"));
-				linea.setNombre(result.getString("Nombre"));
+				linea.setNombre(result.getString("Nombre"));				
 				lineas.add(linea);
+			}
+			
+			// cargamos los codigos de los autobuses
+			for(int i = 0;i<lineas.size();i++) {
+				codAutobuses = new ArrayList<Integer>();
+				autobuses = getAutobusesByLinea(lineas.get(i).getCodLinea());
+				for(int j = 0;j<autobuses.size();j++) {
+					codAutobuses.add(autobuses.get(j).getCodBus());
+				}
+				lineas.get(i).setCodAutobuses(codAutobuses);
+			}
+			
+			// cargamos los codigos de los municipios
+			for(int i = 0;i<lineas.size();i++) {
+				codMunicipios = new ArrayList<Integer>();
+				municipios = getMunicipiosByLinea(lineas.get(i).getCodLinea());
+				for(int j = 0;j<municipios.size();j++) {
+					codMunicipios.add(municipios.get(j).getCodPostal());
+				}
+				lineas.get(i).setCodMunicipios(codMunicipios);
 			}
 			
 		} catch (SQLException e) {
@@ -66,10 +88,183 @@ public class Consultas {
 		
 	}
 	
-	public ArrayList<Parada> getParadasByLinea(String codLinea) {
+	private ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
+		
+		Autobus autobus = null;
+		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("SELECT Cod_bus FROM `linea_autobus` where Cod_Linea = ?");
+			stmt.setString(1, codLinea);
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				autobus = new Autobus();
+				autobus.setCodBus(result.getInt("Cod_bus"));
+				autobus = getInfoAutobus(autobus);
+				autobuses.add(autobus);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}                
+		
+		return autobuses;
+		
+	}
 	
+	private Autobus getInfoAutobus(Autobus autobus) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("SELECT N_plazas, Consumo_km, Color FROM autobus where Cod_bus = ?");
+			stmt.setInt(1, autobus.getCodBus());
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				autobus.setNumPlazas(result.getInt("N_plazas"));
+				autobus.setConsumo(result.getFloat("Consumo_km"));
+				autobus.setColor(result.getString("Color"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}                  
+		
+		return autobus;
+		
+	}
+	
+	private ArrayList<Municipio> getMunicipiosByLinea(String codLinea) {
+		
+		Municipio municipio = null;
+		ArrayList<Municipio> municipios = new ArrayList<Municipio>();
+		ArrayList<Parada> paradas = new ArrayList<Parada>();
+		ArrayList<Integer> codParadas;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("SELECT * FROM `poblacion_parada`");
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			paradas = getParadasByLinea(codLinea);
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				for(int i = 0;i<paradas.size();i++) {
+					if (result.getInt("Cod_Parada") == paradas.get(i).getCodParada()) {
+						municipio = new Municipio();
+						municipio.setCodPostal(result.getInt("Cod_Postal"));
+	//					municipio = getInfoAutobus(municipio);
+						municipios.add(municipio);
+					}
+				}
+			}
+			
+			// cargamos los codigos de las paradas
+			for(int i = 0;i<municipios.size();i++) {
+				codParadas = new ArrayList<Integer>();
+				paradas = getParadasByMunicipio(municipios.get(i).getCodPostal());
+				for(int j = 0;j<paradas.size();j++) {
+					codParadas.add(paradas.get(j).getCodParada());
+				}
+				municipios.get(i).setCodParadas(codParadas);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}                
+		
+		return municipios;
+		
+	}
+	
+	private ArrayList<Parada> getParadasByMunicipio(int codMunicipio) {
+		
 		Parada parada = null;
 		ArrayList<Parada> paradas = new ArrayList<Parada>();
+		PreparedStatement stmt = null;
+		ResultSet result = null;
+
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+			
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("Select Cod_parada from `poblacion_parada` where Cod_Postal = ?");
+			//stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
+			stmt.setInt(1, codMunicipio);
+			
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+			
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				parada = new Parada();
+				parada.setCodParada(result.getInt("Cod_Parada"));
+				parada = getInfoParada(parada);
+				paradas.add(parada);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}       
+		
+		return paradas;
+		
+	}
+	
+	public ArrayList<Parada> getParadasByLinea(String codLinea) {
+		
+		Parada parada = null;
+		ArrayList<Parada> paradas = new ArrayList<Parada>();
+		PreparedStatement stmt = null;
+		ResultSet result = null;
 
 		try {
 			
@@ -105,7 +300,10 @@ public class Consultas {
 		
 	}
 	
-	public Parada getInfoParada(Parada parada) {
+	private Parada getInfoParada(Parada parada) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
 
 		try {
 			
@@ -139,79 +337,11 @@ public class Consultas {
 		
 	}
 	
-	public ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
-		
-		Autobus autobus = null;
-		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
-
-		try {
-			
-			// abrimos una conexion
-			connection = conexion.conectar();
-			
-			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT Cod_bus FROM `linea_autobus` where Cod_Linea = ?");
-			stmt.setString(1, codLinea);
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-			result = stmt.executeQuery();
-			
-			// crea objetos con los resultados y los añade a un arrayList
-			while (result.next()) {
-				autobus = new Autobus();
-				autobus.setCodBus(result.getInt("Cod_bus"));
-				autobus = getInfoAutobus(autobus);
-				autobuses.add(autobus);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}                
-		
-		return autobuses;
-		
-	}
-	
-	public Autobus getInfoAutobus(Autobus autobus) {
-
-		try {
-			
-			// abrimos una conexion
-			connection = conexion.conectar();
-			
-			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT N_plazas, Consumo_km, Color FROM autobus where Cod_bus = ?");
-			stmt.setInt(1, autobus.getCodBus());
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-			result = stmt.executeQuery();
-			
-			// crea objetos con los resultados y los añade a un arrayList
-			while (result.next()) {
-				autobus.setNumPlazas(result.getInt("N_plazas"));
-				autobus.setConsumo(result.getFloat("Consumo_km"));
-				autobus.setColor(result.getString("Color"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}                  
-		
-		return autobus;
-		
-	}
-	
 	public Boolean comprobarFechasBillete(Billete billete) {
 		
 		Boolean disponible = false;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
 
 		try {
 			
@@ -247,6 +377,8 @@ public class Consultas {
 	public Cliente getClienteByDNI(String dni) {
 		
 		Cliente cliente = null;
+		PreparedStatement stmt = null;
+		ResultSet result = null;
 
 		try {
 			
@@ -291,6 +423,9 @@ public class Consultas {
 	
 	// inserta los atributos de un objetos cliente en la BBDD
 	public void insertarCliente(Cliente cliente) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
 
 		try {
 			
@@ -322,6 +457,9 @@ public class Consultas {
 	
 	// inserta los atributos de un objetos billete en la BBDD
 	public void insertarBillete(Billete billete) {
+		
+		PreparedStatement stmt = null;
+		ResultSet result = null;
 
 		try {
 			

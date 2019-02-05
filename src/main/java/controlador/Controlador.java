@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.ArrayList;
 import modelo.*;
 import vista.MainFrame;
 
@@ -14,6 +15,45 @@ public class Controlador {
 	public Controlador(Modelo modelo, MainFrame vista) {
 		this.modelo = modelo;
 		this.vista = vista;
+	}
+	
+	public void inicializarEventos() {
+		
+		/*
+		 * Como sacar los datos de las lineas
+		 */
+		
+		// cargamos las lineas en un array list
+		ArrayList<Linea> lineas = modelo.consultas.getLineas();
+		
+		// estas variables las usaremos para almacenar los codigos de autobuses y municipios que pertenecen a esa linea
+		ArrayList<Integer> codAutobuses;
+		ArrayList<Integer> codMunicipios;
+		
+		
+		// recorremos el array list de lineas
+		for (int i = 0; i < lineas.size(); i++) { 		      
+	      System.out.print(lineas.get(i).getCodLinea()+": ");
+	      System.out.println(lineas.get(i).getNombre());
+	     
+	      // el atributo codAutobuses del objeto linea es un array list
+	      // lo almacenamos en la variable que hemos creado antes y lo recorremos con un for
+	      System.out.println("Autobuses:");
+	      codAutobuses = lineas.get(i).getCodAutobuses();
+	      for (int j = 0; j < codAutobuses.size(); j++) {
+	    	  System.out.println(codAutobuses.get(j));
+	      }
+	      
+	      // lo mismo para los codigos de los municipio
+	      // los guardamos en un array list y lo recorremos con un for
+	      System.out.println("Municipios:");
+	      codMunicipios = lineas.get(i).getCodMunicipios();
+	      for (int j = 0; j < codMunicipios.size(); j++) {
+	    	  System.out.println(codMunicipios.get(j));
+	      }
+	      
+		}
+		
 	}
 			
 	public void inicializarInterfaz() {
@@ -34,6 +74,7 @@ public class Controlador {
 	public void manejoInterfaz() {
 		Botones botones = new Botones(modelo, vista);
 		botones.IrBienveLineas(vista.sel_linea.listLineas, vista.bienvenida.btnContinuar, vista.bienvenida, vista.sel_linea);
+		botones.MostrarParadas(vista.sel_linea.listLineas, vista.sel_linea.listParadas);
 		botones.BotonContinuar(vista.sel_linea.btnContinuar, vista.sel_linea, vista.sel_billete);
 		botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);

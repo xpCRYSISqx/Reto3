@@ -26,7 +26,8 @@ public class PanSelLinea extends JPanel {
 	
 	public JButton btnlogin,btnContinuar,btnRegistro;
 	public JLabel lblLineas;
-	public DefaultListModel<String> modelo = new DefaultListModel<String>();
+	public DefaultListModel<String> modeloLineas = new DefaultListModel<String>();
+	public DefaultListModel<String> modeloParadas = new DefaultListModel<String>();
 	public JList<String> listLineas,listParadas;
 	
 	public PanSelLinea() {
