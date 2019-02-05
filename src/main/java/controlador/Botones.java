@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import modelo.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -20,11 +19,12 @@ import com.toedter.calendar.JDateChooser;
 import vista.MainFrame;
 import vista.PanSelLinea;
 import controlador.*;
+import modelo.*;
 
 public class Botones {
 	public MainFrame vista;
 	public Modelo modelo;
-	public boolean logeado;
+	public boolean logeado = false;
 	public int registrado;
 	private JPanel panDeseadoInicio;
 	private ArrayList<Linea> lineas1;
@@ -79,6 +79,17 @@ public class Botones {
 			}
 		});
 	}
+	public void IrDetallesBilleteAPago(JButton boton, JPanel detalles, JPanel pago, JPanel inicioSesion) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				boolean logeado = getLogeado();
+				if(logeado == true) {
+					pago.setVisible(true);
+					detalles.setVisible(false);
+				}
+			}
+		});
+	}
 	public void BotonIrInicioSesion(JButton boton, JPanel panSalida, JPanel panInicioSesion) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -117,7 +128,6 @@ public class Botones {
 				for(int i=0; i<lineas1.size(); i++) {
 					nombre = lineas1.get(i).getCodLinea();
 					//nombre = "[" + nombre + "]" + " " + lineas1.get(i).getNombre();
-					System.out.println(i);
 					vista.sel_linea.modeloLineas.addElement(nombre);
 					vista.sel_linea.listLineas.setModel(vista.sel_linea.modeloLineas);
 				}
@@ -133,11 +143,19 @@ public class Botones {
 				String codLinea = vista.sel_linea.listLineas.getSelectedValue();
 				paradas = modelo.consultas.getParadasByLinea(codLinea);
 				for(int i=0; i<paradas.size(); i++) {
-//					vista.sel_linea.modeloParadas.addElement(paradas.get(i).getNombre());
+					vista.sel_linea.modeloParadas.addElement(paradas.get(i).getNombre());
 //					vista.sel_linea.modeloParadas.addElement(paradas.get(i).getCodParada());
 					vista.sel_linea.listParadas.setModel(vista.sel_linea.modeloParadas);
 				}
 
+			}
+		});
+	}
+	public void AtrasBilleteLineas(JButton boton, JPanel lineas, JPanel billete) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lineas.setVisible(true);
+				billete.setVisible(false);
 			}
 		});
 	}

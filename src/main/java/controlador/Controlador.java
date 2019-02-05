@@ -130,5 +130,6 @@ public class Controlador {
 		botones.Registrar(vista.registro.btnRegistro, vista.registro, vista.registro.txtNombre, vista.registro.txtApellidos, vista.registro.dateChooser, vista.registro.txtDni, vista.registro.rbtnFem, vista.registro.rbtnMasc, vista.registro.passwordField, vista.registro.passwordField2, vista.registro.lblErrorContrasenas, vista.registro.lblErrorDNI, vista.registro.lblErrorSexo);
 		botones.IniciarSesion(vista.login.btnLogin, vista.login.userField, vista.login.password, vista.login);
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
+		botones.AtrasBilleteLineas(vista.sel_billete.btnAtras, vista.sel_linea, vista.sel_billete);
 	}
 }
