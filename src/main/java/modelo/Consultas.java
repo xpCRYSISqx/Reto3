@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.mockito.internal.configuration.InjectingAnnotationEngine;
+
 public class Consultas {
 	
 	private Conexion conexion;
@@ -44,7 +46,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Linea con los resultados y los añade a un arrayList
 			while (result.next()) {
 				linea = new Linea();
 				linea.setCodLinea(result.getString("Cod_Linea"));
@@ -107,7 +109,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Autobus con los resultados y los añade a un arrayList
 			while (result.next()) {
 				autobus = new Autobus();
 				autobus.setCodBus(result.getInt("Cod_bus"));
@@ -144,7 +146,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// rellena los objetos Autobus con los resultados y los añade a un arrayList
 			while (result.next()) {
 				autobus.setNumPlazas(result.getInt("N_plazas"));
 				autobus.setConsumo(result.getFloat("Consumo_km"));
@@ -185,7 +187,7 @@ public class Consultas {
 			
 			paradas = getParadasByLinea(codLinea);
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Municipio con los resultados y los añade a un arrayList
 			while (result.next()) {
 				for(int i = 0;i<paradas.size();i++) {
 					if (result.getInt("Cod_Parada") == paradas.get(i).getCodParada()) {
@@ -239,7 +241,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada = new Parada();
 				parada.setCodParada(result.getInt("Cod_Parada"));
@@ -280,7 +282,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada = new Parada();
 				parada.setCodParada(result.getInt("Cod_Parada"));
@@ -317,7 +319,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// rellena los objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada.setNombre(result.getString("Nombre"));
 				parada.setCalle(result.getString("Calle"));
@@ -337,41 +339,73 @@ public class Consultas {
 		
 	}
 	
-	public Boolean comprobarFechasBillete(Billete billete) {
-		
-		Boolean disponible = false;
+	public Boolean comprobarPlazasBillete(Billete billete) {
+
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		Boolean disponible = false;
+		int plazasOcupadas = 0;
+		int plazasTotales = 0;
 
+		// comprobar las plazas ocupadas en un autobus
 		try {
 			
 			// abrimos una conexion
 			connection = conexion.conectar();
-			
+
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ?");
+			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ? and Fecha = ?");
 			stmt.setInt(1, billete.getCodBus());
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			stmt.setDate(2, billete.getFecha());
+  
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet
 			result = stmt.executeQuery();
-			
-			System.out.println(result);
-			
-			// crea objetos con los resultados y los añade a un arrayList
+
 			while (result.next()) {
-				//disponible = result.getInt('1');
+				plazasOcupadas = result.getInt(1);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}              
+		}   
 		
+		// comprobar las plazas totales de un autobus
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("SELECT N_plazas FROM autobus WHERE Cod_bus = ?");
+			stmt.setInt(1, billete.getCodBus());
+
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				plazasTotales = result.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}           
+
+		if (plazasOcupadas < plazasTotales)  {
+			disponible = true;
+		} else {
+			disponible = false;
+		}
+
 		return disponible;
-		
 	}
 	
 	public Cliente getClienteByDNI(String dni) {
@@ -414,6 +448,31 @@ public class Consultas {
 		return cliente;
 		
 	}
+	
+	public int calcularPrecioBillete() {
+		
+		int precio = 0;
+		int distancia;
+		int consumo;
+		int beneficio;
+		
+		distancia = calcularDistancia();
+		
+		return precio;
+	}
+	
+	public int calcularDistancia() {
+		int distancia = 0;
+		
+		return distancia;
+	}
+	
+	public int calcularConsumo() {
+		int consumo = 0;
+		
+		return consumo;
+	}
+
 	
 	/****************************************************************************************************************
 	 * 

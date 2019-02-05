@@ -17,8 +17,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import vista.MainFrame;
-import vista.PanSelLinea;
-import controlador.*;
 import modelo.*;
 
 public class Botones {
@@ -116,7 +114,6 @@ public class Botones {
 			}
 		});
 	}
-
 	public void IrBienveLineas(JList<?> lista,JButton boton, JPanel bienvenida, JPanel lineas) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -135,7 +132,6 @@ public class Botones {
 			}
 		});
 	}
-	
 	public void MostrarParadas(JList<?> lineas ,JList<?> listaParadas) {
 		lineas.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
@@ -201,7 +197,7 @@ public class Botones {
 			}
 		});
 	}
-	public void Registrar(JButton boton, JPanel panRegistro, JTextField nom, JTextField ape, JDateChooser fecha0, JTextField dni0,JRadioButton femenino0, JRadioButton masculino0, JPasswordField contChar, JPasswordField contChar2, JLabel errorContrasena, JLabel errorDNI, JLabel errorSexo) {
+	public void Registrar(JButton boton, JPanel panRegistro, JTextField nom, JTextField ape, JDateChooser fecha0, JTextField dni0,JRadioButton femenino0, JRadioButton masculino0, JPasswordField contChar, JPasswordField contChar2, JLabel errorContrasena, JLabel errorDNI, JLabel errorSexo, JLabel errorDNINoIntroducido) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String dni = null;
@@ -245,16 +241,24 @@ public class Botones {
 						panRegistro.setVisible(false);
 					break;
 					case 1: errorDNI.setVisible(true);
+						errorDNINoIntroducido.setVisible(false);
 						errorContrasena.setVisible(false);
 						errorSexo.setVisible(false);
 					break;
 					case 2: errorContrasena.setVisible(true);
 						errorDNI.setVisible(false);
+						errorDNINoIntroducido.setVisible(false);
 						errorSexo.setVisible(false);
 					break;
 					case 3: errorSexo.setVisible(true);
 						errorDNI.setVisible(false);
+						errorDNINoIntroducido.setVisible(false);
 						errorContrasena.setVisible(false);
+					break;
+					case 4: errorDNINoIntroducido.setVisible(true);
+						errorDNI.setVisible(false);
+						errorContrasena.setVisible(false);
+						errorSexo.setVisible(false);
 					break;
 				}
 			}
