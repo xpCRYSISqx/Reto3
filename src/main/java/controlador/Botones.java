@@ -23,6 +23,7 @@ public class Botones {
 	public MainFrame vista;
 	public Modelo modelo;
 	public boolean logeado = false;
+	public boolean detalles = false;
 	public int registrado;
 	private JPanel panDeseadoInicio;
 	private ArrayList<Linea> lineas1;
@@ -51,7 +52,7 @@ public class Botones {
 			}
 		});
 	}
-	public void BotonIrRegistro(JButton boton, JPanel panSalida, JPanel panRegistro) {
+	public void BotonIrRegistro(JButton boton, JPanel panSalida, JPanel panRegistro) { //Este boton se utiliza para ir a la ventana de registro desde las otras ventanas, menos de la de log in
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panRegistro.setVisible(true);
@@ -60,16 +61,16 @@ public class Botones {
 			}
 		});
 	}
-	public void CancelarRegistro(JButton boton, JPanel panRegistro) {
+	public void CancelarRegistro(JButton boton, JPanel panRegistro) { //Este boton se utiliza para volver a la ventana en la que se estaba al darle al boton de cancelar en la ventana de registro
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JPanel panDeseado = getPanDeseado();
+				JPanel panDeseado = getPanDeseado(); //Esta bariable saca el panel desde el cual se habia venido al panel de registro para poder volver a el, menos si se estaba en el de inicio de sesion
 				panDeseado.setVisible(true);
 				panRegistro.setVisible(false);
 			}
 		});
 	}
-	public void IrInicioSesionARegistro(JButton boton, JPanel panInicio, JPanel panRegistro) {
+	public void IrInicioSesionARegistro(JButton boton, JPanel panInicio, JPanel panRegistro) { //Este boton se utiliza para ir de la ventana de inicio de sesion a la de registro, no guarda la ventana en la que se estaba
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panRegistro.setVisible(true);
@@ -77,30 +78,37 @@ public class Botones {
 			}
 		});
 	}
-	public void IrDetallesBilleteAPago(JButton boton, JPanel detalles, JPanel pago, JPanel inicioSesion) {
+	public void IrDetallesBilleteAPago(JButton boton, JPanel detalles, JPanel pago, JPanel inicioSesion) { //Este boton se utiliza para ir de la ventana de detalles a la de pago o a la de inicio de sesion al darle a continuar
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean logeado = getLogeado();
-				if(logeado == true) {
+				boolean logeado = getLogeado(); //Esta variable se utiliza para comprobar si se esta logeado o no
+				boolean detalle = true; //Esta variable se utiliza para especificar si se viene de la ventana de detalles, es importante en los botones de inicio de sesion y de registro
+				setPanDeseado(detalles); //Guarda la ventana en al que se esta en setPanDeseado
+				setDetalles(detalle); //Guarda el valos de la variabel detalle en setDetalles
+				if(logeado == true) { //Comprueba si se esta logeado para saber a que panel debe saltar
 					pago.setVisible(true);
+					detalles.setVisible(false);
+				}
+				else {
+					inicioSesion.setVisible(true);
 					detalles.setVisible(false);
 				}
 			}
 		});
 	}
-	public void BotonIrInicioSesion(JButton boton, JPanel panSalida, JPanel panInicioSesion) {
+	public void BotonIrInicioSesion(JButton boton, JPanel panSalida, JPanel panInicioSesion) { //Boton para ir a la ventana de inicio de sesion desde las demas ventanas, menos desde la ventana de registro
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panInicioSesion.setVisible(true);
 				panSalida.setVisible(false);
-				setPanDeseado(panSalida);
+				setPanDeseado(panSalida); //Guarda la ventana en la que se esta en setPanDeseado
 			}
 		});
 	}
-	public void CancelarInicioSesion(JButton boton, JPanel panInicio) {
+	public void CancelarInicioSesion(JButton boton, JPanel panInicio) { //Boton para cancelar el inicio de sesion
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JPanel panDeseado = getPanDeseado();
+				JPanel panDeseado = getPanDeseado(); //Llama a la funcion getPanDeseado para recoger el panel en el que se estaba a la hora de ir a inicio de sesion
 				panDeseado.setVisible(true);
 				panInicio.setVisible(false);
 			}
@@ -163,11 +171,9 @@ public class Botones {
 				linea.setVisible(false);
 				vista.sel_billete.modeloOrigen.removeAllElements();
 				lineas1 = modelo.consultas.getLineas();
-				
 				String codLinea = vista.sel_linea.listLineas.getSelectedValue();
 				paradas = modelo.consultas.getParadasByLinea(codLinea); 				
 				for(int i=0; i<lineas1.size(); i++) {
-					
 					vista.sel_linea.modeloLineas.addElement(codLinea);
 					vista.sel_linea.listLineas.setModel(vista.sel_linea.modeloLineas);
 				}
@@ -176,13 +182,14 @@ public class Botones {
 		});
 	}
 	
-	public void IniciarSesion(JButton boton, JTextField usuario, JPasswordField contrasena, JPanel panLogin) {
+	public void IniciarSesion(JButton boton, JTextField usuario, JPasswordField contrasena, JPanel panLogin, JPanel panPago) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String dni = null;
 				String contString;
 				char[] cont;
 				boolean logeado;
+				boolean detalles;
 				JPanel panDeseado = getPanDeseado();
 				
 				dni = usuario.getText();
@@ -190,14 +197,21 @@ public class Botones {
 				contString = new String(cont);
 				setLogeado(dni, contString);
 				logeado = getLogeado();
+				detalles = getDetalles();
 				if(logeado == true) {
-					panDeseado.setVisible(true);
-					panLogin.setVisible(false);
+					if(detalles == false) {
+						panDeseado.setVisible(true);
+						panLogin.setVisible(false);
+					}
+					else {
+						panPago.setVisible(true);
+						panLogin.setVisible(false);
+					}
 				}
 			}
 		});
 	}
-	public void Registrar(JButton boton, JPanel panRegistro, JTextField nom, JTextField ape, JDateChooser fecha0, JTextField dni0,JRadioButton femenino0, JRadioButton masculino0, JPasswordField contChar, JPasswordField contChar2, JLabel errorContrasena, JLabel errorDNI, JLabel errorSexo, JLabel errorDNINoIntroducido) {
+	public void Registrar(JButton boton, JPanel panRegistro, JPanel panPago, JTextField nom, JTextField ape, JDateChooser fecha0, JTextField dni0,JRadioButton femenino0, JRadioButton masculino0, JPasswordField contChar, JPasswordField contChar2, JLabel errorContrasena, JLabel errorDNI, JLabel errorSexo, JLabel errorDNINoIntroducido) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String dni = null;
@@ -208,6 +222,7 @@ public class Botones {
 				java.sql.Date fecha;
 				boolean femenino;
 				boolean masculino;
+				boolean detalles;
 				char sexo = 'n';
 				char[] cont;
 				char[] contConfirmar;
@@ -236,9 +251,16 @@ public class Botones {
 				
 				setRegistrado(nombre, apellidos, fecha, dni, sexo, contrasena, contrasenaConfirmar);
 				registrado = getRegistrado();
+				detalles = getDetalles();
 				switch(registrado) {
-					case 0: panDeseado.setVisible(true);
-						panRegistro.setVisible(false);
+					case 0: if(detalles == false) {
+								panDeseado.setVisible(true);
+								panRegistro.setVisible(false);
+							}
+							else {
+								panPago.setVisible(true);
+								panRegistro.setVisible(false);
+							}
 					break;
 					case 1: errorDNI.setVisible(true);
 						errorDNINoIntroducido.setVisible(false);
@@ -285,6 +307,12 @@ public class Botones {
 	}
 	private JPanel getPanDeseado() {
 		return this.panDeseadoInicio;
+	}
+	public void setDetalles(boolean detalles) {
+		this.detalles = detalles;
+	}
+	public boolean getDetalles() {
+		return this.detalles;
 	}
 }
 

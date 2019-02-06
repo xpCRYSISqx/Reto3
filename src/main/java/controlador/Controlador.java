@@ -124,8 +124,8 @@ public class Controlador {
 		botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
 		//Boton para ir de la seleccion de la fecha a los detalles de la compra
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);
-		//Boton para ir de los detalles de la compra a la ventana de Log in
-		botones.BotonContinuar(vista.detalles_compra.btnContinuar, vista.detalles_compra, vista.login);
+		//Boton para ir de los detalles del billeta a la ventana de pago o a la de Log in
+		botones.IrDetallesBilleteAPago(vista.detalles_compra.btnContinuar, vista.detalles_compra, vista.pago, vista.login);
 		//Boton para ir de lineas a la ventana de Log in
 		botones.BotonIrInicioSesion(vista.sel_linea.btnlogin, vista.sel_linea, vista.login);
 		//Boton para ir de billete a la ventana de Log in
@@ -151,9 +151,9 @@ public class Controlador {
 		//Boton para ir a Log in cuendo se esta en registro
 		botones.IrRegistroAInicioSesion(vista.registro.btnLogin, vista.login, vista.registro);
 		//boton para registrar un usuario
-		botones.Registrar(vista.registro.btnRegistro, vista.registro, vista.registro.txtNombre, vista.registro.txtApellidos, vista.registro.dateChooser, vista.registro.txtDni, vista.registro.rbtnFem, vista.registro.rbtnMasc, vista.registro.passwordField, vista.registro.passwordField2, vista.registro.lblErrorContrasenas, vista.registro.lblErrorDNI, vista.registro.lblErrorSexo, vista.registro.lblErrorDNINoIntroducido);
+		botones.Registrar(vista.registro.btnRegistro, vista.registro, vista.pago, vista.registro.txtNombre, vista.registro.txtApellidos, vista.registro.dateChooser, vista.registro.txtDni, vista.registro.rbtnFem, vista.registro.rbtnMasc, vista.registro.passwordField, vista.registro.passwordField2, vista.registro.lblErrorContrasenas, vista.registro.lblErrorDNI, vista.registro.lblErrorSexo, vista.registro.lblErrorDNINoIntroducido);
 		//Boton para iniciar sesion
-		botones.IniciarSesion(vista.login.btnLogin, vista.login.userField, vista.login.password, vista.login);
+		botones.IniciarSesion(vista.login.btnLogin, vista.login.userField, vista.login.password, vista.login, vista.pago);
 		//Boton para ir de la ventana de pago a la de finalizar el pago
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
 		//Boton para ir atras en la ventana de billete
