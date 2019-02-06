@@ -90,7 +90,7 @@ public class Consultas {
 		
 	}
 	
-	private ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
+	public ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
 		
 		Autobus autobus = null;
 		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
@@ -449,28 +449,51 @@ public class Consultas {
 		
 	}
 	
-	public int calcularPrecioBillete() {
+	
+	public double calcularPrecioBillete(int lat1, int lon1, int lat2, int lon2, Autobus autobus) {
 		
-		int precio = 0;
-		int distancia;
-		int consumo;
-		int beneficio;
+		double precio = 0;
+		double distancia;
+		double consumo;
+		double beneficio;
 		
-		distancia = calcularDistancia();
+		// calculamos la distancia en kilometros
+		distancia = calcularDistanciaKm(lat1, lon1, lat2, lon2);
+		
+		// calculamos el consumo del autobus
+		consumo = calcularConsumo(distancia, autobus);
+		
+		// calculamos el beneficio
+		beneficio = consumo * 0.2;
+		
+		precio = consumo + beneficio;
 		
 		return precio;
 	}
 	
-	public int calcularDistancia() {
-		int distancia = 0;
-		
-		return distancia;
+	// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+	public double calcularDistanciaKm(int lat1, int lon1, int lat2, int lon2) {
+	  int R = 6371; // Radio de la tierra en km
+	  double dLat = deg2rad(lat2-lat1);
+	  double dLon = deg2rad(lon2-lon1); 
+	  double a = 
+	    Math.sin(dLat/2) * Math.sin(dLat/2) +
+	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+	    Math.sin(dLon/2) * Math.sin(dLon/2); 
+	  double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	  double d = R * c; // Distancia en km
+	  return d;
+	}
+
+	public double deg2rad(int deg) {
+	  return deg * (Math.PI/180);
 	}
 	
-	public int calcularConsumo() {
-		int consumo = 0;
-		
-		return consumo;
+	public double calcularConsumo(double distancia, Autobus autobus) {
+		double consumoTotal;
+		double consumo = autobus.getConsumo();
+		consumoTotal = consumo * distancia;
+		return consumoTotal;
 	}
 
 	
