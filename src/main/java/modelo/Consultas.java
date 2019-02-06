@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.mockito.internal.configuration.InjectingAnnotationEngine;
+
 public class Consultas {
 	
 	private Conexion conexion;
@@ -21,6 +23,7 @@ public class Consultas {
 	 * Metodos para cargar datos de la BBDD (Consultas Select)
 	 * 
 	 ****************************************************************************************************************/
+	
 	
 	public ArrayList<Linea> getLineas() {
 		
@@ -44,7 +47,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Linea con los resultados y los añade a un arrayList
 			while (result.next()) {
 				linea = new Linea();
 				linea.setCodLinea(result.getString("Cod_Linea"));
@@ -88,7 +91,7 @@ public class Consultas {
 		
 	}
 	
-	private ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
+	public ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
 		
 		Autobus autobus = null;
 		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
@@ -107,7 +110,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Autobus con los resultados y los añade a un arrayList
 			while (result.next()) {
 				autobus = new Autobus();
 				autobus.setCodBus(result.getInt("Cod_bus"));
@@ -144,7 +147,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// rellena los objetos Autobus con los resultados y los añade a un arrayList
 			while (result.next()) {
 				autobus.setNumPlazas(result.getInt("N_plazas"));
 				autobus.setConsumo(result.getFloat("Consumo_km"));
@@ -185,7 +188,7 @@ public class Consultas {
 			
 			paradas = getParadasByLinea(codLinea);
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Municipio con los resultados y los añade a un arrayList
 			while (result.next()) {
 				for(int i = 0;i<paradas.size();i++) {
 					if (result.getInt("Cod_Parada") == paradas.get(i).getCodParada()) {
@@ -239,7 +242,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada = new Parada();
 				parada.setCodParada(result.getInt("Cod_Parada"));
@@ -259,7 +262,7 @@ public class Consultas {
 		
 	}
 	
-	private ArrayList<Parada> getParadasByLinea(String codLinea) {
+	public ArrayList<Parada> getParadasByLinea(String codLinea) {
 		
 		Parada parada = null;
 		ArrayList<Parada> paradas = new ArrayList<Parada>();
@@ -280,7 +283,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada = new Parada();
 				parada.setCodParada(result.getInt("Cod_Parada"));
@@ -317,7 +320,7 @@ public class Consultas {
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// crea objetos con los resultados y los añade a un arrayList
+			// rellena los objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
 				parada.setNombre(result.getString("Nombre"));
 				parada.setCalle(result.getString("Calle"));
@@ -337,41 +340,73 @@ public class Consultas {
 		
 	}
 	
-	public Boolean comprobarFechasBillete(Billete billete) {
-		
-		Boolean disponible = false;
+	public Boolean comprobarPlazasBillete(Billete billete) {
+
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		Boolean disponible = false;
+		int plazasOcupadas = 0;
+		int plazasTotales = 0;
 
+		// comprobar las plazas ocupadas en un autobus
 		try {
 			
 			// abrimos una conexion
 			connection = conexion.conectar();
-			
+
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ?");
+			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ? and Fecha = ?");
 			stmt.setInt(1, billete.getCodBus());
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			stmt.setDate(2, billete.getFecha());
+  
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet
 			result = stmt.executeQuery();
-			
-			System.out.println(result);
-			
-			// crea objetos con los resultados y los añade a un arrayList
+
 			while (result.next()) {
-				//disponible = result.getInt('1');
+				plazasOcupadas = result.getInt(1);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}              
+		}   
 		
+		// comprobar las plazas totales de un autobus
+		try {
+			
+			// abrimos una conexion
+			connection = conexion.conectar();
+
+			// preparamos la consulta SQL a la base de datos
+			stmt = connection.prepareStatement("SELECT N_plazas FROM autobus WHERE Cod_bus = ?");
+			stmt.setInt(1, billete.getCodBus());
+
+			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
+			result = stmt.executeQuery();
+
+			// crea objetos con los resultados y los añade a un arrayList
+			while (result.next()) {
+				plazasTotales = result.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
+		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
+		}           
+
+		if (plazasOcupadas < plazasTotales)  {
+			disponible = true;
+		} else {
+			disponible = false;
+		}
+
 		return disponible;
-		
 	}
 	
 	public Cliente getClienteByDNI(String dni) {
@@ -414,6 +449,54 @@ public class Consultas {
 		return cliente;
 		
 	}
+	
+	
+	public double calcularPrecioBillete(int lat1, int lon1, int lat2, int lon2, Autobus autobus) {
+		
+		double precio = 0;
+		double distancia;
+		double consumo;
+		double beneficio;
+		
+		// calculamos la distancia en kilometros
+		distancia = calcularDistanciaKm(lat1, lon1, lat2, lon2);
+		
+		// calculamos el consumo del autobus
+		consumo = calcularConsumo(distancia, autobus);
+		
+		// calculamos el beneficio
+		beneficio = consumo * 0.2;
+		
+		precio = consumo + beneficio;
+		
+		return precio;
+	}
+	
+	// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+	public double calcularDistanciaKm(int lat1, int lon1, int lat2, int lon2) {
+	  int R = 6371; // Radio de la tierra en km
+	  double dLat = deg2rad(lat2-lat1);
+	  double dLon = deg2rad(lon2-lon1); 
+	  double a = 
+	    Math.sin(dLat/2) * Math.sin(dLat/2) +
+	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+	    Math.sin(dLon/2) * Math.sin(dLon/2); 
+	  double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	  double d = R * c; // Distancia en km
+	  return d;
+	}
+
+	public double deg2rad(int deg) {
+	  return deg * (Math.PI/180);
+	}
+	
+	public double calcularConsumo(double distancia, Autobus autobus) {
+		double consumoTotal;
+		double consumo = autobus.getConsumo();
+		consumoTotal = consumo * distancia * 0.8;
+		return consumoTotal;
+	}
+
 	
 	/****************************************************************************************************************
 	 * 

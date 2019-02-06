@@ -68,7 +68,7 @@ public class PanLogin extends JPanel {
 		
 		// boton cancelar
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 684, 90, 30);
+		btnCancelar.setBounds(10, 679, 90, 30);
 		add(btnCancelar);
 		
 		btnRegistrar = new JButton("Registrar");

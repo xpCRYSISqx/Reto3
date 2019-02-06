@@ -1,10 +1,7 @@
 package vista;
 
 import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -46,7 +43,7 @@ public class PanSelLinea extends JPanel {
 		btnContinuar.setBounds(900, 634, 89, 23);
 		add(btnContinuar);
 		
-		lblLineas = new JLabel("L\u00CDNEAS");
+		lblLineas = new JLabel("SELECCI\u00D3N DE L\u00CDNEAS");
 		lblLineas.setFont(new Font("Mistral", Font.PLAIN, 45));
 		lblLineas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLineas.setBounds(10, 23, 780, 53);
@@ -57,9 +54,10 @@ public class PanSelLinea extends JPanel {
 		add(listLineas);
 		
 		listParadas = new JList<String>();
-		listParadas.setBounds(436, 251, 200, 240);
+		listParadas.setEnabled(false);
+		listParadas.setBounds(425, 251, 200, 240);
 		add(listParadas);
-		
+	
 		//¿¿¿Añadir temporizador en caso de inactividad???
 	
 	}

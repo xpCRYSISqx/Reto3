@@ -20,7 +20,7 @@ public class PanRegistro extends JPanel {
 	
 	JPanel registro = new JPanel();
 		
-	public JLabel lblTitulo, lblNombre, lblApellidos, lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac, lblErrorDNI, lblErrorContrasenas, lblErrorSexo;
+	public JLabel lblTitulo, lblNombre, lblApellidos, lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac, lblErrorDNI, lblErrorContrasenas, lblErrorSexo, lblErrorDNINoIntroducido;
 	public JTextField txtNombre, txtApellidos, txtDni;
 	public JButton btnLogin, btnRegistro, btnCancelar;
 	public JRadioButton rbtnMasc, rbtnFem;
@@ -103,7 +103,7 @@ public class PanRegistro extends JPanel {
 		add(btnRegistro);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(0, 686, 89, 23);
+		btnCancelar.setBounds(10, 650, 100, 30);
 		add(btnCancelar);
 		
 		passwordField2 = new JPasswordField();
@@ -127,7 +127,7 @@ public class PanRegistro extends JPanel {
 		add(lblfechaNac);
 		
 		lblErrorDNI = new JLabel("Ya existe un usuario con ese DNI");
-		lblErrorDNI.setBounds(561, 216, 273, 20);
+		lblErrorDNI.setBounds(560, 216, 273, 20);
 		lblErrorDNI.setVisible(false);
 		add(lblErrorDNI);
 		
@@ -140,6 +140,11 @@ public class PanRegistro extends JPanel {
 		lblErrorSexo.setBounds(561, 250, 336, 14);
 		lblErrorSexo.setVisible(false);
 		add(lblErrorSexo);
+		
+		lblErrorDNINoIntroducido = new JLabel("Debe introducir un DNI, no puede dejar el campo en blanco");
+		lblErrorDNINoIntroducido.setBounds(561, 219, 336, 17);
+		lblErrorDNINoIntroducido.setVisible(false);
+		add(lblErrorDNINoIntroducido);
 
 	}
 }
