@@ -32,30 +32,30 @@ public class PanDetalles extends JPanel {
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		
+		btnLogin = new JButton("Inicio de Sesi\u00F3n");
+		btnLogin.setBounds(880, 35, 125, 25);
+		add(btnLogin);
+		
+		btnRegistro = new JButton("Registro");
+		btnRegistro.setBounds(880, 71, 125, 25);
+		add(btnRegistro);
+		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(10, 673, 89, 23);
+		btnAtras.setBounds(10, 614, 100, 25);
 		add(btnAtras);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 697, 89, 23);
+		btnCancelar.setBounds(10, 650, 100, 25);
 		add(btnCancelar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(907, 686, 107, 23);
+		btnContinuar.setBounds(915, 650, 90, 25);
 		add(btnContinuar);
 		
-		btnLogin = new JButton("Inicio de Sesi\u00F3n");
-		btnLogin.setBounds(907, 11, 107, 23);
-		add(btnLogin);
-		
-		btnRegistro = new JButton("Registrar");
-		btnRegistro.setBounds(907, 45, 107, 23);
-		add(btnRegistro);
-		
 		lblTitulo = new JLabel("DETALLES DE BILLETE");
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(10, 11, 780, 69);
+		lblTitulo.setBounds(30, 35, 1004, 81);
 		add(lblTitulo);
 		
 		tablaDatos = new JTable();
@@ -89,7 +89,7 @@ public class PanDetalles extends JPanel {
 		tablaDatos.getColumnModel().getColumn(3).setPreferredWidth(140);
 		tablaDatos.getColumnModel().getColumn(6).setPreferredWidth(90);
 		tablaDatos.setBackground(SystemColor.inactiveCaption);
-		tablaDatos.setBounds(94, 230, 591, 140);
+		tablaDatos.setBounds(30, 230, 964, 140);
 		add(tablaDatos);
 
 	}

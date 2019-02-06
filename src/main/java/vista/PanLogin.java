@@ -35,8 +35,12 @@ public class PanLogin extends JPanel {
 		lblTitulo = new JLabel("INICIO DE SESI\u00D3N");
 		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(0, 11, 1014, 81);
+		lblTitulo.setBounds(30, 35, 1004, 81);
 		add(lblTitulo);
+		
+		btnRegistrar = new JButton("Registro");
+		btnRegistrar.setBounds(880, 35, 125, 25);
+		add(btnRegistrar);
 		
 		// label usuario
 		lblUsuario = new JLabel("Usuario (DNI)");
@@ -63,17 +67,13 @@ public class PanLogin extends JPanel {
 		
 		// boton de iniciar sesion
 		btnLogin = new JButton("Iniciar Sesi\u00F3n");
-		btnLogin.setBounds(453, 399, 115, 40);
+		btnLogin.setBounds(453, 421, 115, 40);
 		add(btnLogin);
 		
 		// boton cancelar
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 679, 90, 30);
+		btnCancelar.setBounds(10, 650, 100, 25);
 		add(btnCancelar);
 		
-		btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(925, 11, 90, 30);
-		add(btnRegistrar);
-
 	}
 }

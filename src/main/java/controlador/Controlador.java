@@ -68,7 +68,7 @@ public class Controlador {
 		//Boton para ir de lineas a registro
 		botones.BotonIrRegistro(vista.sel_linea.btnRegistro, vista.sel_linea, vista.registro);
 		//Boton para ir de billete a registro
-		botones.BotonIrRegistro(vista.sel_billete.btnregistro, vista.sel_billete, vista.registro);
+		botones.BotonIrRegistro(vista.sel_billete.btnRegistro, vista.sel_billete, vista.registro);
 		//boton para ir de fecha a registro
 		botones.BotonIrRegistro(vista.sel_fecha.btnRegistrar, vista.sel_fecha, vista.registro);
 		//Boton para ir de detalles a registro

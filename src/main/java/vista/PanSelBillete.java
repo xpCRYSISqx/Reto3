@@ -26,7 +26,7 @@ public class PanSelBillete extends JPanel {
 	public DefaultListModel<String> modeloDestino = new DefaultListModel<String>();
 	
 	public JLabel lbltitulo,lblOrigen,lblDestino;
-	public JButton btnLogin,btnregistro,btnContinuar,btnAtras,btnCancelar;
+	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
 	public JRadioButton rbtnIda,rbtnVuelta;
 	public JList listaOrigen,listaDestino;
 	
@@ -34,58 +34,62 @@ public class PanSelBillete extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		btnLogin = new JButton("Inicio de Sesi\u00F3n");
-		btnLogin.setBounds(907, 11, 107, 23);
-		add(btnLogin);
-		
-		btnregistro = new JButton("Registrar");
-		btnregistro.setBounds(907, 38, 107, 23);
-		add(btnregistro);
-		
-		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(907, 686, 107, 23);
-		add(btnContinuar);
-		
 		lbltitulo = new JLabel("SELECCI\u00D3N DE BILLETE");
-		lbltitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lbltitulo.setHorizontalAlignment(SwingConstants.LEFT);
 		lbltitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lbltitulo.setBounds(10, 11, 1004, 91);
+		lbltitulo.setBounds(30, 35, 1004, 81);
 		add(lbltitulo);
 		
+		btnLogin = new JButton("Inicio de Sesi\u00F3n");
+		btnLogin.setBounds(880, 35, 125, 25);
+		add(btnLogin);
+		
+		btnRegistro = new JButton("Registro");
+		btnRegistro.setBounds(880, 71, 125, 25);
+		add(btnRegistro);
+		
+		btnContinuar = new JButton("Continuar");
+		btnContinuar.setBounds(915, 650, 90, 25);
+		add(btnContinuar);
+		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 686, 89, 23);
+		btnCancelar.setBounds(10, 650, 100, 25);
 		add(btnCancelar);
 		
-		lblOrigen = new JLabel("Origen");
+		lblOrigen = new JLabel("Selecccione origen");
+		lblOrigen.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOrigen.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblOrigen.setBounds(322, 265, 84, 23);
+		lblOrigen.setBounds(116, 269, 327, 40);
 		add(lblOrigen);
 		
-		lblDestino = new JLabel("Destino");
+		lblDestino = new JLabel("Selecccione  destino");
+		lblDestino.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDestino.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		lblDestino.setBounds(522, 265, 66, 23);
+		lblDestino.setBounds(479, 269, 327, 40);
 		add(lblDestino);
 		
 		listaOrigen = new JList<String>();
-		listaOrigen.setBounds(116, 299, 327, 289);
+		listaOrigen.setBounds(116, 320, 327, 250);
 		add(listaOrigen);
 		
 		listaDestino = new JList<String>();
-		listaDestino.setBounds(479, 299, 327, 289);
+		listaDestino.setBounds(479, 320, 327, 250);
 		add(listaDestino);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(10, 659, 89, 23);
+		btnAtras.setBounds(10, 616, 89, 23);
 		add(btnAtras);
 		
 		rbtnIda = new JRadioButton("Simple");
+		rbtnIda.setHorizontalAlignment(SwingConstants.LEFT);
 		rbtnIda.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		rbtnIda.setBounds(277, 109, 166, 56);
+		rbtnIda.setBounds(332, 180, 180, 50);
 		add(rbtnIda);
 		
 		rbtnVuelta = new JRadioButton("Ida / Vuelta");
+		rbtnVuelta.setHorizontalAlignment(SwingConstants.CENTER);
 		rbtnVuelta.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		rbtnVuelta.setBounds(593, 109, 167, 56);
+		rbtnVuelta.setBounds(512, 180, 180, 50);
 		add(rbtnVuelta);
 
 	}

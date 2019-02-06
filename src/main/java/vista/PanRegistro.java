@@ -41,108 +41,108 @@ public class PanRegistro extends JPanel {
 		lblTitulo = new JLabel("REGISTRO");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(10, 36, 790, 81);
+		lblTitulo.setBounds(30, 35, 1004, 81);
 		add(lblTitulo);
+		
+		btnLogin = new JButton("Login");
+		btnLogin.setBounds(880, 35, 125, 25);
+		add(btnLogin);
+		
+		btnRegistro = new JButton("Registrar");
+		btnRegistro.setBounds(470, 435, 103, 43);
+		add(btnRegistro);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(10, 650, 100, 25);
+		add(btnCancelar);
 		
 		lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setBounds(321, 409, 46, 14);
+		lblPassword.setBounds(384, 343, 46, 14);
 		add(lblPassword);
 		
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(279, 157, 46, 14);
+		lblNombre.setBounds(321, 157, 77, 14);
 		add(lblNombre);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(335, 154, 216, 20);
+		txtNombre.setBounds(408, 154, 216, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		lblApellidos = new JLabel("Apellidos");
-		lblApellidos.setBounds(279, 188, 46, 14);
+		lblApellidos.setBounds(321, 188, 77, 14);
 		add(lblApellidos);
 		
 		txtApellidos = new JTextField();
-		txtApellidos.setBounds(335, 185, 216, 20);
+		txtApellidos.setBounds(408, 185, 216, 20);
 		add(txtApellidos);
 		txtApellidos.setColumns(10);
 		
 		lblDni = new JLabel("DNI");
-		lblDni.setBounds(279, 219, 46, 14);
+		lblDni.setBounds(321, 309, 77, 14);
 		add(lblDni);
 		
 		txtDni = new JTextField();
-		txtDni.setBounds(335, 216, 216, 20);
+		txtDni.setBounds(408, 306, 216, 20);
 		add(txtDni);
 		txtDni.setColumns(10);
 		
 		lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(279, 250, 46, 14);
+		lblSexo.setBounds(321, 250, 77, 14);
 		add(lblSexo);
 		
 		rbtnMasc = new JRadioButton("Masculino");
 		buttonGroup.add(rbtnMasc);
-		rbtnMasc.setBounds(361, 246, 86, 23);
+		rbtnMasc.setBounds(461, 250, 112, 23);
 		add(rbtnMasc);
 		
 		rbtnFem = new JRadioButton("Femenino");
 		buttonGroup.add(rbtnFem);
-		rbtnFem.setBounds(449, 246, 77, 23);
+		rbtnFem.setBounds(461, 276, 102, 23);
 		add(rbtnFem);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(386, 406, 140, 20);
+		passwordField.setBounds(449, 340, 140, 20);
 		add(passwordField);
 		
 		progressBar = new JProgressBar();
-		progressBar.setBounds(129, 11, 508, 14);
+		progressBar.setBounds(252, 20, 500, 15);
 		add(progressBar);
 		
-		btnRegistro = new JButton("Registrar");
-		btnRegistro.setBounds(386, 483, 103, 43);
-		add(btnRegistro);
-		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 650, 100, 30);
-		add(btnCancelar);
-		
 		passwordField2 = new JPasswordField();
-		passwordField2.setBounds(386, 437, 140, 20);
+		passwordField2.setBounds(449, 371, 140, 20);
 		add(passwordField2);
 		
 		lblPassword2 = new JLabel("Confirmar password");
-		lblPassword2.setBounds(270, 440, 96, 14);
+		lblPassword2.setBounds(333, 374, 96, 14);
 		add(lblPassword2);
 		
-		btnLogin = new JButton("Login");
-		btnLogin.setBounds(701, 11, 89, 23);
-		add(btnLogin);
-		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(371, 276, 180, 20);
+		dateChooser.setBounds(454, 216, 170, 20);
 		add(dateChooser);
 		
 		lblfechaNac = new JLabel("Fecha nacimiento");
-		lblfechaNac.setBounds(279, 282, 88, 14);
+		lblfechaNac.setBounds(321, 219, 123, 20);
 		add(lblfechaNac);
 		
 		lblErrorDNI = new JLabel("Ya existe un usuario con ese DNI");
-		lblErrorDNI.setBounds(560, 216, 273, 20);
+		lblErrorDNI.setBounds(633, 306, 273, 20);
 		lblErrorDNI.setVisible(false);
 		add(lblErrorDNI);
 		
-		lblErrorContrasenas = new JLabel("Las contrase\u00F1as no coinciden, vuelva a introducirlas");
-		lblErrorContrasenas.setBounds(536, 406, 371, 20);
+		lblErrorContrasenas = new JLabel("Las contrase\u00F1as no coinciden, int\u00E9ntelo de nuevo");
+		lblErrorContrasenas.setBounds(599, 340, 371, 20);
 		lblErrorContrasenas.setVisible(false);
 		add(lblErrorContrasenas);
 		
-		lblErrorSexo = new JLabel("Tiene que seleccionar su sexo para poder registrarse");
-		lblErrorSexo.setBounds(561, 250, 336, 14);
+		lblErrorSexo = new JLabel("Se deber\u00E1 indicar el sexo para completar el registro");
+		lblErrorSexo.setBounds(599, 265, 336, 14);
 		lblErrorSexo.setVisible(false);
 		add(lblErrorSexo);
 		
 		lblErrorDNINoIntroducido = new JLabel("Debe introducir un DNI, no puede dejar el campo en blanco");
-		lblErrorDNINoIntroducido.setBounds(561, 219, 336, 17);
+		lblErrorDNINoIntroducido.setBounds(634, 309, 336, 17);
 		lblErrorDNINoIntroducido.setVisible(false);
 		add(lblErrorDNINoIntroducido);
 

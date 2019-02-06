@@ -22,7 +22,7 @@ public class PanSelLinea extends JPanel {
 	JPanel sel_linea = new JPanel();
 	
 	public JButton btnlogin,btnContinuar,btnRegistro;
-	public JLabel lblLineas;
+	public JLabel lblTitulo;
 	public DefaultListModel<String> modeloLineas = new DefaultListModel<String>();
 	public DefaultListModel<String> modeloParadas = new DefaultListModel<String>();
 	public JList<String> listLineas,listParadas;
@@ -31,32 +31,44 @@ public class PanSelLinea extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
+		lblTitulo = new JLabel("SELECCI\u00D3N DE L\u00CDNEAS");
+		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 45));
+		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitulo.setBounds(30, 35, 1004, 81);
+		add(lblTitulo);
+		
 		btnlogin = new JButton("Inicio Sesi\u00F3n");
-		btnlogin.setBounds(895, 11, 119, 23);
+		btnlogin.setBounds(880, 35, 125, 25);
 		add(btnlogin);
 		
 		btnRegistro = new JButton("Registro");
-		btnRegistro.setBounds(895, 34, 119, 23);
+		btnRegistro.setBounds(880, 71, 125, 25);
 		add(btnRegistro);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(900, 634, 89, 23);
+		btnContinuar.setBounds(915, 650, 90, 25);
 		add(btnContinuar);
 		
-		lblLineas = new JLabel("SELECCI\u00D3N DE L\u00CDNEAS");
-		lblLineas.setFont(new Font("Mistral", Font.PLAIN, 45));
-		lblLineas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLineas.setBounds(10, 23, 780, 53);
-		add(lblLineas);
-		
 		listLineas = new JList<String>();
-		listLineas.setBounds(226, 251, 200, 240);
+		listLineas.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		listLineas.setBounds(302, 251, 200, 240);
 		add(listLineas);
 		
 		listParadas = new JList<String>();
+		listParadas.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		listParadas.setEnabled(false);
-		listParadas.setBounds(425, 251, 200, 240);
+		listParadas.setBounds(522, 251, 250, 240);
 		add(listParadas);
+		
+		JLabel lblLnea = new JLabel("L\u00EDneas");
+		lblLnea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblLnea.setBounds(302, 220, 200, 20);
+		add(lblLnea);
+		
+		JLabel lblParadas = new JLabel("Lista de paradas");
+		lblParadas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblParadas.setBounds(522, 220, 250, 20);
+		add(lblParadas);
 	
 		//¿¿¿Añadir temporizador en caso de inactividad???
 	

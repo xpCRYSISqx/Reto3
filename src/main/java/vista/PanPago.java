@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanPago extends JPanel {
 
@@ -29,6 +31,28 @@ public class PanPago extends JPanel {
 	public PanPago() {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
+		
+		lblTitulo = new JLabel("SISTEMA DE PAGO");
+		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
+		lblTitulo.setBounds(30, 35, 1004, 81);
+		add(lblTitulo);
+		
+		btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnAtras.setBounds(10, 614, 100, 25);
+		add(btnAtras);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(10, 650, 100, 25);
+		add(btnCancelar);
+		
+		btnContinuar = new JButton("Continuar");
+		btnContinuar.setBounds(915, 650, 90, 25);
+		add(btnContinuar);
 		
 		btn200 = new JButton("200 \u20AC");
 		btn200.setFont(new Font("Dialog", Font.PLAIN, 18));
@@ -100,20 +124,8 @@ public class PanPago extends JPanel {
 		btn2e.setBounds(727, 295, 83, 40);
 		add(btn2e);
 		
-		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(10, 652, 89, 23);
-		add(btnAtras);
-		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 686, 89, 23);
-		add(btnCancelar);
-		
-		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(895, 686, 107, 23);
-		add(btnContinuar);
-		
 		btnCancelarPago = new JButton("Cancelar Pago");
-		btnCancelarPago.setBounds(64, 469, 101, 23);
+		btnCancelarPago.setBounds(64, 469, 120, 30);
 		add(btnCancelarPago);
 		
 		tablaDatosBillete = new JTable();
@@ -155,12 +167,6 @@ public class PanPago extends JPanel {
 		btnSeparador.setEnabled(false);
 		btnSeparador.setBounds(709, 295, 8, 163);
 		add(btnSeparador);
-		
-		lblTitulo = new JLabel("SISTEMA DE PAGO");
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(10, 11, 1004, 72);
-		add(lblTitulo);
 		
 		//Panel donde se muestran los datos del pago al instante: total a pagar, dinero introducido y dinero restante	
 		panelTotal = new JPanel();
