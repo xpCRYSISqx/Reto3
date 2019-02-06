@@ -38,19 +38,19 @@ public class PanSelFecha extends JPanel {
 		add(lblTitulo);
 		
 		btnLogin = new JButton("Inicio de Sesi\u00F3n");
-		btnLogin.setBounds(887, 11, 130, 30);
+		btnLogin.setBounds(853, 11, 130, 30);
 		add(btnLogin);
 		
 		btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(887, 43, 130, 30);
+		btnRegistrar.setBounds(853, 43, 130, 30);
 		add(btnRegistrar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(907, 586, 90, 30);
+		btnContinuar.setBounds(887, 616, 90, 30);
 		add(btnContinuar);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 686, 130, 30);
+		btnCancelar.setBounds(10, 616, 130, 30);
 		add(btnCancelar);
 		
 		lblOrigen = new JLabel("Origen");
@@ -99,6 +99,10 @@ public class PanSelFecha extends JPanel {
 		fechaVuelta = new JCalendar();
 		fechaVuelta.setBounds(10, 25, 184, 153);
 		panFechaVuelta.add(fechaVuelta);
+		
+		JButton btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.setBounds(10, 582, 130, 30);
+		add(btnAtras);
 	
 	
 	}
