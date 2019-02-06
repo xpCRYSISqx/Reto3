@@ -24,18 +24,16 @@ public class MainFrame extends JFrame{
 	public PanFinPago fin_pago;
 	public PanDespedida agur;
 	
-	
 	//Constructor
 	public MainFrame() {
 		//Parámetros del Frame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1024, 720);
+		setBounds(100, 100, 1024, 720);
 		setLocationRelativeTo(null);
-		
-		
+		setResizable(false);
+				
 		InstanciarPaneles();
 		AddPaneles();
-		
 	}
 	
 	

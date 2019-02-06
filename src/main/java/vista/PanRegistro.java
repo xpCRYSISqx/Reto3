@@ -103,7 +103,7 @@ public class PanRegistro extends JPanel {
 		add(btnRegistro);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(0, 686, 89, 23);
+		btnCancelar.setBounds(10, 650, 100, 30);
 		add(btnCancelar);
 		
 		passwordField2 = new JPasswordField();

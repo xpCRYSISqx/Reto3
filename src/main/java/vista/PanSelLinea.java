@@ -1,16 +1,12 @@
 package vista;
 
 import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JRadioButton;
 
 public class PanSelLinea extends JPanel {
 

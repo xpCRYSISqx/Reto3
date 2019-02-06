@@ -119,9 +119,9 @@ public class Controlador {
 		//Muestra la lista de paradas en la ventana de lineas
 		botones.MostrarParadas(vista.sel_linea.listLineas, vista.sel_linea.listParadas);
 		//Boton para ir de lineas a la seleccion del billete
-		botones.BotonContinuar(vista.sel_linea.btnContinuar, vista.sel_linea, vista.sel_billete);
+		botones.ContinuarLineaBillete(vista.sel_billete.listaOrigen, vista.sel_billete.listaDestino, vista.sel_linea.btnContinuar, vista.sel_linea, vista.sel_billete);
 		//Boton para ir de la seleccion del billete a la seleccion de la fecha
-		botones.BotonContinuar(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
+		botones.ContinuarBilleteFecha(vista.sel_billete.btnContinuar, vista.sel_billete, vista.sel_fecha);
 		//Boton para ir de la seleccion de la fecha a los detalles de la compra
 		botones.BotonContinuar(vista.sel_fecha.btnContinuar, vista.sel_fecha, vista.detalles_compra);
 		//Boton para ir de los detalles de la compra a la ventana de Log in
