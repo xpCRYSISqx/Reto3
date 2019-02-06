@@ -24,6 +24,7 @@ public class Consultas {
 	 * 
 	 ****************************************************************************************************************/
 	
+	
 	public ArrayList<Linea> getLineas() {
 		
 		Linea linea = null;
@@ -492,7 +493,7 @@ public class Consultas {
 	public double calcularConsumo(double distancia, Autobus autobus) {
 		double consumoTotal;
 		double consumo = autobus.getConsumo();
-		consumoTotal = consumo * distancia;
+		consumoTotal = consumo * distancia * 0.8;
 		return consumoTotal;
 	}
 
