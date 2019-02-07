@@ -21,7 +21,7 @@ public class PanSelLinea extends JPanel {
 	
 	JPanel sel_linea = new JPanel();
 	
-	public JButton btnlogin,btnContinuar,btnRegistro;
+	public JButton btnlogin,btnContinuar,btnRegistro, btnCancelar;
 	public JLabel lblTitulo;
 	public DefaultListModel<String> modeloLineas = new DefaultListModel<String>();
 	public DefaultListModel<String> modeloParadas = new DefaultListModel<String>();
@@ -59,6 +59,10 @@ public class PanSelLinea extends JPanel {
 		listParadas.setEnabled(false);
 		listParadas.setBounds(522, 251, 250, 240);
 		add(listParadas);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(10, 650, 100, 25);
+		add(btnCancelar);
 		
 		JLabel lblLnea = new JLabel("L\u00EDneas");
 		lblLnea.setFont(new Font("Tahoma", Font.PLAIN, 14));
