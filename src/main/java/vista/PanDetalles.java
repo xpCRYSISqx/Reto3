@@ -32,7 +32,7 @@ public class PanDetalles extends JPanel {
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		
-		btnLogin = new JButton("Inicio de Sesi\u00F3n");
+		btnLogin = new JButton("Inicio Sesi\u00F3n");
 		btnLogin.setBounds(880, 35, 125, 25);
 		add(btnLogin);
 		

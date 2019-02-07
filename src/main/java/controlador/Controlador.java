@@ -86,6 +86,10 @@ public class Controlador {
 		//Boton para ir de la ventana de pago a la de finalizar el pago
 		botones.BotonContinuar(vista.pago.btnContinuar, vista.pago, vista.fin_pago);
 		//Boton para ir atras en la ventana de billete
-		botones.AtrasBilleteLineas(vista.sel_billete.btnAtras, vista.sel_linea, vista.sel_billete);
+		botones.BotonAtras(vista.sel_billete.btnAtras, vista.sel_linea, vista.sel_billete);
+		//Boton para ir atras en la ventana de seleccion de fecha
+		botones.BotonAtras(vista.sel_fecha.btnAtras, vista.sel_billete, vista.sel_fecha);
+		//Boton para ir atras en la ventana de detalles
+		botones.BotonAtras(vista.detalles_compra.btnAtras, vista.sel_fecha, vista.detalles_compra);
 	}
 }
