@@ -44,7 +44,7 @@ public class PanSelBillete extends JPanel {
 		lbltitulo.setBounds(30, 35, 1004, 81);
 		add(lbltitulo);
 		
-		btnLogin = new JButton("Inicio de Sesi\u00F3n");
+		btnLogin = new JButton("Inicio Sesi\u00F3n");
 		btnLogin.setBounds(880, 35, 125, 25);
 		add(btnLogin);
 		
@@ -83,7 +83,7 @@ public class PanSelBillete extends JPanel {
 		add(listaDestino);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(10, 616, 89, 23);
+		btnAtras.setBounds(10, 614, 100, 25);
 		add(btnAtras);
 		
 		rbtnIda = new JRadioButton("Simple");

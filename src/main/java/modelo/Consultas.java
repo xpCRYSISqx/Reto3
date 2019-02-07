@@ -104,7 +104,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT Cod_bus FROM `linea_autobus` where Cod_Linea = ?");
+			stmt = connection.prepareStatement("SELECT l.Cod_bus, N_plazas, Consumo_km, Color FROM `linea_autobus` l, `autobus` a where l.Cod_bus=a.Cod_bus and Cod_Linea = ?");
 			stmt.setString(1, codLinea);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -114,7 +114,9 @@ public class Consultas {
 			while (result.next()) {
 				autobus = new Autobus();
 				autobus.setCodBus(result.getInt("Cod_bus"));
-				autobus = getInfoAutobus(autobus);
+				autobus.setNumPlazas(result.getInt("N_plazas"));
+				autobus.setConsumo(result.getFloat("Consumo_km"));
+				autobus.setColor(result.getString("Color"));
 				autobuses.add(autobus);
 			}
 			
@@ -127,42 +129,6 @@ public class Consultas {
 		}                
 		
 		return autobuses;
-		
-	}
-	
-	private Autobus getInfoAutobus(Autobus autobus) {
-		
-		PreparedStatement stmt = null;
-		ResultSet result = null;
-
-		try {
-			
-			// abrimos una conexion
-			connection = conexion.conectar();
-			
-			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT N_plazas, Consumo_km, Color FROM autobus where Cod_bus = ?");
-			stmt.setInt(1, autobus.getCodBus());
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-			result = stmt.executeQuery();
-			
-			// rellena los objetos Autobus con los resultados y los añade a un arrayList
-			while (result.next()) {
-				autobus.setNumPlazas(result.getInt("N_plazas"));
-				autobus.setConsumo(result.getFloat("Consumo_km"));
-				autobus.setColor(result.getString("Color"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}                  
-		
-		return autobus;
 		
 	}
 	

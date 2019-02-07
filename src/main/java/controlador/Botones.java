@@ -114,7 +114,7 @@ public class Botones {
 			}
 		});
 	}
-	public void IrRegistroAInicioSesion(JButton boton, JPanel panInicio, JPanel panRegistro) {
+	public void IrRegistroAInicioSesion(JButton boton, JPanel panInicio, JPanel panRegistro) { //Boton para ir de la ventana de registro a la ventana de inicio de sesion
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				panInicio.setVisible(true);
@@ -122,17 +122,16 @@ public class Botones {
 			}
 		});
 	}
-	public void IrBienveLineas(JList<?> lista,JButton boton, JPanel bienvenida, JPanel lineas) {
+	public void IrBienveLineas(JList<?> lista,JButton boton, JPanel bienvenida, JPanel lineas) { //Boton para ir de la ventana de bienvenida a la ventana de lineas
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lineas.setVisible(true);
 				bienvenida.setVisible(false);
-				lineas1 = modelo.consultas.getLineas();
+				lineas1 = modelo.consultas.getLineas(); //Carga la informacion de las lineas desde la base de datos
 				String nombre;
-				vista.sel_linea.modeloLineas.removeAllElements();
-				for(int i=0; i<lineas1.size(); i++) {
-					nombre = lineas1.get(i).getCodLinea();
-					//nombre = "[" + nombre + "]" + " " + lineas1.get(i).getNombre();
+				vista.sel_linea.modeloLineas.removeAllElements(); //Limpia la lista de las lineas en la interfaz
+				for(int i=0; i<lineas1.size(); i++) { //Recorre el ArrayList de lineas para poder utilizar sus componentes
+					nombre = lineas1.get(i).getCodLinea(); //Guarda el codigo de la linea en una variable para poder utilizarla
 					vista.sel_linea.modeloLineas.addElement(nombre);
 					vista.sel_linea.listLineas.setModel(vista.sel_linea.modeloLineas);
 				}
@@ -153,7 +152,7 @@ public class Botones {
 			}
 		});
 	}
-	public void AtrasBilleteLineas(JButton boton, JPanel lineas, JPanel billete) {
+	public void BotonAtras(JButton boton, JPanel lineas, JPanel billete) {
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lineas.setVisible(true);
@@ -168,9 +167,7 @@ public class Botones {
 				billete.setVisible(true);
 				linea.setVisible(false);
 				vista.sel_billete.modeloOrigen.removeAllElements();
-
 				vista.sel_billete.modeloDestino.removeAllElements();
-	
 				String codLinea = vista.sel_linea.listLineas.getSelectedValue();
 				paradas = modelo.consultas.getParadasByLinea(codLinea); 				
 				for(int i=0; i<paradas.size(); i++) {
