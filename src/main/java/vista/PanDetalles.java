@@ -3,6 +3,8 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
@@ -28,6 +30,7 @@ public class PanDetalles extends JPanel {
 	public JLabel lblTitulo;
 	
 	public PanDetalles() {
+		setBackground(new Color(255, 192, 203));
 		setBounds(0, 0, 1024, 720);
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
@@ -88,8 +91,9 @@ public class PanDetalles extends JPanel {
 		tablaDatos.getColumnModel().getColumn(2).setPreferredWidth(140);
 		tablaDatos.getColumnModel().getColumn(3).setPreferredWidth(140);
 		tablaDatos.getColumnModel().getColumn(6).setPreferredWidth(90);
-		tablaDatos.setBackground(SystemColor.inactiveCaption);
+		tablaDatos.setBackground(new Color(220, 220, 220));
 		tablaDatos.setBounds(30, 230, 964, 140);
+		tablaDatos.setRowHeight(30);
 		add(tablaDatos);
 
 	}

@@ -1,5 +1,7 @@
 package vista;
 
+import java.awt.Color;
+
 import javax.swing.JPanel;
 
 public class PanDespedida extends JPanel {
@@ -15,6 +17,7 @@ public class PanDespedida extends JPanel {
 	JPanel agur = new JPanel();
 	
 	public PanDespedida() {
+		setBackground(new Color(255, 192, 203));
 		setBounds(0, 0, 1024, 720);
 
 	}

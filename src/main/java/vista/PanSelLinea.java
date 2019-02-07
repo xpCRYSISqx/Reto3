@@ -7,6 +7,7 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import java.awt.Color;
 
 public class PanSelLinea extends JPanel {
 
@@ -28,6 +29,7 @@ public class PanSelLinea extends JPanel {
 	public JList<String> listLineas,listParadas;
 	
 	public PanSelLinea() {
+		setBackground(new Color(255, 192, 203));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
@@ -50,23 +52,25 @@ public class PanSelLinea extends JPanel {
 		add(btnContinuar);
 		
 		listLineas = new JList<String>();
-		listLineas.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		listLineas.setBackground(new Color(220, 220, 220));
+		listLineas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		listLineas.setBounds(302, 251, 200, 240);
 		add(listLineas);
 		
 		listParadas = new JList<String>();
-		listParadas.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		listParadas.setBackground(new Color(220, 220, 220));
+		listParadas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		listParadas.setEnabled(false);
 		listParadas.setBounds(522, 251, 250, 240);
 		add(listParadas);
 		
 		JLabel lblLnea = new JLabel("L\u00EDneas");
-		lblLnea.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblLnea.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLnea.setBounds(302, 220, 200, 20);
 		add(lblLnea);
 		
 		JLabel lblParadas = new JLabel("Lista de paradas");
-		lblParadas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblParadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblParadas.setBounds(522, 220, 250, 20);
 		add(lblParadas);
 	

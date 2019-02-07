@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -28,6 +30,7 @@ public class PanLogin extends JPanel {
 	public PanLogin() {
 		
 		// configuracion del panel
+		setBackground(new Color(255, 192, 203));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		

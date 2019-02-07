@@ -1,5 +1,6 @@
 package vista;
 
+import java.awt.Color;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -31,6 +32,7 @@ public class MainFrame extends JFrame{
 		setBounds(100, 100, 1024, 720);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setBackground(new Color(255, 192, 203));
 				
 		InstanciarPaneles();
 		AddPaneles();

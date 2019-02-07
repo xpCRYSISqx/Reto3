@@ -20,6 +20,7 @@ public class PanBienvenida extends JPanel {
 	public JButton btnContinuar;
 	
 	public PanBienvenida() throws IOException {
+		setBackground(new Color(255, 192, 203));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		

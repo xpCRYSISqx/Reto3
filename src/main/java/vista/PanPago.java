@@ -29,6 +29,7 @@ public class PanPago extends JPanel {
 	public JLabel lblTitulo, lblTotal, lblDineroTotal, lblIntroducido, lblDineroIntro, lblRestante, lblDineroRest;
 	
 	public PanPago() {
+		setBackground(new Color(255, 192, 203));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
@@ -159,8 +160,9 @@ public class PanPago extends JPanel {
 		tablaDatosBillete.getColumnModel().getColumn(2).setPreferredWidth(140);
 		tablaDatosBillete.getColumnModel().getColumn(3).setPreferredWidth(140);
 		tablaDatosBillete.getColumnModel().getColumn(6).setPreferredWidth(90);
-		tablaDatosBillete.setBackground(SystemColor.menu);
+		tablaDatosBillete.setBackground(new Color(220, 220, 220));
 		tablaDatosBillete.setBounds(20, 121, 994, 140);
+		tablaDatosBillete.setRowHeight(30);
 		add(tablaDatosBillete);
 		
 		btnSeparador = new JButton("");
@@ -170,7 +172,7 @@ public class PanPago extends JPanel {
 		
 		//Panel donde se muestran los datos del pago al instante: total a pagar, dinero introducido y dinero restante	
 		panelTotal = new JPanel();
-		panelTotal.setBackground(SystemColor.inactiveCaption);
+		panelTotal.setBackground(new Color(220, 220, 220));
 		panelTotal.setBounds(64, 295, 291, 163);
 		add(panelTotal);
 		panelTotal.setLayout(null);

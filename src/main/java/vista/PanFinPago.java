@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -24,13 +26,14 @@ public class PanFinPago extends JPanel {
 	public JTextField txtTotal,txtPagado,txtDevolver;
 	
 	public PanFinPago() {
+		setBackground(new Color(255, 192, 203));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
 		lblTitulo = new JLabel("FINALIZAR PAGO");
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(10, 11, 780, 75);
+		lblTitulo.setBounds(30, 35, 1004, 81);
 		add(lblTitulo);
 		
 		btnContinuar = new JButton("Continuar");
@@ -65,6 +68,7 @@ public class PanFinPago extends JPanel {
 		add(txtDevolver);
 		
 		btnSeparador = new JButton("");
+		btnSeparador.setBackground(new Color(105, 105, 105));
 		btnSeparador.setEnabled(false);
 		btnSeparador.setBounds(277, 247, 243, 9);
 		add(btnSeparador);

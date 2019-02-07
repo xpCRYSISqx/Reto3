@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import com.toedter.calendar.JCalendar;
@@ -28,6 +30,7 @@ public class PanSelFecha extends JPanel {
 	public JTextField txtOrigen, txtDestino;
 	
 	public PanSelFecha() {
+		setBackground(new Color(255, 192, 203));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
@@ -91,6 +94,7 @@ public class PanSelFecha extends JPanel {
 		// Billete ida/vuelta
 		
 		panFechaVuelta = new JPanel();
+		panFechaVuelta.setBackground(new Color(255, 192, 203));
 		panFechaVuelta.setBounds(542, 289, 300, 260);
 		add(panFechaVuelta);
 		panFechaVuelta.setLayout(null);

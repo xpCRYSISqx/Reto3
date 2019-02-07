@@ -4,10 +4,13 @@ import javax.swing.JPanel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
+import java.awt.SystemColor;
 
 public class PanSelBillete extends JPanel {
 
@@ -31,6 +34,7 @@ public class PanSelBillete extends JPanel {
 	public JList listaOrigen,listaDestino;
 	
 	public PanSelBillete() {
+		setBackground(new Color(255, 192, 203));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
@@ -69,10 +73,12 @@ public class PanSelBillete extends JPanel {
 		add(lblDestino);
 		
 		listaOrigen = new JList<String>();
+		listaOrigen.setBackground(new Color(220, 220, 220));
 		listaOrigen.setBounds(116, 320, 327, 250);
 		add(listaOrigen);
 		
 		listaDestino = new JList<String>();
+		listaDestino.setBackground(new Color(220, 220, 220));
 		listaDestino.setBounds(479, 320, 327, 250);
 		add(listaDestino);
 		
@@ -81,12 +87,14 @@ public class PanSelBillete extends JPanel {
 		add(btnAtras);
 		
 		rbtnIda = new JRadioButton("Simple");
+		rbtnIda.setBackground(new Color(255, 192, 203));
 		rbtnIda.setHorizontalAlignment(SwingConstants.LEFT);
 		rbtnIda.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		rbtnIda.setBounds(332, 180, 180, 50);
 		add(rbtnIda);
 		
 		rbtnVuelta = new JRadioButton("Ida / Vuelta");
+		rbtnVuelta.setBackground(new Color(255, 192, 203));
 		rbtnVuelta.setHorizontalAlignment(SwingConstants.CENTER);
 		rbtnVuelta.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		rbtnVuelta.setBounds(512, 180, 180, 50);

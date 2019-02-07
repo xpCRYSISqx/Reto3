@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -35,6 +37,7 @@ public class PanRegistro extends JPanel {
 	 */
 	
 	public PanRegistro() {
+		setBackground(new Color(255, 192, 203));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
@@ -89,17 +92,19 @@ public class PanRegistro extends JPanel {
 		txtDni.setColumns(10);
 		
 		lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(321, 250, 77, 14);
+		lblSexo.setBounds(321, 265, 77, 14);
 		add(lblSexo);
 		
 		rbtnMasc = new JRadioButton("Masculino");
+		rbtnMasc.setBackground(new Color(255, 192, 203));
 		buttonGroup.add(rbtnMasc);
 		rbtnMasc.setBounds(461, 250, 112, 23);
 		add(rbtnMasc);
 		
 		rbtnFem = new JRadioButton("Femenino");
+		rbtnFem.setBackground(new Color(255, 192, 203));
 		buttonGroup.add(rbtnFem);
-		rbtnFem.setBounds(461, 276, 102, 23);
+		rbtnFem.setBounds(461, 276, 112, 23);
 		add(rbtnFem);
 		
 		passwordField = new JPasswordField();
