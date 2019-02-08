@@ -31,8 +31,8 @@ public class PanSelLinea extends JPanel {
 	
 	JPanel sel_linea = new JPanel();
 	
-	public JButton btnlogin,btnContinuar,btnRegistro, btnCancelar;
-	public JLabel lblTitulo;
+	public JButton btnLogin,btnContinuar,btnRegistro, btnCancelar;
+	public JLabel lblIcono;
 	public DefaultListModel<String> modeloLineas = new DefaultListModel<String>();
 	public DefaultListModel<String> modeloParadas = new DefaultListModel<String>();
 	public JList<String> listLineas,listParadas;
@@ -42,60 +42,41 @@ public class PanSelLinea extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		lblTitulo = new JLabel("");
-		lblTitulo.setIcon(new ImageIcon(PanSelLinea.class.getResource("/img/logo-termibus.png")));
-		lblTitulo.setOpaque(true);
-		lblTitulo.setBorder(null);
-		lblTitulo.setForeground(new Color(0, 0, 0));
-		lblTitulo.setBackground(new Color(255, 255, 255));
-		lblTitulo.setFont(new Font("Arial", Font.PLAIN, 30));
-		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitulo.setBounds(53, 35, 306, 112);
-		add(lblTitulo);
+		lblIcono = new JLabel("");
+		FormatoDiseno.formatoIcono(lblIcono);
+		add(lblIcono);
 		
-		btnlogin = new JButton("Inicio Sesi\u00F3n");
-		btnlogin.setBorder(null);
-		btnlogin.setForeground(new Color(255, 255, 255));
-		btnlogin.setBackground(new Color(204, 0, 0));
-		btnlogin.setBounds(821, 35, 125, 25);
-		add(btnlogin);
+		btnLogin = new JButton("Inicio Sesi\u00F3n");
+		FormatoDiseno.formatoBtnLogin(btnLogin);
+		add(btnLogin);
 		
 		btnRegistro = new JButton("Registro");
-		btnRegistro.setBorder(null);
-		btnRegistro.setForeground(new Color(255, 255, 255));
-		btnRegistro.setBackground(new Color(204, 0, 0));
-		btnRegistro.setBounds(821, 70, 125, 25);
+		FormatoDiseno.formatoBtnRegistro(btnRegistro);
 		add(btnRegistro);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBorderPainted(false);
-		btnContinuar.setBorder(null);
-		btnContinuar.setSelectedIcon(null);
-		btnContinuar.setForeground(new Color(255, 255, 255));
-		btnContinuar.setBackground(new Color(204, 0, 0));
-		btnContinuar.setBounds(846, 610, 100, 25);
+		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
 		
 		listLineas = new JList<String>();
-		listLineas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		listLineas.setBackground(new Color(255, 255, 255));
-		listLineas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		FormatoDiseno.formatoList(listLineas);
+//		listLineas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
+//		listLineas.setBackground(new Color(255, 255, 255));
+//		listLineas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		listLineas.setBounds(53, 251, 200, 240);
 		add(listLineas);
 		
 		listParadas = new JList<String>();
-		listParadas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		listParadas.setBackground(new Color(255, 255, 255));
-		listParadas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		listParadas.setEnabled(false);
+		FormatoDiseno.formatoList(listParadas);
+//		listParadas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
+//		listParadas.setBackground(new Color(255, 255, 255));
+//		listParadas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//		listParadas.setEnabled(false);
 		listParadas.setBounds(263, 251, 250, 240);
 		add(listParadas);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setForeground(new Color(255, 255, 255));
-		btnCancelar.setBorder(null);
-		btnCancelar.setBackground(new Color(204, 0, 0));
-		btnCancelar.setBounds(53, 610, 100, 25);
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
 		JLabel lblLnea = new JLabel("L\u00EDneas");

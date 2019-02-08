@@ -13,6 +13,8 @@ import javax.swing.JProgressBar;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,7 +24,7 @@ public class PanRegistro extends JPanel {
 	
 	JPanel registro = new JPanel();
 		
-	public JLabel lblTitulo, lblNombre, lblApellidos, lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac, lblErrorDNI, lblErrorContrasenas, lblErrorSexo, lblErrorDNINoIntroducido;
+	public JLabel lblTitulo,lblIcono,lblNombre,lblApellidos,lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac, lblErrorDNI, lblErrorContrasenas, lblErrorSexo, lblErrorDNINoIntroducido;
 	public JTextField txtNombre, txtApellidos, txtDni;
 	public JButton btnLogin, btnRegistro, btnCancelar;
 	public JRadioButton rbtnMasc, rbtnFem;
@@ -37,119 +39,128 @@ public class PanRegistro extends JPanel {
 	 */
 	
 	public PanRegistro() {
-		setBackground(new Color(255, 192, 203));
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		lblTitulo = new JLabel("REGISTRO");
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(30, 35, 1004, 81);
+		// Label del logotipo
+		lblIcono = new JLabel("");
+		FormatoDiseno.formatoIcono(lblIcono);
+		add(lblIcono);
+		
+		//Label de titulo del panel
+		lblTitulo = new JLabel("Registro");
+		FormatoDiseno.formatoTitulo(lblTitulo);
 		add(lblTitulo);
 		
 		btnLogin = new JButton("Inicio Sesi\u00F3n");
-		btnLogin.setBounds(880, 35, 125, 25);
+		FormatoDiseno.formatoBtnLogin(btnLogin);
 		add(btnLogin);
 		
 		btnRegistro = new JButton("Registrar");
-		btnRegistro.setBounds(470, 435, 103, 43);
+		FormatoDiseno.formatoBtn(btnRegistro);
+		btnRegistro.setBounds(471, 537, 115, 40);
 		add(btnRegistro);
 		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 650, 100, 25);
-		add(btnCancelar);
-		
-		lblPassword = new JLabel("Password");
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setBounds(384, 343, 46, 14);
-		add(lblPassword);
-		
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(321, 157, 77, 14);
+		lblNombre.setBounds(322, 259, 77, 14);
 		add(lblNombre);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(408, 154, 216, 20);
-		add(txtNombre);
+		FormatoDiseno.formatoTxt(txtNombre);
+		txtNombre.setBounds(409, 256, 216, 20);
 		txtNombre.setColumns(10);
+		add(txtNombre);
 		
 		lblApellidos = new JLabel("Apellidos");
-		lblApellidos.setBounds(321, 188, 77, 14);
+		lblApellidos.setBounds(322, 290, 77, 14);
 		add(lblApellidos);
 		
 		txtApellidos = new JTextField();
-		txtApellidos.setBounds(408, 185, 216, 20);
-		add(txtApellidos);
+		FormatoDiseno.formatoTxt(txtApellidos);
+		txtApellidos.setBounds(409, 287, 216, 20);
 		txtApellidos.setColumns(10);
+		add(txtApellidos);
 		
 		lblDni = new JLabel("DNI");
-		lblDni.setBounds(321, 309, 77, 14);
+		lblDni.setBounds(322, 411, 77, 14);
 		add(lblDni);
 		
 		txtDni = new JTextField();
-		txtDni.setBounds(408, 306, 216, 20);
-		add(txtDni);
+		FormatoDiseno.formatoTxt(txtDni);
+		txtDni.setBounds(409, 408, 216, 20);
 		txtDni.setColumns(10);
+		add(txtDni);
 		
 		lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(321, 265, 77, 14);
+		lblSexo.setBounds(322, 367, 77, 14);
 		add(lblSexo);
 		
 		rbtnMasc = new JRadioButton("Masculino");
-		rbtnMasc.setBackground(new Color(255, 192, 203));
+		rbtnMasc.setBackground(Color.WHITE);
 		buttonGroup.add(rbtnMasc);
-		rbtnMasc.setBounds(461, 250, 112, 23);
+		rbtnMasc.setBounds(462, 352, 112, 23);
 		add(rbtnMasc);
 		
 		rbtnFem = new JRadioButton("Femenino");
-		rbtnFem.setBackground(new Color(255, 192, 203));
+		rbtnFem.setBackground(Color.WHITE);
 		buttonGroup.add(rbtnFem);
-		rbtnFem.setBounds(461, 276, 112, 23);
+		rbtnFem.setBounds(462, 378, 112, 23);
 		add(rbtnFem);
 		
+		lblPassword = new JLabel("Password");
+		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword.setBounds(385, 445, 46, 14);
+		add(lblPassword);
+		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(449, 340, 140, 20);
+		FormatoDiseno.formatoTxt(passwordField);
+		passwordField.setBounds(450, 442, 140, 20);
 		add(passwordField);
 		
-		progressBar = new JProgressBar();
-		progressBar.setBounds(252, 20, 500, 15);
-		add(progressBar);
-		
-		passwordField2 = new JPasswordField();
-		passwordField2.setBounds(449, 371, 140, 20);
-		add(passwordField2);
+//		progressBar = new JProgressBar();
+//		progressBar.setBounds(252, 20, 500, 15);
+//		add(progressBar);
 		
 		lblPassword2 = new JLabel("Confirmar password");
-		lblPassword2.setBounds(333, 374, 96, 14);
+		lblPassword2.setBounds(334, 476, 96, 14);
 		add(lblPassword2);
 		
-		dateChooser = new JDateChooser();
-		dateChooser.setBounds(454, 216, 170, 20);
-		add(dateChooser);
+		passwordField2 = new JPasswordField();
+		FormatoDiseno.formatoTxt(passwordField2);
+		passwordField2.setBounds(450, 473, 140, 20);
+		add(passwordField2);
 		
 		lblfechaNac = new JLabel("Fecha nacimiento");
-		lblfechaNac.setBounds(321, 219, 123, 20);
+		lblfechaNac.setBounds(322, 321, 123, 20);
 		add(lblfechaNac);
 		
+		dateChooser = new JDateChooser();
+		dateChooser.setBounds(455, 318, 170, 20);
+		add(dateChooser);
+		
 		lblErrorDNI = new JLabel("Ya existe un usuario con ese DNI");
-		lblErrorDNI.setBounds(633, 306, 273, 20);
+		lblErrorDNI.setBounds(634, 408, 273, 20);
 		lblErrorDNI.setVisible(false);
 		add(lblErrorDNI);
 		
 		lblErrorContrasenas = new JLabel("Las contrase\u00F1as no coinciden, int\u00E9ntelo de nuevo");
-		lblErrorContrasenas.setBounds(599, 340, 371, 20);
+		lblErrorContrasenas.setBounds(600, 442, 371, 20);
 		lblErrorContrasenas.setVisible(false);
 		add(lblErrorContrasenas);
 		
 		lblErrorSexo = new JLabel("Se deber\u00E1 indicar el sexo para completar el registro");
-		lblErrorSexo.setBounds(599, 265, 336, 14);
+		lblErrorSexo.setBounds(600, 367, 336, 14);
 		lblErrorSexo.setVisible(false);
 		add(lblErrorSexo);
 		
 		lblErrorDNINoIntroducido = new JLabel("Debe introducir un DNI, no puede dejar el campo en blanco");
-		lblErrorDNINoIntroducido.setBounds(634, 309, 336, 17);
+		lblErrorDNINoIntroducido.setBounds(635, 411, 336, 17);
 		lblErrorDNINoIntroducido.setVisible(false);
 		add(lblErrorDNINoIntroducido);
 
+		btnCancelar = new JButton("Cancelar");
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
+		add(btnCancelar); 
 	}
 }

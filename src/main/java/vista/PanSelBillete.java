@@ -13,6 +13,7 @@ import javax.swing.JRadioButton;
 import java.awt.SystemColor;
 import javax.swing.border.BevelBorder;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 
 public class PanSelBillete extends JPanel {
 
@@ -30,53 +31,34 @@ public class PanSelBillete extends JPanel {
 	public DefaultListModel<String> modeloOrigen = new DefaultListModel<String>();
 	public DefaultListModel<String> modeloDestino = new DefaultListModel<String>();
 	
-	public JLabel lblTitulo,lblOrigen,lblDestino;
+	public JLabel lblIcono,lblOrigen,lblDestino;
 	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
 	public JRadioButton rbtnIda,rbtnVuelta;
-	public JList listaOrigen,listaDestino;
+	public JList<String> listaOrigen,listaDestino;
 	
 	public PanSelBillete() {
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		lblTitulo = new JLabel("");
-		lblTitulo.setIcon(new ImageIcon(PanSelLinea.class.getResource("/img/logo-termibus.png")));
-		lblTitulo.setOpaque(true);
-		lblTitulo.setBorder(null);
-		lblTitulo.setForeground(new Color(0, 0, 0));
-		lblTitulo.setBackground(new Color(255, 255, 255));
-		lblTitulo.setFont(new Font("Arial", Font.PLAIN, 30));
-		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitulo.setBounds(53, 35, 306, 112);
-		add(lblTitulo);
+		lblIcono = new JLabel("");
+		FormatoDiseno.formatoIcono(lblIcono);
+		add(lblIcono);
 		
 		btnLogin = new JButton("Inicio Sesi\u00F3n");
-		btnLogin.setForeground(new Color(255, 255, 255));
-		btnLogin.setBackground(new Color(204, 0, 0));
-		btnLogin.setBounds(821, 35, 125, 25);
-		btnLogin.setBorder(null);
+		FormatoDiseno.formatoBtnLogin(btnLogin);
 		add(btnLogin);
 		
 		btnRegistro = new JButton("Registro");
-		btnRegistro.setBackground(new Color(204, 0, 0));
-		btnRegistro.setForeground(new Color(255, 255, 255));
-		btnRegistro.setBounds(821, 70, 125, 25);
-		btnRegistro.setBorder(null);
+		FormatoDiseno.formatoBtnRegistro(btnRegistro);
 		add(btnRegistro);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBackground(new Color(204, 0, 0));
-		btnContinuar.setForeground(new Color(255, 255, 255));
-		btnContinuar.setBounds(846, 610, 100, 25);
-		btnContinuar.setBorder(null);
+		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setForeground(new Color(255, 255, 255));
-		btnCancelar.setBackground(new Color(204, 0, 0));
-		btnCancelar.setBounds(53, 610, 100, 25);
-		btnCancelar.setBorder(null);
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
 		lblOrigen = new JLabel("Selecccione origen");
@@ -92,22 +74,17 @@ public class PanSelBillete extends JPanel {
 		add(lblDestino);
 		
 		listaOrigen = new JList<String>();
-		listaOrigen.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		listaOrigen.setBackground(new Color(255, 255, 255));
+		FormatoDiseno.formatoList(listaOrigen);
 		listaOrigen.setBounds(53, 251, 327, 250);
 		add(listaOrigen);
 		
 		listaDestino = new JList<String>();
-		listaDestino.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
-		listaDestino.setBackground(new Color(255, 255, 255));
+		FormatoDiseno.formatoList(listaDestino);
 		listaDestino.setBounds(400, 251, 327, 250);
 		add(listaDestino);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setForeground(new Color(255, 255, 255));
-		btnAtras.setBackground(new Color(204, 0, 0));
-		btnAtras.setBounds(53, 574, 100, 25);
-		btnAtras.setBorder(null);
+		FormatoDiseno.formatoBtnAtras(btnAtras);
 		add(btnAtras);
 		
 		rbtnIda = new JRadioButton("Simple");

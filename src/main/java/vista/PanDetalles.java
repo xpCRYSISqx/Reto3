@@ -27,39 +27,37 @@ public class PanDetalles extends JPanel {
 	JPanel detalles_compra = new JPanel();
 	
 	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
-	public JLabel lblTitulo;
+	public JLabel lblIcono;
 	
 	public PanDetalles() {
-		setBackground(new Color(255, 192, 203));
+		setBackground(new Color(255, 255, 255));
 		setBounds(0, 0, 1024, 720);
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		
+		lblIcono = new JLabel("DETALLES DE BILLETE");
+		FormatoDiseno.formatoIcono(lblIcono);
+		add(lblIcono);
+		
 		btnLogin = new JButton("Inicio Sesi\u00F3n");
-		btnLogin.setBounds(880, 35, 125, 25);
+		FormatoDiseno.formatoBtnLogin(btnLogin);
 		add(btnLogin);
 		
 		btnRegistro = new JButton("Registro");
-		btnRegistro.setBounds(880, 71, 125, 25);
+		FormatoDiseno.formatoBtnRegistro(btnRegistro);
 		add(btnRegistro);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(10, 614, 100, 25);
+		FormatoDiseno.formatoBtnAtras(btnAtras);
 		add(btnAtras);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 650, 100, 25);
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(915, 650, 90, 25);
+		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
-		
-		lblTitulo = new JLabel("DETALLES DE BILLETE");
-		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(30, 35, 1004, 81);
-		add(lblTitulo);
 		
 		tablaDatos = new JTable();
 		tablaDatos.setEnabled(false);
@@ -91,7 +89,7 @@ public class PanDetalles extends JPanel {
 		tablaDatos.getColumnModel().getColumn(2).setPreferredWidth(140);
 		tablaDatos.getColumnModel().getColumn(3).setPreferredWidth(140);
 		tablaDatos.getColumnModel().getColumn(6).setPreferredWidth(90);
-		tablaDatos.setBackground(new Color(220, 220, 220));
+		tablaDatos.setBackground(new Color(204, 150, 150));
 		tablaDatos.setBounds(30, 230, 964, 140);
 		tablaDatos.setRowHeight(30);
 		add(tablaDatos);

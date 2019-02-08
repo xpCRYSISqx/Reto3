@@ -26,46 +26,43 @@ public class PanPago extends JPanel {
 	public JTable tablaDatosBillete;
 	public JPanel panelTotal;
 	public JButton btnContinuar, btnCancelar, btnCancelarPago, btnAtras, btnSeparador, btn200, btn100, btn50, btn20, btn10, bbtn5, btn2e, btn1e, btn050, btn020, btn010, btn005, btn002, btn001;
-	public JLabel lblTitulo, lblTotal, lblDineroTotal, lblIntroducido, lblDineroIntro, lblRestante, lblDineroRest;
+	public JLabel lblIcono, lblTotal, lblDineroTotal, lblIntroducido, lblDineroIntro, lblRestante, lblDineroRest;
 	
 	public PanPago() {
-		setBackground(new Color(255, 192, 203));
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		lblTitulo = new JLabel("SISTEMA DE PAGO");
-		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(30, 35, 1004, 81);
-		add(lblTitulo);
+		lblIcono = new JLabel("SISTEMA DE PAGO");
+		FormatoDiseno.formatoIcono(lblIcono);
+		add(lblIcono);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnAtras.setBounds(10, 614, 100, 25);
+		FormatoDiseno.formatoBtnAtras(btnAtras);
 		add(btnAtras);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 650, 100, 25);
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(915, 650, 90, 25);
+		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
 		
 		btn200 = new JButton("200 \u20AC");
+		FormatoDiseno.formatoBtn(btn200);
 		btn200.setFont(new Font("Dialog", Font.PLAIN, 18));
 		btn200.setBounds(523, 295, 83, 40);
 		add(btn200);
 		
 		btn100 = new JButton("100 \u20AC");
+		FormatoDiseno.formatoBtn(btn100);
 		btn100.setFont(new Font("Dialog", Font.PLAIN, 18));
 		btn100.setBounds(523, 346, 83, 40);
 		add(btn100);
 		
 		btn50 = new JButton("50 \u20AC");
+		FormatoDiseno.formatoBtn(btn50);
 		btn50.setFont(new Font("Dialog", Font.PLAIN, 18));
 		btn50.setBounds(523, 397, 83, 40);
 		add(btn50);
@@ -73,16 +70,23 @@ public class PanPago extends JPanel {
 		btn20 = new JButton("20 \u20AC");
 		btn20.setFont(new Font("Dialog", Font.PLAIN, 18));
 		btn20.setBounds(616, 295, 78, 40);
+		btn20.setBorder(null);
+		btn20.setForeground(new Color(255, 255, 255));
+		btn20.setBackground(new Color(204, 0, 0));
 		add(btn20);
 		
 		btn10 = new JButton("10 \u20AC");
 		btn10.setFont(new Font("Dialog", Font.PLAIN, 18));
 		btn10.setBounds(616, 346, 83, 40);
+		btn10.setBorder(null);
+		btn10.setForeground(new Color(255, 255, 255));
+		btn10.setBackground(new Color(204, 0, 0));
 		add(btn10);
 		
 		bbtn5 = new JButton("5 \u20AC");
 		bbtn5.setFont(new Font("Dialog", Font.PLAIN, 18));
 		bbtn5.setBounds(616, 397, 83, 40);
+		FormatoDiseno.formatoBtn(bbtn5);
 		add(bbtn5);
 		
 		btn001 = new JButton("0,01 \u20AC");
