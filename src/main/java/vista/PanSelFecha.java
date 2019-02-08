@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.text.Format;
+
 import javax.swing.SwingConstants;
 import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
@@ -23,37 +25,35 @@ public class PanSelFecha extends JPanel {
 	
 	JPanel sel_fecha = new JPanel();
 	
-	public JButton btnContinuar, btnLogin, btnRegistrar, btnCancelar, btnAtras;
-	public JLabel lblTitulo, lblOrigen, lblDestino, lblSeleccioneFecha, lblSeleccioneVuelta;
+	public JButton btnContinuar, btnLogin, btnRegistro, btnCancelar, btnAtras;
+	public JLabel lblIcono, lblOrigen, lblDestino, lblSeleccioneFecha, lblSeleccioneVuelta;
 	public JCalendar fechaIda, fechaVuelta;
 	public JPanel panFechaVuelta;
 	public JTextField txtOrigen, txtDestino;
 	
 	public PanSelFecha() {
-		setBackground(new Color(255, 192, 203));
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
-		lblTitulo = new JLabel("SELECCI\u00D3N DE FECHA");
-		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(30, 35, 1004, 81);
-		add(lblTitulo);
+		lblIcono = new JLabel("SELECCI\u00D3N DE FECHA");
+		FormatoDiseno.formatoIcono(lblIcono);
+		add(lblIcono);
 		
 		btnLogin = new JButton("Inicio Sesi\u00F3n");
-		btnLogin.setBounds(880, 35, 125, 25);
+		FormatoDiseno.formatoBtnLogin(btnLogin);
 		add(btnLogin);
 		
-		btnRegistrar = new JButton("Registro");
-		btnRegistrar.setBounds(880, 71, 125, 25);
-		add(btnRegistrar);
+		btnRegistro = new JButton("Registro");
+		FormatoDiseno.formatoBtnRegistro(btnRegistro);
+		add(btnRegistro);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(915, 650, 90, 25);
+		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 650, 100, 25);
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
 		lblOrigen = new JLabel("Origen");
@@ -67,16 +67,14 @@ public class PanSelFecha extends JPanel {
 		add(lblDestino);
 		
 		txtOrigen = new JTextField();
-		txtOrigen.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		FormatoDiseno.formatoTxt(txtOrigen);
 		txtOrigen.setEditable(false);
 		txtOrigen.setBounds(140, 169, 250, 25);
 		add(txtOrigen);
-		txtOrigen.setColumns(10);
 		
 		txtDestino = new JTextField();
-		txtDestino.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		FormatoDiseno.formatoTxt(txtDestino);
 		txtDestino.setEditable(false);
-		txtDestino.setColumns(10);
 		txtDestino.setBounds(140, 204, 250, 25);
 		add(txtDestino);
 		
@@ -94,10 +92,10 @@ public class PanSelFecha extends JPanel {
 		// Billete ida/vuelta
 		
 		panFechaVuelta = new JPanel();
-		panFechaVuelta.setBackground(new Color(255, 192, 203));
+		panFechaVuelta.setBackground(new Color(255, 255, 255));
 		panFechaVuelta.setBounds(542, 289, 300, 260);
-		add(panFechaVuelta);
 		panFechaVuelta.setLayout(null);
+		add(panFechaVuelta);
 		
 		lblSeleccioneVuelta = new JLabel("Seleccione vuelta");
 		lblSeleccioneVuelta.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -109,7 +107,7 @@ public class PanSelFecha extends JPanel {
 		panFechaVuelta.add(fechaVuelta);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(10, 614, 100, 25);
+		FormatoDiseno.formatoBtnAtras(btnAtras);
 		add(btnAtras);
 	
 	

@@ -6,7 +6,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import java.awt.Color;
-import java.awt.Font;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
@@ -19,10 +18,10 @@ public class PanLogin extends JPanel {
 
 	JPanel login = new JPanel();
 	
-	public JLabel lblTitulo,lblUsuario,lblPassword;
+	public JLabel lblIcono,lblTitulo,lblUsuario,lblPassword;
 	public JTextField userField;
 	public JPasswordField password;
-	public JButton btnLogin,btnRegistrar,btnCancelar;
+	public JButton btnLogin,btnRegistro,btnCancelar,btnAtras;
 
 	/**
 	 * Create the panel.
@@ -30,20 +29,24 @@ public class PanLogin extends JPanel {
 	public PanLogin() {
 		
 		// configuracion del panel
-		setBackground(new Color(255, 192, 203));
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
+		// label para el icono corporativo
+		lblIcono = new JLabel("");
+		FormatoDiseno.formatoIcono(lblIcono);
+		add(lblIcono);
+		
 		// label titulo panel
-		lblTitulo = new JLabel("INICIO DE SESI\u00D3N");
-		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(30, 35, 1004, 81);
+		lblTitulo = new JLabel("Inicio de sesi\u00F3n");
+		FormatoDiseno.formatoTitulo(lblTitulo);
 		add(lblTitulo);
 		
-		btnRegistrar = new JButton("Registro");
-		btnRegistrar.setBounds(880, 35, 125, 25);
-		add(btnRegistrar);
+		
+		btnRegistro = new JButton("Registro");
+		FormatoDiseno.formatoBtnLogin(btnRegistro);
+		add(btnRegistro);
 		
 		// label usuario
 		lblUsuario = new JLabel("Usuario (DNI)");
@@ -54,8 +57,10 @@ public class PanLogin extends JPanel {
 		// campo usuario
 		userField = new JTextField();
 		userField.setBounds(397, 288, 215, 30);
-		add(userField);
 		userField.setColumns(10);
+		FormatoDiseno.formatoTxt(userField);
+		add(userField);
+		
 		
 		// label password
 		lblPassword = new JLabel("Password");
@@ -66,17 +71,22 @@ public class PanLogin extends JPanel {
 		// campo password
 		password = new JPasswordField();
 		password.setBounds(397, 358, 215, 30);
+		FormatoDiseno.formatoTxt(password);
 		add(password);
 		
 		// boton de iniciar sesion
 		btnLogin = new JButton("Iniciar Sesi\u00F3n");
 		btnLogin.setBounds(453, 421, 115, 40);
+		FormatoDiseno.formatoBtn(btnLogin);
 		add(btnLogin);
+		
+		btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.setBounds(10, 614, 100, 25);
+		add(btnAtras);
 		
 		// boton cancelar
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 650, 100, 25);
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
-		
 	}
 }

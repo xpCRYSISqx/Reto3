@@ -26,7 +26,7 @@ public class PanFinPago extends JPanel {
 	public JTextField txtTotal,txtPagado,txtDevolver;
 	
 	public PanFinPago() {
-		setBackground(new Color(255, 192, 203));
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
