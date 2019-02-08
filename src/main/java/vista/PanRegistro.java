@@ -26,7 +26,7 @@ public class PanRegistro extends JPanel {
 		
 	public JLabel lblTitulo,lblIcono,lblNombre,lblApellidos,lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac, lblErrorDNI, lblErrorContrasenas, lblErrorSexo, lblErrorDNINoIntroducido;
 	public JTextField txtNombre, txtApellidos, txtDni;
-	public JButton btnLogin, btnRegistro, btnCancelar;
+	public JButton btnLogin, btnRegistro, btnCancelar, btnAtras;
 	public JRadioButton rbtnMasc, rbtnFem;
 	public JPasswordField passwordField, passwordField2;
 	public JDateChooser dateChooser;
@@ -61,6 +61,19 @@ public class PanRegistro extends JPanel {
 		FormatoDiseno.formatoBtn(btnRegistro);
 		btnRegistro.setBounds(471, 537, 115, 40);
 		add(btnRegistro);
+		
+		btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.setBounds(10, 614, 100, 25);
+		add(btnAtras);
+		
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(10, 650, 100, 25);
+		add(btnCancelar);
+		
+		lblPassword = new JLabel("Password");
+		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword.setBounds(384, 343, 46, 14);
+		add(lblPassword);
 		
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(322, 259, 77, 14);

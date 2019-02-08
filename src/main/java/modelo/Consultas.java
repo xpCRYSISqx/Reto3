@@ -188,7 +188,7 @@ public class Consultas {
 		
 	}
 	
-	private ArrayList<Parada> getParadasByMunicipio(int codMunicipio) {
+	public ArrayList<Parada> getParadasByMunicipio(int codMunicipio) {
 		
 		Parada parada = null;
 		ArrayList<Parada> paradas = new ArrayList<Parada>();
@@ -201,8 +201,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("Select Cod_parada from `poblacion_parada` where Cod_Postal = ?");
-			//stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
+			stmt = connection.prepareStatement("Select po.Cod_Parada, Nombre, Calle, Latitud, Longitud from `poblacion_parada` po, `parada` pa where po.Cod_Parada=pa.Cod_Parada and Cod_Postal = ?");
 			stmt.setInt(1, codMunicipio);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -212,7 +211,10 @@ public class Consultas {
 			while (result.next()) {
 				parada = new Parada();
 				parada.setCodParada(result.getInt("Cod_Parada"));
-				parada = getInfoParada(parada);
+				parada.setNombre(result.getString("Nombre"));
+				parada.setCalle(result.getString("Calle"));
+				parada.setLatitud(result.getFloat("Latitud"));
+				parada.setLongitud(result.getFloat("Longitud"));
 				paradas.add(parada);
 			}
 			
@@ -241,9 +243,8 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT Cod_Parada, SQRT(POWER(Latitud-(SELECT Latitud FROM `parada` WHERE Cod_Parada = 1),2)+POWER(Longitud-(SELECT Longitud FROM `parada` WHERE Cod_Parada = 1),2))\"Distancia\""
-					+ " FROM `parada` WHERE Cod_Parada IN (SELECT Cod_Parada FROM `linea-parada` WHERE Cod_Linea = ?) ORDER BY Distancia ASC");
-			//stmt = this.connection.prepareStatement("SELECT Cod_Parada FROM `linea-parada` where Cod_Linea = ?");
+			stmt = connection.prepareStatement("SELECT l.Cod_Parada, Nombre, Calle, Latitud, Longitud, SQRT(POWER(Latitud-(SELECT Latitud FROM `parada` WHERE Cod_Parada = 1),2)+POWER(Longitud-(SELECT Longitud FROM `parada` WHERE Cod_Parada = 1),2)) \"Distancia\" FROM `linea-parada` l, `parada` p WHERE l.Cod_Parada=p.Cod_Parada and Cod_Linea = ? ORDER BY Distancia ASC");
+			//stmt = this.connection.prepareStatement("SELECT * `linea-parada` l, `parada` p WHERE l.Cod_Parada=p.Cod_Parada and Cod_Linea = ?");
 			stmt.setString(1, codLinea);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -253,7 +254,10 @@ public class Consultas {
 			while (result.next()) {
 				parada = new Parada();
 				parada.setCodParada(result.getInt("Cod_Parada"));
-				parada = getInfoParada(parada);
+				parada.setNombre(result.getString("Nombre"));
+				parada.setCalle(result.getString("Calle"));
+				parada.setLatitud(result.getFloat("Latitud"));
+				parada.setLongitud(result.getFloat("Longitud"));
 				paradas.add(parada);
 			}
 			
@@ -269,8 +273,9 @@ public class Consultas {
 		
 	}
 	
-	private Parada getInfoParada(Parada parada) {
+	public Cliente getClienteByDNI(String dni) {
 		
+		Cliente cliente = null;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 
@@ -280,18 +285,21 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT Nombre, Calle, Latitud, Longitud FROM parada where Cod_Parada = ?");
-			stmt.setInt(1, parada.getCodParada());
+			stmt = connection.prepareStatement("SELECT * FROM cliente where DNI = ?");
+			stmt.setString(1, dni);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
-			// rellena los objetos Parada con los resultados y los añade a un arrayList
+			// crea objetos con los resultados y los añade a un arrayList
 			while (result.next()) {
-				parada.setNombre(result.getString("Nombre"));
-				parada.setCalle(result.getString("Calle"));
-				parada.setLatitud(result.getFloat("Latitud"));
-				parada.setLongitud(result.getFloat("Longitud"));
+				cliente = new Cliente();
+				cliente.setDni(result.getString("DNI"));
+				cliente.setNombre(result.getString("Nombre"));
+				cliente.setApellidos(result.getString("Apellidos"));
+				cliente.setFechaNacimiento(result.getDate("Fecha_nac"));
+				cliente.setSexo(result.getString("Sexo").charAt(0));
+				cliente.setContraseña(result.getString("Contraseña"));
 			}
 			
 		} catch (SQLException e) {
@@ -302,7 +310,7 @@ public class Consultas {
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}                 
 		
-		return parada;
+		return cliente;
 		
 	}
 	
@@ -373,47 +381,6 @@ public class Consultas {
 		}
 
 		return disponible;
-	}
-	
-	public Cliente getClienteByDNI(String dni) {
-		
-		Cliente cliente = null;
-		PreparedStatement stmt = null;
-		ResultSet result = null;
-
-		try {
-			
-			// abrimos una conexion
-			connection = conexion.conectar();
-			
-			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT * FROM cliente where DNI = ?");
-			stmt.setString(1, dni);
-			
-			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
-			result = stmt.executeQuery();
-			
-			// crea objetos con los resultados y los añade a un arrayList
-			while (result.next()) {
-				cliente = new Cliente();
-				cliente.setDni(result.getString("DNI"));
-				cliente.setNombre(result.getString("Nombre"));
-				cliente.setApellidos(result.getString("Apellidos"));
-				cliente.setFechaNacimiento(result.getDate("Fecha_nac"));
-				cliente.setSexo(result.getString("Sexo").charAt(0));
-				cliente.setContraseña(result.getString("Contraseña"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}                 
-		
-		return cliente;
-		
 	}
 	
 	
