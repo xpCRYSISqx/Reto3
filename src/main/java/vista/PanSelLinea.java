@@ -3,20 +3,10 @@ package vista;
 import javax.swing.JPanel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import java.awt.Color;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
-import java.awt.Rectangle;
-import java.awt.Point;
-import javax.swing.ImageIcon;
 
 public class PanSelLinea extends JPanel {
 

@@ -55,7 +55,7 @@ public class PanDetalles extends JPanel {
 		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
-		btnContinuar = new JButton("Continuar");
+		btnContinuar = new JButton("Pagar");
 		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
 		

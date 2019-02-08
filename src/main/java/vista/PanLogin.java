@@ -56,9 +56,9 @@ public class PanLogin extends JPanel {
 		
 		// campo usuario
 		userField = new JTextField();
+		FormatoDiseno.formatoTxt(userField);
 		userField.setBounds(397, 288, 215, 30);
 		userField.setColumns(10);
-		FormatoDiseno.formatoTxt(userField);
 		add(userField);
 		
 		
@@ -70,18 +70,19 @@ public class PanLogin extends JPanel {
 		
 		// campo password
 		password = new JPasswordField();
-		password.setBounds(397, 358, 215, 30);
 		FormatoDiseno.formatoTxt(password);
+		password.setBounds(397, 358, 215, 30);
 		add(password);
 		
 		// boton de iniciar sesion
 		btnLogin = new JButton("Iniciar Sesi\u00F3n");
-		btnLogin.setBounds(453, 421, 115, 40);
 		FormatoDiseno.formatoBtn(btnLogin);
+		btnLogin.setBounds(453, 421, 115, 40);
+		
 		add(btnLogin);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(10, 614, 100, 25);
+		FormatoDiseno.formatoBtnAtras(btnAtras);
 		add(btnAtras);
 		
 		// boton cancelar

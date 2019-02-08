@@ -1,6 +1,7 @@
 package vista;
 
 import javax.swing.JPanel;
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,9 +31,9 @@ public class PanSelBillete extends JPanel {
 	
 	public DefaultListModel<String> modeloOrigen = new DefaultListModel<String>();
 	public DefaultListModel<String> modeloDestino = new DefaultListModel<String>();
-	
 	public JLabel lblIcono,lblOrigen,lblDestino;
 	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
+	public final ButtonGroup rbtnGroupBillete = new ButtonGroup();
 	public JRadioButton rbtnIda,rbtnVuelta;
 	public JList<String> listaOrigen,listaDestino;
 	
@@ -88,17 +89,15 @@ public class PanSelBillete extends JPanel {
 		add(btnAtras);
 		
 		rbtnIda = new JRadioButton("Simple");
-		rbtnIda.setBackground(new Color(255, 255, 255));
-		rbtnIda.setHorizontalAlignment(SwingConstants.LEFT);
-		rbtnIda.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		FormatoDiseno.formatoRbtn(rbtnIda);
 		rbtnIda.setBounds(760, 251, 180, 50);
+		rbtnGroupBillete.add(rbtnIda);
 		add(rbtnIda);
 		
 		rbtnVuelta = new JRadioButton("Ida / Vuelta");
-		rbtnVuelta.setBackground(new Color(255, 255, 255));
-		rbtnVuelta.setHorizontalAlignment(SwingConstants.LEFT);
-		rbtnVuelta.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		FormatoDiseno.formatoRbtn(rbtnVuelta);
 		rbtnVuelta.setBounds(760, 304, 180, 50);
+		rbtnGroupBillete.add(rbtnIda);
 		add(rbtnVuelta);
 
 	}

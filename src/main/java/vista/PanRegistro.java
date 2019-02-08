@@ -27,13 +27,12 @@ public class PanRegistro extends JPanel {
 	public JLabel lblTitulo,lblIcono,lblNombre,lblApellidos,lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac, lblErrorDNI, lblErrorContrasenas, lblErrorSexo, lblErrorDNINoIntroducido;
 	public JTextField txtNombre, txtApellidos, txtDni;
 	public JButton btnLogin, btnRegistro, btnCancelar, btnAtras;
+	public final ButtonGroup rbtnGroupSexo = new ButtonGroup();
 	public JRadioButton rbtnMasc, rbtnFem;
 	public JPasswordField passwordField, passwordField2;
 	public JDateChooser dateChooser;
 	public JProgressBar progressBar;
-	
-	public final ButtonGroup buttonGroup = new ButtonGroup();
-	
+
 	/**
 	 * Create the panel.
 	 */
@@ -54,11 +53,7 @@ public class PanRegistro extends JPanel {
 		add(lblTitulo);
 		
 		btnLogin = new JButton("Inicio Sesi\u00F3n");
-<<<<<<< HEAD
-		btnLogin.setBounds(880, 35, 125, 25); 
-=======
 		FormatoDiseno.formatoBtnLogin(btnLogin);
->>>>>>> 3ad83dc2c05a89bac86314624166b71eeb1f4be5
 		add(btnLogin);
 		
 		btnRegistro = new JButton("Registrar");
@@ -67,18 +62,13 @@ public class PanRegistro extends JPanel {
 		add(btnRegistro);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(10, 614, 100, 25);
+		FormatoDiseno.formatoBtnAtras(btnAtras);
 		add(btnAtras);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(10, 650, 100, 25);
-		add(btnCancelar);
-		
-		lblPassword = new JLabel("Password");
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setBounds(384, 343, 46, 14);
-		add(lblPassword);
-		
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
+		add(btnCancelar); 
+
 		lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(322, 259, 77, 14);
 		add(lblNombre);
@@ -115,19 +105,18 @@ public class PanRegistro extends JPanel {
 		
 		rbtnMasc = new JRadioButton("Masculino");
 		rbtnMasc.setBackground(Color.WHITE);
-		buttonGroup.add(rbtnMasc);
+		rbtnGroupSexo.add(rbtnMasc);
 		rbtnMasc.setBounds(462, 352, 112, 23);
 		add(rbtnMasc);
 		
 		rbtnFem = new JRadioButton("Femenino");
 		rbtnFem.setBackground(Color.WHITE);
-		buttonGroup.add(rbtnFem);
+		rbtnGroupSexo.add(rbtnFem);
 		rbtnFem.setBounds(462, 378, 112, 23);
 		add(rbtnFem);
 		
 		lblPassword = new JLabel("Password");
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setBounds(385, 445, 46, 14);
+		lblPassword.setBounds(322, 445, 109, 14);
 		add(lblPassword);
 		
 		passwordField = new JPasswordField();
@@ -140,7 +129,8 @@ public class PanRegistro extends JPanel {
 //		add(progressBar);
 		
 		lblPassword2 = new JLabel("Confirmar password");
-		lblPassword2.setBounds(334, 476, 96, 14);
+		lblPassword2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword2.setBounds(260, 476, 170, 14);
 		add(lblPassword2);
 		
 		passwordField2 = new JPasswordField();
@@ -149,7 +139,7 @@ public class PanRegistro extends JPanel {
 		add(passwordField2);
 		
 		lblfechaNac = new JLabel("Fecha nacimiento");
-		lblfechaNac.setBounds(322, 321, 123, 20);
+		lblfechaNac.setBounds(322, 318, 123, 20);
 		add(lblfechaNac);
 		
 		dateChooser = new JDateChooser();
@@ -175,9 +165,5 @@ public class PanRegistro extends JPanel {
 		lblErrorDNINoIntroducido.setBounds(635, 411, 336, 17);
 		lblErrorDNINoIntroducido.setVisible(false);
 		add(lblErrorDNINoIntroducido);
-
-		btnCancelar = new JButton("Cancelar");
-		FormatoDiseno.formatoBtnCancelar(btnCancelar);
-		add(btnCancelar); 
 	}
 }

@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
@@ -34,6 +35,15 @@ public class FormatoDiseno {
 		campoTxt.setForeground(new Color(0, 0, 0));
 		campoTxt.setBackground(new Color(204, 150, 150));
 		campoTxt.setBorder(null);
+	}
+	
+	public static void formatoRbtn(JRadioButton rbtn) {
+		rbtn.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		rbtn.setForeground(new Color(0, 0, 0));
+		rbtn.setBackground(new Color(255, 255, 255));
+		rbtn.setBorderPainted(false);
+		rbtn.setBorder(null);
+		rbtn.setSelectedIcon(null);
 	}
 	
 	public static void formatoBtn(JButton btn) {
@@ -67,6 +77,17 @@ public class FormatoDiseno {
 	public static void formatoBtnCancelar(JButton btn) {
 		FormatoDiseno.formatoBtn(btn);
 		btn.setBounds(45, 642, 100, 25);
+	}
+	
+	public static void formatoBtnCancelarPago(JButton btn) {
+		FormatoDiseno.formatoBtn(btn);
+//		btn.setBounds(45, 642, 100, 25);
+		btn.setBounds(64, 469, 120, 30);
+	}
+	
+	public static void formatoBtnCash(JButton btn) {
+		FormatoDiseno.formatoBtn(btn);
+		btn.setFont(new Font("Dialog", Font.PLAIN, 18));
 	}
 	
 	public static void formatoList(JList<String> list) {

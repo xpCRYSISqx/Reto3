@@ -93,6 +93,7 @@ public class Controlador {
 		botones.BotonCancelar(vista.sel_fecha.btnCancelar, vista.sel_fecha, vista.bienvenida);
 		botones.BotonCancelar(vista.detalles_compra.btnCancelar, vista.detalles_compra, vista.bienvenida);
 		botones.BotonCancelar(vista.registro.btnCancelar, vista.registro, vista.bienvenida);
+		botones.BotonCancelar(vista.login.btnCancelar, vista.login, vista.bienvenida);
 		
 		//Boton para cancelar el registro y ir a la ventana en la que se estaba
 //		botones.CancelarRegistro(vista.registro.btnCancelar, vista.registro);
