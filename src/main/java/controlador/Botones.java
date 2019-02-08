@@ -52,6 +52,14 @@ public class Botones {
 			}
 		});
 	}
+	public void BotonCancelar(JButton boton, JPanel panSalida, JPanel panDeseado) {
+		boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panDeseado.setVisible(true);
+				panSalida.setVisible(false);
+			}
+		});
+	}
 	public void BotonIrRegistro(JButton boton, JPanel panSalida, JPanel panRegistro) { //Este boton se utiliza para ir a la ventana de registro desde las otras ventanas, menos de la de log in
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -61,15 +69,17 @@ public class Botones {
 			}
 		});
 	}
-	public void CancelarRegistro(JButton boton, JPanel panRegistro) { //Este boton se utiliza para volver a la ventana en la que se estaba al darle al boton de cancelar en la ventana de registro
+	public void BotonAtrasRegistro(JButton boton, JPanel panRegistro) { //Este boton se utiliza para volver a la ventana en la que se estaba al darle al boton de cancelar en la ventana de registro
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JPanel panDeseado = getPanDeseado(); //Esta bariable saca el panel desde el cual se habia venido al panel de registro para poder volver a el, menos si se estaba en el de inicio de sesion
+				JPanel panDeseado = getPanDeseado(); //Esta variable saca el panel desde el cual se habia venido al panel de registro para poder volver a el, menos si se estaba en el de inicio de sesion
 				panDeseado.setVisible(true);
 				panRegistro.setVisible(false);
 			}
 		});
 	}
+	
+
 	public void IrInicioSesionARegistro(JButton boton, JPanel panInicio, JPanel panRegistro) { //Este boton se utiliza para ir de la ventana de inicio de sesion a la de registro, no guarda la ventana en la que se estaba
 		boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -175,7 +185,6 @@ public class Botones {
 					vista.sel_billete.listaOrigen.setModel(vista.sel_billete.modeloOrigen);
 					vista.sel_billete.modeloDestino.addElement(paradas.get(i).getNombre());
 					vista.sel_billete.listaDestino.setModel(vista.sel_billete.modeloDestino);
-
 				}
 			}
 		});

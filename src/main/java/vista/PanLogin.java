@@ -22,7 +22,7 @@ public class PanLogin extends JPanel {
 	public JLabel lblTitulo,lblUsuario,lblPassword;
 	public JTextField userField;
 	public JPasswordField password;
-	public JButton btnLogin,btnRegistrar,btnCancelar;
+	public JButton btnLogin,btnRegistrar,btnCancelar,btnAtras;
 
 	/**
 	 * Create the panel.
@@ -72,6 +72,10 @@ public class PanLogin extends JPanel {
 		btnLogin = new JButton("Iniciar Sesi\u00F3n");
 		btnLogin.setBounds(453, 421, 115, 40);
 		add(btnLogin);
+		
+		btnAtras = new JButton("Atr\u00E1s");
+		btnAtras.setBounds(10, 614, 100, 25);
+		add(btnAtras);
 		
 		// boton cancelar
 		btnCancelar = new JButton("Cancelar");
