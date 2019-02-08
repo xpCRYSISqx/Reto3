@@ -27,7 +27,6 @@ public class Controlador {
 	}
 			
 	public void inicializarInterfaz() {
-		
 		vista.setVisible(true);
 		vista.bienvenida.setVisible(true);
 		vista.sel_linea.setVisible(false);
