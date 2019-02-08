@@ -48,7 +48,7 @@ public class PanRegistro extends JPanel {
 		add(lblTitulo);
 		
 		btnLogin = new JButton("Inicio Sesi\u00F3n");
-		btnLogin.setBounds(880, 35, 125, 25);
+		btnLogin.setBounds(880, 35, 125, 25); 
 		add(btnLogin);
 		
 		btnRegistro = new JButton("Registrar");

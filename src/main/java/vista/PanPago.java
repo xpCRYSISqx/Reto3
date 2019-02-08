@@ -42,7 +42,7 @@ public class PanPago extends JPanel {
 		btnAtras = new JButton("Atr\u00E1s");
 		btnAtras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			}
+			} 
 		});
 		btnAtras.setBounds(10, 614, 100, 25);
 		add(btnAtras);
