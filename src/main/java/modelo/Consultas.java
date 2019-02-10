@@ -461,7 +461,6 @@ public class Consultas {
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			stmt.executeUpdate();
-			System.out.println("Gracias por registrarse!");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -498,7 +497,6 @@ public class Consultas {
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			stmt.executeUpdate();
-			System.out.println("Gracias por su compra!");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
