@@ -11,10 +11,6 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
-import java.awt.SystemColor;
-import javax.swing.border.BevelBorder;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
 
 public class PanSelBillete extends JPanel {
 
@@ -63,21 +59,21 @@ public class PanSelBillete extends JPanel {
 		add(btnCancelar);
 		
 		lblOrigen = new JLabel("Selecccione origen");
+		lblOrigen.setFont(new Font("Agency FB", Font.BOLD, 28));
 		lblOrigen.setHorizontalAlignment(SwingConstants.LEFT);
-		lblOrigen.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblOrigen.setBounds(53, 200, 327, 40);
 		add(lblOrigen);
-		
-		lblDestino = new JLabel("Selecccione  destino");
-		lblDestino.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDestino.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDestino.setBounds(400, 200, 327, 40);
-		add(lblDestino);
 		
 		listaOrigen = new JList<String>();
 		FormatoDiseno.formatoList(listaOrigen);
 		listaOrigen.setBounds(53, 251, 327, 250);
 		add(listaOrigen);
+		
+		lblDestino = new JLabel("Selecccione  destino");
+		lblDestino.setFont(new Font("Agency FB", Font.BOLD, 28));
+		lblDestino.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDestino.setBounds(400, 200, 327, 40);
+		add(lblDestino);
 		
 		listaDestino = new JList<String>();
 		FormatoDiseno.formatoList(listaDestino);

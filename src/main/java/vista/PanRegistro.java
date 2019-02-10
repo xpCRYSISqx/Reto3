@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import java.awt.Color;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -13,10 +12,6 @@ import javax.swing.JProgressBar;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class PanRegistro extends JPanel {
 	
@@ -58,7 +53,7 @@ public class PanRegistro extends JPanel {
 		
 		btnRegistro = new JButton("Registrar");
 		FormatoDiseno.formatoBtn(btnRegistro);
-		btnRegistro.setBounds(471, 537, 115, 40);
+		btnRegistro.setBounds(452, 537, 120, 40);
 		add(btnRegistro);
 		
 		btnAtras = new JButton("Atr\u00E1s");

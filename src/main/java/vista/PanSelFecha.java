@@ -4,10 +4,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 
 import java.awt.Color;
-import java.awt.Font;
-import java.text.Format;
-
-import javax.swing.SwingConstants;
 import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -57,12 +53,12 @@ public class PanSelFecha extends JPanel {
 		add(btnCancelar);
 		
 		lblOrigen = new JLabel("Origen");
-		lblOrigen.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		FormatoDiseno.formatoLbl(lblOrigen);
 		lblOrigen.setBounds(30, 169, 100, 25);
 		add(lblOrigen);
 		
 		lblDestino = new JLabel("Destino");
-		lblDestino.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+		FormatoDiseno.formatoLbl(lblDestino);
 		lblDestino.setBounds(30, 205, 100, 25);
 		add(lblDestino);
 		
@@ -79,7 +75,7 @@ public class PanSelFecha extends JPanel {
 		add(txtDestino);
 		
 		lblSeleccioneFecha = new JLabel("Seleccione fecha");
-		lblSeleccioneFecha.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		FormatoDiseno.formatoLbl(lblSeleccioneFecha);
 		lblSeleccioneFecha.setBounds(282, 290, 174, 14);
 		add(lblSeleccioneFecha);
 		
@@ -98,7 +94,7 @@ public class PanSelFecha extends JPanel {
 		add(panFechaVuelta);
 		
 		lblSeleccioneVuelta = new JLabel("Seleccione vuelta");
-		lblSeleccioneVuelta.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		FormatoDiseno.formatoLbl(lblSeleccioneVuelta);
 		lblSeleccioneVuelta.setBounds(10, 0, 200, 14);
 		panFechaVuelta.add(lblSeleccioneVuelta);
 		

@@ -20,7 +20,9 @@ public class PanBienvenida extends JPanel {
 	 */
 	
 	JPanel sel_linea = new JPanel();
+	
 	public JButton btnContinuar;
+	public JLabel lblIcono;
 	
 	public PanBienvenida() throws IOException {
 		setBackground(new Color(255, 255, 255));
@@ -32,17 +34,17 @@ public class PanBienvenida extends JPanel {
 		btnContinuar.setContentAreaFilled(false);
 		btnContinuar.setBorder(null);
 		btnContinuar.setForeground(new Color(255, 51, 51));
-		btnContinuar.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnContinuar.setFont(new Font("Agency FB", Font.PLAIN, 24));
 		btnContinuar.setBackground(Color.WHITE);
 		btnContinuar.setBounds(0, 0, 1024, 720);
 		btnContinuar.setOpaque(false);
 		btnContinuar.setBorderPainted(false);
 		add(btnContinuar);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/logo-termibus.png")));
-		lblNewLabel.setBounds(368, 132, 301, 183);
-		add(lblNewLabel);
+		lblIcono = new JLabel("");
+		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/logo-termibus.png")));
+		lblIcono.setBounds(368, 132, 301, 183);
+		add(lblIcono);
 		
 		//¿¿¿Añadir temporizador en caso de inactividad???
 	

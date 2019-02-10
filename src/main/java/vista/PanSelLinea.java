@@ -22,7 +22,7 @@ public class PanSelLinea extends JPanel {
 	JPanel sel_linea = new JPanel();
 	
 	public JButton btnLogin,btnContinuar,btnRegistro, btnCancelar;
-	public JLabel lblIcono;
+	public JLabel lblIcono,lblLineas,lblParadas;
 	public DefaultListModel<String> modeloLineas = new DefaultListModel<String>();
 	public DefaultListModel<String> modeloParadas = new DefaultListModel<String>();
 	public JList<String> listLineas,listParadas;
@@ -69,14 +69,14 @@ public class PanSelLinea extends JPanel {
 		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
-		JLabel lblLnea = new JLabel("L\u00EDneas");
-		lblLnea.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLnea.setBounds(53, 220, 200, 20);
-		add(lblLnea);
+		lblLineas = new JLabel("L\u00EDneas");
+		lblLineas.setFont(new Font("Agency FB", Font.BOLD, 28));
+		lblLineas.setBounds(53, 220, 200, 25);
+		add(lblLineas);
 		
-		JLabel lblParadas = new JLabel("Lista de paradas");
-		lblParadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblParadas.setBounds(263, 220, 250, 20);
+		lblParadas = new JLabel("Lista de paradas");
+		lblParadas.setFont(new Font("Agency FB", Font.BOLD, 30));
+		lblParadas.setBounds(263, 220, 250, 25);
 		add(lblParadas);
 	
 		//¿¿¿Añadir temporizador en caso de inactividad???

@@ -9,6 +9,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import java.awt.SystemColor;
+import java.util.Date;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
 
@@ -27,7 +29,7 @@ public class PanDetalles extends JPanel {
 	JPanel detalles_compra = new JPanel();
 	
 	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
-	public JLabel lblIcono;
+	public JLabel lblIcono, lblTitulo;
 	
 	public PanDetalles() {
 		setBackground(new Color(255, 255, 255));
@@ -35,9 +37,13 @@ public class PanDetalles extends JPanel {
 		setBorder(UIManager.getBorder("Button.border"));
 		setLayout(null);
 		
-		lblIcono = new JLabel("DETALLES DE BILLETE");
+		lblIcono = new JLabel("");
 		FormatoDiseno.formatoIcono(lblIcono);
 		add(lblIcono);
+		
+		lblTitulo = new JLabel("DETALLES DE BILLETE");
+		FormatoDiseno.formatoIcono(lblTitulo);
+		add(lblTitulo);
 		
 		btnLogin = new JButton("Inicio Sesi\u00F3n");
 		FormatoDiseno.formatoBtnLogin(btnLogin);
@@ -60,11 +66,9 @@ public class PanDetalles extends JPanel {
 		add(btnContinuar);
 		
 		tablaDatos = new JTable();
-		tablaDatos.setEnabled(false);
-		tablaDatos.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		tablaDatos.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null},
+				{"Autob\u00FAs", "L\u00EDnea", "Origen", "Destino", "Fecha ida", "Fecha vuelta", "C\u00F3digo billete"},
 				{null, null, null, null, null, null, null},
 			},
 			new String[] {
@@ -77,22 +81,25 @@ public class PanDetalles extends JPanel {
 			private static final long serialVersionUID = 1L;
 			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, Object.class, String.class, String.class, Object.class
+				Integer.class, String.class, String.class, String.class, String.class, String.class, String.class
 			};
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
+		tablaDatos.setEnabled(true);
+		tablaDatos.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+		tablaDatos.setBackground(new Color(204, 150, 150));
+		tablaDatos.setBounds(30, 300, 964, 100);
+		tablaDatos.setRowHeight(50);
 		tablaDatos.getColumnModel().getColumn(0).setPreferredWidth(60);
 		tablaDatos.getColumnModel().getColumn(1).setPreferredWidth(35);
 		tablaDatos.getColumnModel().getColumn(2).setPreferredWidth(140);
 		tablaDatos.getColumnModel().getColumn(3).setPreferredWidth(140);
+		tablaDatos.getColumnModel().getColumn(4).setPreferredWidth(120);
+		tablaDatos.getColumnModel().getColumn(5).setPreferredWidth(120);
 		tablaDatos.getColumnModel().getColumn(6).setPreferredWidth(90);
-		tablaDatos.setBackground(new Color(204, 150, 150));
-		tablaDatos.setBounds(30, 230, 964, 140);
-		tablaDatos.setRowHeight(30);
 		add(tablaDatos);
-
 	}
 }

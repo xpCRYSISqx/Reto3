@@ -21,8 +21,8 @@ public class PanFinPago extends JPanel {
 	
 	JPanel fin_pago = new JPanel();
 	
-	public JLabel lblTitulo,lblTotal,lblPagado,lblADevolver;
-	public JButton btnContinuar,btnSeparador;
+	public JLabel lblIcono,lblTitulo,lblTotal,lblPagado,lblADevolver,lblImprimir;
+	public JButton btnContinuar,btnImprimir,btnSeparador;
 	public JTextField txtTotal,txtPagado,txtDevolver;
 	
 	public PanFinPago() {
@@ -30,49 +30,63 @@ public class PanFinPago extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
+		lblIcono = new JLabel("");
+		FormatoDiseno.formatoIcono(lblIcono);
+		add(lblIcono);
+		
 		lblTitulo = new JLabel("FINALIZAR PAGO");
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setFont(new Font("Mistral", Font.PLAIN, 44));
-		lblTitulo.setBounds(30, 35, 1004, 81);
+		FormatoDiseno.formatoTitulo(lblTitulo);
 		add(lblTitulo);
 		
 		btnContinuar = new JButton("Continuar");
-		btnContinuar.setBounds(683, 566, 107, 23);
+		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
 		
 		lblTotal = new JLabel("IMPORTE TOTAL");
-		lblTotal.setBounds(277, 179, 101, 23);
+		FormatoDiseno.formatoLbl(lblTotal);
+		lblTotal.setBounds(387, 300, 120, 25);
 		add(lblTotal);
 		
 		txtTotal = new JTextField();
-		txtTotal.setBounds(388, 179, 132, 22);
+		FormatoDiseno.formatoTxt(txtTotal);
+		txtTotal.setBounds(506, 300, 130, 25);
 		add(txtTotal);
-		txtTotal.setColumns(10);
 		
 		lblPagado = new JLabel("PAGADO");
-		lblPagado.setBounds(277, 213, 101, 23);
+		FormatoDiseno.formatoLbl(lblPagado);
+		lblPagado.setBounds(387, 350, 120, 25);
 		add(lblPagado);
 		
-		lblADevolver = new JLabel("A DEVOLVER");
-		lblADevolver.setBounds(277, 267, 101, 23);
-		add(lblADevolver);
-		
 		txtPagado = new JTextField();
-		txtPagado.setColumns(10);
-		txtPagado.setBounds(388, 212, 132, 22);
+		FormatoDiseno.formatoTxt(txtPagado);
+		txtPagado.setBounds(506, 350, 130, 25);
 		add(txtPagado);
 		
+		lblADevolver = new JLabel("A DEVOLVER");
+		FormatoDiseno.formatoLbl(lblADevolver);
+		lblADevolver.setBounds(387, 400, 120, 25);
+		add(lblADevolver);
+		
 		txtDevolver = new JTextField();
-		txtDevolver.setColumns(10);
-		txtDevolver.setBounds(388, 267, 132, 22);
+		FormatoDiseno.formatoTxt(txtDevolver);
+		txtDevolver.setBounds(506, 400,130, 25);
 		add(txtDevolver);
 		
 		btnSeparador = new JButton("");
-		btnSeparador.setBackground(new Color(105, 105, 105));
+		FormatoDiseno.formatoBtn(btnSeparador);
 		btnSeparador.setEnabled(false);
-		btnSeparador.setBounds(277, 247, 243, 9);
+		btnSeparador.setBounds(406, 450, 230, 9);
 		add(btnSeparador);
+		
+		lblImprimir = new JLabel("Pulse 'Imprimir' para adquirir su billete");
+		FormatoDiseno.formatoLbl(lblImprimir);
+		lblImprimir.setBounds(402, 500, 220, 14);
+		add(lblImprimir);
 
+		btnImprimir = new JButton("Imprimir");
+		FormatoDiseno.formatoBtn(btnImprimir);
+		btnImprimir.setBounds(452, 525, 120, 40);
+		add(btnImprimir);
+		
 	}
-
 }

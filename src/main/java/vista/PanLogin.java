@@ -77,7 +77,7 @@ public class PanLogin extends JPanel {
 		// boton de iniciar sesion
 		btnLogin = new JButton("Iniciar Sesi\u00F3n");
 		FormatoDiseno.formatoBtn(btnLogin);
-		btnLogin.setBounds(453, 421, 115, 40);
+		btnLogin.setBounds(452, 421, 120, 40);
 		
 		add(btnLogin);
 		
