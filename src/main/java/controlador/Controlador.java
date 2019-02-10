@@ -16,10 +16,13 @@ public class Controlador {
 	private ControladorLogin controladorLogin;
 	private ControladorRegistro controladorRegistro;
 	
+	public static Boolean logeado;
+	
 	public Controlador(Modelo modelo, MainFrame vista) {
 		
 		this.modelo = modelo;
 		this.vista = vista;
+		logeado = false;
 		
 	}
 			

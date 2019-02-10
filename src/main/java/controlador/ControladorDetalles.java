@@ -63,7 +63,7 @@ public class ControladorDetalles implements ActionListener {
 				
 			case "Pagar":
 				
-				boolean logeado = ControladorLogin.logeado;
+				boolean logeado = Controlador.logeado;
 				ControladorLogin.panelOrigen = vista.detalles_compra;
 				ControladorLogin.pagar = true;
 				

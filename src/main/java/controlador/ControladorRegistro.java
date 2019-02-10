@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import modelo.ComprobarRegistro;
-import modelo.Encriptacion;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -97,6 +96,11 @@ public class ControladorRegistro implements ActionListener {
 					
 					// ningun error, todo correcto!
 					case 0:
+					
+						// ponemos la variable estatica logeado a true
+						Controlador.logeado = true;
+						
+						// mostrar la pantalla adecuada
 						if(pagar == false) {
 							panelOrigen.setVisible(true);
 							vista.registro.setVisible(false);

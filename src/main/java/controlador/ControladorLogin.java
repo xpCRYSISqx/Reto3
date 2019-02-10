@@ -14,14 +14,12 @@ public class ControladorLogin implements ActionListener {
 	private MainFrame vista;
 	private Modelo modelo;
 	public static JPanel panelOrigen;
-	public static Boolean logeado;
 	public static Boolean pagar;
 	
 	public ControladorLogin(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;
 		panelOrigen = null;
-		logeado = false;
 		pagar = false;
 	}
 	
@@ -68,10 +66,12 @@ public class ControladorLogin implements ActionListener {
 				
 				// comprobamos si el usuario esta registrado
 				ComprobarInicioSesion comprobar = new ComprobarInicioSesion();
-				logeado = comprobar.comprobarInicio(dni, contString);
+				Controlador.logeado = comprobar.comprobarInicio(dni, contString);
 			
 				// mostramos la pantalla adecuada
-				if(logeado == true) {
+				if(Controlador.logeado == true) {
+					
+					// mostrar la pantalla adecuada
 					if(pagar == false) {
 						panelOrigen.setVisible(true);
 						vista.login.setVisible(false);
@@ -80,6 +80,7 @@ public class ControladorLogin implements ActionListener {
 						vista.pago.setVisible(true);
 						vista.login.setVisible(false);
 					}
+					
 				}
 				
 				break;
