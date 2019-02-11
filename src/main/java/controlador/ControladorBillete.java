@@ -62,15 +62,29 @@ public class ControladorBillete implements ActionListener {
 				
 			case "Continuar":
 				
+				// muestra el siguiente panel 'sel_fecha'
 				vista.sel_fecha.setVisible(true);
 				vista.sel_billete.setVisible(false);
+				
+				// limpia el JList
 				vista.sel_fecha.txtOrigen.removeAll();
 				vista.sel_fecha.txtDestino.removeAll();
+				
+				// guarda las paradas seleccionadas
 				String origen = (String) vista.sel_billete.listaOrigen.getSelectedValue();
 				String destino = (String) vista.sel_billete.listaDestino.getSelectedValue();
 				
+				// carga las paradas en la siguiente pantalla
 				vista.sel_fecha.txtOrigen.setText(origen);
 				vista.sel_fecha.txtDestino.setText(destino);
+				
+				// guarda el tipo de billete seleccionado
+				boolean simple = vista.sel_billete.rbtnIda.isSelected();
+				boolean idaVuelta = vista.sel_billete.rbtnVuelta.isSelected();
+				
+				if (simple) {
+					vista.sel_fecha.panFechaVuelta.setVisible(false);
+				}
 				
 				break;
 		
