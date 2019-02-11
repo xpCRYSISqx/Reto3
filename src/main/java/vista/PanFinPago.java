@@ -22,7 +22,7 @@ public class PanFinPago extends JPanel {
 	JPanel fin_pago = new JPanel();
 	
 	public JLabel lblIcono,lblTitulo,lblTotal,lblPagado,lblADevolver,lblImprimir;
-	public JButton btnContinuar,btnImprimir,btnSeparador;
+	public JButton btnImprimir,btnSeparador;
 	public JTextField txtTotal,txtPagado,txtDevolver;
 	
 	public PanFinPago() {
@@ -37,10 +37,6 @@ public class PanFinPago extends JPanel {
 		lblTitulo = new JLabel("FINALIZAR PAGO");
 		FormatoDiseno.formatoTitulo(lblTitulo);
 		add(lblTitulo);
-		
-		btnContinuar = new JButton("Continuar");
-		FormatoDiseno.formatoBtnContinuar(btnContinuar);
-		add(btnContinuar);
 		
 		lblTotal = new JLabel("IMPORTE TOTAL");
 		FormatoDiseno.formatoLbl(lblTotal);
