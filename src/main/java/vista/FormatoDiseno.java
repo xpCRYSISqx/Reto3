@@ -111,7 +111,7 @@ public class FormatoDiseno {
 		rbtn.setSelectedIcon(null);
 	}
 	
-	public static void formatoList(JList<String> list) {
+	public static void formatoList(JList<Object> list) {
 		list.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		list.setFont(new Font("Agency FB", Font.PLAIN, 20));
 		list.setForeground(new Color(0, 0, 0));
@@ -119,7 +119,7 @@ public class FormatoDiseno {
 		list.setRequestFocusEnabled(false);
 	}
 	
-	public static void formatoComboBox(JComboBox<String> comboBox) {
+	public static void formatoComboBox(JComboBox<Object> comboBox) {
 		comboBox.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
 		comboBox.setFont(new Font("Agency FB", Font.PLAIN, 20));
 		comboBox.setForeground(new Color(0, 0, 0));

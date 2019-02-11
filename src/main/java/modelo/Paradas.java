@@ -59,4 +59,11 @@ public class Paradas {
 	public void setLongitud(float longitud) {
 		this.longitud = longitud;
 	}
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
+	
+	
 }

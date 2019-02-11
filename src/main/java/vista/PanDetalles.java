@@ -28,8 +28,8 @@ public class PanDetalles extends JPanel {
 	
 	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
 	public JLabel lblIcono, lblTitulo;
-	private JTable table;
-	private JScrollPane scrollPane;
+	public JTable detallesIda, detallesVuelta;
+	public JScrollPane scrollPaneIda, scrollPaneVuelta;
 	
 	public PanDetalles() {
 		setBackground(new Color(255, 255, 255));
@@ -64,31 +64,17 @@ public class PanDetalles extends JPanel {
 		btnContinuar = new JButton("Pagar");
 		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
-			
 		
 		
-		String[] columnNames = {
-			"First Name",
-            "Last Name",
-            "Sport",
-            "# of Years",
-            "Vegetarian"
-        };
-		
-		Object[][] data = {
-		    {"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
-		};
-		
-		table = new JTable();
-		
-		table.setModel(new DefaultTableModel(data,columnNames) {
-			/**
-			 * 
-			 */
+		// Tabla detalles billete ida
+		detallesIda = new JTable();
+		Object[][] datosIda = {};
+		String[] columnNames = {"L\u00EDnea", "Origen", "Destino", "Fecha", "Hora"};
+		detallesIda.setModel(new DefaultTableModel(datosIda,columnNames) {
 			private static final long serialVersionUID = 1L;
 			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, String.class, String.class, String.class, String.class
+				String.class, String.class, String.class, String.class, String.class
 			};
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
@@ -96,22 +82,49 @@ public class PanDetalles extends JPanel {
 			}
 		});
 		
-		table.setFillsViewportHeight(true);
-		table.setBackground(new Color(204, 150, 150));
-		table.setBounds(30, 300, 964, 100);
-		table.setRowHeight(50);
+		detallesIda.setFillsViewportHeight(true);
+		detallesIda.setBackground(new Color(204, 150, 150));
+		detallesIda.setBounds(30, 300, 964, 100);
+		detallesIda.setRowHeight(50);
+		detallesIda.getColumnModel().getColumn(0).setPreferredWidth(60);
+		detallesIda.getColumnModel().getColumn(1).setPreferredWidth(35);
+		detallesIda.getColumnModel().getColumn(2).setPreferredWidth(140);
+		detallesIda.getColumnModel().getColumn(3).setPreferredWidth(140);
+		detallesIda.getColumnModel().getColumn(4).setPreferredWidth(120);
 		
-		table.getColumnModel().getColumn(0).setPreferredWidth(60);
-		table.getColumnModel().getColumn(1).setPreferredWidth(35);
-		table.getColumnModel().getColumn(2).setPreferredWidth(140);
-		table.getColumnModel().getColumn(3).setPreferredWidth(140);
-		table.getColumnModel().getColumn(4).setPreferredWidth(120);
-//		table.getColumnModel().getColumn(5).setPreferredWidth(120);
-//		table.getColumnModel().getColumn(6).setPreferredWidth(90);
+		scrollPaneIda = new JScrollPane(detallesIda);
+		scrollPaneIda.setBounds(50,250,700,73);
+		add(scrollPaneIda);
 		
-		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(50,200,700,73);
-		add(scrollPane);
+		
+		// Tabla detalles billete vuelta
+		detallesVuelta = new JTable();
+		Object[][] datosVuelta = {};
+		detallesVuelta.setModel(new DefaultTableModel(datosVuelta,columnNames) {
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class, String.class
+			};
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		
+		detallesVuelta.setFillsViewportHeight(true);
+		detallesVuelta.setBackground(new Color(204, 150, 150));
+		detallesVuelta.setBounds(30, 600, 964, 100);
+		detallesVuelta.setRowHeight(50);
+		detallesVuelta.getColumnModel().getColumn(0).setPreferredWidth(60);
+		detallesVuelta.getColumnModel().getColumn(1).setPreferredWidth(35);
+		detallesVuelta.getColumnModel().getColumn(2).setPreferredWidth(140);
+		detallesVuelta.getColumnModel().getColumn(3).setPreferredWidth(140);
+		detallesVuelta.getColumnModel().getColumn(4).setPreferredWidth(120);
+		
+		scrollPaneVuelta = new JScrollPane(detallesVuelta);
+		scrollPaneVuelta.setBounds(50,400,700,73);
+		add(scrollPaneVuelta);
 
 	}
 }
