@@ -93,7 +93,7 @@ public class PanSelBillete extends JPanel {
 		rbtnVuelta = new JRadioButton("Ida / Vuelta");
 		FormatoDiseno.formatoRbtn(rbtnVuelta);
 		rbtnVuelta.setBounds(760, 304, 180, 50);
-		rbtnGroupBillete.add(rbtnIda);
+		rbtnGroupBillete.add(rbtnVuelta);
 		add(rbtnVuelta);
 
 	}

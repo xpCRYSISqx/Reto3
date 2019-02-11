@@ -65,7 +65,7 @@ public class ControladorDetalles implements ActionListener {
 				
 				boolean logeado = Controlador.logeado;
 				ControladorLogin.panelOrigen = vista.detalles_compra;
-				ControladorLogin.pagar = true;
+				ControladorLogin.detalles = true;
 				
 				if(logeado == true) {
 					vista.pago.setVisible(true);

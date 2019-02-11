@@ -14,13 +14,13 @@ public class ControladorLogin implements ActionListener {
 	private MainFrame vista;
 	private Modelo modelo;
 	public static JPanel panelOrigen;
-	public static Boolean pagar;
+	public static Boolean detalles;
 	
 	public ControladorLogin(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;
 		panelOrigen = null;
-		pagar = false;
+		detalles = false;
 	}
 	
 	// añadimos listeners a los botones del panel 'login'
@@ -72,21 +72,49 @@ public class ControladorLogin implements ActionListener {
 				if(Controlador.logeado == true) {
 					
 					// mostrar la pantalla adecuada
-					if(pagar == false) {
+					if(detalles == false) {
 						panelOrigen.setVisible(true);
 						vista.login.setVisible(false);
+						vista.sel_linea.btnLogin.setVisible(false);
+						vista.sel_linea.btnLogin.setEnabled(false);
+						vista.sel_linea.btnRegistro.setVisible(false);
+						vista.sel_linea.btnRegistro.setEnabled(false);
+						vista.sel_billete.btnLogin.setVisible(false);
+						vista.sel_billete.btnLogin.setEnabled(false);
+						vista.sel_billete.btnRegistro.setVisible(false);
+						vista.sel_billete.btnRegistro.setEnabled(false);
+						vista.sel_fecha.btnLogin.setVisible(false);
+						vista.sel_fecha.btnLogin.setEnabled(false);
+						vista.sel_fecha.btnRegistro.setVisible(false);
+						vista.sel_fecha.btnRegistro.setEnabled(false);
+						vista.detalles_compra.btnLogin.setVisible(false);
+						vista.detalles_compra.btnLogin.setEnabled(false);
+						vista.detalles_compra.btnRegistro.setVisible(false);
+						vista.detalles_compra.btnRegistro.setEnabled(false);
 					}
 					else {
 						vista.pago.setVisible(true);
 						vista.login.setVisible(false);
+						vista.sel_linea.btnLogin.setVisible(false);
+						vista.sel_linea.btnLogin.setEnabled(false);
+						vista.sel_linea.btnRegistro.setVisible(false);
+						vista.sel_linea.btnRegistro.setEnabled(false);
+						vista.sel_billete.btnLogin.setVisible(false);
+						vista.sel_billete.btnLogin.setEnabled(false);
+						vista.sel_billete.btnRegistro.setVisible(false);
+						vista.sel_billete.btnRegistro.setEnabled(false);
+						vista.sel_fecha.btnLogin.setVisible(false);
+						vista.sel_fecha.btnLogin.setEnabled(false);
+						vista.sel_fecha.btnRegistro.setVisible(false);
+						vista.sel_fecha.btnRegistro.setEnabled(false);
+						vista.detalles_compra.btnLogin.setVisible(false);
+						vista.detalles_compra.btnLogin.setEnabled(false);
+						vista.detalles_compra.btnRegistro.setVisible(false);
+						vista.detalles_compra.btnRegistro.setEnabled(false);
 					}
 					
 				}
-				
 				break;
-		
 		}
-		
 	}
-	
 }

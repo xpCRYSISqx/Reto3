@@ -16,6 +16,9 @@ public class Billete {
 	private String dni;
 	private float precio;
 	
+	public Billete() {
+		
+	}
 
 	public Billete(Integer codBillete, int nTrayecto, String codLinea, int codBus, int codParadaInicio, int codParadaFin, Date fecha, Time hora, String dni, float precio) {
 		this.codBillete = codBillete;

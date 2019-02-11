@@ -23,7 +23,7 @@ public class PanPago extends JPanel {
 	
 	public JTable tablaDatosBillete;
 	public JPanel panelTotales;
-	public JButton btnContinuar, btnCancelar, btnCancelarPago, btnAtras, btnSeparador, btn200, btn100, btn50, btn20, btn10, bbtn5, btn2e, btn1e, btn050, btn020, btn010, btn005, btn002, btn001;
+	public JButton btnContinuar, btnCancelar, btnCancelarPago, btnAtras, btnSeparador, btn200, btn100, btn50, btn20, btn10, btn5, btn2, btn1, btn050, btn020, btn010, btn005, btn002, btn001;
 	public JLabel lblIcono, lblTotal, lblDineroTotal, lblIntroducido, lblDineroIntro, lblRestante, lblDineroRest;
 	
 	public PanPago() {
@@ -47,6 +47,8 @@ public class PanPago extends JPanel {
 		btnContinuar = new JButton("Continuar");
 		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
+		btnContinuar.setEnabled(false);
+		btnContinuar.setVisible(false);
 		
 		btn200 = new JButton("200 \u20AC");
 		FormatoDiseno.formatoBtn(btn200);
@@ -73,20 +75,20 @@ public class PanPago extends JPanel {
 		btn10.setBounds(616, 370, 85, 40);
 		add(btn10);
 		
-		bbtn5 = new JButton("5 \u20AC");
-		FormatoDiseno.formatoBtn(bbtn5);
-		bbtn5.setBounds(616, 420, 85, 40);
-		add(bbtn5);
+		btn5 = new JButton("5 \u20AC");
+		FormatoDiseno.formatoBtn(btn5);
+		btn5.setBounds(616, 420, 85, 40);
+		add(btn5);
 		
-		btn2e = new JButton("2 \u20AC");
-		FormatoDiseno.formatoBtn(btn2e);
-		btn2e.setBounds(727, 320, 85, 40);
-		add(btn2e);
+		btn2 = new JButton("2 \u20AC");
+		FormatoDiseno.formatoBtn(btn2);
+		btn2.setBounds(727, 320, 85, 40);
+		add(btn2);
 		
-		btn1e = new JButton("1 \u20AC");
-		FormatoDiseno.formatoBtn(btn1e);
-		btn1e.setBounds(727, 370, 85, 40);
-		add(btn1e);
+		btn1 = new JButton("1 \u20AC");
+		FormatoDiseno.formatoBtn(btn1);
+		btn1.setBounds(727, 370, 85, 40);
+		add(btn1);
 		
 		btn050 = new JButton("0,50 \u20AC");
 		FormatoDiseno.formatoBtn(btn050);
@@ -118,7 +120,7 @@ public class PanPago extends JPanel {
 		btn001.setBounds(925, 370, 85, 40);
 		add(btn001);
 		
-		btnCancelarPago = new JButton("Cancelar Pago");
+		btnCancelarPago = new JButton("Devolver");
 		FormatoDiseno.formatoBtnCancelarPago(btnCancelarPago);
 		add(btnCancelarPago);
 		
