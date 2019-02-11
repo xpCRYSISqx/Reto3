@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import modelo.ComprobarInicioSesion;
+import modelo.ComprobarLogin;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -65,7 +65,7 @@ public class ControladorLogin implements ActionListener {
 				String contString = new String(cont);
 				
 				// comprobamos si el usuario esta registrado
-				ComprobarInicioSesion comprobar = new ComprobarInicioSesion();
+				ComprobarLogin comprobar = new ComprobarLogin();
 				Controlador.logeado = comprobar.comprobarInicio(dni, contString);
 			
 				// mostramos la pantalla adecuada

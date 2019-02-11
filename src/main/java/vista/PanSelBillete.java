@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
 
 public class PanSelBillete extends JPanel {
 
@@ -32,6 +33,7 @@ public class PanSelBillete extends JPanel {
 	public final ButtonGroup rbtnGroupBillete = new ButtonGroup();
 	public JRadioButton rbtnIda,rbtnVuelta;
 	public JList<String> listaOrigen,listaDestino;
+	public JComboBox<String> boxLineas;
 	
 	public PanSelBillete() {
 		setBackground(new Color(255, 255, 255));
@@ -58,26 +60,31 @@ public class PanSelBillete extends JPanel {
 		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
+		boxLineas = new JComboBox<String>();
+		FormatoDiseno.formatoComboBox(boxLineas);
+		boxLineas.setBounds(53, 200, 327, 20);
+		add(boxLineas);
+
 		lblOrigen = new JLabel("Selecccione origen");
 		lblOrigen.setFont(new Font("Agency FB", Font.BOLD, 28));
 		lblOrigen.setHorizontalAlignment(SwingConstants.LEFT);
-		lblOrigen.setBounds(53, 200, 327, 40);
+		lblOrigen.setBounds(53, 255, 327, 40);
 		add(lblOrigen);
 		
 		listaOrigen = new JList<String>();
 		FormatoDiseno.formatoList(listaOrigen);
-		listaOrigen.setBounds(53, 251, 327, 250);
+		listaOrigen.setBounds(53, 301, 320, 250);
 		add(listaOrigen);
 		
 		lblDestino = new JLabel("Selecccione  destino");
 		lblDestino.setFont(new Font("Agency FB", Font.BOLD, 28));
 		lblDestino.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDestino.setBounds(400, 200, 327, 40);
+		lblDestino.setBounds(400, 255, 327, 40);
 		add(lblDestino);
 		
 		listaDestino = new JList<String>();
 		FormatoDiseno.formatoList(listaDestino);
-		listaDestino.setBounds(400, 251, 327, 250);
+		listaDestino.setBounds(400, 301, 320, 250);
 		add(listaDestino);
 		
 		btnAtras = new JButton("Atr\u00E1s");
@@ -86,15 +93,15 @@ public class PanSelBillete extends JPanel {
 		
 		rbtnIda = new JRadioButton("Simple");
 		FormatoDiseno.formatoRbtn(rbtnIda);
-		rbtnIda.setBounds(760, 251, 180, 50);
+		rbtnIda.setBounds(800, 375, 180, 50);
 		rbtnGroupBillete.add(rbtnIda);
 		add(rbtnIda);
 		
 		rbtnVuelta = new JRadioButton("Ida / Vuelta");
 		FormatoDiseno.formatoRbtn(rbtnVuelta);
-		rbtnVuelta.setBounds(760, 304, 180, 50);
-		rbtnGroupBillete.add(rbtnIda);
+		rbtnVuelta.setBounds(800, 425, 180, 50);
+		rbtnGroupBillete.add(rbtnVuelta);
 		add(rbtnVuelta);
-
+		
 	}
 }

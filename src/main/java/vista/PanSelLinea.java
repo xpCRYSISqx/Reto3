@@ -48,6 +48,11 @@ public class PanSelLinea extends JPanel {
 		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
 		
+		lblLineas = new JLabel("L\u00EDneas");
+		lblLineas.setFont(new Font("Agency FB", Font.BOLD, 28));
+		lblLineas.setBounds(53, 212, 200, 40);
+		add(lblLineas);
+		
 		listLineas = new JList<String>();
 		FormatoDiseno.formatoList(listLineas);
 //		listLineas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
@@ -56,6 +61,11 @@ public class PanSelLinea extends JPanel {
 		listLineas.setBounds(53, 251, 200, 240);
 		add(listLineas);
 		
+		lblParadas = new JLabel("Lista de paradas");
+		lblParadas.setFont(new Font("Agency FB", Font.BOLD, 30));
+		lblParadas.setBounds(263, 212, 250, 40);
+		add(lblParadas);
+	
 		listParadas = new JList<String>();
 		FormatoDiseno.formatoList(listParadas);
 //		listParadas.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
@@ -69,16 +79,6 @@ public class PanSelLinea extends JPanel {
 		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
-		lblLineas = new JLabel("L\u00EDneas");
-		lblLineas.setFont(new Font("Agency FB", Font.BOLD, 28));
-		lblLineas.setBounds(53, 220, 200, 25);
-		add(lblLineas);
-		
-		lblParadas = new JLabel("Lista de paradas");
-		lblParadas.setFont(new Font("Agency FB", Font.BOLD, 30));
-		lblParadas.setBounds(263, 220, 250, 25);
-		add(lblParadas);
-	
 		//¿¿¿Añadir temporizador en caso de inactividad???
 	
 	}

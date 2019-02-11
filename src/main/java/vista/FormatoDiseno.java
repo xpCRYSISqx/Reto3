@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+
+import com.toedter.calendar.JCalendar;
 
 public class FormatoDiseno {
 	
@@ -28,6 +31,11 @@ public class FormatoDiseno {
 	}
 	
 	public static void formatoIcono(JLabel lblIcono) {
+//		Colores RGB del icono:
+//			Rojo: 205, 48, 41
+//			Gris: 127, 128, 123
+//			Negro: 60, 60, 72
+		
 		lblIcono.setIcon(new ImageIcon(PanSelLinea.class.getResource("/img/logo-termibus.png")));
 		lblIcono.setOpaque(true);
 		lblIcono.setBorder(null);
@@ -52,7 +60,7 @@ public class FormatoDiseno {
 	public static void formatoBtn(JButton btn) {
 		btn.setFont(new Font("Agency FB", Font.BOLD, 18));
 		btn.setForeground(new Color(255, 255, 255));
-		btn.setBackground(new Color(204, 0, 0));
+		btn.setBackground(new Color(205, 48, 41));
 		btn.setBorderPainted(false);
 		btn.setBorder(null);
 		btn.setSelectedIcon(null);
@@ -108,7 +116,19 @@ public class FormatoDiseno {
 		list.setFont(new Font("Agency FB", Font.PLAIN, 20));
 		list.setForeground(new Color(0, 0, 0));
 		list.setBackground(new Color(204, 150, 150));
-		
 	}
 	
+	public static void formatoComboBox(JComboBox<String> comboBox) {
+		comboBox.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
+		comboBox.setFont(new Font("Agency FB", Font.PLAIN, 20));
+		comboBox.setForeground(new Color(0, 0, 0));
+		comboBox.setBackground(new Color(204, 150, 150));
+	}
+	
+	public static void formatoCalendario(JCalendar calendar) {
+		calendar.setBorder(new BevelBorder(BevelBorder.LOWERED, new Color(0, 0, 0), null, null, null));
+		calendar.setFont(new Font("Agency FB", Font.PLAIN, 16));
+		calendar.setForeground(new Color(0, 0, 0));
+		calendar.setBackground(new Color(204, 150, 150));
+	}
 }

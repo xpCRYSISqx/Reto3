@@ -1,6 +1,6 @@
 package modelo;
 
-public class Parada {
+public class Paradas {
 	
 	private int codParada;
 	private String nombre;
@@ -8,11 +8,11 @@ public class Parada {
 	private float latitud;
 	private float longitud;
 	
-	public Parada() {
+	public Paradas() {
 		
 	}
 	
-	public Parada(int codParada, String nombre, String calle, float latitud, float longitud) {
+	public Paradas(int codParada, String nombre, String calle, float latitud, float longitud) {
 		this.codParada = codParada;
 		this.nombre = nombre;
 		this.calle = calle;

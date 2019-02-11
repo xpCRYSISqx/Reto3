@@ -8,7 +8,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
 
 public class PanPago extends JPanel {
@@ -166,7 +165,7 @@ public class PanPago extends JPanel {
 		
 		//Panel donde se muestran los datos del pago al instante: total a pagar, dinero introducido y dinero restante	
 		panelTotales = new JPanel();
-		panelTotales.setBackground(new Color(220, 220, 220));
+		panelTotales.setBackground(Color.GRAY);
 		panelTotales.setBounds(30, 320, 291, 163);
 		add(panelTotales);
 		panelTotales.setLayout(null);

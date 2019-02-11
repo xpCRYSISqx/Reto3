@@ -9,14 +9,14 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import modelo.Modelo;
-import modelo.Parada;
+import modelo.Paradas;
 import vista.MainFrame;
 
 public class ControladorLineas implements ActionListener, ListSelectionListener {
 	
 	public MainFrame vista;
 	public Modelo modelo;
-	private ArrayList<Parada> paradas;
+	private ArrayList<Paradas> paradas;
 	
 	public ControladorLineas(MainFrame vista, Modelo modelo) {
 		this.vista = vista;

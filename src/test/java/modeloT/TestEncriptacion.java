@@ -1,4 +1,4 @@
-package tests;
+package modeloT;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,7 @@ public class TestEncriptacion {
 		Encriptacion encriptacion = new Encriptacion();
 		String contraseña = "abracadabra";
 		String contraseñaEncriptada = "ec5287c45f0e70ec22d52e8bcbeeb640";
+		
 		assertEquals(encriptacion.Encriptacion(contraseña), contraseñaEncriptada);
 	}
 }

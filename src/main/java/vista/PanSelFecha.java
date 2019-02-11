@@ -76,10 +76,11 @@ public class PanSelFecha extends JPanel {
 		
 		lblSeleccioneFecha = new JLabel("Seleccione fecha");
 		FormatoDiseno.formatoLbl(lblSeleccioneFecha);
-		lblSeleccioneFecha.setBounds(282, 290, 174, 14);
+		lblSeleccioneFecha.setBounds(282, 290, 174, 25);
 		add(lblSeleccioneFecha);
 		
 		fechaIda = new JCalendar();
+		FormatoDiseno.formatoCalendario(fechaIda);
 		fechaIda.setBounds(282, 320, 200, 175);
 		add(fechaIda);
 		
@@ -95,10 +96,11 @@ public class PanSelFecha extends JPanel {
 		
 		lblSeleccioneVuelta = new JLabel("Seleccione vuelta");
 		FormatoDiseno.formatoLbl(lblSeleccioneVuelta);
-		lblSeleccioneVuelta.setBounds(10, 0, 200, 14);
+		lblSeleccioneVuelta.setBounds(10, 0, 200, 25);
 		panFechaVuelta.add(lblSeleccioneVuelta);
 		
 		fechaVuelta = new JCalendar();
+		FormatoDiseno.formatoCalendario(fechaVuelta);
 		fechaVuelta.setBounds(10, 30, 200, 175);
 		panFechaVuelta.add(fechaVuelta);
 		
