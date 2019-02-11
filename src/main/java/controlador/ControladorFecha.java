@@ -2,6 +2,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+
 import javax.swing.JButton;
 
 import modelo.Modelo;
@@ -64,6 +66,8 @@ public class ControladorFecha implements ActionListener {
 				
 				vista.detalles_compra.setVisible(true);
 				vista.sel_fecha.setVisible(false);
+				Date fechaIda = new Date(vista.sel_fecha.fechaIda.getDate().getTime());
+				Date fechaVuelta = new Date(vista.sel_fecha.fechaVuelta.getDate().getTime());
 				
 				break;
 		
