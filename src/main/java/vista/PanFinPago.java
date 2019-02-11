@@ -22,7 +22,7 @@ public class PanFinPago extends JPanel {
 	JPanel fin_pago = new JPanel();
 	
 	public JLabel lblIcono,lblTitulo,lblTotal,lblPagado,lblADevolver,lblImprimir;
-	public JButton btnContinuar,btnImprimir,btnSeparador;
+	public JButton btnImprimir,btnSeparador;
 	public JTextField txtTotal,txtPagado,txtDevolver;
 	
 	public PanFinPago() {
@@ -38,10 +38,6 @@ public class PanFinPago extends JPanel {
 		FormatoDiseno.formatoTitulo(lblTitulo);
 		add(lblTitulo);
 		
-		btnContinuar = new JButton("Continuar");
-		FormatoDiseno.formatoBtnContinuar(btnContinuar);
-		add(btnContinuar);
-		
 		lblTotal = new JLabel("IMPORTE TOTAL");
 		FormatoDiseno.formatoLbl(lblTotal);
 		lblTotal.setBounds(387, 300, 120, 25);
@@ -50,6 +46,7 @@ public class PanFinPago extends JPanel {
 		txtTotal = new JTextField();
 		FormatoDiseno.formatoTxt(txtTotal);
 		txtTotal.setBounds(506, 300, 130, 25);
+		txtTotal.setEnabled(false);
 		add(txtTotal);
 		
 		lblPagado = new JLabel("PAGADO");
@@ -60,6 +57,7 @@ public class PanFinPago extends JPanel {
 		txtPagado = new JTextField();
 		FormatoDiseno.formatoTxt(txtPagado);
 		txtPagado.setBounds(506, 350, 130, 25);
+		txtPagado.setEnabled(false);
 		add(txtPagado);
 		
 		lblADevolver = new JLabel("A DEVOLVER");
@@ -70,6 +68,7 @@ public class PanFinPago extends JPanel {
 		txtDevolver = new JTextField();
 		FormatoDiseno.formatoTxt(txtDevolver);
 		txtDevolver.setBounds(506, 400,130, 25);
+		txtDevolver.setEnabled(false);
 		add(txtDevolver);
 		
 		btnSeparador = new JButton("");
@@ -80,12 +79,12 @@ public class PanFinPago extends JPanel {
 		
 		lblImprimir = new JLabel("Pulse 'Imprimir' para adquirir su billete");
 		FormatoDiseno.formatoLbl(lblImprimir);
-		lblImprimir.setBounds(402, 500, 220, 14);
+		lblImprimir.setBounds(391, 495, 250, 25);
 		add(lblImprimir);
 
 		btnImprimir = new JButton("Imprimir");
 		FormatoDiseno.formatoBtn(btnImprimir);
-		btnImprimir.setBounds(452, 525, 120, 40);
+		btnImprimir.setBounds(452, 530, 120, 40);
 		add(btnImprimir);
 		
 	}

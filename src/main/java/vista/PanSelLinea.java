@@ -72,6 +72,7 @@ public class PanSelLinea extends JPanel {
 //		listParadas.setBackground(new Color(255, 255, 255));
 //		listParadas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 //		listParadas.setEnabled(false);
+		listParadas.setRequestFocusEnabled(isDisplayable());
 		listParadas.setBounds(263, 251, 250, 240);
 		add(listParadas);
 		

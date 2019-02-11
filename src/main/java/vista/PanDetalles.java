@@ -1,15 +1,14 @@
 package vista;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import java.awt.Color;
-import java.awt.Font;
-import javax.swing.SwingConstants;
+import java.awt.Dimension;
+
 import javax.swing.JTable;
-import java.awt.SystemColor;
-import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;

@@ -84,10 +84,7 @@ public class PanSelFecha extends JPanel {
 		fechaIda.setBounds(282, 320, 200, 175);
 		add(fechaIda);
 		
-		// Panel interno con calendario solo para seleccionar fecha de vuelta en caso de haber seleccionado billete tipo: Ida/Vuelta en el paso anterior.
-		// Billete simple = Este panel debera estar OCULTO
-		// Billete ida/vuelta
-		
+		// Panel interno con calendario solo para seleccionar fecha de vuelta en caso de haber seleccionado billete tipo: Ida/Vuelta en el paso anterior.	
 		panFechaVuelta = new JPanel();
 		panFechaVuelta.setBackground(new Color(255, 255, 255));
 		panFechaVuelta.setBounds(542, 289, 300, 260);

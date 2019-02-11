@@ -116,6 +116,7 @@ public class FormatoDiseno {
 		list.setFont(new Font("Agency FB", Font.PLAIN, 20));
 		list.setForeground(new Color(0, 0, 0));
 		list.setBackground(new Color(204, 150, 150));
+		list.setRequestFocusEnabled(false);
 	}
 	
 	public static void formatoComboBox(JComboBox<String> comboBox) {
