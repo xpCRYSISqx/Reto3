@@ -5,6 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -19,8 +20,6 @@ public class PanDetalles extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public JTable tablaDatos;
-
 	/**
 	 * Create the panel.
 	 */
@@ -29,6 +28,8 @@ public class PanDetalles extends JPanel {
 	
 	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
 	public JLabel lblIcono, lblTitulo;
+	private JTable table;
+	private JScrollPane scrollPane;
 	
 	public PanDetalles() {
 		setBackground(new Color(255, 255, 255));
@@ -63,17 +64,24 @@ public class PanDetalles extends JPanel {
 		btnContinuar = new JButton("Pagar");
 		FormatoDiseno.formatoBtnContinuar(btnContinuar);
 		add(btnContinuar);
+			
 		
-		tablaDatos = new JTable();
-		tablaDatos.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Autob\u00FAs", "L\u00EDnea", "Origen", "Destino", "Fecha ida", "Fecha vuelta", "C\u00F3digo billete"},
-				{null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"Autob\u00FAs", "L\u00EDnea", "Origen", "Destino", "Fecha ida", "Fecha vuelta", "C\u00F3digo billete"
-			}
-		) {
+		
+		String[] columnNames = {
+			"First Name",
+            "Last Name",
+            "Sport",
+            "# of Years",
+            "Vegetarian"
+        };
+		
+		Object[][] data = {
+		    {"Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false)},
+		};
+		
+		table = new JTable();
+		
+		table.setModel(new DefaultTableModel(data,columnNames) {
 			/**
 			 * 
 			 */
@@ -87,18 +95,23 @@ public class PanDetalles extends JPanel {
 				return columnTypes[columnIndex];
 			}
 		});
-		tablaDatos.setEnabled(true);
-		tablaDatos.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-		tablaDatos.setBackground(new Color(204, 150, 150));
-		tablaDatos.setBounds(30, 300, 964, 100);
-		tablaDatos.setRowHeight(50);
-		tablaDatos.getColumnModel().getColumn(0).setPreferredWidth(60);
-		tablaDatos.getColumnModel().getColumn(1).setPreferredWidth(35);
-		tablaDatos.getColumnModel().getColumn(2).setPreferredWidth(140);
-		tablaDatos.getColumnModel().getColumn(3).setPreferredWidth(140);
-		tablaDatos.getColumnModel().getColumn(4).setPreferredWidth(120);
-		tablaDatos.getColumnModel().getColumn(5).setPreferredWidth(120);
-		tablaDatos.getColumnModel().getColumn(6).setPreferredWidth(90);
-		add(tablaDatos);
+		
+		table.setFillsViewportHeight(true);
+		table.setBackground(new Color(204, 150, 150));
+		table.setBounds(30, 300, 964, 100);
+		table.setRowHeight(50);
+		
+		table.getColumnModel().getColumn(0).setPreferredWidth(60);
+		table.getColumnModel().getColumn(1).setPreferredWidth(35);
+		table.getColumnModel().getColumn(2).setPreferredWidth(140);
+		table.getColumnModel().getColumn(3).setPreferredWidth(140);
+		table.getColumnModel().getColumn(4).setPreferredWidth(120);
+//		table.getColumnModel().getColumn(5).setPreferredWidth(120);
+//		table.getColumnModel().getColumn(6).setPreferredWidth(90);
+		
+		scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(50,200,700,73);
+		add(scrollPane);
+
 	}
 }
