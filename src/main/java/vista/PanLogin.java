@@ -18,7 +18,7 @@ public class PanLogin extends JPanel {
 
 	JPanel login = new JPanel();
 	
-	public JLabel lblIcono,lblTitulo,lblUsuario,lblPassword;
+	public JLabel lblIcono,lblTitulo,lblUsuario,lblPassword, lblError;
 	public JTextField userField;
 	public JPasswordField password;
 	public JButton btnLogin,btnRegistro,btnCancelar,btnAtras;
@@ -43,7 +43,7 @@ public class PanLogin extends JPanel {
 		FormatoDiseno.formatoTitulo(lblTitulo);
 		add(lblTitulo);
 		
-		
+		// boton registarse
 		btnRegistro = new JButton("Registro");
 		FormatoDiseno.formatoBtnLogin(btnRegistro);
 		add(btnRegistro);
@@ -61,7 +61,6 @@ public class PanLogin extends JPanel {
 		userField.setColumns(10);
 		add(userField);
 		
-		
 		// label password
 		lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
@@ -78,9 +77,9 @@ public class PanLogin extends JPanel {
 		btnLogin = new JButton("Iniciar Sesi\u00F3n");
 		FormatoDiseno.formatoBtn(btnLogin);
 		btnLogin.setBounds(452, 421, 120, 40);
-		
 		add(btnLogin);
 		
+		// boton cancelar
 		btnAtras = new JButton("Atr\u00E1s");
 		FormatoDiseno.formatoBtnAtras(btnAtras);
 		add(btnAtras);
@@ -89,5 +88,11 @@ public class PanLogin extends JPanel {
 		btnCancelar = new JButton("Cancelar");
 		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
+		
+		// label error
+		lblError = new JLabel("Datos de inicio de sesion erroneos");
+		lblError.setBounds(634, 408, 273, 20);
+		lblError.setVisible(false);
+		add(lblError);
 	}
 }

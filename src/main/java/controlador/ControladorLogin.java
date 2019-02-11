@@ -71,6 +71,8 @@ public class ControladorLogin implements ActionListener {
 				// mostramos la pantalla adecuada
 				if(Controlador.logeado == true) {
 					
+					vista.login.lblError.setVisible(false);
+					
 					// mostrar la pantalla adecuada
 					if(detalles == false) {
 						panelOrigen.setVisible(true);
@@ -113,6 +115,8 @@ public class ControladorLogin implements ActionListener {
 						vista.detalles_compra.btnRegistro.setEnabled(false);
 					}
 					
+				} else {
+					vista.login.lblError.setVisible(true);
 				}
 				break;
 		}
