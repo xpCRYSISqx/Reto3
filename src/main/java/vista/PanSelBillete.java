@@ -29,7 +29,7 @@ public class PanSelBillete extends JPanel {
 	public DefaultListModel<String> modeloOrigen = new DefaultListModel<String>();
 	public DefaultListModel<String> modeloDestino = new DefaultListModel<String>();
 	public JLabel lblIcono,lblOrigen,lblDestino;
-	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
+	public JButton btnLogin,btnRegistro,btnContinuar,btnCancelar;
 	public final ButtonGroup rbtnGroupBillete = new ButtonGroup();
 	public JRadioButton rbtnIda,rbtnVuelta;
 	public JList<String> listaOrigen,listaDestino;
@@ -62,18 +62,18 @@ public class PanSelBillete extends JPanel {
 		
 		boxLineas = new JComboBox<String>();
 		FormatoDiseno.formatoComboBox(boxLineas);
-		boxLineas.setBounds(53, 200, 327, 20);
+		boxLineas.setBounds(45, 200, 327, 30);
 		add(boxLineas);
 
 		lblOrigen = new JLabel("Selecccione origen");
 		lblOrigen.setFont(new Font("Agency FB", Font.BOLD, 28));
 		lblOrigen.setHorizontalAlignment(SwingConstants.LEFT);
-		lblOrigen.setBounds(53, 255, 327, 40);
+		lblOrigen.setBounds(45, 255, 327, 40);
 		add(lblOrigen);
 		
 		listaOrigen = new JList<String>();
 		FormatoDiseno.formatoList(listaOrigen);
-		listaOrigen.setBounds(53, 301, 320, 250);
+		listaOrigen.setBounds(45, 301, 320, 250);
 		add(listaOrigen);
 		
 		lblDestino = new JLabel("Selecccione  destino");
@@ -86,10 +86,6 @@ public class PanSelBillete extends JPanel {
 		FormatoDiseno.formatoList(listaDestino);
 		listaDestino.setBounds(400, 301, 320, 250);
 		add(listaDestino);
-		
-		btnAtras = new JButton("Atr\u00E1s");
-		FormatoDiseno.formatoBtnAtras(btnAtras);
-		add(btnAtras);
 		
 		rbtnIda = new JRadioButton("Simple");
 		FormatoDiseno.formatoRbtn(rbtnIda);

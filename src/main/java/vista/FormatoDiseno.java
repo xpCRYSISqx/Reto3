@@ -36,7 +36,7 @@ public class FormatoDiseno {
 //			Gris: 127, 128, 123
 //			Negro: 60, 60, 72
 		
-		lblIcono.setIcon(new ImageIcon(PanSelLinea.class.getResource("/img/logo-termibus.png")));
+		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/logo-termibus.png")));
 		lblIcono.setOpaque(true);
 		lblIcono.setBorder(null);
 		lblIcono.setForeground(new Color(0, 0, 0));

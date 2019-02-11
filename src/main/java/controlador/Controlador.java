@@ -10,7 +10,6 @@ public class Controlador {
 	public Billete billete;
 	
 	private ControladorBienvenida controladorBienvenida;
-	private ControladorLineas controladorLineas;
 	private ControladorBillete controladorBillete;
 	private ControladorFecha controladorFecha;
 	private ControladorDetalles controladorDetalles;
@@ -33,7 +32,6 @@ public class Controlador {
 		
 		vista.setVisible(true);
 		vista.bienvenida.setVisible(true);
-		vista.sel_linea.setVisible(false);
 		vista.sel_billete.setVisible(false);
 		vista.sel_fecha.setVisible(false);
 		vista.detalles_compra.setVisible(false);
@@ -58,10 +56,6 @@ public class Controlador {
 		// añadimos listeners a los botones del panel 'bienvenida'
 		this.controladorBienvenida = new ControladorBienvenida(vista, modelo);
 		this.controladorBienvenida.addListeners();
-		
-		// añadimos listeners a los botones del panel 'sel_lineas'
-		this.controladorLineas = new ControladorLineas(vista, modelo);
-		this.controladorLineas.addListeners();
 		
 		// añadimos listeners a los botones del panel 'sel_billete'
 		this.controladorBillete = new ControladorBillete(vista, modelo);

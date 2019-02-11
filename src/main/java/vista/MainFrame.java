@@ -17,7 +17,6 @@ public class MainFrame extends JFrame{
 	public PanBienvenida bienvenida;
 	public PanLogin login;
 	public PanRegistro registro;
-	public PanSelLinea sel_linea;
 	public PanSelBillete sel_billete;
 	public PanSelFecha sel_fecha;
 	public PanDetalles detalles_compra;
@@ -47,7 +46,6 @@ public class MainFrame extends JFrame{
 		}
 		login = new PanLogin();
 		registro = new PanRegistro();
-		sel_linea = new PanSelLinea();
 		sel_billete = new PanSelBillete();
 		sel_fecha = new PanSelFecha();
 		detalles_compra = new PanDetalles();
@@ -60,7 +58,6 @@ public class MainFrame extends JFrame{
 		getContentPane().add(bienvenida);
 		getContentPane().add(login);
 		getContentPane().add(registro);
-		getContentPane().add(sel_linea);
 		getContentPane().add(sel_billete);
 		getContentPane().add(sel_fecha);
 		getContentPane().add(detalles_compra);
