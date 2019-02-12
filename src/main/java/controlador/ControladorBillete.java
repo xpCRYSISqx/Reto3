@@ -10,6 +10,7 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 import modelo.*;
 import vista.MainFrame;
@@ -19,6 +20,10 @@ public class ControladorBillete implements ActionListener {
 	public MainFrame vista;
 	public Modelo modelo;
 	private ArrayList<Parada> paradas;
+	Linea linea;
+	Parada paradaOrigen;
+	Parada paradaDestino;
+	boolean billeteSimple;
 	
 	public ControladorBillete(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
@@ -65,22 +70,18 @@ public class ControladorBillete implements ActionListener {
 				ControladorRegistro.panelOrigen = vista.sel_billete;
 				break;
 				
-			case "Continuar":
+			case "Continuar":				
 				
-				// recogemos los datos introducidos por el usuario
-				Linea linea = (Linea) vista.sel_billete.boxLineas.getSelectedItem();
-				Parada paradaOrigen = (Parada) vista.sel_billete.listaOrigen.getSelectedValue();
-				Parada paradaDestino = (Parada) vista.sel_billete.listaDestino.getSelectedValue();
-				boolean simple = vista.sel_billete.rbtnIda.isSelected();
-				
-				// validamos
-				
-				
-				// actualizamos los componentes del siguiente panel y lo hacemos visible
-				actualizarFrame(paradaOrigen, paradaDestino, simple);
-				
-				// guardamos los datos en el modelo
-				guardarDatos(linea, paradaOrigen, paradaDestino, simple);
+				// comprobamos que los campos no estan vacios
+				if(validarDatos()) {
+					
+					// actualizamos los componentes del siguiente panel y lo hacemos visible
+					actualizarFrame(paradaOrigen, paradaDestino, billeteSimple);
+					
+					// guardamos los datos en el modelo
+					guardarDatos(linea, paradaOrigen, paradaDestino, billeteSimple);
+					
+				}
 				
 				break;
 			
@@ -118,7 +119,36 @@ public class ControladorBillete implements ActionListener {
 		
 	}
 	
-	public void validar() {
+	public boolean validarDatos() {
+		
+		// guardar linea
+		this.linea = (Linea) vista.sel_billete.boxLineas.getSelectedItem();
+		
+		// guardar parada de origen
+		if (vista.sel_billete.listaOrigen.isSelectionEmpty()) {
+			JOptionPane.showMessageDialog(vista, "Ninguna parada de origen seleccionada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else {
+			this.paradaOrigen = (Parada) vista.sel_billete.listaOrigen.getSelectedValue();
+		}
+		
+		// guardar parada de destino
+		if (vista.sel_billete.listaDestino.isSelectionEmpty()) {
+			JOptionPane.showMessageDialog(vista, "Ninguna parada de destino seleccionada.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else {
+			this.paradaDestino = (Parada) vista.sel_billete.listaDestino.getSelectedValue();
+		}
+		
+		// guardar tipo de billete
+		if (!vista.sel_billete.rbtnIda.isSelected() && !vista.sel_billete.rbtnVuelta.isSelected()) {
+			JOptionPane.showMessageDialog(vista, "Ningun tipo de billete seleccionado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else {
+			this.billeteSimple = vista.sel_billete.rbtnIda.isSelected();
+		}
+		
+		return true;
 		
 	}
 	
