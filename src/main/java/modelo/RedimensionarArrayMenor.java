@@ -18,7 +18,7 @@ public class RedimensionarArrayMenor {
 		int tamano = arrayRedimensionar.length - 1;
 		float[] arrayRedimensionado = new float[tamano];
 		
-		System.arraycopy(arrayRedimensionar, 0, arrayRedimensionado, 0, arrayRedimensionar.length); // Copia arrayRedimensionar en arrayRedimensionado, el cuel es una posicion mas largo.
+		System.arraycopy(arrayRedimensionar, 0, arrayRedimensionado, 0, arrayRedimensionar.length - 1); // Copia arrayRedimensionar en arrayRedimensionado, el cuel es una posicion mas largo.
 		return arrayRedimensionado; // Devuelve el resultado.
 	}
 }

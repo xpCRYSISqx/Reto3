@@ -21,7 +21,7 @@ public class ControladorPago implements ActionListener{
 	private float falta = 0;
 	private float moneda = 0;
 	public String sobra = "";
-	private float[] monedas; // Almacena el valor de las monedas y billetes que se van introducioendo para liego poder retarlos.
+	public float[] monedas; // Almacena el valor de las monedas y billetes que se van introducioendo para liego poder retarlos.
 	
 	public ControladorPago(MainFrame vista, Billete billete, Pagar pagar) {
 		this.vista = vista;
@@ -47,7 +47,8 @@ public class ControladorPago implements ActionListener{
 		this.cancelar = this.vista.pago.btnCancelar;
 		this.devolver = this.vista.pago.btnCancelarPago;
 		this.pagar = pagar;
-		this.total = this.billete.getPrecio();
+		//this.total = this.billete.getPrecio();
+		this.total = 400;
 		this.importe.setText(Float.toString(total) + " €");
 		this.monedas = new float[0];
 	}
@@ -67,242 +68,79 @@ public class ControladorPago implements ActionListener{
 		cincuentaEur.addActionListener(this);
 		cienEur.addActionListener(this);
 		doscientosEur.addActionListener(this);
+		devolver.addActionListener(this);
+		continuar.addActionListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		
 		// guardamos el nombre del boton pulsado
 		String botonPulsado = ((JButton) e.getSource()).getActionCommand();
-		RedimensionarArrayMayor redimensionMayor = new RedimensionarArrayMayor();
-		RedimensionarArrayMenor redimensionMenor = new RedimensionarArrayMenor();
-		int posicion;
+		float importe;
 		
 		// comprobamos que boton se ha pulsado y ejecutamos sus acciones
 		switch (botonPulsado) {
 		case "0,01 €":
-			dinero = dinero + 0.01f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 0.01f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 0.01f;
+			FuncionBotonDinero(importe);
 			break;
 		case "0,02 €":
-			dinero = dinero + 0.02f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 0.02f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 0.02f;
+			FuncionBotonDinero(importe);
 			break;
 		case "0,05 €":
-			dinero = dinero + 0.05f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 0.05f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 0.05f;
+			FuncionBotonDinero(importe);
 			break;
 		case "0,10 €":
-			dinero = dinero + 0.1f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 0.1f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 0.1f;
+			FuncionBotonDinero(importe);
 			break;
 		case "0,20 €":
-			dinero = dinero + 0.2f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 0.2f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 0.2f;
+			FuncionBotonDinero(importe);
 			break;
 		case "0,50 €":
-			dinero = dinero + 0.5f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 0.5f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 0.5f;
+			FuncionBotonDinero(importe);
 			break;
 		case "1 €":
-			dinero = dinero + 1f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 1f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 1f;
+			FuncionBotonDinero(importe);
 			break;
 		case "2 €":
-			dinero = dinero + 2f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 2f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 2f;
+			FuncionBotonDinero(importe);
 			break;
 		case "5 €":
-			dinero = dinero + 5f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 5f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 5f;
+			FuncionBotonDinero(importe);
 			break;
 		case "10 €":
-			dinero = dinero + 10f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 10f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 10f;
+			FuncionBotonDinero(importe);
 			break;
 		case "20 €":
-			dinero = dinero + 20f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 20f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 20f;
+			FuncionBotonDinero(importe);
 			break;
 		case "50 €":
-			dinero = dinero + 50f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 50f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 50f;
+			FuncionBotonDinero(importe);
 			break;
 		case "100 €":
-			dinero = dinero + 100f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 100f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 100f;
+			FuncionBotonDinero(importe);
 			break;
 		case "200 €":
-			dinero = dinero + 200f;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			monedas = redimensionMayor.redimensionarArray(monedas);
-			posicion = monedas.length - 1;
-			monedas[posicion] = 200f;
-			introducido.setText(Float.toString(dinero) + " €");
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			importe = 200f;
+			FuncionBotonDinero(importe);
 			break;
 		case "Devolver":
-			posicion = monedas.length - 1;
-			moneda = monedas[posicion];
-			dinero = dinero - moneda;
-			dinero = Math.round(dinero*100);
-			dinero = dinero/100;
-			introducido.setText(Float.toString(dinero) + " €");
-			monedas = redimensionMenor.redimensionarArray(monedas);
-			if(dinero < total) {
-				falta = pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-			}
-			else
-				TodoIntroducido();
+			FuncionDevolver();
+			break;
+		case "Continuar":
+			FuncionContinuar();
 			break;
 		}
 	}
@@ -327,11 +165,27 @@ public class ControladorPago implements ActionListener{
 	}
 	
 	public void FuncionDevolver() {
-		
+		RedimensionarArrayMenor redimensionMenor = new RedimensionarArrayMenor();
+		int posicion;
+		if(dinero > 0) {
+			posicion = monedas.length - 1;
+			moneda = monedas[posicion];
+			dinero = dinero - moneda;
+			dinero = Math.round(dinero*100);
+			dinero = dinero/100;
+			introducido.setText(Float.toString(dinero) + " €");
+			monedas = redimensionMenor.redimensionarArray(monedas);
+			if(dinero < total) {
+				falta = pagar.Falta(total, dinero);
+				restante.setText(Float.toString(falta) + " €");
+			}
+			else
+				TodoIntroducido();
+		}
+		else {}
 	}
 	
 	public void TodoIntroducido() {
-		sobra = pagar.Sobra(total, dinero);
 		introducido.setText(Float.toString(dinero) + " €");
 		restante.setText("");
 		unCent.setEnabled(false);
@@ -350,5 +204,10 @@ public class ControladorPago implements ActionListener{
 		doscientosEur.setEnabled(false);
 		continuar.setVisible(true);
 		continuar.setEnabled(true);
+	}
+	
+	public void FuncionContinuar() {
+		sobra = pagar.Sobra(total, dinero);
+		
 	}
 }
