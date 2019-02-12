@@ -8,6 +8,7 @@ public class Controlador {
 	public Modelo modelo;
 	public MainFrame vista;
 	public Billete billete;
+	public Pagar pagar;
 	
 	private ControladorBienvenida controladorBienvenida;
 	private ControladorBillete controladorBillete;
@@ -24,6 +25,7 @@ public class Controlador {
 		this.modelo = modelo;
 		this.vista = vista;
 		billete = new Billete();
+		pagar = new Pagar();
 		logeado = false;
 		
 	}
@@ -70,7 +72,7 @@ public class Controlador {
 		this.controladorDetalles.addListeners();
 		
 		// añadimos listeners a los botones del panel "pago"
-		this.controladorPago = new ControladorPago(vista, billete);
+		this.controladorPago = new ControladorPago(vista, billete, pagar);
 		this.controladorPago.addListeners();
 	}
 	

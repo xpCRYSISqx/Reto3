@@ -16,14 +16,14 @@ public class ControladorPago implements ActionListener{
 	private Pagar pagar;
 	private JLabel importe, introducido, restante;
 	private JButton unCent, dosCent, cincoCent, diezCent, veinteCent, cincuentaCent, unEur, dosEur, cincoEur, diezEur, veinteEur, cincuentaEur, cienEur, doscientosEur, continuar, cancelar, devolver;
-	private float total = 0;
-	private float dinero = 0;
+	public float total = 0;
+	public float dinero = 0;
 	private float falta = 0;
 	private float moneda = 0;
 	public String sobra = "";
 	private float[] monedas; // Almacena el valor de las monedas y billetes que se van introducioendo para liego poder retarlos.
 	
-	public ControladorPago(MainFrame vista, Billete billete) {
+	public ControladorPago(MainFrame vista, Billete billete, Pagar pagar) {
 		this.vista = vista;
 		this.billete = billete;
 		this.importe = this.vista.pago.lblDineroTotal;
@@ -46,6 +46,7 @@ public class ControladorPago implements ActionListener{
 		this.continuar = this.vista.pago.btnContinuar;
 		this.cancelar = this.vista.pago.btnCancelar;
 		this.devolver = this.vista.pago.btnCancelarPago;
+		this.pagar = pagar;
 		this.total = this.billete.getPrecio();
 		this.importe.setText(Float.toString(total) + " €");
 		this.monedas = new float[0];
