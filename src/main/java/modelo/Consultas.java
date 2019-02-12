@@ -375,12 +375,12 @@ public class Consultas {
 	}
 	
 	
-	public double calcularPrecioBillete(int lat1, int lon1, int lat2, int lon2, Autobus autobus) {
+	public float calcularPrecioBillete(float lat1, float lon1, float lat2, float lon2, Autobus autobus) {
 		
-		double precio = 0;
-		double distancia;
-		double consumo;
-		double beneficio;
+		float precio = 0;
+		float distancia;
+		float consumo;
+		float beneficio;
 		
 		// calculamos la distancia en kilometros
 		distancia = calcularDistanciaKm(lat1, lon1, lat2, lon2);
@@ -389,7 +389,7 @@ public class Consultas {
 		consumo = calcularConsumo(distancia, autobus);
 		
 		// calculamos el beneficio
-		beneficio = consumo * 0.2;
+		beneficio = consumo * 0.2f;
 		
 		precio = consumo + beneficio;
 		
@@ -397,27 +397,28 @@ public class Consultas {
 	}
 	
 	// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
-	public double calcularDistanciaKm(int lat1, int lon1, int lat2, int lon2) {
+	public float calcularDistanciaKm(float lat1, float lon1, float lat2, float lon2) {
 	  int R = 6371; // Radio de la tierra en km
-	  double dLat = deg2rad(lat2-lat1);
-	  double dLon = deg2rad(lon2-lon1); 
-	  double a = 
+	  float dLat = deg2rad(lat2-lat1);
+	  float dLon = deg2rad(lon2-lon1); 
+	  float a = (float) ( 
 	    Math.sin(dLat/2) * Math.sin(dLat/2) +
 	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-	    Math.sin(dLon/2) * Math.sin(dLon/2); 
-	  double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-	  double d = R * c; // Distancia en km
+	    Math.sin(dLon/2) * Math.sin(dLon/2)
+	   ); 
+	  float c = (float) (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))); 
+	  float d = R * c; // Distancia en km
 	  return d;
 	}
 
-	public double deg2rad(int deg) {
-	  return deg * (Math.PI/180);
+	public float deg2rad(float deg) {
+	  return deg * (float)(Math.PI/180);
 	}
 	
-	public double calcularConsumo(double distancia, Autobus autobus) {
-		double consumoTotal;
-		double consumo = autobus.getConsumo();
-		consumoTotal = consumo * distancia * 0.8;
+	public float calcularConsumo(float distancia, Autobus autobus) {
+		float consumoTotal;
+		float consumo = autobus.getConsumo();
+		consumoTotal = consumo * distancia * 0.8f;
 		return consumoTotal;
 	}
 

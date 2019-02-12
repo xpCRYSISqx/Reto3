@@ -69,12 +69,12 @@ public class PanDetalles extends JPanel {
 		// Tabla detalles billete ida
 		detallesIda = new JTable();
 		Object[][] datosIda = {};
-		String[] columnNames = {"L\u00EDnea", "Origen", "Destino", "Fecha", "Hora"};
+		String[] columnNames = {"L\u00EDnea", "Origen", "Destino", "Autobus",  "Fecha", "Hora", "Precio"};
 		detallesIda.setModel(new DefaultTableModel(datosIda,columnNames) {
 			private static final long serialVersionUID = 1L;
 			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class
+				String.class, String.class, String.class, int.class, String.class, String.class, float.class
 			};
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
@@ -104,7 +104,7 @@ public class PanDetalles extends JPanel {
 			private static final long serialVersionUID = 1L;
 			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class
+					String.class, String.class, String.class, int.class, String.class, String.class, float.class
 			};
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
