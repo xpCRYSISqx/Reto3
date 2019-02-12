@@ -67,72 +67,20 @@ public class ControladorBillete implements ActionListener {
 				
 			case "Continuar":
 				
-				// muestra el siguiente panel 'sel_fecha'
-				vista.sel_fecha.setVisible(true);
-				vista.sel_billete.setVisible(false);
-				
-				// guarda la linea seleccionada
+				// recogemos los datos introducidos por el usuario
 				Linea linea = (Linea) vista.sel_billete.boxLineas.getSelectedItem();
-				
-				// guardamos las paradas seleccionadas
 				Parada paradaOrigen = (Parada) vista.sel_billete.listaOrigen.getSelectedValue();
 				Parada paradaDestino = (Parada) vista.sel_billete.listaDestino.getSelectedValue();
-				
-				// guardamos el tipo de billete seleccionado
 				boolean simple = vista.sel_billete.rbtnIda.isSelected();
-				boolean idaVuelta = vista.sel_billete.rbtnVuelta.isSelected();
 				
-				// limpia los textFields de la siguiente pantalla
-				vista.sel_fecha.txtOrigen.removeAll();
-				vista.sel_fecha.txtDestino.removeAll();
+				// validamos
 				
-				// carga los nombres de las paradas en la siguiente pantalla
-				vista.sel_fecha.txtOrigen.setText(paradaOrigen.getNombre());
-				vista.sel_fecha.txtDestino.setText(paradaDestino.getNombre());
 				
-				// actualizamos las fechas disponibles
-				try {
-					
-					DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-					Date fechaLimite = new Date(df.parse("12-31-2020").getTime());
-					vista.sel_fecha.fechaIda.setSelectableDateRange(new Date(),fechaLimite);
-					vista.sel_fecha.fechaVuelta.setSelectableDateRange(new Date(),fechaLimite);
-					
-				} catch (ParseException e1) {
-					e1.printStackTrace();
-				}
+				// actualizamos los componentes del siguiente panel y lo hacemos visible
+				actualizarFrame(paradaOrigen, paradaDestino, simple);
 				
-				// guardamos la linea seleccionada en el modelo
-				modelo.linea = linea;
-				
-				// guardamos las paradas seleccionadas en el modelo
-				modelo.paradaOrigen = paradaOrigen;
-				modelo.paradaDestino = paradaDestino;
-				
-				// añadimos los datos al objeto billeteIda
-				modelo.billeteIda = new Billete();
-				modelo.billeteIda.setCodLinea(linea.getCodLinea());
-				modelo.billeteIda.setCodParadaInicio(paradaOrigen.getCodParada());
-				modelo.billeteIda.setCodParadaFin(paradaDestino.getCodParada());
-				
-				// comprobamos si se ha seleccionado billete de tipo 'simple' o 'ida y vuelta'
-				if (simple) {
-					
-					// ocultamos el JCalendar para la fecha de vuelta en la siguiente pantalla
-					vista.sel_fecha.panFechaVuelta.setVisible(false);
-					
-				} else {
-					
-					// mostramos el JCalendar para la fecha de vuelta en la siguiente pantalla
-					vista.sel_fecha.panFechaVuelta.setVisible(true);
-					
-					// añadimos los datos al objeto billeteVuelta
-					modelo.billeteVuelta = new Billete();
-					modelo.billeteVuelta.setCodLinea(linea.getCodLinea());
-					modelo.billeteVuelta.setCodParadaInicio(paradaDestino.getCodParada());
-					modelo.billeteVuelta.setCodParadaFin(paradaOrigen.getCodParada());
-					
-				}
+				// guardamos los datos en el modelo
+				guardarDatos(linea, paradaOrigen, paradaDestino, simple);
 				
 				break;
 			
@@ -167,6 +115,85 @@ public class ControladorBillete implements ActionListener {
 			}
 		  
 		}
+		
+	}
+	
+	public void validar() {
+		
+	}
+	
+	public void guardarDatos(Linea linea, Parada paradaOrigen, Parada paradaDestino, boolean simple) {
+		
+		modelo.linea = linea;
+		modelo.paradaOrigen = paradaOrigen;
+		modelo.paradaDestino = paradaDestino;
+		modelo.billeteIda = new Billete();
+		modelo.billeteIda.setCodLinea(linea.getCodLinea());
+		modelo.billeteIda.setCodParadaInicio(paradaOrigen.getCodParada());
+		modelo.billeteIda.setCodParadaFin(paradaDestino.getCodParada());
+		
+		// comprobamos si se ha seleccionado billete de tipo 'simple' o 'ida y vuelta'
+		if (simple) {
+			
+			// ocultamos el JCalendar para la fecha de vuelta en la siguiente pantalla
+			vista.sel_fecha.panFechaVuelta.setVisible(false);
+			
+		} else {
+			
+			// mostramos el JCalendar para la fecha de vuelta en la siguiente pantalla
+			vista.sel_fecha.panFechaVuelta.setVisible(true);
+			
+			// añadimos los datos al objeto billeteVuelta
+			modelo.billeteVuelta = new Billete();
+			modelo.billeteVuelta.setCodLinea(linea.getCodLinea());
+			modelo.billeteVuelta.setCodParadaInicio(paradaDestino.getCodParada());
+			modelo.billeteVuelta.setCodParadaFin(paradaOrigen.getCodParada());
+			
+		}
+		
+	}
+	
+	public void actualizarFrame(Parada paradaOrigen, Parada paradaDestino, boolean simple) {
+		
+		// limpia los textFields de la siguiente pantalla
+		vista.sel_fecha.txtOrigen.removeAll();
+		vista.sel_fecha.txtDestino.removeAll();
+		
+		// carga los nombres de las paradas en la siguiente pantalla
+		vista.sel_fecha.txtOrigen.setText(paradaOrigen.getNombre());
+		vista.sel_fecha.txtDestino.setText(paradaDestino.getNombre());
+		
+		// creamos una fecha limite
+		DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+		Date fechaLimite = null;
+		try {
+			fechaLimite = new Date(df.parse("12-31-2020").getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		// actualizamos las fechas disponibles para la ida
+		vista.sel_fecha.fechaIda.setSelectableDateRange(new Date(),fechaLimite);
+		
+		// comprobamos si existe billete de vuelta
+		if (simple) {
+			
+			// ocultamos el JCalendar para la fecha de vuelta en la siguiente pantalla
+			vista.sel_fecha.panFechaVuelta.setVisible(false);
+			
+		} else {
+			
+			// mostramos el JCalendar para la fecha de vuelta en la siguiente pantalla
+			vista.sel_fecha.panFechaVuelta.setVisible(true);
+			
+			// actualizamos las fechas disponibles para la ida
+			vista.sel_fecha.fechaVuelta.setSelectableDateRange(new Date(),fechaLimite);
+			
+		}
+		
+		// muestra el siguiente panel 'sel_fecha'
+		vista.sel_fecha.setVisible(true);
+		vista.sel_billete.setVisible(false);
 		
 	}
 	
