@@ -4,7 +4,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class ComprobarInicioSesion {
+public class ComprobarLogin {
 	
 	Modelo modelo = new Modelo();
 	Cliente cliente;

@@ -52,4 +52,11 @@ public class Linea {
 		this.codMunicipios = codMunicipios;
 	}
 
+	@Override
+	public String toString() {
+		return "Linea " + codLinea + ": " + nombre;
+	}
+	
+	
+
 }

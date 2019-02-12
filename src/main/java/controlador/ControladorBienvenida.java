@@ -27,16 +27,19 @@ public class ControladorBienvenida implements ActionListener {
 	public void actionPerformed(ActionEvent e) { 
 		
 		// muestra el siguiente panel 'sel_linea'
-		vista.sel_linea.setVisible(true);
+		vista.sel_billete.setVisible(true);
 		vista.bienvenida.setVisible(false);
 		
 		// carga las lineas de la BBDD y las muestra en el JList
-		lineas = modelo.consultas.getLineas(); //Carga la informacion de las lineas desde la base de datos
-		vista.sel_linea.modeloLineas.removeAllElements(); //Limpia la lista de las lineas en la interfaz
-		for(int i=0; i<lineas.size(); i++) { //Recorre el ArrayList de lineas para poder utilizar sus componentes
-			String nombre = lineas.get(i).getCodLinea(); //Guarda el codigo de la linea en una variable para poder utilizarla
-			vista.sel_linea.modeloLineas.addElement(nombre);
-			vista.sel_linea.listLineas.setModel(vista.sel_linea.modeloLineas);
+		lineas = modelo.consultas.getLineas();
+		
+		//Limpia la lista de las lineas en la interfaz
+		vista.sel_billete.boxLineas.removeAllItems();
+		
+		//Recorre el ArrayList de lineas y los muestra en el JComboBox de la pantalla 'sel_billete'
+		for(int i=0; i<lineas.size(); i++) {
+			Linea linea = lineas.get(i);
+			vista.sel_billete.boxLineas.addItem(linea);
 		}
 		
 	}

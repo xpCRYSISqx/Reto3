@@ -104,10 +104,6 @@ public class ControladorRegistro implements ActionListener {
 						if(detalles == false) {
 							panelOrigen.setVisible(true);
 							vista.registro.setVisible(false);
-							vista.sel_linea.btnLogin.setVisible(false);
-							vista.sel_linea.btnLogin.setEnabled(false);
-							vista.sel_linea.btnRegistro.setVisible(false);
-							vista.sel_linea.btnRegistro.setEnabled(false);
 							vista.sel_billete.btnLogin.setVisible(false);
 							vista.sel_billete.btnLogin.setEnabled(false);
 							vista.sel_billete.btnRegistro.setVisible(false);
@@ -124,10 +120,6 @@ public class ControladorRegistro implements ActionListener {
 						else {
 							vista.pago.setVisible(true);
 							vista.registro.setVisible(false);
-							vista.sel_linea.btnLogin.setVisible(false);
-							vista.sel_linea.btnLogin.setEnabled(false);
-							vista.sel_linea.btnRegistro.setVisible(false);
-							vista.sel_linea.btnRegistro.setEnabled(false);
 							vista.sel_billete.btnLogin.setVisible(false);
 							vista.sel_billete.btnLogin.setEnabled(false);
 							vista.sel_billete.btnRegistro.setVisible(false);

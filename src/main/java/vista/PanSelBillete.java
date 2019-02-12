@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
 
 public class PanSelBillete extends JPanel {
 
@@ -25,13 +26,14 @@ public class PanSelBillete extends JPanel {
 	
 	JPanel sel_billete = new JPanel();
 	
-	public DefaultListModel<String> modeloOrigen = new DefaultListModel<String>();
-	public DefaultListModel<String> modeloDestino = new DefaultListModel<String>();
+	public DefaultListModel<Object> modeloOrigen = new DefaultListModel<Object>();
+	public DefaultListModel<Object> modeloDestino = new DefaultListModel<Object>();
 	public JLabel lblIcono,lblOrigen,lblDestino;
-	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
+	public JButton btnLogin,btnRegistro,btnContinuar,btnCancelar;
 	public final ButtonGroup rbtnGroupBillete = new ButtonGroup();
 	public JRadioButton rbtnIda,rbtnVuelta;
-	public JList<String> listaOrigen,listaDestino;
+	public JList<Object> listaOrigen,listaDestino;
+	public JComboBox<Object> boxLineas;
 	
 	public PanSelBillete() {
 		setBackground(new Color(255, 255, 255));
@@ -58,43 +60,44 @@ public class PanSelBillete extends JPanel {
 		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
+		boxLineas = new JComboBox<Object>();
+		FormatoDiseno.formatoComboBox(boxLineas);
+		boxLineas.setBounds(45, 200, 327, 30);
+		add(boxLineas);
+
 		lblOrigen = new JLabel("Selecccione origen");
 		lblOrigen.setFont(new Font("Agency FB", Font.BOLD, 28));
 		lblOrigen.setHorizontalAlignment(SwingConstants.LEFT);
-		lblOrigen.setBounds(53, 200, 327, 40);
+		lblOrigen.setBounds(45, 255, 327, 40);
 		add(lblOrigen);
 		
-		listaOrigen = new JList<String>();
+		listaOrigen = new JList<Object>();
 		FormatoDiseno.formatoList(listaOrigen);
-		listaOrigen.setBounds(53, 251, 327, 250);
+		listaOrigen.setBounds(45, 301, 320, 250);
 		add(listaOrigen);
 		
 		lblDestino = new JLabel("Selecccione  destino");
 		lblDestino.setFont(new Font("Agency FB", Font.BOLD, 28));
 		lblDestino.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDestino.setBounds(400, 200, 327, 40);
+		lblDestino.setBounds(400, 255, 327, 40);
 		add(lblDestino);
 		
-		listaDestino = new JList<String>();
+		listaDestino = new JList<Object>();
 		FormatoDiseno.formatoList(listaDestino);
-		listaDestino.setBounds(400, 251, 327, 250);
+		listaDestino.setBounds(400, 301, 320, 250);
 		add(listaDestino);
-		
-		btnAtras = new JButton("Atr\u00E1s");
-		FormatoDiseno.formatoBtnAtras(btnAtras);
-		add(btnAtras);
 		
 		rbtnIda = new JRadioButton("Simple");
 		FormatoDiseno.formatoRbtn(rbtnIda);
-		rbtnIda.setBounds(760, 251, 180, 50);
+		rbtnIda.setBounds(800, 375, 180, 50);
 		rbtnGroupBillete.add(rbtnIda);
 		add(rbtnIda);
 		
 		rbtnVuelta = new JRadioButton("Ida / Vuelta");
 		FormatoDiseno.formatoRbtn(rbtnVuelta);
-		rbtnVuelta.setBounds(760, 304, 180, 50);
+		rbtnVuelta.setBounds(800, 425, 180, 50);
 		rbtnGroupBillete.add(rbtnVuelta);
 		add(rbtnVuelta);
-
+		
 	}
 }

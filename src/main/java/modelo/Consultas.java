@@ -136,7 +136,7 @@ public class Consultas {
 		
 		Municipio municipio = null;
 		ArrayList<Municipio> municipios = new ArrayList<Municipio>();
-		ArrayList<Parada> paradas = new ArrayList<Parada>();
+		ArrayList<Paradas> paradas = new ArrayList<Paradas>();
 		ArrayList<Integer> codParadas;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -188,10 +188,10 @@ public class Consultas {
 		
 	}
 	
-	public ArrayList<Parada> getParadasByMunicipio(int codMunicipio) {
+	public ArrayList<Paradas> getParadasByMunicipio(int codMunicipio) {
 		
-		Parada parada = null;
-		ArrayList<Parada> paradas = new ArrayList<Parada>();
+		Paradas parada = null;
+		ArrayList<Paradas> paradas = new ArrayList<Paradas>();
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 
@@ -209,7 +209,7 @@ public class Consultas {
 			
 			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
-				parada = new Parada();
+				parada = new Paradas();
 				parada.setCodParada(result.getInt("Cod_Parada"));
 				parada.setNombre(result.getString("Nombre"));
 				parada.setCalle(result.getString("Calle"));
@@ -230,10 +230,10 @@ public class Consultas {
 		
 	}
 	
-	public ArrayList<Parada> getParadasByLinea(String codLinea) {
+	public ArrayList<Paradas> getParadasByLinea(String codLinea) {
 		
-		Parada parada = null;
-		ArrayList<Parada> paradas = new ArrayList<Parada>();
+		Paradas parada = null;
+		ArrayList<Paradas> paradas = new ArrayList<Paradas>();
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 
@@ -252,7 +252,7 @@ public class Consultas {
 			
 			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
-				parada = new Parada();
+				parada = new Paradas();
 				parada.setCodParada(result.getInt("Cod_Parada"));
 				parada.setNombre(result.getString("Nombre"));
 				parada.setCalle(result.getString("Calle"));
