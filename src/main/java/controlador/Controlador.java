@@ -71,6 +71,7 @@ public class Controlador {
 		
 		// añadimos listeners a los botones del panel "pago"
 		this.controladorPago = new ControladorPago(vista, billete);
+		this.controladorPago.addListeners();
 	}
 	
 }

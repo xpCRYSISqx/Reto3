@@ -14,26 +14,8 @@ public class ControladorPago implements ActionListener{
 	private MainFrame vista;
 	private Billete billete;
 	private Pagar pagar;
-	private JLabel importe;
-	private JLabel introducido;
-	private JLabel restante;
-	private JButton unCent;
-	private JButton dosCent;
-	private JButton cincoCent;
-	private JButton diezCent;
-	private JButton veinteCent;
-	private JButton cincuentaCent;
-	private JButton unEur;
-	private JButton dosEur;
-	private JButton cincoEur;
-	private JButton diezEur;
-	private JButton veinteEur;
-	private JButton cincuentaEur;
-	private JButton cienEur;
-	private JButton doscientosEur;
-	private JButton continuar;
-	private JButton cancelar;
-	private JButton devolver;
+	private JLabel importe, introducido, restante;
+	private JButton unCent, dosCent, cincoCent, diezCent, veinteCent, cincuentaCent, unEur, dosEur, cincoEur, diezEur, veinteEur, cincuentaEur, cienEur, doscientosEur, continuar, cancelar, devolver;
 	private float total = 0;
 	private float dinero = 0;
 	private float falta = 0;
@@ -322,6 +304,29 @@ public class ControladorPago implements ActionListener{
 				TodoIntroducido();
 			break;
 		}
+	}
+	
+	public void FuncionBotonDinero(float importe) {
+		RedimensionarArrayMayor redimensionMayor = new RedimensionarArrayMayor();
+		int posicion;
+		
+		dinero = dinero + importe;
+		dinero = Math.round(dinero*100);
+		dinero = dinero/100;
+		monedas = redimensionMayor.redimensionarArray(monedas);
+		posicion = monedas.length - 1;
+		monedas[posicion] = importe;
+		introducido.setText(Float.toString(dinero) + " €");
+		if(dinero < total) {
+			falta = pagar.Falta(total, dinero);
+			restante.setText(Float.toString(falta) + " €");
+		}
+		else
+			TodoIntroducido();
+	}
+	
+	public void FuncionDevolver() {
+		
 	}
 	
 	public void TodoIntroducido() {
