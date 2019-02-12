@@ -14,7 +14,7 @@ public class ControladorBillete implements ActionListener {
 	
 	public MainFrame vista;
 	public Modelo modelo;
-	private ArrayList<Paradas> paradas;
+	private ArrayList<Parada> paradas;
 	
 	public ControladorBillete(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
@@ -71,8 +71,8 @@ public class ControladorBillete implements ActionListener {
 				Linea linea = (Linea) vista.sel_billete.boxLineas.getSelectedItem();
 				
 				// guardamos las paradas seleccionadas
-				Paradas origen = (Paradas) vista.sel_billete.listaOrigen.getSelectedValue();
-				Paradas destino = (Paradas) vista.sel_billete.listaDestino.getSelectedValue();
+				Parada origen = (Parada) vista.sel_billete.listaOrigen.getSelectedValue();
+				Parada destino = (Parada) vista.sel_billete.listaDestino.getSelectedValue();
 				
 				// guardamos el tipo de billete seleccionado
 				boolean simple = vista.sel_billete.rbtnIda.isSelected();
