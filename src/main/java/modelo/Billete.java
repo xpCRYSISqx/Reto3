@@ -20,7 +20,8 @@ public class Billete {
 		
 	}
 
-	public Billete(Integer codBillete, int nTrayecto, String codLinea, int codBus, int codParadaInicio, int codParadaFin, Date fecha, Time hora, String dni, float precio) {
+	public Billete(int codBillete, int nTrayecto, String codLinea, int codBus, 
+			int codParadaInicio, int codParadaFin, Date fecha, Time hora, String dni, float precio) {
 		this.codBillete = codBillete;
 		this.nTrayecto = nTrayecto;
 		this.codLinea = codLinea;
@@ -112,6 +113,4 @@ public class Billete {
 	public void setPrecio(float precio) {
 		this.precio = precio;
 	}
-
-
 }
