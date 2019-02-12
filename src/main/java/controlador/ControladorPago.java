@@ -90,7 +90,8 @@ public class ControladorPago implements ActionListener{
 		
 		// guardamos el nombre del boton pulsado
 		String botonPulsado = ((JButton) e.getSource()).getActionCommand();
-		RedimensionarArrayMayor redimension = new RedimensionarArrayMayor();
+		RedimensionarArrayMayor redimensionMayor = new RedimensionarArrayMayor();
+		RedimensionarArrayMenor redimensionMenor = new RedimensionarArrayMenor();
 		int posicion;
 		
 		// comprobamos que boton se ha pulsado y ejecutamos sus acciones
@@ -99,7 +100,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 0.01f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 0.01f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -114,7 +115,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 0.02f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 0.02f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -129,7 +130,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 0.05f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 0.05f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -144,7 +145,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 0.1f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 0.1f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -159,7 +160,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 0.2f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 0.2f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -174,7 +175,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 0.5f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 0.5f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -189,7 +190,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 1f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 1f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -204,7 +205,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 2f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 2f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -219,7 +220,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 5f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 5f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -234,7 +235,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 10f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 10f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -249,7 +250,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 20f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 20f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -264,7 +265,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 50f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 50f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -279,7 +280,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 100f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 100f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -294,7 +295,7 @@ public class ControladorPago implements ActionListener{
 			dinero = dinero + 200f;
 			dinero = Math.round(dinero*100);
 			dinero = dinero/100;
-			monedas = redimension.redimensionarArray(monedas);
+			monedas = redimensionMayor.redimensionarArray(monedas);
 			posicion = monedas.length - 1;
 			monedas[posicion] = 200f;
 			introducido.setText(Float.toString(dinero) + " €");
@@ -308,7 +309,17 @@ public class ControladorPago implements ActionListener{
 		case "Devolver":
 			posicion = monedas.length - 1;
 			moneda = monedas[posicion];
-			
+			dinero = dinero - moneda;
+			dinero = Math.round(dinero*100);
+			dinero = dinero/100;
+			introducido.setText(Float.toString(dinero) + " €");
+			monedas = redimensionMenor.redimensionarArray(monedas);
+			if(dinero < total) {
+				falta = pagar.Falta(total, dinero);
+				restante.setText(Float.toString(falta) + " €");
+			}
+			else
+				TodoIntroducido();
 			break;
 		}
 	}

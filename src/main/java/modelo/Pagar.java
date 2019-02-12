@@ -26,19 +26,12 @@ public class Pagar {
 	public float Falta(float total, float dinero)
 	{	
 		//Declaracion e inicializacion de variabeles
-		float sumaIntro = 0f;//va sumando lo que  introduce en caso de faltar dinero.
-		String devolver = "";
-		int cont = 0;
-		float totalProducto = 0f;
-		float sobra = 0f;//cantidad que tiene que devolver.
 		float falta = 0f;//dinero que le falta por introducir.
 		
-		//Inicio del programa				
-		sumaIntro = dinero;		       
-		falta = total-sumaIntro;//obtenemos la diferencia.
+		//Inicio del programa       
+		falta = total - dinero;//obtenemos la diferencia.
 		falta = Math.round(falta*100);//redondeamos el numero.
-		falta = falta/100;			
-		sumaIntro = dinero+sumaIntro;
+		falta = falta/100;
 						 		
 		return falta;						
 	}
