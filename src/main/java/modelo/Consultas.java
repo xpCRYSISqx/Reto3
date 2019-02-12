@@ -1,6 +1,7 @@
 package modelo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,8 +32,6 @@ public class Consultas {
 		ArrayList<Linea> lineas = new ArrayList<Linea>();
 		ArrayList<Autobus> autobuses;
 		ArrayList<Municipio> municipios;
-		ArrayList<Integer> codMunicipios;
-		ArrayList<Integer> codAutobuses;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 
@@ -57,22 +56,14 @@ public class Consultas {
 			
 			// cargamos los codigos de los autobuses
 			for(int i = 0;i<lineas.size();i++) {
-				codAutobuses = new ArrayList<Integer>();
 				autobuses = getAutobusesByLinea(lineas.get(i).getCodLinea());
-				for(int j = 0;j<autobuses.size();j++) {
-					codAutobuses.add(autobuses.get(j).getCodBus());
-				}
-				lineas.get(i).setCodAutobuses(codAutobuses);
+				lineas.get(i).setAutobuses(autobuses);
 			}
 			
 			// cargamos los codigos de los municipios
 			for(int i = 0;i<lineas.size();i++) {
-				codMunicipios = new ArrayList<Integer>();
 				municipios = getMunicipiosByLinea(lineas.get(i).getCodLinea());
-				for(int j = 0;j<municipios.size();j++) {
-					codMunicipios.add(municipios.get(j).getCodPostal());
-				}
-				lineas.get(i).setCodMunicipios(codMunicipios);
+				lineas.get(i).setMunicipios(municipios);
 			}
 			
 		} catch (SQLException e) {
@@ -314,7 +305,7 @@ public class Consultas {
 		
 	}
 	
-	public Boolean comprobarPlazasBillete(Billete billete) {
+	public Boolean comprobarPlazasBillete(int codBus, Date fecha) {
 
 		PreparedStatement stmt = null;
 		ResultSet result = null;
@@ -330,8 +321,8 @@ public class Consultas {
 
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ? and Fecha = ?");
-			stmt.setInt(1, billete.getCodBus());
-			stmt.setDate(2, billete.getFecha());
+			stmt.setInt(1, codBus);
+			stmt.setDate(2, fecha);
   
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet
 			result = stmt.executeQuery();
@@ -356,7 +347,7 @@ public class Consultas {
 
 			// preparamos la consulta SQL a la base de datos
 			stmt = connection.prepareStatement("SELECT N_plazas FROM autobus WHERE Cod_bus = ?");
-			stmt.setInt(1, billete.getCodBus());
+			stmt.setInt(1, codBus);
 
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();

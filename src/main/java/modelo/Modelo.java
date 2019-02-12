@@ -13,6 +13,7 @@ public class Modelo {
 	public Linea linea;
 	public Parada paradaOrigen;
 	public Parada paradaDestino;
+	public Autobus autobus;
 	
 	public Modelo() {
 		
@@ -38,6 +39,7 @@ public class Modelo {
 		linea = null;
 		paradaOrigen = null;
 		paradaDestino = null;
+		autobus = null;
 		
 	}
 	

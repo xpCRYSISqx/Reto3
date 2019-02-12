@@ -2,15 +2,22 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JCalendar;
+
+import modelo.Autobus;
 import modelo.Modelo;
 import vista.MainFrame;
 
-public class ControladorFecha implements ActionListener {
+public class ControladorFecha implements ActionListener, PropertyChangeListener {
 	
 	public MainFrame vista;
 	public Modelo modelo;
@@ -27,6 +34,8 @@ public class ControladorFecha implements ActionListener {
 		vista.sel_fecha.btnLogin.addActionListener(this);
 		vista.sel_fecha.btnRegistro.addActionListener(this);
 		vista.sel_fecha.btnContinuar.addActionListener(this);
+		vista.sel_fecha.fechaIda.addPropertyChangeListener(this);
+		vista.sel_fecha.fechaVuelta.addPropertyChangeListener(this);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -113,5 +122,50 @@ public class ControladorFecha implements ActionListener {
 		}
 		
 	}
-	
+
+	@Override
+	public void propertyChange(PropertyChangeEvent e) {
+		
+		ArrayList<Autobus> autobuses = modelo.linea.getAutobuses();
+		Boolean plazasDisponibles = false;
+
+		// guardamos el nombre del boton pulsado
+		JCalendar botonPulsado = ((JCalendar) e.getSource());
+		
+		if (botonPulsado == vista.sel_fecha.fechaIda) {
+			
+			Date fechaIda = new Date(vista.sel_fecha.fechaIda.getDate().getTime());
+			
+			for(int i = 0;i<autobuses.size();i++) {
+				plazasDisponibles = modelo.consultas.comprobarPlazasBillete(autobuses.get(i).getCodBus(),fechaIda);
+				if (plazasDisponibles) {
+					modelo.autobus = autobuses.get(i);
+					break;
+				}
+			}
+			
+			if (!plazasDisponibles) {
+				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		} else {
+			
+			Date fechaVuelta = new Date(vista.sel_fecha.fechaVuelta.getDate().getTime());
+
+			for(int i = 0;i<autobuses.size();i++) {
+				plazasDisponibles = modelo.consultas.comprobarPlazasBillete(autobuses.get(i).getCodBus(),fechaVuelta);
+				if (plazasDisponibles) {
+					modelo.autobus = autobuses.get(i);
+					break;
+				}
+			}
+			
+			if (!plazasDisponibles) {
+				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		}		
+		
+	}
+
 }

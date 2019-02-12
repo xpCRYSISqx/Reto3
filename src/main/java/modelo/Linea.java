@@ -6,18 +6,18 @@ public class Linea {
 	
 	private String codLinea;
 	private String nombre;
-	private ArrayList<Integer> codAutobuses;
-	private ArrayList<Integer> codMunicipios;
+	private ArrayList<Autobus> autobuses;
+	private ArrayList<Municipio> municipios;
 	
 	public Linea() {
 	
 	}
 	
-	public Linea(String codLinea, String nombre, ArrayList<Integer> codAutobuses, ArrayList<Integer> codMunicipios) {
+	public Linea(String codLinea, String nombre, ArrayList<Autobus> codAutobuses, ArrayList<Municipio> codMunicipios) {
 		this.codLinea = codLinea;
 		this.nombre = nombre;
-		this.codAutobuses = codAutobuses;
-		this.codMunicipios = codMunicipios;
+		this.autobuses = codAutobuses;
+		this.municipios = codMunicipios;
 	}
 
 	public String getCodLinea() {
@@ -36,20 +36,20 @@ public class Linea {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<Integer> getCodAutobuses() {
-		return codAutobuses;
+	public ArrayList<Autobus> getAutobuses() {
+		return autobuses;
 	}
 
-	public void setCodAutobuses(ArrayList<Integer> codAutobuses) {
-		this.codAutobuses = codAutobuses;
+	public void setAutobuses(ArrayList<Autobus> codAutobuses) {
+		this.autobuses = codAutobuses;
 	}
 
-	public ArrayList<Integer> getCodMunicipios() {
-		return codMunicipios;
+	public ArrayList<Municipio> getMunicipios() {
+		return municipios;
 	}
 
-	public void setCodMunicipios(ArrayList<Integer> codMunicipios) {
-		this.codMunicipios = codMunicipios;
+	public void setMunicipios(ArrayList<Municipio> codMunicipios) {
+		this.municipios = codMunicipios;
 	}
 
 	@Override
