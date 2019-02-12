@@ -19,6 +19,7 @@ import com.toedter.calendar.JCalendar;
 import modelo.Autobus;
 import modelo.Billete;
 import modelo.Modelo;
+import modelo.Parada;
 import vista.MainFrame;
 
 public class ControladorFecha implements ActionListener, PropertyChangeListener {
@@ -78,48 +79,11 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 				
 			case "Continuar":
 				
-				// muestra el siguiente panel 'detalles_compra'
-				vista.detalles_compra.setVisible(true);
-				vista.sel_fecha.setVisible(false);
+				if(validarDatos()) {
 				
-				// comprobamos si hay plazas disponibles para la fecha de Ida
-				Date fechaIda = new Date(vista.sel_fecha.fechaIda.getDate().getTime());
-				boolean plazasDisponiblesIda = comprobarAutobusDisponible(fechaIda);
+					// mostramos los datos en la siguiente pantalla 'detalles_compra'
+					actualizarFrame();
 				
-				if (plazasDisponiblesIda) {
-					modelo.billeteIda.setFecha(fechaIda);
-				}  else {
-					JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
-				}
-				
-				// comprobamos si existe billete de vuelta
-				if (modelo.billeteVuelta != null) {
-					
-					// comprobamos si hay plazas disponibles para la fecha de vuelta
-					Date fechaVuelta = new Date(vista.sel_fecha.fechaVuelta.getDate().getTime());
-					boolean plazasDisponiblesVuelta = comprobarAutobusDisponible(fechaVuelta);
-					
-					if (plazasDisponiblesVuelta) {
-						modelo.billeteVuelta.setFecha(fechaVuelta);
-					}  else {
-						JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
-					}
-					
-				}
-				
-				// mostramos los datos del billete en la siguiente pantalla 'detalles_compra'
-				DefaultTableModel tablaIda = (DefaultTableModel) vista.detalles_compra.detallesIda.getModel();
-				mostrarBillete(modelo.billeteIda, tablaIda);
-				
-				// comprobamos si existe billete de vuelta, si existe mostramos los datos
-				if (modelo.billeteVuelta != null) {
-					
-					DefaultTableModel tablaVuelta = (DefaultTableModel) vista.detalles_compra.detallesVuelta.getModel();
-					mostrarBillete(modelo.billeteVuelta, tablaVuelta);
-					
-				} else {
-					vista.detalles_compra.detallesVuelta.setVisible(false);
-					vista.detalles_compra.scrollPaneVuelta.setVisible(false);
 				}
 				
 				break;
@@ -194,6 +158,62 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		datosBillete[4] = billete.getHora();
 		
 		tabla.addRow(datosBillete);
+		
+	}
+	
+	public boolean validarDatos() {
+		
+		// comprobamos si hay plazas disponibles para la fecha de Ida
+		Date fechaIda = new Date(vista.sel_fecha.fechaIda.getDate().getTime());
+		boolean plazasDisponiblesIda = comprobarAutobusDisponible(fechaIda);
+		
+		if (plazasDisponiblesIda) {
+			modelo.billeteIda.setFecha(fechaIda);
+		}  else {
+			JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		
+		// comprobamos si existe billete de vuelta
+		if (modelo.billeteVuelta != null) {
+			
+			// comprobamos si hay plazas disponibles para la fecha de vuelta
+			Date fechaVuelta = new Date(vista.sel_fecha.fechaVuelta.getDate().getTime());
+			boolean plazasDisponiblesVuelta = comprobarAutobusDisponible(fechaVuelta);
+			
+			if (plazasDisponiblesVuelta) {
+				modelo.billeteVuelta.setFecha(fechaVuelta);
+			}  else {
+				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+				return false;
+			}
+			
+		}
+		
+		return true;
+		
+	}
+	
+	public void actualizarFrame() {
+		
+		// mostramos los datos del billete en la siguiente pantalla 'detalles_compra'
+		DefaultTableModel tablaIda = (DefaultTableModel) vista.detalles_compra.detallesIda.getModel();
+		mostrarBillete(modelo.billeteIda, tablaIda);
+		
+		// comprobamos si existe billete de vuelta, si existe mostramos los datos
+		if (modelo.billeteVuelta != null) {
+			
+			DefaultTableModel tablaVuelta = (DefaultTableModel) vista.detalles_compra.detallesVuelta.getModel();
+			mostrarBillete(modelo.billeteVuelta, tablaVuelta);
+			
+		} else {
+			vista.detalles_compra.detallesVuelta.setVisible(false);
+			vista.detalles_compra.scrollPaneVuelta.setVisible(false);
+		}
+		
+		// muestra el siguiente panel 'detalles_compra'
+		vista.detalles_compra.setVisible(true);
+		vista.sel_fecha.setVisible(false);
 		
 	}
 
