@@ -10,6 +10,9 @@ public class Modelo {
 	public Cliente cliente;
 	public Billete billeteIda;
 	public Billete billeteVuelta;
+	public Linea linea;
+	public Parada paradaOrigen;
+	public Parada paradaDestino;
 	
 	public Modelo() {
 		
@@ -32,6 +35,9 @@ public class Modelo {
 		cliente = null;
 		billeteIda = null;
 		billeteVuelta = null;
+		linea = null;
+		paradaOrigen = null;
+		paradaDestino = null;
 		
 	}
 	

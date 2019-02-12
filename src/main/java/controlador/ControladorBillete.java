@@ -71,8 +71,8 @@ public class ControladorBillete implements ActionListener {
 				Linea linea = (Linea) vista.sel_billete.boxLineas.getSelectedItem();
 				
 				// guardamos las paradas seleccionadas
-				Parada origen = (Parada) vista.sel_billete.listaOrigen.getSelectedValue();
-				Parada destino = (Parada) vista.sel_billete.listaDestino.getSelectedValue();
+				Parada paradaOrigen = (Parada) vista.sel_billete.listaOrigen.getSelectedValue();
+				Parada paradaDestino = (Parada) vista.sel_billete.listaDestino.getSelectedValue();
 				
 				// guardamos el tipo de billete seleccionado
 				boolean simple = vista.sel_billete.rbtnIda.isSelected();
@@ -82,15 +82,22 @@ public class ControladorBillete implements ActionListener {
 				vista.sel_fecha.txtOrigen.removeAll();
 				vista.sel_fecha.txtDestino.removeAll();
 				
-				// carga las paradas en la siguiente pantalla
-				vista.sel_fecha.txtOrigen.setText(origen.getNombre());
-				vista.sel_fecha.txtDestino.setText(destino.getNombre());
+				// carga los nombres de las paradas en la siguiente pantalla
+				vista.sel_fecha.txtOrigen.setText(paradaOrigen.getNombre());
+				vista.sel_fecha.txtDestino.setText(paradaDestino.getNombre());
+				
+				// guardamos la linea seleccionada en el modelo
+				modelo.linea = linea;
+				
+				// guardamos las paradas seleccionadas en el modelo
+				modelo.paradaOrigen = paradaOrigen;
+				modelo.paradaDestino = paradaDestino;
 				
 				// añadimos los datos al objeto billeteIda
 				modelo.billeteIda = new Billete();
 				modelo.billeteIda.setCodLinea(linea.getCodLinea());
-				modelo.billeteIda.setCodParadaInicio(origen.getCodParada());
-				modelo.billeteIda.setCodParadaFin(destino.getCodParada());
+				modelo.billeteIda.setCodParadaInicio(paradaOrigen.getCodParada());
+				modelo.billeteIda.setCodParadaFin(paradaDestino.getCodParada());
 				
 				// comprobamos si se ha seleccionado billete de tipo 'simple' o 'ida y vuelta'
 				if (simple) {
@@ -106,8 +113,8 @@ public class ControladorBillete implements ActionListener {
 					// añadimos los datos al objeto billeteVuelta
 					modelo.billeteVuelta = new Billete();
 					modelo.billeteVuelta.setCodLinea(linea.getCodLinea());
-					modelo.billeteVuelta.setCodParadaInicio(destino.getCodParada());
-					modelo.billeteVuelta.setCodParadaFin(origen.getCodParada());
+					modelo.billeteVuelta.setCodParadaInicio(paradaDestino.getCodParada());
+					modelo.billeteVuelta.setCodParadaFin(paradaOrigen.getCodParada());
 					
 				}
 				
