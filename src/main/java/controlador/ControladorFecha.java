@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import com.toedter.calendar.JCalendar;
 
 import modelo.Autobus;
+import modelo.Billete;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -81,39 +82,40 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 				vista.detalles_compra.setVisible(true);
 				vista.sel_fecha.setVisible(false);
 				
-				// guardamos la fecha seleccionada para el billete de Ida
+				// comprobamos si hay plazas disponibles para la fecha de Ida
 				Date fechaIda = new Date(vista.sel_fecha.fechaIda.getDate().getTime());
-				modelo.billeteIda.setFecha(fechaIda);
+				boolean plazasDisponiblesIda = comprobarAutobusDisponible(fechaIda);
 				
-				// comprobamos si existe billete de vuelta, si existe guardamos la fecha seleccionada
+				if (plazasDisponiblesIda) {
+					modelo.billeteIda.setFecha(fechaIda);
+				}  else {
+					JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				// comprobamos si existe billete de vuelta
 				if (modelo.billeteVuelta != null) {
+					
+					// comprobamos si hay plazas disponibles para la fecha de vuelta
 					Date fechaVuelta = new Date(vista.sel_fecha.fechaVuelta.getDate().getTime());
-					modelo.billeteVuelta.setFecha(fechaVuelta);
+					boolean plazasDisponiblesVuelta = comprobarAutobusDisponible(fechaVuelta);
+					
+					if (plazasDisponiblesVuelta) {
+						modelo.billeteVuelta.setFecha(fechaVuelta);
+					}  else {
+						JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+					}
+					
 				}
 				
 				// mostramos los datos del billete en la siguiente pantalla 'detalles_compra'
-				Object[] datosBilleteIda = new Object[5];
-				datosBilleteIda[0] = modelo.billeteIda.getCodLinea();
-				datosBilleteIda[1] = modelo.billeteIda.getCodParadaInicio();
-				datosBilleteIda[2] = modelo.billeteIda.getCodParadaFin();
-				datosBilleteIda[3] = modelo.billeteIda.getFecha();
-				datosBilleteIda[4] = modelo.billeteIda.getHora();
+				DefaultTableModel tablaIda = (DefaultTableModel) vista.detalles_compra.detallesIda.getModel();
+				mostrarBillete(modelo.billeteIda, tablaIda);
 				
-				DefaultTableModel detallesIda = (DefaultTableModel) vista.detalles_compra.detallesIda.getModel();
-				detallesIda.addRow(datosBilleteIda);
-				
-				// comprobamos si existe billete de vuelta, si existe mostramos los datos en la siguiente pantalla 'detalles_compra'
+				// comprobamos si existe billete de vuelta, si existe mostramos los datos
 				if (modelo.billeteVuelta != null) {
 					
-					Object[] datosBilleteVuelta = new Object[5];
-					datosBilleteVuelta[0] = modelo.billeteVuelta.getCodLinea();
-					datosBilleteVuelta[1] = modelo.billeteVuelta.getCodParadaInicio();
-					datosBilleteVuelta[2] = modelo.billeteVuelta.getCodParadaFin();
-					datosBilleteVuelta[3] = modelo.billeteVuelta.getFecha();
-					datosBilleteVuelta[4] = modelo.billeteVuelta.getHora();
-					
-					DefaultTableModel detallesVuelta = (DefaultTableModel) vista.detalles_compra.detallesVuelta.getModel();
-					detallesVuelta.addRow(datosBilleteVuelta);
+					DefaultTableModel tablaVuelta = (DefaultTableModel) vista.detalles_compra.detallesVuelta.getModel();
+					mostrarBillete(modelo.billeteVuelta, tablaVuelta);
 					
 				} else {
 					vista.detalles_compra.detallesVuelta.setVisible(false);
@@ -128,9 +130,6 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 
 	@Override
 	public void propertyChange(PropertyChangeEvent e) {
-		
-		ArrayList<Autobus> autobuses = modelo.linea.getAutobuses();
-		Boolean plazasDisponibles = false;
 
 		// guardamos el nombre del boton pulsado
 		JCalendar botonPulsado = ((JCalendar) e.getSource());
@@ -138,50 +137,63 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		if (botonPulsado == vista.sel_fecha.fechaIda) {
 			
 			Date fechaIda = new Date(vista.sel_fecha.fechaIda.getDate().getTime());
+			boolean plazasDisponibles = comprobarAutobusDisponible(fechaIda);
 			
-			for(int i = 0;i<autobuses.size();i++) {
-				plazasDisponibles = modelo.consultas.comprobarPlazasBillete(autobuses.get(i).getCodBus(),fechaIda);
-				if (plazasDisponibles) {
-					modelo.autobus = autobuses.get(i);
-					break;
-				}
-			}
-			
-			if (!plazasDisponibles) {
-				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
-			} else {
-				
-				DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-				Date fechaLimite;
+			if (plazasDisponibles) {
 				
 				try {
 					
-					fechaLimite = new Date(df.parse("12-31-2020").getTime());
+					Date fechaLimite = new Date(new SimpleDateFormat("MM-dd-yyyy").parse("12-31-2020").getTime());
 					vista.sel_fecha.fechaVuelta.setSelectableDateRange(fechaIda,fechaLimite);
 					
 				} catch (ParseException e1) {
 					e1.printStackTrace();
 				}
 				
+			} else {
+				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			}
 			
 		} else {
 			
 			Date fechaVuelta = new Date(vista.sel_fecha.fechaVuelta.getDate().getTime());
-
-			for(int i = 0;i<autobuses.size();i++) {
-				plazasDisponibles = modelo.consultas.comprobarPlazasBillete(autobuses.get(i).getCodBus(),fechaVuelta);
-				if (plazasDisponibles) {
-					modelo.autobus = autobuses.get(i);
-					break;
-				}
-			}
+			boolean plazasDisponibles = comprobarAutobusDisponible(fechaVuelta);
 			
 			if (!plazasDisponibles) {
 				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			}
 			
 		}		
+		
+	}
+	
+	public boolean comprobarAutobusDisponible(Date fecha) {
+		
+		ArrayList<Autobus> autobuses = modelo.linea.getAutobuses();
+		Boolean plazasDisponibles = false;
+
+		for(int i = 0;i<autobuses.size();i++) {
+			plazasDisponibles = modelo.consultas.comprobarPlazasBillete(autobuses.get(i).getCodBus(),fecha);
+			if (plazasDisponibles) {
+				modelo.autobus = autobuses.get(i);
+				break;
+			}
+		}
+		
+		return plazasDisponibles;
+		
+	}
+	
+	public void mostrarBillete(Billete billete, DefaultTableModel tabla) {
+		
+		Object[] datosBillete = new Object[5];
+		datosBillete[0] = billete.getCodLinea();
+		datosBillete[1] = billete.getCodParadaInicio();
+		datosBillete[2] = billete.getCodParadaFin();
+		datosBillete[3] = billete.getFecha();
+		datosBillete[4] = billete.getHora();
+		
+		tabla.addRow(datosBillete);
 		
 	}
 
