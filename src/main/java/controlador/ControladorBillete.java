@@ -2,7 +2,11 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -85,6 +89,18 @@ public class ControladorBillete implements ActionListener {
 				// carga los nombres de las paradas en la siguiente pantalla
 				vista.sel_fecha.txtOrigen.setText(paradaOrigen.getNombre());
 				vista.sel_fecha.txtDestino.setText(paradaDestino.getNombre());
+				
+				// actualizamos las fechas disponibles
+				try {
+					
+					DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+					Date fechaLimite = new Date(df.parse("12-31-2020").getTime());
+					vista.sel_fecha.fechaIda.setSelectableDateRange(new Date(),fechaLimite);
+					vista.sel_fecha.fechaVuelta.setSelectableDateRange(new Date(),fechaLimite);
+					
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
 				
 				// guardamos la linea seleccionada en el modelo
 				modelo.linea = linea;

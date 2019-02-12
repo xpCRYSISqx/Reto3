@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -146,6 +149,20 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			
 			if (!plazasDisponibles) {
 				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			} else {
+				
+				DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
+				Date fechaLimite;
+				
+				try {
+					
+					fechaLimite = new Date(df.parse("12-31-2020").getTime());
+					vista.sel_fecha.fechaVuelta.setSelectableDateRange(fechaIda,fechaLimite);
+					
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				
 			}
 			
 		} else {
