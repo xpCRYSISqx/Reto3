@@ -67,6 +67,9 @@ public class ControladorDetalles implements ActionListener {
 				ControladorLogin.panelOrigen = vista.detalles_compra;
 				ControladorLogin.detalles = true;
 				
+				float total = this.modelo.billeteIda.getPrecio();
+				this.vista.pago.lblDineroTotal.setText(Float.toString(total) + " €");
+				
 				if(logeado == true) {
 					vista.pago.setVisible(true);
 					vista.detalles_compra.setVisible(false);

@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.mockito.internal.configuration.InjectingAnnotationEngine;
-
 public class Consultas {
 	
 	private Conexion conexion;
@@ -391,7 +389,11 @@ public class Consultas {
 		// calculamos el beneficio
 		beneficio = consumo * 0.2f;
 		
+		// calculamos el precio
 		precio = consumo + beneficio;
+		
+		// redondeamos el precio
+		precio = Math.round(precio*100.0f)/100.0f;
 		
 		return precio;
 	}

@@ -7,6 +7,7 @@ public class Modelo {
 	public Encriptacion encriptacion;
 	private String[] datosConexion;
 	private Conexion conexion;
+	public Pagar pagar;
 	public Cliente cliente;
 	public Billete billeteIda;
 	public Billete billeteVuelta;
@@ -33,6 +34,9 @@ public class Modelo {
 		
 		// Creamos un objeto Encriptacion que usaremos para encriptar las contraseñas
 		encriptacion = new Encriptacion();
+		
+		// Creamos un objeto Pagar que usaremos para el realizar el pago
+		pagar = new Pagar();
 		
 		// iniciamos los objetos que usaremos para ir almacenando los datos introducidos por el cliente
 		cliente = null;
