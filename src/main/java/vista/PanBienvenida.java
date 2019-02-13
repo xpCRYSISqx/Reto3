@@ -19,8 +19,6 @@ public class PanBienvenida extends JPanel {
 	 * Create the panel.
 	 */
 	
-	JPanel sel_linea = new JPanel();
-	
 	public JButton btnContinuar;
 	public JLabel lblIcono;
 	

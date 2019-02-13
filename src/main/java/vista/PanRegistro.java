@@ -16,8 +16,6 @@ import javax.swing.ButtonGroup;
 public class PanRegistro extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	
-	JPanel registro = new JPanel();
 		
 	public JLabel lblTitulo,lblIcono,lblNombre,lblApellidos,lblDni, lblSexo,lblPassword, lblPassword2, lblfechaNac, lblErrorDNI, lblErrorContrasenas, lblErrorSexo, lblErrorDNINoIntroducido;
 	public JTextField txtNombre, txtApellidos, txtDni;

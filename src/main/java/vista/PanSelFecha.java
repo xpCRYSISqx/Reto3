@@ -19,8 +19,6 @@ public class PanSelFecha extends JPanel {
 	 * Create the panel.
 	 */
 	
-	JPanel sel_fecha = new JPanel();
-	
 	public JButton btnContinuar, btnLogin, btnRegistro, btnCancelar, btnAtras;
 	public JLabel lblIcono, lblOrigen, lblDestino, lblSeleccioneFecha, lblSeleccioneVuelta;
 	public JCalendar fechaIda, fechaVuelta;

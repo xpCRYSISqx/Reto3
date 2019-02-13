@@ -156,7 +156,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			
 			if (autobusVuelta != null) {
 				modelo.autobus = autobusIda;
-				modelo.billeteVuelta.setCodBus(autobusVuelta.getCodBus());;
+				modelo.billeteVuelta.setCodBus(autobusVuelta.getCodBus());
 				modelo.billeteVuelta.setFecha(fechaVuelta);
 				calcularPrecioBillete(modelo.billeteVuelta);
 			}  else {

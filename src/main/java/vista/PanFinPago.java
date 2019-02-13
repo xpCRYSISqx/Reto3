@@ -19,8 +19,6 @@ public class PanFinPago extends JPanel {
 	 * Create the panel.
 	 */
 	
-	JPanel fin_pago = new JPanel();
-	
 	public JLabel lblIcono,lblTitulo,lblTotal,lblPagado,lblADevolver,lblImprimir;
 	public JButton btnImprimir,btnSeparador;
 	public JTextField txtTotal,txtPagado,txtDevolver;
