@@ -93,25 +93,30 @@ public class ControladorBillete implements ActionListener {
 		   
 			// guarda la linea seleccionada
 			Linea linea = (Linea) vista.sel_billete.boxLineas.getSelectedItem();
-			String codLinea = linea.getCodLinea();
 			
-			// limpia los JList de las paradas
-			vista.sel_billete.modeloOrigen.removeAllElements();
-			vista.sel_billete.modeloDestino.removeAllElements();
-			
-			// carga las paradas de la linea selecciona desde la BBDD
-			paradas = modelo.consultas.getParadasByLinea(codLinea); 			
-			
-			//muestra las paradas en los JList
-			for(int i=0; i<paradas.size(); i++) {
-
-				// carga las paradas en el jlist origen
-				vista.sel_billete.modeloOrigen.addElement(paradas.get(i));
-				vista.sel_billete.listaOrigen.setModel(vista.sel_billete.modeloOrigen);
+			if (linea != null) {
 				
-				// carga las paradas en el jlist destino
-				vista.sel_billete.modeloDestino.addElement(paradas.get(i));
-				vista.sel_billete.listaDestino.setModel(vista.sel_billete.modeloDestino);
+				String codLinea = linea.getCodLinea();
+				
+				// limpia los JList de las paradas
+				vista.sel_billete.modeloOrigen.removeAllElements();
+				vista.sel_billete.modeloDestino.removeAllElements();
+				
+				// carga las paradas de la linea selecciona desde la BBDD
+				paradas = modelo.consultas.getParadasByLinea(codLinea); 			
+				
+				//muestra las paradas en los JList
+				for(int i=0; i<paradas.size(); i++) {
+	
+					// carga las paradas en el jlist origen
+					vista.sel_billete.modeloOrigen.addElement(paradas.get(i));
+					vista.sel_billete.listaOrigen.setModel(vista.sel_billete.modeloOrigen);
+					
+					// carga las paradas en el jlist destino
+					vista.sel_billete.modeloDestino.addElement(paradas.get(i));
+					vista.sel_billete.listaDestino.setModel(vista.sel_billete.modeloDestino);
+					
+				}
 				
 			}
 		  

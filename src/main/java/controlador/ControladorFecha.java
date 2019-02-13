@@ -103,7 +103,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			Date fechaIda = new Date(vista.sel_fecha.fechaIda.getDate().getTime());
 			Autobus autobusDisponible = comprobarAutobusDisponible(fechaIda);
 			
-			if (autobusDisponible == null) {
+			if (autobusDisponible != null) {
 				
 				try {
 					
