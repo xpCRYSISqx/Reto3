@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import com.toedter.calendar.JCalendar;
 import modelo.Autobus;
 import modelo.Billete;
 import modelo.Modelo;
-import modelo.Parada;
 import vista.MainFrame;
 
 public class ControladorFecha implements ActionListener, PropertyChangeListener {
@@ -141,7 +139,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			modelo.autobus = autobusIda;
 			modelo.billeteIda.setCodBus(autobusIda.getCodBus());;
 			modelo.billeteIda.setFecha(fechaIda);
-			calcularPrecioBillete(modelo.billeteIda);
+			modelo.billeteIda.setPrecio(calcularPrecioBillete(modelo.billeteIda));
 		}  else {
 			JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
@@ -158,7 +156,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 				modelo.autobus = autobusIda;
 				modelo.billeteVuelta.setCodBus(autobusVuelta.getCodBus());
 				modelo.billeteVuelta.setFecha(fechaVuelta);
-				calcularPrecioBillete(modelo.billeteVuelta);
+				modelo.billeteVuelta.setPrecio(calcularPrecioBillete(modelo.billeteVuelta));
 			}  else {
 				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 				return false;
@@ -226,7 +224,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		
 	}
 	
-	public void calcularPrecioBillete(Billete billete) {
+	public float calcularPrecioBillete(Billete billete) {
 		
 		float lat1 = modelo.paradaOrigen.getLatitud();
 		float lon1 = modelo.paradaOrigen.getLongitud();
@@ -234,7 +232,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		float lon2 = modelo.paradaOrigen.getLongitud();
 		Autobus autobus = modelo.autobus;
 		
-		billete.setPrecio( modelo.consultas.calcularPrecioBillete(lat1, lon1, lat2, lon2, autobus) );
+		return modelo.consultas.calcularPrecioBillete(lat1, lon1, lat2, lon2, autobus);
 
 	}
 

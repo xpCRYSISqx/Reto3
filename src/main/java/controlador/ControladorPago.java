@@ -228,5 +228,28 @@ public class ControladorPago implements ActionListener{
 		vista.fin_pago.txtPagado.setText(Float.toString(dinero) + " €");
 		vista.fin_pago.txtDevolver.setText(sobra + " €");
 		
+		// rellenar billete	
+		modelo.billeteIda.setDni(modelo.cliente.getDni());
+		modelo.billeteIda.setNTrayecto(1);
+		modelo.billeteIda.setHora("11:00");
+		
+		// insertar billete en BBDD
+		int codBilleteIda = modelo.consultas.insertarBillete(modelo.billeteIda);
+		modelo.billeteIda.setCodBillete(codBilleteIda);
+		
+		// comprobar si existe billete de vuelta
+		if (modelo.billeteVuelta != null) {
+			
+			// rellenar billete	
+			modelo.billeteVuelta.setDni(modelo.cliente.getDni());
+			modelo.billeteVuelta.setNTrayecto(2);
+			modelo.billeteVuelta.setHora("18:00");
+			
+			// insertar billete en BBDD
+			int codBilleteVuelta = modelo.consultas.insertarBillete(modelo.billeteVuelta);
+			modelo.billeteVuelta.setCodBillete(codBilleteVuelta);
+			
+		}
+		
 	}
 }

@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
-import modelo.Billete;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -33,10 +32,10 @@ public class ControladorFinPago implements ActionListener {
 		
 			case "Imprimir":
 				
-				modelo.ficheros.imprimirBillete(modelo.billeteIda);
+				modelo.ficheros.imprimirBillete(modelo.billeteIda, modelo.cliente);
 				
 				if(modelo.billeteVuelta != null) {
-					modelo.ficheros.imprimirBillete(modelo.billeteVuelta);
+					modelo.ficheros.imprimirBillete(modelo.billeteVuelta, modelo.cliente);
 				}
 				
 				// mostrar siguiente panel 'agur'

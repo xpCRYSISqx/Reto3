@@ -16,7 +16,6 @@ public class Modelo {
 	public Parada paradaDestino;
 	public Autobus autobus;
 	
-	public Boolean logeado;
 	public float precioTotal;
 	
 	public Modelo() {
@@ -48,7 +47,8 @@ public class Modelo {
 		paradaDestino = null;
 		autobus = null;
 		
-		logeado = false;
+		
+		// guardamos el precio total de los billetes
 		precioTotal = 0;
 		
 	}
