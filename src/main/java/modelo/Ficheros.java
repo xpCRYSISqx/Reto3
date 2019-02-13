@@ -48,15 +48,14 @@ public class Ficheros {
 		
 	}
 	
-	public void imprimirBillete(Billete billete, Cliente cliente) {
+	public String imprimirBillete(Billete billete, Cliente cliente, String path) {
 		
 		FileWriter fichero = null;	
 		PrintWriter writer = null;
-		String file = "src/main/java/resources/billete-" + billete.getCodBillete() + ".txt";
 		
 		try {
 			
-			fichero = new FileWriter(file);
+			fichero = new FileWriter(path);
 			writer = new PrintWriter(fichero);
 			
 			writer.println("=== DATOS DEL BILLETE ===");
@@ -91,6 +90,9 @@ public class Ficheros {
 					e.getStackTrace();
 			}
 		}
+		
+		return path;
+		
 	}
 
 }

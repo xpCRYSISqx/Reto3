@@ -30,7 +30,7 @@ public class TestBillete {
 	@Test
 	public void testConstructorBillete() {
 		Date date = new Date(31-01-2019);
-		Time time = new Time(0);
+		String time = "11:00";
 		long a = date.getTime();
 		
 		//Arrange
