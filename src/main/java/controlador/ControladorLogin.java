@@ -40,6 +40,7 @@ public class ControladorLogin implements ActionListener {
 		switch (botonPulsado) {
 		
 			case "Atrás":
+				
 				panelOrigen.setVisible(true);
 				vista.login.setVisible(false);
 				break;

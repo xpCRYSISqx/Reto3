@@ -7,7 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import modelo.ComprobarRegistro;
+import com.toedter.calendar.JDateChooser;
+
+import modelo.Cliente;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -20,10 +22,9 @@ public class ControladorRegistro implements ActionListener {
 	private String apellidos;
 	private String dni;
 	private Date fecha;
-	private boolean femenino;
-	private boolean masculino;
 	private char sexo;
 	private String contrasena;
+	private String contrasena2;
 	
 	public static JPanel panelOrigen;
 	public static Boolean detalles;
@@ -74,104 +75,42 @@ public class ControladorRegistro implements ActionListener {
 				
 				if(validarDatos()) {
 					
-				}
-				
-				// recogemos los datos ingresados por el usuario
-				String nombre = vista.registro.txtNombre.getText();
-				String apellidos = vista.registro.txtApellidos.getText();
-				Date fecha = new Date(vista.registro.dateChooser.getDate().getTime());
-				String dni = vista.registro.txtDni.getText();
-				boolean femenino = vista.registro.rbtnFem.isSelected();
-				boolean masculino = vista.registro.rbtnMasc.isSelected();
-				char[] cont = vista.registro.passwordField.getPassword();
-				String contrasena = new String(cont);
-				char[] contConfirmar = vista.registro.passwordField2.getPassword();
-				String contrasenaConfirmar = new String(contConfirmar);
-				
-				// encriptamos las contraseñas
-				contrasena = modelo.encriptacion.Encriptacion(contrasena);
-				contrasenaConfirmar = modelo.encriptacion.Encriptacion(contrasenaConfirmar);
-	
-				
-				// registramos al usuario en la BBDD
-				ComprobarRegistro comprobar = new ComprobarRegistro();
-				int registrado = comprobar.comprobarRegistro(nombre, apellidos, fecha, dni, sexo, contrasena, contrasenaConfirmar);
-				
-				// mostramos los errores
-				switch(registrado) {
+					if(modelo.consultas.getClienteByDNI(dni) != null) {
+						JOptionPane.showMessageDialog(vista, "Ya existe un usuario con DNI " + this.dni, "Aviso", JOptionPane.WARNING_MESSAGE);
+					} else {
+						modelo.cliente = new Cliente(dni, nombre, apellidos, fecha, sexo, contrasena);
+						modelo.consultas.insertarCliente(modelo.cliente);
+					}	
 					
-					// ningun error, todo correcto!
-					case 0:
+					// actualizar pantalla
+					if(modelo.cliente != null) {
 					
-						// ponemos la variable estatica logeado a true
-						modelo.logeado = true;
+						// deshabilitar botones de login y registro en todos los paneles
+						vista.sel_billete.btnLogin.setVisible(false);
+						vista.sel_billete.btnLogin.setEnabled(false);
+						vista.sel_billete.btnRegistro.setVisible(false);
+						vista.sel_billete.btnRegistro.setEnabled(false);
+						vista.sel_fecha.btnLogin.setVisible(false);
+						vista.sel_fecha.btnLogin.setEnabled(false);
+						vista.sel_fecha.btnRegistro.setVisible(false);
+						vista.sel_fecha.btnRegistro.setEnabled(false);
+						vista.detalles_compra.btnLogin.setVisible(false);
+						vista.detalles_compra.btnLogin.setEnabled(false);
+						vista.detalles_compra.btnRegistro.setVisible(false);
+						vista.detalles_compra.btnRegistro.setEnabled(false);
 						
 						// mostrar la pantalla adecuada
 						if(detalles == false) {
 							panelOrigen.setVisible(true);
 							vista.registro.setVisible(false);
-							vista.sel_billete.btnLogin.setVisible(false);
-							vista.sel_billete.btnLogin.setEnabled(false);
-							vista.sel_billete.btnRegistro.setVisible(false);
-							vista.sel_billete.btnRegistro.setEnabled(false);
-							vista.sel_fecha.btnLogin.setVisible(false);
-							vista.sel_fecha.btnLogin.setEnabled(false);
-							vista.sel_fecha.btnRegistro.setVisible(false);
-							vista.sel_fecha.btnRegistro.setEnabled(false);
-							vista.detalles_compra.btnLogin.setVisible(false);
-							vista.detalles_compra.btnLogin.setEnabled(false);
-							vista.detalles_compra.btnRegistro.setVisible(false);
-							vista.detalles_compra.btnRegistro.setEnabled(false);
 						}
 						else {
 							vista.pago.setVisible(true);
 							vista.registro.setVisible(false);
-							vista.sel_billete.btnLogin.setVisible(false);
-							vista.sel_billete.btnLogin.setEnabled(false);
-							vista.sel_billete.btnRegistro.setVisible(false);
-							vista.sel_billete.btnRegistro.setEnabled(false);
-							vista.sel_fecha.btnLogin.setVisible(false);
-							vista.sel_fecha.btnLogin.setEnabled(false);
-							vista.sel_fecha.btnRegistro.setVisible(false);
-							vista.sel_fecha.btnRegistro.setEnabled(false);
-							vista.detalles_compra.btnLogin.setVisible(false);
-							vista.detalles_compra.btnLogin.setEnabled(false);
-							vista.detalles_compra.btnRegistro.setVisible(false);
-							vista.detalles_compra.btnRegistro.setEnabled(false);
 						}
-					break;
 					
-					// DNI incorrecto
-					case 1:
-						vista.registro.lblErrorDNI.setVisible(true);
-						vista.registro.lblErrorDNINoIntroducido.setVisible(false);
-						vista.registro.lblErrorContrasenas.setVisible(false);
-						vista.registro.lblErrorSexo.setVisible(false);
-					break;
+					}
 					
-					// Contraseña incorrecta
-					case 2:
-						vista.registro.lblErrorContrasenas.setVisible(true);
-						vista.registro.lblErrorDNI.setVisible(false);
-						vista.registro.lblErrorDNINoIntroducido.setVisible(false);
-						vista.registro.lblErrorSexo.setVisible(false);
-					break;
-					
-					// Sexo no seleccionado
-					case 3:
-						vista.registro.lblErrorSexo.setVisible(true);
-						vista.registro.lblErrorDNI.setVisible(false);
-						vista.registro.lblErrorDNINoIntroducido.setVisible(false);
-						vista.registro.lblErrorContrasenas.setVisible(false);
-					break;
-					
-					// DNI no introducido
-					case 4:
-						vista.registro.lblErrorDNINoIntroducido.setVisible(true);
-						vista.registro.lblErrorDNI.setVisible(false);
-						vista.registro.lblErrorContrasenas.setVisible(false);
-						vista.registro.lblErrorSexo.setVisible(false);
-					break;
 				}
 				
 				break;
@@ -182,38 +121,76 @@ public class ControladorRegistro implements ActionListener {
 	
 	public boolean validarDatos() {
 		
+		String nombre = vista.registro.txtNombre.getText();
+		String apellidos = vista.registro.txtApellidos.getText();
+		JDateChooser fecha = vista.registro.dateChooser;
+		boolean femenino = vista.registro.rbtnFem.isSelected();
+		boolean masculino = vista.registro.rbtnMasc.isSelected();
+		String dni = vista.registro.txtDni.getText();
+		char[] contrasena = vista.registro.passwordField.getPassword();
+		char[] contrasena2 = vista.registro.passwordField2.getPassword();
+		
 		// comprobamos que el nombre no este vacio
-		if (vista.registro.txtNombre.getText().equals("")) {
+		if (nombre.equals("")) {
 			JOptionPane.showMessageDialog(vista, "Nombre no introducido.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
 		} else {
-			this.nombre = vista.registro.txtNombre.getText();
+			this.nombre = nombre;
 		}
 		
 		// comprobamos que el apellido no este vacio
-		if (vista.registro.txtApellidos.getText().equals("")) {
+		if (apellidos.equals("")) {
 			JOptionPane.showMessageDialog(vista, "Apellido no introducido.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
 		} else {
-			this.nombre = vista.registro.txtApellidos.getText();
+			this.apellidos = apellidos;
 		}
 		
-		// comprobamos que el dni no este vacio
-		if (vista.registro.txtDni.getText().equals("")) {
-			JOptionPane.showMessageDialog(vista, "DNI no introducido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+		// comprobamos que se ha seleccionado una fecha
+		if (fecha.getDate() == null) {
+			JOptionPane.showMessageDialog(vista, "Ninguna fecha seleccionada.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
 		} else {
-			this.nombre = vista.registro.txtDni.getText();
+			this.fecha = new Date(fecha.getDate().getTime());
 		}
 		
 		// comprobamos que haya sido seleccionado un sexo y le asignamos el valor adecuado a la variable
-		if (!vista.registro.rbtnFem.isSelected() && !vista.registro.rbtnMasc.isSelected()) {
+		if (!femenino && !masculino) {
 			JOptionPane.showMessageDialog(vista, "Sexo no seleccionado.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
-		} else if (vista.registro.rbtnFem.isSelected()) {
+		} else if (femenino) {
 			this.sexo = 'M';
 		} else {
 			this.sexo = 'V';
+		}
+		
+		// comprobamos que el dni no este vacio
+		if (dni.equals("")) {
+			JOptionPane.showMessageDialog(vista, "DNI no introducido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else {
+			this.dni = dni;
+		}
+				
+		// comprobamos que la contraseña no este vacia
+		if (contrasena.length == 0) {
+			JOptionPane.showMessageDialog(vista, "Contraseña no introducida.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		
+		// comprobamos que la contraseña2 no este vacia
+		if (contrasena2.length == 0) {
+			JOptionPane.showMessageDialog(vista, "Confirmar contraseña no introducida.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		
+		// comprobamos que las dos contraseñas sean iguales
+		if(!contrasena.equals(contrasena2)) {
+			JOptionPane.showMessageDialog(vista, "Las contraseñas no son iguales", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else {
+			this.contrasena = String.valueOf(contrasena);
+			this.contrasena = modelo.encriptacion.Encriptacion(this.contrasena);
 		}
 		
 		return true;
