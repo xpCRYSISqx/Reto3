@@ -18,8 +18,6 @@ public class PanPago extends JPanel {
 	 * Create the panel.
 	 */
 	
-	JPanel pago = new JPanel();
-	
 	public JTable tablaDatosBillete;
 	public JPanel panelTotales;
 	public JButton btnContinuar, btnCancelar, btnCancelarPago, btnAtras, btnSeparador, btn200, btn100, btn50, btn20, btn10, btn5, btn2, btn1, btn050, btn020, btn010, btn005, btn002, btn001;

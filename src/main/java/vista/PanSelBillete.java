@@ -24,8 +24,6 @@ public class PanSelBillete extends JPanel {
 	 * Create the panel.
 	 */
 	
-	JPanel sel_billete = new JPanel();
-	
 	public DefaultListModel<Object> modeloOrigen = new DefaultListModel<Object>();
 	public DefaultListModel<Object> modeloDestino = new DefaultListModel<Object>();
 	public JLabel lblIcono,lblOrigen,lblDestino;

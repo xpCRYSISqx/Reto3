@@ -31,11 +31,15 @@ public class ControladorFinPago implements ActionListener {
 		// comprobamos que boton se ha pulsado y ejecutamos sus acciones
 		switch (botonPulsado) {
 		
-			case "btnImprimir":
+			case "Imprimir":
 				
-//				Billete billete = new Billete();
-//				modelo.ficheros.imprimirBillete(billete);
+				modelo.ficheros.imprimirBillete(modelo.billeteIda);
 				
+				if(modelo.billeteVuelta != null) {
+					modelo.ficheros.imprimirBillete(modelo.billeteVuelta);
+				}
+				
+				// mostrar siguiente panel 'agur'
 				vista.agur.setVisible(true);
 				vista.fin_pago.setVisible(false);
 				

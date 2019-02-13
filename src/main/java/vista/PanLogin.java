@@ -15,8 +15,6 @@ public class PanLogin extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	JPanel login = new JPanel();
 	
 	public JLabel lblIcono,lblTitulo,lblUsuario,lblPassword, lblError;
 	public JTextField userField;

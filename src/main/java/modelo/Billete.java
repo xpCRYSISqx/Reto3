@@ -5,7 +5,7 @@ import java.sql.Time;
 
 public class Billete {
 	
-	private Integer codBillete;
+	private int codBillete;
 	private int nTrayecto;
 	private String codLinea;
 	private int codBus;

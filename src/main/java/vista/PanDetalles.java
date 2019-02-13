@@ -24,8 +24,6 @@ public class PanDetalles extends JPanel {
 	 * Create the panel.
 	 */
 	
-	JPanel detalles_compra = new JPanel();
-	
 	public JButton btnLogin,btnRegistro,btnContinuar,btnAtras,btnCancelar;
 	public JLabel lblIcono, lblTitulo;
 	public JTable detallesIda, detallesVuelta;
