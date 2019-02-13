@@ -9,13 +9,14 @@ public class ComprobarRegistro {
 	Cliente cliente = new Cliente();
 	
 	public int comprobarRegistro(String nombre, String apellidos, Date fecha, String dni, char sexo, String contraseña, String contraseña2) {
+		
 		boolean sexoSeleccionado;
-		if(sexo == 'M')
-			sexoSeleccionado = true;
-		else if(sexo == 'V')
+		
+		if(sexo == 'M' || sexo == 'V')
 			sexoSeleccionado = true;
 		else
 			sexoSeleccionado = false;
+		
 		if(sexoSeleccionado == true) {
 			if(dni.equals("")) {
 				// Al retornar 4 le dice al programa que no se ha introducido un DNI

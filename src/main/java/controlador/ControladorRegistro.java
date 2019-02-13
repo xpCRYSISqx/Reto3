@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import modelo.ComprobarRegistro;
@@ -14,6 +15,16 @@ public class ControladorRegistro implements ActionListener {
 	
 	private MainFrame vista;
 	private Modelo modelo;
+	
+	private String nombre;
+	private String apellidos;
+	private String dni;
+	private Date fecha;
+	private boolean femenino;
+	private boolean masculino;
+	private char sexo;
+	private String contrasena;
+	
 	public static JPanel panelOrigen;
 	public static Boolean detalles;
 	
@@ -60,8 +71,10 @@ public class ControladorRegistro implements ActionListener {
 				break;
 				
 			case "Registrar":
-			
-				char sexo = 'n';
+				
+				if(validarDatos()) {
+					
+				}
 				
 				// recogemos los datos ingresados por el usuario
 				String nombre = vista.registro.txtNombre.getText();
@@ -78,14 +91,7 @@ public class ControladorRegistro implements ActionListener {
 				// encriptamos las contraseñas
 				contrasena = modelo.encriptacion.Encriptacion(contrasena);
 				contrasenaConfirmar = modelo.encriptacion.Encriptacion(contrasenaConfirmar);
-				
-				// le asignamos el valor adecuado a la variable sexo
-				if(femenino)
-					sexo = 'M';
-				else if(masculino)
-					sexo = 'V';
-				else
-					sexo = 'n';
+	
 				
 				// registramos al usuario en la BBDD
 				ComprobarRegistro comprobar = new ComprobarRegistro();
@@ -170,6 +176,47 @@ public class ControladorRegistro implements ActionListener {
 				
 				break;
 			}
+		
+	}
+	
+	
+	public boolean validarDatos() {
+		
+		// comprobamos que el nombre no este vacio
+		if (vista.registro.txtNombre.getText().equals("")) {
+			JOptionPane.showMessageDialog(vista, "Nombre no introducido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else {
+			this.nombre = vista.registro.txtNombre.getText();
+		}
+		
+		// comprobamos que el apellido no este vacio
+		if (vista.registro.txtApellidos.getText().equals("")) {
+			JOptionPane.showMessageDialog(vista, "Apellido no introducido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else {
+			this.nombre = vista.registro.txtApellidos.getText();
+		}
+		
+		// comprobamos que el dni no este vacio
+		if (vista.registro.txtDni.getText().equals("")) {
+			JOptionPane.showMessageDialog(vista, "DNI no introducido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else {
+			this.nombre = vista.registro.txtDni.getText();
+		}
+		
+		// comprobamos que haya sido seleccionado un sexo y le asignamos el valor adecuado a la variable
+		if (!vista.registro.rbtnFem.isSelected() && !vista.registro.rbtnMasc.isSelected()) {
+			JOptionPane.showMessageDialog(vista, "Sexo no seleccionado.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		} else if (vista.registro.rbtnFem.isSelected()) {
+			this.sexo = 'M';
+		} else {
+			this.sexo = 'V';
+		}
+		
+		return true;
 		
 	}
 	
