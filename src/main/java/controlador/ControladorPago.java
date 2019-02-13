@@ -158,7 +158,7 @@ public class ControladorPago implements ActionListener{
 	public void FuncionBotonDinero(float importe) {
 		RedimensionarArrayMayor redimensionMayor = new RedimensionarArrayMayor();
 		int posicion;
-		
+		this.total = this.modelo.precioTotal;
 		dinero = dinero + importe;
 		dinero = Math.round(dinero*100);
 		dinero = dinero/100;
@@ -192,13 +192,12 @@ public class ControladorPago implements ActionListener{
 			else
 				TodoIntroducido();
 		}
-		else {}
 	}
 	
 	public void TodoIntroducido() {
 		
 		introducido.setText(Float.toString(dinero) + " €");
-		restante.setText("");
+		restante.setText("0 €");
 		
 		this.vista.pago.btn001.setEnabled(false);
 		this.vista.pago.btn002.setEnabled(false);
@@ -222,6 +221,12 @@ public class ControladorPago implements ActionListener{
 	
 	public void FuncionContinuar() {
 		sobra = modelo.pagar.Sobra(total, dinero);
+		vista.fin_pago.setVisible(true);
+		vista.pago.setVisible(false);
+		
+		vista.fin_pago.txtTotal.setText(Float.toString(total) + " €");
+		vista.fin_pago.txtPagado.setText(Float.toString(dinero) + " €");
+		vista.fin_pago.txtDevolver.setText(sobra + " €");
 		
 	}
 }

@@ -67,8 +67,14 @@ public class ControladorDetalles implements ActionListener {
 				ControladorLogin.panelOrigen = vista.detalles_compra;
 				ControladorLogin.detalles = true;
 				
-				float total = this.modelo.billeteIda.getPrecio();
-				this.vista.pago.lblDineroTotal.setText(Float.toString(total) + " €");
+				float precioIda = this.modelo.billeteIda.getPrecio();
+				float precioVuelta = 0;
+				if (this.modelo.billeteVuelta != null) {
+					precioVuelta = this.modelo.billeteVuelta.getPrecio();
+				}
+				this.modelo.precioTotal = precioIda + precioVuelta;
+				this.vista.pago.lblDineroTotal.setText(Float.toString(this.modelo.precioTotal) + " €");
+				this.vista.pago.lblDineroRest.setText(Float.toString(this.modelo.precioTotal) + " €");
 				
 				if(logeado == true) {
 					vista.pago.setVisible(true);

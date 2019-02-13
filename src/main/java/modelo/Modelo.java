@@ -17,6 +17,7 @@ public class Modelo {
 	public Autobus autobus;
 	
 	public Boolean logeado;
+	public float precioTotal;
 	
 	public Modelo() {
 		
@@ -48,6 +49,7 @@ public class Modelo {
 		autobus = null;
 		
 		logeado = false;
+		precioTotal = 0;
 		
 	}
 	
