@@ -1,8 +1,9 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.IOException;
-
 import javax.swing.JFrame;
 
 public class MainFrame extends JFrame{
@@ -35,6 +36,11 @@ public class MainFrame extends JFrame{
 				
 		InstanciarPaneles();
 		AddPaneles();
+		
+		Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Logo_Bilbao.png"));
+	    setIconImage(icon);
+	    setVisible(true);
+	    setTitle("TERMIBUS BILBAO");
 	}
 	
 	
@@ -65,6 +71,7 @@ public class MainFrame extends JFrame{
 		getContentPane().add(fin_pago);
 		getContentPane().add(agur);		
 	}
+	
 	
 	
 	
