@@ -18,15 +18,12 @@ public class Controlador {
 	private ControladorRegistro controladorRegistro;
 	private ControladorPago controladorPago;
 	
-	public static Boolean logeado;
-	
 	public Controlador(Modelo modelo, MainFrame vista) {
 		
 		this.modelo = modelo;
 		this.vista = vista;
 		billete = new Billete();
 		pagar = new Pagar();
-		logeado = false;
 		
 	}
 			

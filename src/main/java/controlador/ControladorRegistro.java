@@ -98,7 +98,7 @@ public class ControladorRegistro implements ActionListener {
 					case 0:
 					
 						// ponemos la variable estatica logeado a true
-						Controlador.logeado = true;
+						modelo.logeado = true;
 						
 						// mostrar la pantalla adecuada
 						if(detalles == false) {

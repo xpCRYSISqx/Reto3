@@ -66,10 +66,10 @@ public class ControladorLogin implements ActionListener {
 				
 				// comprobamos si el usuario esta registrado
 				ComprobarLogin comprobar = new ComprobarLogin();
-				Controlador.logeado = comprobar.comprobarInicio(dni, contString);
+				modelo.logeado = comprobar.comprobarInicio(dni, contString);
 			
 				// mostramos la pantalla adecuada
-				if(Controlador.logeado == true) {
+				if(modelo.logeado == true) {
 					
 					vista.login.lblError.setVisible(false);
 					

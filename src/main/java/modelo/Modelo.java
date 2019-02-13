@@ -15,6 +15,8 @@ public class Modelo {
 	public Parada paradaDestino;
 	public Autobus autobus;
 	
+	public Boolean logeado;
+	
 	public Modelo() {
 		
 		// creamos un objeto Ficheros que se encargara de leer y escribir en archivos de texto plano
@@ -40,6 +42,8 @@ public class Modelo {
 		paradaOrigen = null;
 		paradaDestino = null;
 		autobus = null;
+		
+		logeado = false;
 		
 	}
 	
