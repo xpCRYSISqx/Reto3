@@ -18,7 +18,7 @@ public class PanDespedida extends JPanel {
 	 */
 	
 	public JLabel lblIcono;
-	public JLabel lblDespedida;
+	public JLabel lblDespedida1,lblDespedida2;
 	
 	public PanDespedida() {
 
@@ -31,10 +31,15 @@ public class PanDespedida extends JPanel {
 		lblIcono.setBounds(368, 132, 301, 183);
 		add(lblIcono);
 		
-		lblDespedida = new JLabel("¡Gracias por su compra!");
-		lblDespedida.setFont(new Font("Agency FB", Font.BOLD, 30));
-		lblDespedida.setBounds(380, 380, 300, 50);
-		add(lblDespedida);
+		lblDespedida1 = new JLabel("¡Gracias por su compra!");
+		lblDespedida1.setFont(new Font("Agency FB", Font.BOLD, 30));
+		lblDespedida1.setBounds(380, 380, 300, 50);
+		add(lblDespedida1);
+		
+		lblDespedida2 = new JLabel("Que tenga un buen viaje");
+		lblDespedida2.setFont(new Font("Agency FB", Font.BOLD, 30));
+		lblDespedida2.setBounds(380, 440, 300, 50);
+		add(lblDespedida2);
 
 	}
 

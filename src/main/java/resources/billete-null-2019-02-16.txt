@@ -1,0 +1,15 @@
+=== DATOS DEL BILLETE ===
+
+Línea: L4
+Origen: 18
+Destino: 1
+Fecha: 2019-02-16
+
+
+=== DATOS DEL CLIENTE ===
+
+DNI: null
+Nombre: 
+Apellidos: 
+Fecha nacimiento: 
+Sexo: 
