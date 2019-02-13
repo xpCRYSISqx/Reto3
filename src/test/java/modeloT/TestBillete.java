@@ -17,19 +17,19 @@ public class TestBillete {
 		//Assert
 		assertEquals(billete.getCodBillete(),0);
 		assertEquals(billete.getNTrayecto(),0);
-		assertEquals(billete.getCodLinea(),0);
+		assertEquals(billete.getCodLinea(),null);
 		assertEquals(billete.getCodBus(),0);
 		assertEquals(billete.getCodParadaInicio(),0);
 		assertEquals(billete.getCodParadaFin(),0);
-		assertEquals(billete.getFecha(),0);
-		assertEquals(billete.getHora(),0);
-		assertEquals(billete.getDni(),0);
-		assertEquals(billete.getPrecio(),0,0);
+		assertEquals(billete.getFecha(),null);
+		assertEquals(billete.getHora(),null);
+		assertEquals(billete.getDni(),null);
+		assertEquals(billete.getPrecio(),0f,0);
 	}
 	
 	@Test
 	public void testConstructorBillete() {
-		Date date = new Date(0);
+		Date date = new Date(31-01-2019);
 		Time time = new Time(0);
 		long a = date.getTime();
 		
