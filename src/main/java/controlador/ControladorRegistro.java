@@ -89,7 +89,7 @@ public class ControladorRegistro implements ActionListener {
 				
 				// registramos al usuario en la BBDD
 				ComprobarRegistro comprobar = new ComprobarRegistro();
-				int registrado = comprobar.comprobarRegistro(nombre, apellidos, fecha, dni, sexo, contrasena, contrasenaConfirmar);
+				int registrado = comprobar.comprobarRegistro(nombre, apellidos, fecha, dni, sexo, contrasena, contrasenaConfirmar, modelo);
 				
 				// mostramos los errores
 				switch(registrado) {

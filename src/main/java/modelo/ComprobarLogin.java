@@ -6,11 +6,12 @@ import javax.swing.JTextField;
 
 public class ComprobarLogin {
 	
-	Modelo modelo = new Modelo();
+	Modelo modelo;
 	Cliente cliente;
 	
-	public boolean comprobarInicio(String usuario, String contrasena) {
+	public boolean comprobarInicio(String usuario, String contrasena, Modelo modelo) {
 		
+		this.modelo = modelo;
 		Encriptacion encriptar = new Encriptacion();
 		
 		contrasena = encriptar.Encriptacion(contrasena);

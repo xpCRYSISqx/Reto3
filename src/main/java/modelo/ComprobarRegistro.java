@@ -5,10 +5,11 @@ import modelo.*;
 
 public class ComprobarRegistro {
 	
-	Modelo modelo = new Modelo();
+	Modelo modelo;
 	Cliente cliente = new Cliente();
 	
-	public int comprobarRegistro(String nombre, String apellidos, Date fecha, String dni, char sexo, String contraseña, String contraseña2) {
+	public int comprobarRegistro(String nombre, String apellidos, Date fecha, String dni, char sexo, String contraseña, String contraseña2, Modelo modelo) {
+		this.modelo = modelo;
 		boolean sexoSeleccionado;
 		if(sexo == 'M')
 			sexoSeleccionado = true;

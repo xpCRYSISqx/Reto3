@@ -9,19 +9,28 @@ import javax.swing.JLabel;
 import modelo.*;
 import vista.*;
 
+/**
+ * 
+ * @author Mikel, Laura
+ * 
+ * @param vista: Guarda el objeto vista para poder utilizar los distintos elementos de la interfaz
+ * @param modelo: Guarda el objeto modelo para poder acceder a los metodos del modelo
+ *
+ */
+
 public class ControladorPago implements ActionListener{
 	
-	private MainFrame vista;
-	private Modelo modelo;
+	private MainFrame vista; // Declara el objeto vista
+	private Modelo modelo; // Declara el objeto modelo
 	
 	
 	private JLabel importe, introducido, restante;
-	public float total = 0;
-	public float dinero = 0;
-	private float falta = 0;
-	private float moneda = 0;
-	public String sobra = "";
-	public float[] monedas; // Almacena el valor de las monedas y billetes que se van introducioendo para liego poder retarlos.
+	public float total = 0; // Total del importe que se debe pagar
+	public float dinero = 0; // Total del dinero que ha sido introdcido hasta al momento
+	private float falta = 0; // Total del dinero que falta por introducir
+	private float moneda = 0; // Guarda el valos de la ultima moneda o billete introducido
+	public float sobra = 0; // Total del 
+	public float[] monedas; // Almacena el valor de las monedas y billetes que se van introducioendo para luego poder retarlos.
 	
 	public ControladorPago(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
@@ -188,6 +197,23 @@ public class ControladorPago implements ActionListener{
 			if(dinero < total) {
 				falta = modelo.pagar.Falta(total, dinero);
 				restante.setText(Float.toString(falta) + " €");
+				this.vista.pago.btn001.setEnabled(true);
+				this.vista.pago.btn002.setEnabled(true);
+				this.vista.pago.btn005.setEnabled(true);
+				this.vista.pago.btn010.setEnabled(true);
+				this.vista.pago.btn020.setEnabled(true);
+				this.vista.pago.btn050.setEnabled(true);
+				this.vista.pago.btn1.setEnabled(true);
+				this.vista.pago.btn2.setEnabled(true);
+				this.vista.pago.btn5.setEnabled(true);
+				this.vista.pago.btn10.setEnabled(true);
+				this.vista.pago.btn20.setEnabled(true);
+				this.vista.pago.btn50.setEnabled(true);
+				this.vista.pago.btn100.setEnabled(true);
+				this.vista.pago.btn200.setEnabled(true);
+				
+				this.vista.pago.btnContinuar.setVisible(false);
+				this.vista.pago.btnContinuar.setEnabled(false);
 			}
 			else
 				TodoIntroducido();
@@ -226,7 +252,7 @@ public class ControladorPago implements ActionListener{
 		
 		vista.fin_pago.txtTotal.setText(Float.toString(total) + " €");
 		vista.fin_pago.txtPagado.setText(Float.toString(dinero) + " €");
-		vista.fin_pago.txtDevolver.setText(sobra + " €");
+		vista.fin_pago.txtDevolver.setText(Float.toString(sobra) + " €");
 		
 	}
 }

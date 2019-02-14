@@ -66,45 +66,33 @@ public class ControladorLogin implements ActionListener {
 				
 				// comprobamos si el usuario esta registrado
 				ComprobarLogin comprobar = new ComprobarLogin();
-				modelo.logeado = comprobar.comprobarInicio(dni, contString);
+				modelo.logeado = comprobar.comprobarInicio(dni, contString, modelo);
 			
 				// mostramos la pantalla adecuada
 				if(modelo.logeado == true) {
 					
 					vista.login.lblError.setVisible(false);
+					vista.sel_billete.btnLogin.setVisible(false);
+					vista.sel_billete.btnLogin.setEnabled(false);
+					vista.sel_billete.btnRegistro.setVisible(false);
+					vista.sel_billete.btnRegistro.setEnabled(false);
+					vista.sel_fecha.btnLogin.setVisible(false);
+					vista.sel_fecha.btnLogin.setEnabled(false);
+					vista.sel_fecha.btnRegistro.setVisible(false);
+					vista.sel_fecha.btnRegistro.setEnabled(false);
+					vista.detalles_compra.btnLogin.setVisible(false);
+					vista.detalles_compra.btnLogin.setEnabled(false);
+					vista.detalles_compra.btnRegistro.setVisible(false);
+					vista.detalles_compra.btnRegistro.setEnabled(false);
 					
 					// mostrar la pantalla adecuada
 					if(detalles == false) {
 						panelOrigen.setVisible(true);
 						vista.login.setVisible(false);
-						vista.sel_billete.btnLogin.setVisible(false);
-						vista.sel_billete.btnLogin.setEnabled(false);
-						vista.sel_billete.btnRegistro.setVisible(false);
-						vista.sel_billete.btnRegistro.setEnabled(false);
-						vista.sel_fecha.btnLogin.setVisible(false);
-						vista.sel_fecha.btnLogin.setEnabled(false);
-						vista.sel_fecha.btnRegistro.setVisible(false);
-						vista.sel_fecha.btnRegistro.setEnabled(false);
-						vista.detalles_compra.btnLogin.setVisible(false);
-						vista.detalles_compra.btnLogin.setEnabled(false);
-						vista.detalles_compra.btnRegistro.setVisible(false);
-						vista.detalles_compra.btnRegistro.setEnabled(false);
 					}
 					else {
 						vista.pago.setVisible(true);
 						vista.login.setVisible(false);
-						vista.sel_billete.btnLogin.setVisible(false);
-						vista.sel_billete.btnLogin.setEnabled(false);
-						vista.sel_billete.btnRegistro.setVisible(false);
-						vista.sel_billete.btnRegistro.setEnabled(false);
-						vista.sel_fecha.btnLogin.setVisible(false);
-						vista.sel_fecha.btnLogin.setEnabled(false);
-						vista.sel_fecha.btnRegistro.setVisible(false);
-						vista.sel_fecha.btnRegistro.setEnabled(false);
-						vista.detalles_compra.btnLogin.setVisible(false);
-						vista.detalles_compra.btnLogin.setEnabled(false);
-						vista.detalles_compra.btnRegistro.setVisible(false);
-						vista.detalles_compra.btnRegistro.setEnabled(false);
 					}
 					
 				} else {
