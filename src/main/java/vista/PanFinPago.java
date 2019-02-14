@@ -19,8 +19,6 @@ public class PanFinPago extends JPanel {
 	 * Create the panel.
 	 */
 	
-	JPanel fin_pago = new JPanel();
-	
 	public JLabel lblIcono,lblTitulo,lblTotal,lblPagado,lblADevolver,lblImprimir;
 	public JButton btnImprimir,btnSeparador;
 	public JTextField txtTotal,txtPagado,txtDevolver;
@@ -34,7 +32,7 @@ public class PanFinPago extends JPanel {
 		FormatoDiseno.formatoIcono(lblIcono);
 		add(lblIcono);
 		
-		lblTitulo = new JLabel("FINALIZAR PAGO");
+		lblTitulo = new JLabel("¡Gracias por su compra!");
 		FormatoDiseno.formatoTitulo(lblTitulo);
 		add(lblTitulo);
 		
@@ -45,6 +43,7 @@ public class PanFinPago extends JPanel {
 		
 		txtTotal = new JTextField();
 		FormatoDiseno.formatoTxt(txtTotal);
+		txtTotal.setHorizontalAlignment(SwingConstants.CENTER);
 		txtTotal.setBounds(506, 300, 130, 25);
 		txtTotal.setEnabled(false);
 		add(txtTotal);
@@ -56,6 +55,7 @@ public class PanFinPago extends JPanel {
 		
 		txtPagado = new JTextField();
 		FormatoDiseno.formatoTxt(txtPagado);
+		txtPagado.setHorizontalAlignment(SwingConstants.CENTER);
 		txtPagado.setBounds(506, 350, 130, 25);
 		txtPagado.setEnabled(false);
 		add(txtPagado);
@@ -67,6 +67,7 @@ public class PanFinPago extends JPanel {
 		
 		txtDevolver = new JTextField();
 		FormatoDiseno.formatoTxt(txtDevolver);
+		txtDevolver.setHorizontalAlignment(SwingConstants.CENTER);
 		txtDevolver.setBounds(506, 400,130, 25);
 		txtDevolver.setEnabled(false);
 		add(txtDevolver);

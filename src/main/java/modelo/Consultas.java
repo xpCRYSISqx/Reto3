@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Consultas {
@@ -465,10 +466,11 @@ public class Consultas {
 	}
 	
 	// inserta los atributos de un objetos billete en la BBDD
-	public void insertarBillete(Billete billete) {
+	public int insertarBillete(Billete billete) {
 		
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		int codBillete = 0;
 
 		try {
 			
@@ -476,7 +478,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta INSERT
-			stmt = connection.prepareStatement("INSERT INTO billete (NTrayecto, Cod_Linea, Cod_Bus, Cod_Parada_Inicio, Cod_Parada_Fin, Fecha, Hora, DNI, Precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			stmt = connection.prepareStatement("INSERT INTO billete (NTrayecto, Cod_Linea, Cod_Bus, Cod_Parada_Inicio, Cod_Parada_Fin, Fecha, Hora, DNI, Precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 			
 			// añadimos los valores a insertar
 			stmt.setInt(1, billete.getNTrayecto());
@@ -485,19 +487,26 @@ public class Consultas {
 			stmt.setInt(4, billete.getCodParadaInicio());
 			stmt.setInt(5, billete.getCodParadaFin());
 			stmt.setDate(6, billete.getFecha());
-			stmt.setTime(7, billete.getHora());
+			stmt.setString(7, billete.getHora());
 			stmt.setString(8, billete.getDni());
 			stmt.setFloat(9, billete.getPrecio());
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			stmt.executeUpdate();
 			
+			result = stmt.getGeneratedKeys();
+			result.next();
+		    codBillete = result.getInt(1);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
-		}                 
+		}
+		
+		return codBillete;
+		
 	}
 
 }

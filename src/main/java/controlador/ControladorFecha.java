@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ import com.toedter.calendar.JCalendar;
 import modelo.Autobus;
 import modelo.Billete;
 import modelo.Modelo;
-import modelo.Parada;
 import vista.MainFrame;
 
 public class ControladorFecha implements ActionListener, PropertyChangeListener {
@@ -141,7 +139,8 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			modelo.autobus = autobusIda;
 			modelo.billeteIda.setCodBus(autobusIda.getCodBus());;
 			modelo.billeteIda.setFecha(fechaIda);
-			calcularPrecioBillete(modelo.billeteIda);
+			modelo.billeteIda.setHora("11:00");
+			modelo.billeteIda.setPrecio(calcularPrecioBillete(modelo.billeteIda));
 		}  else {
 			JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
@@ -156,9 +155,10 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			
 			if (autobusVuelta != null) {
 				modelo.autobus = autobusIda;
-				modelo.billeteVuelta.setCodBus(autobusVuelta.getCodBus());;
+				modelo.billeteVuelta.setCodBus(autobusVuelta.getCodBus());
 				modelo.billeteVuelta.setFecha(fechaVuelta);
-				calcularPrecioBillete(modelo.billeteVuelta);
+				modelo.billeteVuelta.setHora("18:00");
+				modelo.billeteVuelta.setPrecio(calcularPrecioBillete(modelo.billeteVuelta));
 			}  else {
 				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 				return false;
@@ -214,19 +214,19 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 	public void mostrarBillete(Billete billete, DefaultTableModel tabla) {
 		
 		Object[] datosBillete = new Object[7];
-		datosBillete[0] = billete.getCodLinea();
-		datosBillete[1] = billete.getCodParadaInicio();
-		datosBillete[2] = billete.getCodParadaFin();
+		datosBillete[0] = billete.getCodLinea() + ": " + modelo.linea.getNombre();
+		datosBillete[1] = modelo.paradaOrigen.getNombre();
+		datosBillete[2] = modelo.paradaDestino.getNombre();
 		datosBillete[3] = billete.getCodBus();
 		datosBillete[4] = billete.getFecha();
 		datosBillete[5] = billete.getHora();
-		datosBillete[6] = billete.getPrecio();
+		datosBillete[6] = billete.getPrecio() + "€";
 		
 		tabla.addRow(datosBillete);
 		
 	}
 	
-	public void calcularPrecioBillete(Billete billete) {
+	public float calcularPrecioBillete(Billete billete) {
 		
 		float lat1 = modelo.paradaOrigen.getLatitud();
 		float lon1 = modelo.paradaOrigen.getLongitud();
@@ -234,7 +234,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		float lon2 = modelo.paradaOrigen.getLongitud();
 		Autobus autobus = modelo.autobus;
 		
-		billete.setPrecio( modelo.consultas.calcularPrecioBillete(lat1, lon1, lat2, lon2, autobus) );
+		return modelo.consultas.calcularPrecioBillete(lat1, lon1, lat2, lon2, autobus);
 
 	}
 

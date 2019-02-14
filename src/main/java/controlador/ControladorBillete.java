@@ -145,6 +145,12 @@ public class ControladorBillete implements ActionListener {
 			this.paradaDestino = (Parada) vista.sel_billete.listaDestino.getSelectedValue();
 		}
 		
+		// comprobar que la parada de origen y destino no sean la misma
+		if (this.paradaOrigen.getCodParada() == this.paradaDestino.getCodParada()) {
+			JOptionPane.showMessageDialog(vista, "Las paradas de origen y destino no pueden ser iguales", "Aviso", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		
 		// guardar tipo de billete
 		if (!vista.sel_billete.rbtnIda.isSelected() && !vista.sel_billete.rbtnVuelta.isSelected()) {
 			JOptionPane.showMessageDialog(vista, "Ningun tipo de billete seleccionado.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -166,6 +172,7 @@ public class ControladorBillete implements ActionListener {
 		modelo.billeteIda.setCodLinea(linea.getCodLinea());
 		modelo.billeteIda.setCodParadaInicio(paradaOrigen.getCodParada());
 		modelo.billeteIda.setCodParadaFin(paradaDestino.getCodParada());
+		modelo.billeteIda.setNTrayecto(1);
 		
 		// comprobamos si se ha seleccionado billete de tipo 'simple' o 'ida y vuelta'
 		if (simple) {
@@ -183,6 +190,7 @@ public class ControladorBillete implements ActionListener {
 			modelo.billeteVuelta.setCodLinea(linea.getCodLinea());
 			modelo.billeteVuelta.setCodParadaInicio(paradaDestino.getCodParada());
 			modelo.billeteVuelta.setCodParadaFin(paradaOrigen.getCodParada());
+			modelo.billeteVuelta.setNTrayecto(2);
 			
 		}
 		

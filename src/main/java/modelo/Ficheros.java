@@ -48,15 +48,14 @@ public class Ficheros {
 		
 	}
 	
-	public void imprimirBillete(Billete billete) {
+	public String imprimirBillete(Billete billete, Cliente cliente, String path) {
 		
 		FileWriter fichero = null;	
 		PrintWriter writer = null;
-		String file = "src/main/java/resources/billete-" + billete.getDni() + "-" + billete.getFecha() + ".txt";
 		
 		try {
 			
-			fichero = new FileWriter(file);
+			fichero = new FileWriter(path);
 			writer = new PrintWriter(fichero);
 			
 			writer.println("=== DATOS DEL BILLETE ===");
@@ -69,11 +68,11 @@ public class Ficheros {
 			writer.println();
 			writer.println("=== DATOS DEL CLIENTE ===");
 			writer.println();
-			writer.println("DNI: " + billete.getDni());
-			writer.println("Nombre: ");
-			writer.println("Apellidos: ");
-			writer.println("Fecha nacimiento: ");
-			writer.println("Sexo: ");
+			writer.println("DNI: " + cliente.getDni());
+			writer.println("Nombre: " + cliente.getNombre());
+			writer.println("Apellidos: " + cliente.getApellidos());
+			writer.println("Fecha nacimiento: " + cliente.getFechaNacimiento());
+			writer.println("Sexo: " + cliente.getSexo());
 			
 			writer.flush();
 			
@@ -91,6 +90,9 @@ public class Ficheros {
 					e.getStackTrace();
 			}
 		}
+		
+		return path;
+		
 	}
 
 }

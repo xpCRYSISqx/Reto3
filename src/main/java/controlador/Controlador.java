@@ -15,6 +15,7 @@ public class Controlador {
 	private ControladorLogin controladorLogin;
 	private ControladorRegistro controladorRegistro;
 	private ControladorPago controladorPago;
+	private ControladorFinPago controladorFinPago;
 	
 	public Controlador(Modelo modelo, MainFrame vista) {
 		
@@ -67,6 +68,10 @@ public class Controlador {
 		// añadimos listeners a los botones del panel "pago"
 		this.controladorPago = new ControladorPago(vista, modelo);
 		this.controladorPago.addListeners();
+		
+		// añadimos listeners a los botones del panel "fin_pago"
+		this.controladorFinPago = new ControladorFinPago(vista, modelo);
+		this.controladorFinPago.addListeners();
 	}
 	
 }

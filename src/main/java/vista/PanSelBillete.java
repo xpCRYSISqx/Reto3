@@ -15,20 +15,11 @@ import javax.swing.JComboBox;
 
 public class PanSelBillete extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Create the panel.
-	 */
-	
-	JPanel sel_billete = new JPanel();
 	
 	public DefaultListModel<Object> modeloOrigen = new DefaultListModel<Object>();
 	public DefaultListModel<Object> modeloDestino = new DefaultListModel<Object>();
-	public JLabel lblIcono,lblOrigen,lblDestino;
+	public JLabel lblIcono,lblLinea, lblOrigen,lblDestino;
 	public JButton btnLogin,btnRegistro,btnContinuar,btnCancelar;
 	public final ButtonGroup rbtnGroupBillete = new ButtonGroup();
 	public JRadioButton rbtnIda,rbtnVuelta;
@@ -36,13 +27,80 @@ public class PanSelBillete extends JPanel {
 	public JComboBox<Object> boxLineas;
 	
 	public PanSelBillete() {
+		
+		// configuracion del panel
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
+		// logo
 		lblIcono = new JLabel("");
 		FormatoDiseno.formatoIcono(lblIcono);
 		add(lblIcono);
+		
+		// label seleccion linea
+		lblLinea = new JLabel("Selecccione linea:");
+		lblLinea.setFont(new Font("Agency FB", Font.BOLD, 22));
+		lblLinea.setHorizontalAlignment(SwingConstants.LEFT);
+		lblLinea.setBounds(45, 190, 300, 40);
+		add(lblLinea);
+		
+		// seleccion de linea
+		boxLineas = new JComboBox<Object>();
+		FormatoDiseno.formatoComboBox(boxLineas);
+		boxLineas.setBounds(45, 235, 327, 30);
+		add(boxLineas);
+		
+		// label seleccion parada origen
+		lblOrigen = new JLabel("Selecccione origen:");
+		lblOrigen.setFont(new Font("Agency FB", Font.BOLD, 22));
+		lblOrigen.setHorizontalAlignment(SwingConstants.LEFT);
+		lblOrigen.setBounds(45, 295, 300, 40);
+		add(lblOrigen);
+		
+		// seleccion parada origen
+		listaOrigen = new JList<Object>();
+		FormatoDiseno.formatoList(listaOrigen);
+		listaOrigen.setBounds(45, 340, 300, 230);
+		add(listaOrigen);
+		
+		// label seleccion parada destino
+		lblDestino = new JLabel("Selecccione destino:");
+		lblDestino.setFont(new Font("Agency FB", Font.BOLD, 22));
+		lblDestino.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDestino.setBounds(370, 295, 300, 40);
+		add(lblDestino);
+		
+		// seleccion parada destino
+		listaDestino = new JList<Object>();
+		FormatoDiseno.formatoList(listaDestino);
+		listaDestino.setBounds(370, 340, 300, 230);
+		add(listaDestino);
+		
+		// label seleccion parada destino
+		lblDestino = new JLabel("Tipo de billete:");
+		lblDestino.setFont(new Font("Agency FB", Font.BOLD, 22));
+		lblDestino.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDestino.setBounds(720, 295, 300, 40);
+		add(lblDestino);
+		
+		// seleccion de billete simple
+		rbtnIda = new JRadioButton("Simple");
+		FormatoDiseno.formatoRbtn(rbtnIda);
+		rbtnIda.setBounds(720, 340, 180, 50);
+		rbtnGroupBillete.add(rbtnIda);
+		add(rbtnIda);
+		
+		// seleccion de billete ida y vuelta
+		rbtnVuelta = new JRadioButton("Ida / Vuelta");
+		FormatoDiseno.formatoRbtn(rbtnVuelta);
+		rbtnVuelta.setBounds(720, 390, 180, 50);
+		rbtnGroupBillete.add(rbtnVuelta);
+		add(rbtnVuelta);
+		
+		/*
+		 * Botones
+		 */
 		
 		btnLogin = new JButton("Inicio Sesi\u00F3n");
 		FormatoDiseno.formatoBtnLogin(btnLogin);
@@ -52,52 +110,13 @@ public class PanSelBillete extends JPanel {
 		FormatoDiseno.formatoBtnRegistro(btnRegistro);
 		add(btnRegistro);
 		
-		btnContinuar = new JButton("Continuar");
-		FormatoDiseno.formatoBtnContinuar(btnContinuar);
-		add(btnContinuar);
-		
 		btnCancelar = new JButton("Cancelar");
 		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
-		boxLineas = new JComboBox<Object>();
-		FormatoDiseno.formatoComboBox(boxLineas);
-		boxLineas.setBounds(45, 200, 327, 30);
-		add(boxLineas);
-
-		lblOrigen = new JLabel("Selecccione origen");
-		lblOrigen.setFont(new Font("Agency FB", Font.BOLD, 28));
-		lblOrigen.setHorizontalAlignment(SwingConstants.LEFT);
-		lblOrigen.setBounds(45, 255, 327, 40);
-		add(lblOrigen);
-		
-		listaOrigen = new JList<Object>();
-		FormatoDiseno.formatoList(listaOrigen);
-		listaOrigen.setBounds(45, 301, 320, 250);
-		add(listaOrigen);
-		
-		lblDestino = new JLabel("Selecccione  destino");
-		lblDestino.setFont(new Font("Agency FB", Font.BOLD, 28));
-		lblDestino.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDestino.setBounds(400, 255, 327, 40);
-		add(lblDestino);
-		
-		listaDestino = new JList<Object>();
-		FormatoDiseno.formatoList(listaDestino);
-		listaDestino.setBounds(400, 301, 320, 250);
-		add(listaDestino);
-		
-		rbtnIda = new JRadioButton("Simple");
-		FormatoDiseno.formatoRbtn(rbtnIda);
-		rbtnIda.setBounds(800, 375, 180, 50);
-		rbtnGroupBillete.add(rbtnIda);
-		add(rbtnIda);
-		
-		rbtnVuelta = new JRadioButton("Ida / Vuelta");
-		FormatoDiseno.formatoRbtn(rbtnVuelta);
-		rbtnVuelta.setBounds(800, 425, 180, 50);
-		rbtnGroupBillete.add(rbtnVuelta);
-		add(rbtnVuelta);
+		btnContinuar = new JButton("Continuar");
+		FormatoDiseno.formatoBtnContinuar(btnContinuar);
+		add(btnContinuar);
 		
 	}
 }

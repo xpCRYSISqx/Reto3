@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import modelo.ComprobarLogin;
@@ -40,6 +41,7 @@ public class ControladorLogin implements ActionListener {
 		switch (botonPulsado) {
 		
 			case "Atrás":
+				
 				panelOrigen.setVisible(true);
 				vista.login.setVisible(false);
 				break;
@@ -66,12 +68,11 @@ public class ControladorLogin implements ActionListener {
 				
 				// comprobamos si el usuario esta registrado
 				ComprobarLogin comprobar = new ComprobarLogin();
-				modelo.logeado = comprobar.comprobarInicio(dni, contString, modelo);
+				modelo.cliente = comprobar.comprobarInicio(dni, contString, modelo);
 			
 				// mostramos la pantalla adecuada
-				if(modelo.logeado == true) {
-					
-					vista.login.lblError.setVisible(false);
+				if(modelo.cliente != null) {
+					// deshabilitar botones de login y registro en todos los paneles
 					vista.sel_billete.btnLogin.setVisible(false);
 					vista.sel_billete.btnLogin.setEnabled(false);
 					vista.sel_billete.btnRegistro.setVisible(false);
@@ -85,18 +86,21 @@ public class ControladorLogin implements ActionListener {
 					vista.detalles_compra.btnRegistro.setVisible(false);
 					vista.detalles_compra.btnRegistro.setEnabled(false);
 					
-					// mostrar la pantalla adecuada
 					if(detalles == false) {
+						
+						// mostrar la pantalla adecuada
 						panelOrigen.setVisible(true);
 						vista.login.setVisible(false);
 					}
 					else {
+						
+						// mostrar la pantalla adecuada
 						vista.pago.setVisible(true);
 						vista.login.setVisible(false);
 					}
 					
 				} else {
-					vista.login.lblError.setVisible(true);
+					JOptionPane.showMessageDialog(vista, "Datos incorrectos. Intentelo de nuevo", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 				break;
 		}

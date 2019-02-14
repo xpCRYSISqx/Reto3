@@ -5,14 +5,14 @@ import java.sql.Time;
 
 public class Billete {
 	
-	private Integer codBillete;
+	private int codBillete;
 	private int nTrayecto;
 	private String codLinea;
 	private int codBus;
 	private int codParadaInicio;
 	private int codParadaFin;
 	private Date fecha;
-	private Time hora;
+	private String hora;
 	private String dni;
 	private float precio;
 	
@@ -21,7 +21,7 @@ public class Billete {
 	}
 
 	public Billete(int codBillete, int nTrayecto, String codLinea, int codBus, 
-			int codParadaInicio, int codParadaFin, Date fecha, Time hora, String dni, float precio) {
+			int codParadaInicio, int codParadaFin, Date fecha, String hora, String dni, float precio) {
 		this.codBillete = codBillete;
 		this.nTrayecto = nTrayecto;
 		this.codLinea = codLinea;
@@ -90,11 +90,11 @@ public class Billete {
 		this.fecha = fecha;
 	}
 
-	public Time getHora() {
+	public String getHora() {
 		return hora;
 	}
 
-	public void setHora(Time hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
