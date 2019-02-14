@@ -32,7 +32,7 @@ public class PanFinPago extends JPanel {
 		FormatoDiseno.formatoIcono(lblIcono);
 		add(lblIcono);
 		
-		lblTitulo = new JLabel("FINALIZAR PAGO");
+		lblTitulo = new JLabel("¡Gracias por su compra!");
 		FormatoDiseno.formatoTitulo(lblTitulo);
 		add(lblTitulo);
 		

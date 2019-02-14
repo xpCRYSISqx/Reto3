@@ -14,39 +14,26 @@ public class PanPago extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * Create the panel.
-	 */
-	
 	public JTable tablaDatosBillete;
 	public JPanel panelTotales;
 	public JButton btnContinuar, btnCancelar, btnCancelarPago, btnAtras, btnSeparador, btn200, btn100, btn50, btn20, btn10, btn5, btn2, btn1, btn050, btn020, btn010, btn005, btn002, btn001;
 	public JLabel lblIcono, lblTotal, lblDineroTotal, lblIntroducido, lblDineroIntro, lblRestante, lblDineroRest;
 	
 	public PanPago() {
+		
+		// configuracion del panel
 		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		setBounds(0, 0, 1024, 720);
 		
+		// logo
 		lblIcono = new JLabel("");
 		FormatoDiseno.formatoIcono(lblIcono);
 		add(lblIcono);
 		
-		btnAtras = new JButton("Atr\u00E1s");
-
-		FormatoDiseno.formatoBtnAtras(btnAtras);
-		add(btnAtras);
-		
-		btnCancelar = new JButton("Cancelar");
-		FormatoDiseno.formatoBtnCancelar(btnCancelar);
-		add(btnCancelar);
-		
-		btnContinuar = new JButton("Continuar");
-		FormatoDiseno.formatoBtnContinuar(btnContinuar);
-		add(btnContinuar);
-		btnContinuar.setEnabled(false);
-		btnContinuar.setVisible(false);
-		
+		/*
+		 * Botones monedas y billetes
+		 */
 		btn200 = new JButton("200 \u20AC");
 		FormatoDiseno.formatoBtn(btn200);
 		btn200.setBounds(523, 320, 85, 40);
@@ -117,10 +104,35 @@ public class PanPago extends JPanel {
 		btn001.setBounds(925, 370, 85, 40);
 		add(btn001);
 		
+		// separador
+		btnSeparador = new JButton("");
+		btnSeparador.setEnabled(false);
+		btnSeparador.setBounds(709, 320, 8, 163);
+		add(btnSeparador);
+		
+		/*
+		 * Botones
+		 */
+		
 		btnCancelarPago = new JButton("Devolver");
 		FormatoDiseno.formatoBtnCancelarPago(btnCancelarPago);
 		add(btnCancelarPago);
 		
+		btnAtras = new JButton("Atr\u00E1s");
+		FormatoDiseno.formatoBtnAtras(btnAtras);
+		add(btnAtras);
+		
+		btnCancelar = new JButton("Cancelar");
+		FormatoDiseno.formatoBtnCancelar(btnCancelar);
+		add(btnCancelar);
+		
+		btnContinuar = new JButton("Continuar");
+		FormatoDiseno.formatoBtnContinuar(btnContinuar);
+		add(btnContinuar);
+		btnContinuar.setEnabled(false);
+		btnContinuar.setVisible(false);
+		
+		// tabla detalles
 		tablaDatosBillete = new JTable();
 		tablaDatosBillete.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -144,6 +156,7 @@ public class PanPago extends JPanel {
 				return columnTypes[columnIndex];
 			}
 		});
+		
 		tablaDatosBillete.setEnabled(false);
 		tablaDatosBillete.setBorder(UIManager.getBorder("TableHeader.cellBorder"));
 		tablaDatosBillete.setBackground(new Color(204, 150, 150));
@@ -158,12 +171,8 @@ public class PanPago extends JPanel {
 		tablaDatosBillete.getColumnModel().getColumn(6).setPreferredWidth(90);
 		add(tablaDatosBillete);
 		
-		btnSeparador = new JButton("");
-		btnSeparador.setEnabled(false);
-		btnSeparador.setBounds(709, 320, 8, 163);
-		add(btnSeparador);
-		
-		//Panel donde se muestran los datos del pago al instante: total a pagar, dinero introducido y dinero restante	
+		// Panel donde se muestran los datos del pago al instante:
+		// total a pagar, dinero introducido y dinero restante	
 		panelTotales = new JPanel();
 		panelTotales.setBackground(Color.GRAY);
 		panelTotales.setBounds(30, 320, 291, 163);
