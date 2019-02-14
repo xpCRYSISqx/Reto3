@@ -172,6 +172,7 @@ public class ControladorBillete implements ActionListener {
 		modelo.billeteIda.setCodLinea(linea.getCodLinea());
 		modelo.billeteIda.setCodParadaInicio(paradaOrigen.getCodParada());
 		modelo.billeteIda.setCodParadaFin(paradaDestino.getCodParada());
+		modelo.billeteIda.setNTrayecto(1);
 		
 		// comprobamos si se ha seleccionado billete de tipo 'simple' o 'ida y vuelta'
 		if (simple) {
@@ -189,6 +190,7 @@ public class ControladorBillete implements ActionListener {
 			modelo.billeteVuelta.setCodLinea(linea.getCodLinea());
 			modelo.billeteVuelta.setCodParadaInicio(paradaDestino.getCodParada());
 			modelo.billeteVuelta.setCodParadaFin(paradaOrigen.getCodParada());
+			modelo.billeteVuelta.setNTrayecto(2);
 			
 		}
 		
