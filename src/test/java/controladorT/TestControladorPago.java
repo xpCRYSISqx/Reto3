@@ -39,6 +39,7 @@ public class TestControladorPago {
 	@Test
 	public void testFuncionBotonDineroDineroMasPequeñoTotal() {
 		MainFrame vista = new MainFrame();
+		float importe = 1f;
 		Ficheros ficherosMock = mock(Ficheros.class);
 		String[] datosConexion = null;
 		String[] datosConexionMock = {"ab", "cd", "ef", "gh"};
@@ -53,7 +54,6 @@ public class TestControladorPago {
 		
 		controladorPago.dinero = 10f;
 		controladorPago.total = 15f;
-		float importe = 1f;
 		
 		controladorPago.FuncionBotonDinero(importe);
 		

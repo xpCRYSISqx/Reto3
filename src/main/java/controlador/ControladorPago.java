@@ -43,6 +43,7 @@ public class ControladorPago implements ActionListener{
 	}
 	
 	public void addListeners() {
+		// Se agregan los action listeners a los botones para poder utilizarlos
 		this.vista.pago.btn001.addActionListener(this);
 		this.vista.pago.btn002.addActionListener(this);
 		this.vista.pago.btn005.addActionListener(this);
@@ -67,15 +68,15 @@ public class ControladorPago implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		// guardamos el nombre del boton pulsado
-		String botonPulsado = ((JButton) e.getSource()).getActionCommand();
-		float importe;
+		String botonPulsado = ((JButton) e.getSource()).getActionCommand(); // Almacena el texto del boton para poder identificarlo posteriormente
+		float importe; // Almacena el importe que representa cada uno de los botones, para así poder realizar las operaciones con el dinero
 		
 		// comprobamos que boton se ha pulsado y ejecutamos sus acciones
 		switch (botonPulsado) {
 		
 			case "0,01 €":
 				importe = 0.01f;
-				FuncionBotonDinero(importe);
+				FuncionBotonDinero(importe); // Llama a la funcion que realiza las operaciones con el importe de cada boton
 				break;
 				
 			case "0,02 €":
@@ -164,40 +165,40 @@ public class ControladorPago implements ActionListener{
 		}
 	}
 	
-	public void FuncionBotonDinero(float importe) {
-		RedimensionarArrayMayor redimensionMayor = new RedimensionarArrayMayor();
-		int posicion;
-		this.total = this.modelo.precioTotal;
-		dinero = dinero + importe;
-		dinero = Math.round(dinero*100);
+	public void FuncionBotonDinero(float importe) { // Realiza las operaciones con el importe de cada boton, tambien almacena las cantidades que se ban introduciendo, se calcula el dinero que fala por introducir o lo que sobra.
+		RedimensionarArrayMayor redimensionMayor = new RedimensionarArrayMayor(); // Instancia la clase que se utiliza para redimensionar un array a uno menor
+		int posicion; // Guarda la posicion en la que se debe almacenar el importe del boton pulsado en al array de monedas
+		this.total = this.modelo.precioTotal; // Guarda el importe total que se debe introducir
+		dinero = dinero + importe; // Se suma el importe del boton pulsado al dinero que ya se habia introducido
+		dinero = Math.round(dinero*100); // Redondea el resultado
 		dinero = dinero/100;
-		monedas = redimensionMayor.redimensionarArray(monedas);
+		monedas = redimensionMayor.redimensionarArray(monedas); // Redimensiona el array monedas a un array una posicion mayos para poder guardar el importe del boton pulsado
 		posicion = monedas.length - 1;
-		monedas[posicion] = importe;
-		introducido.setText(Float.toString(dinero) + " €");
-		if(dinero < total) {
-			falta = modelo.pagar.Falta(total, dinero);
-			restante.setText(Float.toString(falta) + " €");
+		monedas[posicion] = importe; // Guarda el importe en la ultima posicion del array
+		introducido.setText(Float.toString(dinero) + " €"); // Muestra en la interfaz el dinero que se ha introducido hasta el momento
+		if(dinero < total) { // Comprueba si todabia falta dinero para llegar al total
+			falta = modelo.pagar.Falta(total, dinero); // En caso de no llegar o sobrepasar el total necesario, se calcula el dinero faltante
+			restante.setText(Float.toString(falta) + " €"); // Muestra en la interfaz el dinero que falta para alcanzar el total
 		}
 		else
-			TodoIntroducido();
+			TodoIntroducido(); // Si se ha introducedo o sobrepasado el total, llama a esta funcion
 	}
 	
-	public void FuncionDevolver() {
-		RedimensionarArrayMenor redimensionMenor = new RedimensionarArrayMenor();
+	public void FuncionDevolver() { // Realiza las operaciones necesarias cuando el usuario pide que se le devuelva la ultima moneda introducida
+		RedimensionarArrayMenor redimensionMenor = new RedimensionarArrayMenor(); // Instancia la clase que se utiliza para redimensionar un array a uno menor
 		int posicion;
 		if(dinero > 0) {
 			posicion = monedas.length - 1;
-			moneda = monedas[posicion];
-			dinero = dinero - moneda;
-			dinero = Math.round(dinero*100);
+			moneda = monedas[posicion]; // Guarda el valor de la ultima moneda introducida en el array
+			dinero = dinero - moneda; // Resta al dinero total el importe de la ultima moneda introducida
+			dinero = Math.round(dinero*100); 
 			dinero = dinero/100;
-			introducido.setText(Float.toString(dinero) + " €");
+			introducido.setText(Float.toString(dinero) + " €"); // Actualiza el indicador del dinero introducido en la interfaz, con el valor que tiene despues de sacar la ultima moneda introducida
 			monedas = redimensionMenor.redimensionarArray(monedas);
-			if(dinero < total) {
-				falta = modelo.pagar.Falta(total, dinero);
-				restante.setText(Float.toString(falta) + " €");
-				this.vista.pago.btn001.setEnabled(true);
+			if(dinero < total) { // Comprueba si despues de sacar la moneda el dinero introducido hasta el momento es menor que el total
+				falta = modelo.pagar.Falta(total, dinero); // Calcula el dinero que falta para llegar al total
+				restante.setText(Float.toString(falta) + " €"); // Muestra en la interfaz el dinero que falta
+				this.vista.pago.btn001.setEnabled(true); // Vuelve a habilitar los botones con el dinero
 				this.vista.pago.btn002.setEnabled(true);
 				this.vista.pago.btn005.setEnabled(true);
 				this.vista.pago.btn010.setEnabled(true);
@@ -212,17 +213,17 @@ public class ControladorPago implements ActionListener{
 				this.vista.pago.btn100.setEnabled(true);
 				this.vista.pago.btn200.setEnabled(true);
 				
-				this.vista.pago.btnContinuar.setVisible(false);
+				this.vista.pago.btnContinuar.setVisible(false); // Desabilita el boton de continuar y lo hace invisible
 				this.vista.pago.btnContinuar.setEnabled(false);
 			}
 			else
-				TodoIntroducido();
+				TodoIntroducido(); // Si el dinero es igual o mayor que el total, llama a esta funcion
 		}
 	}
 	
-	public void TodoIntroducido() {
+	public void TodoIntroducido() { // Funcion que se utiliza una vez que el dinero ha llegado o sobrepasado el total
 		
-		introducido.setText(Float.toString(dinero) + " €");
+		introducido.setText(Float.toString(dinero) + " €"); // Muestra el dinero que se ha introducido
 		restante.setText("0 €");
 		
 		this.vista.pago.btn001.setEnabled(false);
