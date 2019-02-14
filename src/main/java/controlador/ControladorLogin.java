@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import modelo.ComprobarLogin;
@@ -72,9 +73,6 @@ public class ControladorLogin implements ActionListener {
 				// mostramos la pantalla adecuada
 				if(modelo.cliente != null) {
 					
-					// ocultar label error
-					vista.login.lblError.setVisible(false);
-					
 					// deshabilitar botones de login y registro en todos los paneles
 					vista.sel_billete.btnLogin.setVisible(false);
 					vista.sel_billete.btnLogin.setEnabled(false);
@@ -105,7 +103,7 @@ public class ControladorLogin implements ActionListener {
 					}
 					
 				} else {
-					vista.login.lblError.setVisible(true);
+					JOptionPane.showMessageDialog(vista, "Datos incorrectos. Intentelo de nuevo", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 				break;
 		}

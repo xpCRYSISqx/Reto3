@@ -16,7 +16,7 @@ public class PanLogin extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public JLabel lblIcono,lblTitulo,lblUsuario,lblPassword, lblError;
+	public JLabel lblIcono,lblTitulo,lblUsuario,lblPassword;
 	public JTextField userField;
 	public JPasswordField password;
 	public JButton btnLogin,btnRegistro,btnCancelar,btnAtras;
@@ -87,10 +87,5 @@ public class PanLogin extends JPanel {
 		FormatoDiseno.formatoBtnCancelar(btnCancelar);
 		add(btnCancelar);
 		
-		// label error
-		lblError = new JLabel("Datos de inicio de sesion erroneos");
-		lblError.setBounds(634, 408, 273, 20);
-		lblError.setVisible(false);
-		add(lblError);
 	}
 }
