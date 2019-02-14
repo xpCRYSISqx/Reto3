@@ -18,27 +18,16 @@ public class Modelo {
 	
 	public float precioTotal;
 	
-	public Modelo() {
-		
-		// creamos un objeto Ficheros que se encargara de leer y escribir en archivos de texto plano
-		ficheros = new Ficheros();
-		
-		// cargamos los datos de conexion del archivo datosBBDD.txt
-		datosConexion = ficheros.getConnectionInfo();
-		
-		// creamos un objeto BBDD que se encargara de conectarse a la BBDD
-		conexion = new Conexion(datosConexion);
-		
-		// Creamos un objeto Consultas que se encargara de hacer consultas a la BBDD
-		consultas = new Consultas(conexion);
-		
-		// Creamos un objeto Encriptacion que usaremos para encriptar las contraseñas
-		encriptacion = new Encriptacion();
-		
-		// Creamos un objeto Pagar que usaremos para el realizar el pago
-		pagar = new Pagar();
+	public Modelo(Ficheros ficheros, String[] datosConexion, Conexion conexion, Consultas consultas, Encriptacion encriptacion, Pagar pagar) {
 		
 		// iniciamos los objetos que usaremos para ir almacenando los datos introducidos por el cliente
+		this.ficheros = ficheros;
+		this.datosConexion = datosConexion;
+		this.conexion = conexion;
+		this.consultas = consultas;
+		this.encriptacion = encriptacion;
+		this.pagar = pagar;
+		
 		cliente = null;
 		billeteIda = null;
 		billeteVuelta = null;

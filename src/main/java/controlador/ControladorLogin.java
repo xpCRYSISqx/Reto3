@@ -68,11 +68,10 @@ public class ControladorLogin implements ActionListener {
 				
 				// comprobamos si el usuario esta registrado
 				ComprobarLogin comprobar = new ComprobarLogin();
-				modelo.cliente = comprobar.comprobarInicio(dni, contString);
+				modelo.cliente = comprobar.comprobarInicio(dni, contString, modelo);
 			
 				// mostramos la pantalla adecuada
 				if(modelo.cliente != null) {
-					
 					// deshabilitar botones de login y registro en todos los paneles
 					vista.sel_billete.btnLogin.setVisible(false);
 					vista.sel_billete.btnLogin.setEnabled(false);
@@ -92,14 +91,12 @@ public class ControladorLogin implements ActionListener {
 						// mostrar la pantalla adecuada
 						panelOrigen.setVisible(true);
 						vista.login.setVisible(false);
-						
 					}
 					else {
 						
 						// mostrar la pantalla adecuada
 						vista.pago.setVisible(true);
 						vista.login.setVisible(false);
-						
 					}
 					
 				} else {

@@ -72,7 +72,7 @@ public class ControladorRegistro implements ActionListener {
 				break;
 				
 			case "Registrar":
-				
+
 				if(validarDatos()) {
 					
 					if(modelo.consultas.getClienteByDNI(dni) != null) {
@@ -80,7 +80,7 @@ public class ControladorRegistro implements ActionListener {
 					} else {
 						modelo.cliente = new Cliente(dni, nombre, apellidos, fecha, sexo, contrasena);
 						modelo.consultas.insertarCliente(modelo.cliente);
-					}	
+					}
 					
 					// actualizar pantalla
 					if(modelo.cliente != null) {
