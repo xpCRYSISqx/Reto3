@@ -50,7 +50,7 @@ public class PanRegistro extends JPanel {
 		FormatoDiseno.formatoBtnLogin(btnLogin);
 		add(btnLogin);
 		
-		btnRegistro = new JButton("Registrar");
+		btnRegistro = new JButton("Registrarse");
 		FormatoDiseno.formatoBtn(btnRegistro);
 		btnRegistro.setBounds(452, 537, 120, 40);
 		add(btnRegistro);
@@ -117,7 +117,7 @@ public class PanRegistro extends JPanel {
 		txtDni.setColumns(10);
 		add(txtDni);
 		
-		lblPassword = new JLabel("Password");
+		lblPassword = new JLabel("Contraseña");
 		lblPassword.setBounds(322, 445, 109, 14);
 		add(lblPassword);
 		
@@ -126,7 +126,7 @@ public class PanRegistro extends JPanel {
 		passwordField.setBounds(450, 442, 140, 20);
 		add(passwordField);
 		
-		lblPassword2 = new JLabel("Confirmar password");
+		lblPassword2 = new JLabel("Confirmar contraseña");
 		lblPassword2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPassword2.setBounds(260, 476, 170, 14);
 		add(lblPassword2);
