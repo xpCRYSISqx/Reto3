@@ -1,4 +1,4 @@
-bd: termibus
-username: hr
-password: PepeJeans
+bd: termibusequipo5
+username: equipo5
+password: equipo5
 host: localhost
