@@ -7,6 +7,9 @@ import modelo.*;
 
 public class TestLinea {
 
+	ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
+	ArrayList<Municipio> municipios = new ArrayList<Municipio>();
+	
 	@Test
 	public void testConstructorVacioLinea() {
 		//Arrange
@@ -22,9 +25,6 @@ public class TestLinea {
 	@Test
 	public void testConstructorLinea() {
 		//Arrange
-		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
-		ArrayList<Municipio> municipios = new ArrayList<Municipio>();
-		
 		Linea linea = new Linea("L66","Zeca-Meca", autobuses, municipios);
 				
 		//Assert

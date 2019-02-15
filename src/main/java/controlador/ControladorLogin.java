@@ -113,7 +113,7 @@ public class ControladorLogin implements ActionListener {
 					}
 					
 				} else {
-					JOptionPane.showMessageDialog(vista, "Datos incorrectos. Intentelo de nuevo", "Aviso", JOptionPane.WARNING_MESSAGE); // Muestra un mensaje de error si se ha introducido erroneamente uno de los datos
+					JOptionPane.showMessageDialog(vista, "Datos erróneos. Inténtelo de nuevo", "Aviso", JOptionPane.WARNING_MESSAGE);
 				}
 				break;
 		}
