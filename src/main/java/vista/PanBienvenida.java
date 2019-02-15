@@ -24,7 +24,7 @@ public class PanBienvenida extends JPanel {
 		
 		// logo
 		lblIcono = new JLabel("");
-		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/logo-termibus.png")));
+		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/image.png")));
 		lblIcono.setBounds(368, 132, 301, 183);
 		add(lblIcono);
 		

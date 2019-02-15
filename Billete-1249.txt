@@ -1,8 +1,8 @@
 === DATOS DEL BILLETE ===
 
 Línea: L1
-Origen: 7
-Destino: 1
+Origen: 1
+Destino: 8
 Fecha: 2019-02-15
 
 

@@ -1,0 +1,36 @@
+=== DATOS DEL CLIENTE ===
+
+DNI: 1
+Nombre: aaaaa
+Apellidos: aaaa
+Fecha nacimiento: 2019-02-10
+Sexo: M
+
+
+=== DATOS DEL BILLETE DE IDA ===
+
+Código Billete: L1
+Número de Trayecto: 1
+Línea: L1
+Origen: 1
+Destino: 7
+Autobus: 1001
+Fecha: 2019-02-15
+Hora: 11:00
+Precio: 4.92
+Fecha de compra: 2019/02/15 14:15:42
+
+
+=== DATOS DEL BILLETE DE VUELTA ===
+
+Código Billete: L1
+Número de Trayecto: 2
+Línea: L1
+Origen: 7
+Destino: 1
+Autobus: 1001
+Fecha: 2019-02-15
+Hora: 18:00
+Precio: 4.92
+Fecha de compra: 2019/02/15 14:15:42
+

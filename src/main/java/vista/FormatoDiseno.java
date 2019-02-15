@@ -36,13 +36,13 @@ public class FormatoDiseno {
 //			Gris: 127, 128, 123
 //			Negro: 60, 60, 72
 		
-		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/logo-termibus.png")));
+		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/image2.png")));
 		lblIcono.setOpaque(true);
 		lblIcono.setBorder(null);
 		lblIcono.setForeground(new Color(0, 0, 0));
 		lblIcono.setBackground(new Color(255, 255, 255));
 		lblIcono.setHorizontalAlignment(SwingConstants.LEFT);
-		lblIcono.setBounds(53, 35, 306, 112);
+		lblIcono.setBounds(0, 0, 1024, 200);
 	}
 	
 	public static void formatoLbl(JLabel lbl) {
@@ -93,8 +93,7 @@ public class FormatoDiseno {
 	
 	public static void formatoBtnCancelarPago(JButton btn) {
 		FormatoDiseno.formatoBtn(btn);
-//		btn.setBounds(45, 642, 100, 25);
-		btn.setBounds(30, 493, 120, 30);
+		btn.setBounds(45, 470, 120, 30);
 	}
 	
 	public static void formatoBtnCash(JButton btn) {

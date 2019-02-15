@@ -88,8 +88,6 @@ public class ControladorBillete implements ActionListener {
 			}
 	
 		} else if (sourceObject instanceof JComboBox) {
-			
-			String comboBox = ((JComboBox) sourceObject).getActionCommand();
 		   
 			// guarda la linea seleccionada
 			Linea linea = (Linea) vista.sel_billete.boxLineas.getSelectedItem();
@@ -165,10 +163,12 @@ public class ControladorBillete implements ActionListener {
 	
 	public void guardarDatos(Linea linea, Parada paradaOrigen, Parada paradaDestino, boolean simple) {
 		
+		if (modelo.billeteIda == null) {
+			modelo.billeteIda = new Billete();
+		}
 		modelo.linea = linea;
 		modelo.paradaOrigen = paradaOrigen;
 		modelo.paradaDestino = paradaDestino;
-		modelo.billeteIda = new Billete();
 		modelo.billeteIda.setCodLinea(linea.getCodLinea());
 		modelo.billeteIda.setCodParadaInicio(paradaOrigen.getCodParada());
 		modelo.billeteIda.setCodParadaFin(paradaDestino.getCodParada());
@@ -186,7 +186,9 @@ public class ControladorBillete implements ActionListener {
 			vista.sel_fecha.panFechaVuelta.setVisible(true);
 			
 			// añadimos los datos al objeto billeteVuelta
-			modelo.billeteVuelta = new Billete();
+			if (modelo.billeteVuelta == null) {
+				modelo.billeteVuelta = new Billete();
+			}
 			modelo.billeteVuelta.setCodLinea(linea.getCodLinea());
 			modelo.billeteVuelta.setCodParadaInicio(paradaDestino.getCodParada());
 			modelo.billeteVuelta.setCodParadaFin(paradaOrigen.getCodParada());

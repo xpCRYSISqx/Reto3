@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class Ficheros {
 	
@@ -48,24 +51,18 @@ public class Ficheros {
 		
 	}
 	
-	public String imprimirBillete(Billete billete, Cliente cliente, String path) {
+	public String imprimirBillete(Billete billeteIda, Billete billeteVuelta, Cliente cliente, String path) {
 		
 		FileWriter fichero = null;	
 		PrintWriter writer = null;
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
 		
 		try {
 			
 			fichero = new FileWriter(path);
 			writer = new PrintWriter(fichero);
 			
-			writer.println("=== DATOS DEL BILLETE ===");
-			writer.println();
-			writer.println("Línea: " + billete.getCodLinea());
-			writer.println("Origen: " + billete.getCodParadaInicio());
-			writer.println("Destino: " + billete.getCodParadaFin());
-			writer.println("Fecha: " + billete.getFecha());
-			writer.println();
-			writer.println();
 			writer.println("=== DATOS DEL CLIENTE ===");
 			writer.println();
 			writer.println("DNI: " + cliente.getDni());
@@ -73,6 +70,37 @@ public class Ficheros {
 			writer.println("Apellidos: " + cliente.getApellidos());
 			writer.println("Fecha nacimiento: " + cliente.getFechaNacimiento());
 			writer.println("Sexo: " + cliente.getSexo());
+			writer.println();
+			writer.println();
+			
+			writer.println("=== DATOS DEL BILLETE DE IDA ===");
+			writer.println();
+			writer.println("Código Billete: " + billeteIda.getCodLinea());
+			writer.println("Número de Trayecto: " + billeteIda.getNTrayecto());
+			writer.println("Línea: " + billeteIda.getCodLinea());
+			writer.println("Origen: " + billeteIda.getCodParadaInicio());
+			writer.println("Destino: " + billeteIda.getCodParadaFin());
+			writer.println("Autobus: " + billeteIda.getCodBus());
+			writer.println("Fecha: " + billeteIda.getFecha());
+			writer.println("Hora: " + billeteIda.getHora());
+			writer.println("Precio: " + billeteIda.getPrecio());
+			writer.println("Fecha de compra: " + dateFormat.format(date));
+			writer.println();
+			writer.println();
+			
+			writer.println("=== DATOS DEL BILLETE DE VUELTA ===");
+			writer.println();
+			writer.println("Código Billete: " + billeteVuelta.getCodLinea());
+			writer.println("Número de Trayecto: " + billeteVuelta.getNTrayecto());
+			writer.println("Línea: " + billeteVuelta.getCodLinea());
+			writer.println("Origen: " + billeteVuelta.getCodParadaInicio());
+			writer.println("Destino: " + billeteVuelta.getCodParadaFin());
+			writer.println("Autobus: " + billeteVuelta.getCodBus());
+			writer.println("Fecha: " + billeteVuelta.getFecha());
+			writer.println("Hora: " + billeteVuelta.getHora());
+			writer.println("Precio: " + billeteVuelta.getPrecio());
+			writer.println("Fecha de compra: " + dateFormat.format(date));
+			writer.println();
 			
 			writer.flush();
 			

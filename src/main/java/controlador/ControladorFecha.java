@@ -214,6 +214,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 	public void mostrarBillete(Billete billete, DefaultTableModel tabla) {
 		
 		Object[] datosBillete = new Object[7];
+		tabla.setRowCount(0);
 		datosBillete[0] = billete.getCodLinea() + ": " + modelo.linea.getNombre();
 		datosBillete[1] = modelo.paradaOrigen.getNombre();
 		datosBillete[2] = modelo.paradaDestino.getNombre();

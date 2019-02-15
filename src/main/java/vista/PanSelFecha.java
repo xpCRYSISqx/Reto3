@@ -29,7 +29,7 @@ public class PanSelFecha extends JPanel {
 		setBounds(0, 0, 1024, 720);
 		
 		// logo
-		lblIcono = new JLabel("SELECCI\u00D3N DE FECHA");
+		lblIcono = new JLabel("");
 		FormatoDiseno.formatoIcono(lblIcono);
 		add(lblIcono);
 		
@@ -85,46 +85,6 @@ public class PanSelFecha extends JPanel {
 		FormatoDiseno.formatoCalendario(fechaVuelta);
 		fechaVuelta.setBounds(10, 30, 200, 175);
 		panFechaVuelta.add(fechaVuelta);
-		
-		// Panel donde se muestran los datos del pago al instante
-		panelTotales = new JPanel();
-		panelTotales.setBackground(Color.GRAY);
-		panelTotales.setBounds(600, 195, 350, 170);
-		add(panelTotales);
-		panelTotales.setLayout(null);
-		
-		lblBilleteIda = new JLabel("Billete Ida");
-		lblBilleteIda.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblBilleteIda.setBounds(20, 20, 150, 32);
-		panelTotales.add(lblBilleteIda);
-		
-		lblPrecioBilleteIda = new JLabel("0 \u20AC");
-		lblPrecioBilleteIda.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrecioBilleteIda.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblPrecioBilleteIda.setBounds(190, 20, 121, 32);
-		panelTotales.add(lblPrecioBilleteIda);
-		
-		lblBilleteVuelta = new JLabel("Billete Vuelta");
-		lblBilleteVuelta.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblBilleteVuelta.setBounds(20, 70, 150, 32);
-		panelTotales.add(lblBilleteVuelta);
-		
-		lblPrecioBilleteVuelta = new JLabel("0 \u20AC");
-		lblPrecioBilleteVuelta.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrecioBilleteVuelta.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblPrecioBilleteVuelta.setBounds(190, 70, 121, 32);
-		panelTotales.add(lblPrecioBilleteVuelta);
-		
-		lblTotal = new JLabel("Total");
-		lblTotal.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblTotal.setBounds(20, 120, 150, 32);
-		panelTotales.add(lblTotal);
-		
-		lblPrecioTotal = new JLabel("0 \u20AC");
-		lblPrecioTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrecioTotal.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblPrecioTotal.setBounds(190, 120, 121, 32);
-		panelTotales.add(lblPrecioTotal);
 		
 		/*
 		 * Botones
