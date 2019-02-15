@@ -13,23 +13,49 @@ import modelo.Cliente;
 import modelo.Modelo;
 import vista.MainFrame;
 
+/**
+ * Esta clase se encarga de controlar las funciones del panel de registro.
+ * 
+ * Ademas comprueba que los datos hayan.
+ * 
+ * @author Laura, Mikel y Ustaritz.
+ * 
+ * @param vista: Guarda el objeto vista para poder utilizar los distintos elementos de la interfaz.
+ * @param modelo: Guarda el objeto modelo para poder acceder a los metodos del modelo.
+ * @param panelOrigen: Esta variable guarda la ventana desde la cual se ha ido al panel de inicio de sesion.
+ * @param detalles: Si se viene del panel de detalles, esta variable es true, si no es false. Sirve para saber si una vez logeado tiene que pasar a la ventana de pago o continuar en la que estaba.
+ * @param nombre: Guarda el nombre del usuario que quiere registrarse, coge el valor de la interfaz.
+ * @param apelidos: Guarda los apellidos del usuario que quiere registrarse, coge el valor de la interfaz.
+ * @param dni: Guarda el DNI del usuario, coge el valor de la interfaz.
+ * @param fecha: Guarda la fecha de nacimiento del usuario, coge el valor de la interfaz.
+ * @param sexo: Guarda el sexo del usuario, tiene formato char, coge el valor de la interfaz.
+ * @param contrasena: Guarda la contraseña del usuario, al cogerla de la interfaz tiene formato de array de caracteres, por lo que hay que transformarlo a String.
+ * @param botonPulsado: Guarda el texto del boton que ha sido pulsado, para luego poder identificarlo mediante un switch.
+ * 
+ * La funcion validarDatos retorna un boolean.
+ * 
+ * @return false: Al retornar false, indica que el usuario ha metido mal alguno de los datos, dentro de la misma funcion de validarDatos le indica al usuario el error que ha cometido con una alerta, despues devuelve false
+ * @return true: Al retornar true, indica que todos los datos de registro han sido introducidos satisfactoriamente, lo que hace que el usuario sea registrado y le devuelve al panel en el que estaba, si el ususario estaba
+ * 		   en el panel de inicio de sesion, le devuelve a la ventada desde la cual habia ido al panel de inicio de sesion.
+ * 
+ */
+
 public class ControladorRegistro implements ActionListener {
 	
-	private MainFrame vista;
-	private Modelo modelo;
+	private MainFrame vista; // Instancia del MainFrame
+	private Modelo modelo; // Instancia del Modelo
 	
-	private String nombre;
-	private String apellidos;
-	private String dni;
-	private Date fecha;
-	private char sexo;
-	private String contrasena;
-	private String contrasena2;
+	private String nombre; // Guarda el nombre
+	private String apellidos; // Guarda el apellido
+	private String dni; // Guarda el DNI
+	private Date fecha; // Guarda la fecha
+	private char sexo; // Guarda el sexo
+	private String contrasena; // Guarda la contraseña
 	
-	public static JPanel panelOrigen;
-	public static Boolean detalles;
+	public static JPanel panelOrigen; // Guarda el panel del que se viene al panel de registro
+	public static Boolean detalles; // Indica si se viene de la ventana de detalles
 	
-	public ControladorRegistro(MainFrame vista, Modelo modelo) {
+	public ControladorRegistro(MainFrame vista, Modelo modelo) { // Constructor
 		this.vista = vista;
 		this.modelo = modelo;
 		panelOrigen = null;
@@ -44,7 +70,7 @@ public class ControladorRegistro implements ActionListener {
 		vista.registro.btnRegistro.addActionListener(this);
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) { // Accion de los botones de la ventana de registro
 		
 		// guardamos el nombre del boton pulsado
 		String botonPulsado = ((JButton) e.getSource()).getActionCommand();
@@ -68,16 +94,16 @@ public class ControladorRegistro implements ActionListener {
 				
 				vista.login.setVisible(true);
 				vista.registro.setVisible(false);
-				ControladorLogin.panelOrigen = panelOrigen;
+				ControladorLogin.panelOrigen = panelOrigen; // Guarda el panel del que venimos
 				break;
 				
 			case "Registrar":
 
 				if(validarDatos()) {
 					
-					if(modelo.consultas.getClienteByDNI(dni) != null) {
-						JOptionPane.showMessageDialog(vista, "Ya existe un usuario con DNI " + this.dni, "Aviso", JOptionPane.WARNING_MESSAGE);
-					} else {
+					if(modelo.consultas.getClienteByDNI(dni) != null) { // Comprueba si existe un usuario con el mismo DNI
+						JOptionPane.showMessageDialog(vista, "Ya existe un usuario con ese DNI " + this.dni, "Aviso", JOptionPane.WARNING_MESSAGE); // Si existe, muestra un mensaje de error
+					} else { // Si no, registra al cliente
 						modelo.cliente = new Cliente(dni, nombre, apellidos, fecha, sexo, contrasena);
 						modelo.consultas.insertarCliente(modelo.cliente);
 					}
@@ -119,16 +145,18 @@ public class ControladorRegistro implements ActionListener {
 	}
 	
 	
-	public boolean validarDatos() {
+	public boolean validarDatos() { // Funcion que valida los datos de registro
 		
-		String nombre = vista.registro.txtNombre.getText();
+		String nombre = vista.registro.txtNombre.getText(); // Guarda la informacion de la interfaz en diferentes variables
 		String apellidos = vista.registro.txtApellidos.getText();
 		JDateChooser fecha = vista.registro.dateChooser;
 		boolean femenino = vista.registro.rbtnFem.isSelected();
 		boolean masculino = vista.registro.rbtnMasc.isSelected();
 		String dni = vista.registro.txtDni.getText();
-		char[] contrasena = vista.registro.passwordField.getPassword();
-		char[] contrasena2 = vista.registro.passwordField2.getPassword();
+		char[] contrasenaChar = vista.registro.passwordField.getPassword();
+		char[] contrasena2Char = vista.registro.passwordField2.getPassword();
+		String contrasena = new String(contrasenaChar);
+		String contrasena2 = new String(contrasena2Char);
 		
 		// comprobamos que el nombre no este vacio
 		if (nombre.equals("")) {
@@ -173,13 +201,13 @@ public class ControladorRegistro implements ActionListener {
 		}
 				
 		// comprobamos que la contraseña no este vacia
-		if (contrasena.length == 0) {
+		if (contrasena.equals("")) {
 			JOptionPane.showMessageDialog(vista, "Contraseña no introducida.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
 		
 		// comprobamos que la contraseña2 no este vacia
-		if (contrasena2.length == 0) {
+		if (contrasena2.equals("")) {
 			JOptionPane.showMessageDialog(vista, "Confirmar contraseña no introducida.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
 		}
@@ -189,7 +217,7 @@ public class ControladorRegistro implements ActionListener {
 			JOptionPane.showMessageDialog(vista, "Las contraseñas no son iguales", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
 		} else {
-			this.contrasena = String.valueOf(contrasena);
+			this.contrasena = contrasena;
 			this.contrasena = modelo.encriptacion.Encriptacion(this.contrasena);
 		}
 		
