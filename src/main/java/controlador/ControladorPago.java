@@ -10,11 +10,24 @@ import modelo.*;
 import vista.*;
 
 /**
+ * Esta clase se encarga de controlar las funciones del panel de pago.
  * 
  * @author Mikel, Laura
  * 
- * @param vista: Guarda el objeto vista para poder utilizar los distintos elementos de la interfaz
- * @param modelo: Guarda el objeto modelo para poder acceder a los metodos del modelo
+ * @param vista: Guarda el objeto vista para poder utilizar los distintos elementos de la interfaz.
+ * @param modelo: Guarda el objeto modelo para poder acceder a los metodos del modelo.
+ * @param introducido: Label que nuestra el dinero introducido.
+ * @param restante: Label que muestra el dinero que falta por introducir.
+ * @param total: Variable que guarda el dinero total que se debe introducir.
+ * @param dinero: Variable que guarda el dinero que va siendo introducido.
+ * @param falta: Variable que guarda el dinero que falta por introducir.
+ * @param moneda: Variable que guarda el valor del ultimo importe introducido, se utiliza en la funcion del boton para devolver la ultima moneda introducida, para asi poder restarla al denero que ha sido introducido
+ * 		  hasta el momento.
+ * @param sobra: Variable guarda la cantidad minima de monedas que hay que devolver.
+ * @param monedas: Array que guarda el valor de los importes que se van introduciendo, para luego saber el orden y el importe que se tiene que devolver cada vez que el usuario pida la devolucion del ultimo importe
+ * 		  introducido.
+ * @param botonPulsado: Variable que guarda el texto del boton que se ha pulsado, para asi poder compararlo por medio de un switch y saber que boton es el que se ha pulsado.
+ * @param importe: Variable que guarda el valor monetario de cada uno de los botones de pago, para luego pasarlo como parametro en la funcion hace los calculos con el dinero.
  *
  */
 
@@ -24,19 +37,18 @@ public class ControladorPago implements ActionListener{
 	private Modelo modelo; // Declara el objeto modelo
 	
 	
-	private JLabel importe, introducido, restante;
+	private JLabel introducido, restante; // Instancia los label del dinero para poder cambiarlos en la interfaz
 	public float total = 0; // Total del importe que se debe pagar
 	public float dinero = 0; // Total del dinero que ha sido introdcido hasta al momento
 	private float falta = 0; // Total del dinero que falta por introducir
 	private float moneda = 0; // Guarda el valos de la ultima moneda o billete introducido
-	public float sobra = 0; // Total del 
+	public String sobra = ""; // Cantidad minima de monedas que tiene que devolver
 	public float[] monedas; // Almacena el valor de las monedas y billetes que se van introducioendo para luego poder retarlos.
 	
 	public ControladorPago(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;
 		
-		this.importe = this.vista.pago.lblDineroTotal;
 		this.introducido = this.vista.pago.lblDineroIntro;
 		this.restante = this.vista.pago.lblDineroRest;
 		this.monedas = new float[0];
@@ -224,9 +236,9 @@ public class ControladorPago implements ActionListener{
 	public void TodoIntroducido() { // Funcion que se utiliza una vez que el dinero ha llegado o sobrepasado el total
 		
 		introducido.setText(Float.toString(dinero) + " €"); // Muestra el dinero que se ha introducido
-		restante.setText("0 €");
+		restante.setText("0 €"); // Pone el texto del dinero restante a 0
 		
-		this.vista.pago.btn001.setEnabled(false);
+		this.vista.pago.btn001.setEnabled(false); // Deshabilita todo los botones de dinero
 		this.vista.pago.btn002.setEnabled(false);
 		this.vista.pago.btn005.setEnabled(false);
 		this.vista.pago.btn010.setEnabled(false);
@@ -241,19 +253,19 @@ public class ControladorPago implements ActionListener{
 		this.vista.pago.btn100.setEnabled(false);
 		this.vista.pago.btn200.setEnabled(false);
 		
-		this.vista.pago.btnContinuar.setVisible(true);
+		this.vista.pago.btnContinuar.setVisible(true); // Habilita y vuelve visible en boton de continuar
 		this.vista.pago.btnContinuar.setEnabled(true);
 		
 	}
 	
-	public void FuncionContinuar() {
-		sobra = modelo.pagar.Sobra(total, dinero);
-		vista.fin_pago.setVisible(true);
-		vista.pago.setVisible(false);
+	public void FuncionContinuar() { // Funcion del boton continuar
+		sobra = modelo.pagar.Sobra(total, dinero); // Calcula el dinero que sobra para devolverselo al usuario
+		vista.fin_pago.setVisible(true); // Pone el panel fin de pago visible
+		vista.pago.setVisible(false); // Pone el panel de pago en invisible
 		
-		vista.fin_pago.txtTotal.setText(Float.toString(total) + " €");
-		vista.fin_pago.txtPagado.setText(Float.toString(dinero) + " €");
-		vista.fin_pago.txtDevolver.setText(Float.toString(sobra) + " €");
+		vista.fin_pago.txtTotal.setText(Float.toString(total) + " €"); // Muesta el dinero total
+		vista.fin_pago.txtPagado.setText(Float.toString(dinero) + " €"); // Muestra el dinero introducido
+		vista.fin_pago.txtDevolver.setText(sobra); // Muestra el dinero sobrante
 		
 		// rellenar datos del cliente en el billete	
 		modelo.billeteIda.setDni(modelo.cliente.getDni());

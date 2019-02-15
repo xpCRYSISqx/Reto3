@@ -11,7 +11,7 @@ import vista.MainFrame;
 
 public class TestApp {
 	
-	MainFrame vista = new MainFrame();
+	/*MainFrame vista = new MainFrame();
 	Modelo modelo = new Modelo();
 	Controlador controlador = new Controlador(modelo, vista);
 	
@@ -24,5 +24,5 @@ public class TestApp {
 	public void testInicializarBotones() {
 		
 	}
-
+*/
 }
