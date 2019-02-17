@@ -1,0 +1,36 @@
+=== DATOS DEL CLIENTE ===
+
+DNI: 15236985K
+Nombre: Popeye
+Apellidos: El marino
+Fecha nacimiento: 1956-01-17
+Sexo: V
+
+
+=== DATOS DEL BILLETE DE IDA ===
+
+Código Billete: L1
+Número de Trayecto: 1
+Línea: L1
+Origen: 1
+Destino: 6
+Autobus: 1001
+Fecha: 2019-02-17
+Hora: 11:00
+Precio: 4.1
+Fecha de compra: 2019/02/17 19:43:33
+
+
+=== DATOS DEL BILLETE DE VUELTA ===
+
+Código Billete: L1
+Número de Trayecto: 2
+Línea: L1
+Origen: 6
+Destino: 1
+Autobus: 1001
+Fecha: 2019-03-03
+Hora: 18:00
+Precio: 4.1
+Fecha de compra: 2019/02/17 19:43:33
+

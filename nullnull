@@ -9,16 +9,16 @@ Sexo: V
 
 === DATOS DEL BILLETE DE IDA ===
 
-Código Billete: L1
+Código Billete: L2
 Número de Trayecto: 1
-Línea: L1
-Origen: 4
-Destino: 7
-Autobus: 1001
-Fecha: 2019-02-17
+Línea: L2
+Origen: 1
+Destino: 11
+Autobus: 2001
+Fecha: 2019-02-18
 Hora: 11:00
-Precio: 1.32
-Fecha de compra: 2019/02/17 17:14:35
+Precio: 2.7
+Fecha de compra: 2019/02/17 22:14:14
 
 
 === DATOS DEL BILLETE DE VUELTA ===
