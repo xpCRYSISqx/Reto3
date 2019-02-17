@@ -27,7 +27,7 @@ public class FormatoDiseno {
 	public static void formatoTitulo(JLabel lblTitulo) {
 		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitulo.setFont(new Font("Agency FB", Font.BOLD, 44));
-		lblTitulo.setBounds(10, 170, 1004, 80);
+		lblTitulo.setBounds(10, 185, 1004, 80);
 	}
 	
 	public static void formatoIcono(JLabel lblIcono) {
@@ -42,7 +42,7 @@ public class FormatoDiseno {
 		lblIcono.setForeground(new Color(0, 0, 0));
 		lblIcono.setBackground(new Color(255, 255, 255));
 		lblIcono.setHorizontalAlignment(SwingConstants.LEFT);
-		lblIcono.setBounds(0, 0, 1024, 200);
+		lblIcono.setBounds(120, 0, 1024, 210);
 	}
 	
 	public static void formatoLbl(JLabel lbl) {

@@ -22,14 +22,14 @@ public class PanDespedida extends JPanel {
 		
 		// logo
 		lblIcono = new JLabel("");
-		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/logo-termibus.png")));
-		lblIcono.setBounds(368, 132, 301, 183);
+		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/image.png")));
+		lblIcono.setBounds(120, 130, 1024, 300);
 		add(lblIcono);
 		
 		// mensaje de despedida
-		lblDespedida = new JLabel("Que tenga un buen viaje");
-		lblDespedida.setFont(new Font("Agency FB", Font.BOLD, 30));
-		lblDespedida.setBounds(380, 380, 300, 50);
+		lblDespedida = new JLabel("¡Que tenga un buen viaje!");
+		lblDespedida.setFont(new Font("Agency FB", Font.BOLD, 36));
+		lblDespedida.setBounds(380, 450, 300, 50);
 		add(lblDespedida);
 
 	}

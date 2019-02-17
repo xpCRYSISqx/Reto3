@@ -33,7 +33,9 @@ public class PanFinPago extends JPanel {
 		add(lblIcono);
 		
 		lblTitulo = new JLabel("¡Gracias por su compra!");
-		FormatoDiseno.formatoTitulo(lblTitulo);
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setFont(new Font("Agency FB", Font.BOLD, 44));
+		lblTitulo.setBounds(10, 210, 1004, 80);
 		add(lblTitulo);
 		
 		lblTotal = new JLabel("IMPORTE TOTAL");
