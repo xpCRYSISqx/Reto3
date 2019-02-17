@@ -3,6 +3,24 @@ package controlador;
 import modelo.*;
 import vista.MainFrame;
 
+/**
+ * El controlador realiza las funciones basicas del programa, tambien se utiliza para iniciar los distintos controladores, los cuales son el puente de enlace entre la vista y el modelo
+ * 
+ * @author Mikel, Laura, Ustaritz
+ * 
+ * @param modelo: Instancia del modelo para poder utilizarlo
+ * @param vista: Instancia de la vista para poder utilizarla.
+ * @param controladorBienvenida: Instancia del controlador del panel de bienvenida para poder utilizarlo
+ * @param controladorBillete: Instancia del controlador del panel de billete para poder utilizarlo
+ * @param controladorFrcha: Instancia del controlador del panel de fecha.
+ * @param controladorDetalles: Instancia del controlador del panel de detalles.
+ * @param controladorLogin: Instancia del controlador del panel de inicio de sesion.
+ * @param controladorRegistro: Instancio del controlador del panel de registro.
+ * @param controladorPago: Instancia del controlados del panel de pago.
+ * @param controladorFinPago: Instancia del controlador del panel de finalizacion del pago y empresion del billete
+ * 
+ */
+
 public class Controlador {
 	
 	public Modelo modelo;
@@ -17,15 +35,15 @@ public class Controlador {
 	private ControladorPago controladorPago;
 	private ControladorFinPago controladorFinPago;
 	
-	public Controlador(Modelo modelo, MainFrame vista) {
+	public Controlador(Modelo modelo, MainFrame vista) { // Desde el main del programa, se le pasan un modelo y una vista ya creadas al controlador
 		
 		this.modelo = modelo;
 		this.vista = vista;
 		
 	}
 			
-	public void inicializarInterfaz() {
-		
+	public void inicializarInterfaz() { // Esta funcion se encarga de inicializar la interfaz
+		// Se inicializa el main frame y el panel de bienvenida, para poder utilizar la interfaz
 		vista.setVisible(true);
 		vista.bienvenida.setVisible(true);
 		vista.sel_billete.setVisible(false);
@@ -39,7 +57,7 @@ public class Controlador {
 		
 	}
 	
-	public void inicializarBotones() {
+	public void inicializarBotones() { // Esta funcion de encarga de inicializar los botones
 		
 		// añadimos listeners a los botones del panel 'login'
 		this.controladorLogin = new ControladorLogin(vista, modelo);
