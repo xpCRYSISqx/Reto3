@@ -97,7 +97,7 @@ public class ControladorRegistro implements ActionListener {
 				ControladorLogin.panelOrigen = panelOrigen; // Guarda el panel del que venimos
 				break;
 				
-			case "Registrar":
+			case "Registrarse":
 
 				if(validarDatos()) {
 					
