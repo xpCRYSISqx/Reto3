@@ -6,8 +6,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import modelo.Cliente;
-import modelo.Funciones;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -64,6 +62,7 @@ public class ControladorLogin implements ActionListener {
 				
 				vista.bienvenida.setVisible(true);
 				vista.login.setVisible(false);
+				reset();
 				break;
 				
 			case "Registro":
@@ -81,7 +80,7 @@ public class ControladorLogin implements ActionListener {
 				String contString = new String(cont); // Transforma la contraseña que esta en un array de caracteres a String.
 				
 				// comprobamos si el usuario esta registrado
-				modelo.cliente = comprobarInicio(dni, contString); // Llamada a la funcion comprobarInicio.
+				modelo.cliente = modelo.funcionesRegistro.comprobarInicio(dni, contString); // Llamada a la funcion comprobarInicio.
 			
 				// mostramos la pantalla adecuada
 				if(modelo.cliente != null) { // Comprueba si hay un cliente.
@@ -119,25 +118,29 @@ public class ControladorLogin implements ActionListener {
 		}
 	}
 	
-	/*
-	 * Comprobar inicio de sesion
-	 */
-	public Cliente comprobarInicio(String usuario, String contrasena) {
+	public void reset() {
+		modelo.cliente = null;
+		modelo.billeteIda = null;
+		modelo.billeteVuelta = null;
+		modelo.linea = null;
+		modelo.paradaOrigen = null;
+		modelo.paradaDestino = null;
+		modelo.autobus = null;
+		modelo.precioTotal = 0;
 		
-		Cliente cliente = null;
-		Funciones funciones = new Funciones();
-		contrasena = funciones.encriptacion(contrasena);
+		vista.sel_billete.rbtnIda.setSelected(true);
+		vista.sel_billete.rbtnVuelta.setSelected(false);
 		
-		cliente = modelo.consultas.getClienteByDNI(usuario);
+		vista.login.userField.setText("");
+		vista.login.password.setText("");
 		
-		if(cliente != null) {
-			if(!contrasena.equals(cliente.getContrasena())) {
-				cliente = null;
-			}
-		}
-		
-		return cliente;
-		
+		vista.registro.txtNombre.setText("");
+		vista.registro.txtApellidos.setText("");
+		vista.registro.rbtnMasc.setSelected(false);
+		vista.registro.rbtnFem.setSelected(false);
+		vista.registro.txtDni.setText("");
+		vista.registro.passwordField.setText("");
+		vista.registro.passwordField2.setText("");
 	}
 	
 }

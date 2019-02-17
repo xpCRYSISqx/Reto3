@@ -1,85 +1,12 @@
 package modelo;
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class Funciones {
+public class FuncionesPago {
 	
-	/*
-	 * Funciones validar dni
-	 */
-	public boolean validarDNI(String dni) {
-		String letraMayuscula = "";
-		if(dni.length() != 9 || Character.isLetter(dni.charAt(8)) == false) 
-			return false;
-		letraMayuscula = (dni.substring(8)).toUpperCase();
-		if(soloNumeros(dni) == true && letraDNI(dni).equals(letraMayuscula))
-			return true;
-		else
-			return false;
+	Modelo modelo;
+	
+	public FuncionesPago (Modelo modelo) {
+		this.modelo = modelo;
 	}
-	
-	public boolean soloNumeros(String dni) {
-		String numero = "";
-		String dni2 = "";
-		String[] numerosUnoNueve = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-		
-		for(int i = 0; i < dni.length() - 1; i++) {
-			numero = dni.substring(i, i+1);
-			for(int j = 0; j < numerosUnoNueve.length; j++) {
-				if(numero.equals(numerosUnoNueve[j]))
-					dni2 = dni2 + numerosUnoNueve[j];
-			}
-		}
-		if(dni2.length() != 8)
-			return false;
-		else
-			return true;
-	}
-	
-	public String letraDNI(String dni) {
-		int dni2 = Integer.parseInt(dni.substring(0, 8));
-		int posicion = 0;
-		String letra = "";
-		String[] letras = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E", "T"};
-		
-		posicion = dni2 % 23;
-		letra = letras[posicion];
-		
-		return letra;
-	}
-	
-	/*
-	 * Encriptar contraseña
-	 */
-	public String encriptacion(String contraseñaAEncriptar){
-        String contraseñaGenerada = null;
-        try {
-        	// Crea una instancia de MessageDigest para MD5
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            // Agrega la contraseña separada en bytes para separarla
-            md.update(contraseñaAEncriptar.getBytes());
-            // Saca los bytes separados
-            byte[] bytes = md.digest();
-            // bytes[] almacena los bytes en formato decimal
-            // Los bytes en decimal pasan a hexadecimal
-            StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++){
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-            }
-            // Coge los bytes separados de la contraseña en hexadecimal y los junta en un string
-            contraseñaGenerada = sb.toString();
-        }
-        catch (NoSuchAlgorithmException e){
-            e.printStackTrace();
-        }
-        return contraseñaGenerada;
-    }
 	
 	/**
 	 * Esta clase se encarga de redimensionar un array que se le pasa por parametro.
@@ -117,47 +44,6 @@ public class Funciones {
 		
 		System.arraycopy(arrayRedimensionar, 0, arrayRedimensionado, 0, arrayRedimensionar.length - 1); // Copia arrayRedimensionar en arrayRedimensionado, el cuel es una posicion mas largo.
 		return arrayRedimensionado; // Devuelve el resultado.
-	}
-	
-	
-	/*
-	 * Metodos para calcular el precio
-	 */
-	public float calcularPrecioBillete(Autobus autobus, float distancia) {
-		
-		float precio = 0;
-		float consumo = autobus.getConsumo();
-		float beneficio = 1.2f;
-		float iva = 1.21f;
-		
-		// calculamos el precio
-		precio = consumo * distancia * beneficio * iva;
-		
-		// redondeamos el precio
-		precio = Math.round(precio*100.0f)/100.0f;
-		
-		return precio;
-	}
-	
-	public float calcularDistanciaKm(float lat1, float lon1, float lat2, float lon2) {
-		
-		// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
-		
-		int R = 6371; // Radio de la tierra en km
-		float dLat = deg2rad(lat2-lat1);
-		float dLon = deg2rad(lon2-lon1); 
-		float a = (float) ( 
-				Math.sin(dLat/2) * Math.sin(dLat/2) +
-				Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-				Math.sin(dLon/2) * Math.sin(dLon/2)
-				); 
-		float c = (float) (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))); 
-		float d = R * c; // Distancia en km
-		return d;
-	}
-
-	public float deg2rad(float deg) {
-		return deg * (float)(Math.PI/180);
 	}
 	
 	/*
@@ -313,85 +199,6 @@ public class Funciones {
 			}    		
 		}
 		return devolver;		
-	}
-	
-	/*
-	 * Imprimir billete
-	 */
-	public String imprimirBillete(Billete billeteIda, Billete billeteVuelta, Cliente cliente, String path, Modelo modelo) {
-		
-		FileWriter fichero = null;	
-		PrintWriter writer = null;
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
-		Date fechaActual = new Date();
-		String sexo = "Mujer";
-		if (cliente.getSexo() == 'V') {
-			sexo = "Varon";
-		}
-		
-		try {
-			
-			fichero = new FileWriter(path);
-			writer = new PrintWriter(fichero);
-			
-			writer.println("=== DATOS DEL CLIENTE ===");
-			writer.println();
-			writer.println("DNI: " + cliente.getDni());
-			writer.println("Nombre: " + cliente.getNombre());
-			writer.println("Apellidos: " + cliente.getApellidos());
-			writer.println("Fecha nacimiento: " + cliente.getFechaNacimiento());
-			writer.println("Sexo: " + sexo);
-			writer.println();
-			writer.println();
-			
-			writer.println("=== DATOS DEL BILLETE DE IDA ===");
-			writer.println();
-			writer.println("Código Billete: " + billeteIda.getCodLinea());
-			writer.println("Número de Trayecto: " + billeteIda.getNTrayecto());
-			writer.println("Línea: " + billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
-			writer.println("Origen: " + modelo.paradaOrigen.getNombre());
-			writer.println("Destino: " + modelo.paradaDestino.getNombre());
-			writer.println("Autobus: " + billeteIda.getCodBus());
-			writer.println("Fecha: " + billeteIda.getFecha());
-			writer.println("Hora: " + billeteIda.getHora());
-			writer.println("Precio: " + billeteIda.getPrecio() + "€");
-			writer.println("Fecha de compra: " + dateFormat.format(fechaActual));
-			writer.println();
-			writer.println();
-			
-			writer.println("=== DATOS DEL BILLETE DE VUELTA ===");
-			writer.println();
-			writer.println("Código Billete: " + billeteVuelta.getCodLinea());
-			writer.println("Número de Trayecto: " + billeteVuelta.getNTrayecto());
-			writer.println("Línea: " + billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
-			writer.println("Origen: " +  modelo.paradaOrigen.getNombre());
-			writer.println("Destino: " + modelo.paradaDestino.getNombre());
-			writer.println("Autobus: " + billeteVuelta.getCodBus());
-			writer.println("Fecha: " + billeteVuelta.getFecha());
-			writer.println("Hora: " + billeteVuelta.getHora());
-			writer.println("Precio: " + billeteVuelta.getPrecio() + "€");
-			writer.println("Fecha de compra: " + dateFormat.format(fechaActual));
-			writer.println();
-			
-			writer.flush();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (fichero != null) {
-					fichero.close();
-				}
-				if (writer != null) {
-					writer.close();
-				}
-				} catch (Exception e) {
-					e.getStackTrace();
-			}
-		}
-		
-		return path;
-		
 	}
 
 }

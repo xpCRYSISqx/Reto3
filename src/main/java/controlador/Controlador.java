@@ -35,15 +35,15 @@ public class Controlador {
 	private ControladorPago controladorPago;
 	private ControladorFinPago controladorFinPago;
 	
-	public Controlador(Modelo modelo, MainFrame vista) { // Desde el main del programa, se le pasan un modelo y una vista ya creadas al controlador
+	public Controlador(Modelo modelo, MainFrame vista) {
 		
 		this.modelo = modelo;
 		this.vista = vista;
 		
 	}
-			
-	public void inicializarInterfaz() { // Esta funcion se encarga de inicializar la interfaz
-		// Se inicializa el main frame y el panel de bienvenida, para poder utilizar la interfaz
+	
+	// Esta funcion se encarga de inicializar la interfaz
+	public void inicializarInterfaz() {
 		vista.setVisible(true);
 		vista.bienvenida.setVisible(true);
 		vista.sel_billete.setVisible(false);
@@ -57,7 +57,8 @@ public class Controlador {
 		
 	}
 	
-	public void inicializarBotones() { // Esta funcion de encarga de inicializar los botones
+	// Esta funcion de encarga de inicializar los botones
+	public void inicializarBotones() {
 		
 		// añadimos listeners a los botones del panel 'login'
 		this.controladorLogin = new ControladorLogin(vista, modelo);
@@ -83,7 +84,7 @@ public class Controlador {
 		this.controladorDetalles = new ControladorDetalles(vista, modelo);
 		this.controladorDetalles.addListeners();
 		
-		// añadimos listeners a los botones del panel "pago"
+		// añadimos listeners a los botones del panel 'pago'
 		this.controladorPago = new ControladorPago(vista, modelo);
 		this.controladorPago.addListeners();
 		

@@ -4,6 +4,9 @@ public class Modelo {
 	
 	public Conexion conexion;
 	public Consultas consultas;
+	public FuncionesBillete funcionesBillete;
+	public FuncionesPago funcionesPago;
+	public FuncionesRegistro funcionesRegistro;
 	public Cliente cliente;
 	public Billete billeteIda;
 	public Billete billeteVuelta;
@@ -21,6 +24,11 @@ public class Modelo {
 				
 		// Creamos un objeto Consultas que se encargara de hacer consultas a la BBDD
 		consultas = new Consultas(conexion);
+		
+		// Creamos objetos con las funciones generales del programa
+		funcionesBillete = new FuncionesBillete(this);
+		funcionesPago = new FuncionesPago(this);
+		funcionesRegistro = new FuncionesRegistro(this);
 		
 		cliente = null;
 		billeteIda = null;

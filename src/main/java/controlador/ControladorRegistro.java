@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import com.toedter.calendar.JDateChooser;
 
 import modelo.Cliente;
-import modelo.Funciones;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -89,6 +88,7 @@ public class ControladorRegistro implements ActionListener {
 				
 				vista.bienvenida.setVisible(true);
 				vista.registro.setVisible(false);
+				reset();
 				break;
 				
 			case "Inicio Sesión":
@@ -156,7 +156,6 @@ public class ControladorRegistro implements ActionListener {
 		String dni = vista.registro.txtDni.getText();
 		char[] contrasenaChar = vista.registro.passwordField.getPassword();
 		char[] contrasena2Char = vista.registro.passwordField2.getPassword();
-		Funciones funciones = new Funciones();
 		String contrasena = new String(contrasenaChar);
 		String contrasena2 = new String(contrasena2Char);
 		
@@ -195,7 +194,7 @@ public class ControladorRegistro implements ActionListener {
 		}
 		
 		// comprobamos que el dni ha sido introducido correctamente
-		if (funciones.validarDNI(dni) == false) {
+		if (modelo.funcionesRegistro.validarDNI(dni) == false) {
 			JOptionPane.showMessageDialog(vista, "DNI no introducido o el introducido no es valido.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
 		} 
@@ -220,11 +219,36 @@ public class ControladorRegistro implements ActionListener {
 			return false;
 		} else {
 			this.contrasena = contrasena;
-			this.contrasena = funciones.encriptacion(this.contrasena);
+			this.contrasena = modelo.funcionesRegistro.encriptacion(this.contrasena);
 		}
 		
 		return true;
 		
+	}
+	
+	public void reset() {
+		modelo.cliente = null;
+		modelo.billeteIda = null;
+		modelo.billeteVuelta = null;
+		modelo.linea = null;
+		modelo.paradaOrigen = null;
+		modelo.paradaDestino = null;
+		modelo.autobus = null;
+		modelo.precioTotal = 0;
+		
+		vista.sel_billete.rbtnIda.setSelected(true);
+		vista.sel_billete.rbtnVuelta.setSelected(false);
+		
+		vista.login.userField.setText("");
+		vista.login.password.setText("");
+		
+		vista.registro.txtNombre.setText("");
+		vista.registro.txtApellidos.setText("");
+		vista.registro.rbtnMasc.setSelected(false);
+		vista.registro.rbtnFem.setSelected(false);
+		vista.registro.txtDni.setText("");
+		vista.registro.passwordField.setText("");
+		vista.registro.passwordField2.setText("");
 	}
 	
 }

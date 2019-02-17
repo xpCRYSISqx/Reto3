@@ -17,7 +17,6 @@ import com.toedter.calendar.JCalendar;
 
 import modelo.Autobus;
 import modelo.Billete;
-import modelo.Funciones;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -58,10 +57,9 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			
 			case "Cancelar":
 				
-				//vista.bienvenida.setVisible(true);
-				//vista.sel_fecha.setVisible(false);
-				ControladorCancelar can = new ControladorCancelar(vista, modelo);
-				can.reset();
+				vista.bienvenida.setVisible(true);
+				vista.sel_fecha.setVisible(false);
+				reset();
 				break;
 				
 			case "Inicio Sesión":
@@ -143,7 +141,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			modelo.billeteIda.setCodBus(autobusIda.getCodBus());;
 			modelo.billeteIda.setFecha(fechaIda);
 			modelo.billeteIda.setHora("11:00");
-			modelo.billeteIda.setPrecio(calcularPrecioBillete(modelo.billeteIda));
+			modelo.billeteIda.setPrecio(modelo.funcionesBillete.calcularPrecioBillete(modelo.billeteIda));
 		}  else {
 			JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
@@ -161,7 +159,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 				modelo.billeteVuelta.setCodBus(autobusVuelta.getCodBus());
 				modelo.billeteVuelta.setFecha(fechaVuelta);
 				modelo.billeteVuelta.setHora("18:00");
-				modelo.billeteVuelta.setPrecio(calcularPrecioBillete(modelo.billeteVuelta));
+				modelo.billeteVuelta.setPrecio(modelo.funcionesBillete.calcularPrecioBillete(modelo.billeteVuelta));
 			}  else {
 				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 				return false;
@@ -230,20 +228,29 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		
 	}
 	
-	public float calcularPrecioBillete(Billete billete) {
+	public void reset() {
+		modelo.cliente = null;
+		modelo.billeteIda = null;
+		modelo.billeteVuelta = null;
+		modelo.linea = null;
+		modelo.paradaOrigen = null;
+		modelo.paradaDestino = null;
+		modelo.autobus = null;
+		modelo.precioTotal = 0;
 		
-		Funciones funciones = new Funciones();
+		vista.sel_billete.rbtnIda.setSelected(true);
+		vista.sel_billete.rbtnVuelta.setSelected(false);
 		
-		float lat1 = modelo.paradaOrigen.getLatitud();
-		float lon1 = modelo.paradaOrigen.getLongitud();
-		float lat2 = modelo.paradaDestino.getLatitud();
-		float lon2 = modelo.paradaDestino.getLongitud();
-		Autobus autobus = modelo.autobus;
-		float distancia = funciones.calcularDistanciaKm(lat1, lon1, lat2, lon2);
-		float precio = funciones.calcularPrecioBillete(autobus, distancia);
+		vista.login.userField.setText("");
+		vista.login.password.setText("");
 		
-		return precio;
-
+		vista.registro.txtNombre.setText("");
+		vista.registro.txtApellidos.setText("");
+		vista.registro.rbtnMasc.setSelected(false);
+		vista.registro.rbtnFem.setSelected(false);
+		vista.registro.txtDni.setText("");
+		vista.registro.passwordField.setText("");
+		vista.registro.passwordField2.setText("");
 	}
 
 }

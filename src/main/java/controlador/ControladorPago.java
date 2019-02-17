@@ -34,9 +34,7 @@ import vista.*;
 public class ControladorPago implements ActionListener{
 	
 	private MainFrame vista; // Declara el objeto vista
-	private Modelo modelo; // Declara el objeto modelo
-	private Funciones funciones;
-	
+	private Modelo modelo; // Declara el objeto modelo	
 	
 	private JLabel introducido, restante; // Instancia los label del dinero para poder cambiarlos en la interfaz
 	public float total = 0; // Total del importe que se debe pagar
@@ -50,7 +48,6 @@ public class ControladorPago implements ActionListener{
 		this.vista = vista;
 		this.modelo = modelo;
 		
-		this.funciones = new Funciones();
 		this.introducido = this.vista.pago.lblDineroIntro;
 		this.restante = this.vista.pago.lblDineroRest;
 		this.monedas = new float[0];
@@ -166,6 +163,7 @@ public class ControladorPago implements ActionListener{
 			case "Cancelar":
 				vista.bienvenida.setVisible(true);
 				vista.pago.setVisible(false);
+				reset();
 				break;
 				
 			case "Devolver":
@@ -185,12 +183,12 @@ public class ControladorPago implements ActionListener{
 		dinero = dinero + importe; // Se suma el importe del boton pulsado al dinero que ya se habia introducido
 		dinero = Math.round(dinero*100); // Redondea el resultado
 		dinero = dinero/100;
-		monedas = funciones.redimensionarArrayMayor(monedas); // Redimensiona el array monedas a un array una posicion mayos para poder guardar el importe del boton pulsado
+		monedas = modelo.funcionesPago.redimensionarArrayMayor(monedas); // Redimensiona el array monedas a un array una posicion mayos para poder guardar el importe del boton pulsado
 		posicion = monedas.length - 1;
 		monedas[posicion] = importe; // Guarda el importe en la ultima posicion del array
 		introducido.setText(Float.toString(dinero) + " €"); // Muestra en la interfaz el dinero que se ha introducido hasta el momento
 		if(dinero < total) { // Comprueba si todabia falta dinero para llegar al total
-			falta = funciones.falta(total, dinero); // En caso de no llegar o sobrepasar el total necesario, se calcula el dinero faltante
+			falta = modelo.funcionesPago.falta(total, dinero); // En caso de no llegar o sobrepasar el total necesario, se calcula el dinero faltante
 			restante.setText(Float.toString(falta) + " €"); // Muestra en la interfaz el dinero que falta para alcanzar el total
 		}
 		else
@@ -206,9 +204,9 @@ public class ControladorPago implements ActionListener{
 			dinero = Math.round(dinero*100); 
 			dinero = dinero/100;
 			introducido.setText(Float.toString(dinero) + " €"); // Actualiza el indicador del dinero introducido en la interfaz, con el valor que tiene despues de sacar la ultima moneda introducida
-			monedas = funciones.redimensionarArrayMenor(monedas);
+			monedas = modelo.funcionesPago.redimensionarArrayMenor(monedas);
 			if(dinero < total) { // Comprueba si despues de sacar la moneda el dinero introducido hasta el momento es menor que el total
-				falta = funciones.falta(total, dinero); // Calcula el dinero que falta para llegar al total
+				falta = modelo.funcionesPago.falta(total, dinero); // Calcula el dinero que falta para llegar al total
 				restante.setText(Float.toString(falta) + " €"); // Muestra en la interfaz el dinero que falta
 				this.vista.pago.btn001.setEnabled(true); // Vuelve a habilitar los botones con el dinero
 				this.vista.pago.btn002.setEnabled(true);
@@ -259,7 +257,7 @@ public class ControladorPago implements ActionListener{
 	}
 	
 	public void FuncionContinuar() { // Funcion del boton continuar
-		sobra = funciones.sobra(total, dinero); // Calcula el dinero que sobra para devolverselo al usuario
+		sobra = modelo.funcionesPago.sobra(total, dinero); // Calcula el dinero que sobra para devolverselo al usuario
 		vista.fin_pago.setVisible(true); // Pone el panel fin de pago visible
 		vista.pago.setVisible(false); // Pone el panel de pago en invisible
 		
@@ -286,5 +284,30 @@ public class ControladorPago implements ActionListener{
 			
 		}
 		
+	}
+	
+	public void reset() {
+		modelo.cliente = null;
+		modelo.billeteIda = null;
+		modelo.billeteVuelta = null;
+		modelo.linea = null;
+		modelo.paradaOrigen = null;
+		modelo.paradaDestino = null;
+		modelo.autobus = null;
+		modelo.precioTotal = 0;
+		
+		vista.sel_billete.rbtnIda.setSelected(true);
+		vista.sel_billete.rbtnVuelta.setSelected(false);
+		
+		vista.login.userField.setText("");
+		vista.login.password.setText("");
+		
+		vista.registro.txtNombre.setText("");
+		vista.registro.txtApellidos.setText("");
+		vista.registro.rbtnMasc.setSelected(false);
+		vista.registro.rbtnFem.setSelected(false);
+		vista.registro.txtDni.setText("");
+		vista.registro.passwordField.setText("");
+		vista.registro.passwordField2.setText("");
 	}
 }

@@ -45,6 +45,7 @@ public class ControladorDetalles implements ActionListener {
 				
 				vista.bienvenida.setVisible(true);
 				vista.detalles_compra.setVisible(false);
+				reset();
 				break;
 				
 			case "Inicio Sesión":
@@ -90,6 +91,31 @@ public class ControladorDetalles implements ActionListener {
 		
 		}
 		
+	}
+	
+	public void reset() {
+		modelo.cliente = null;
+		modelo.billeteIda = null;
+		modelo.billeteVuelta = null;
+		modelo.linea = null;
+		modelo.paradaOrigen = null;
+		modelo.paradaDestino = null;
+		modelo.autobus = null;
+		modelo.precioTotal = 0;
+		
+		vista.sel_billete.rbtnIda.setSelected(true);
+		vista.sel_billete.rbtnVuelta.setSelected(false);
+		
+		vista.login.userField.setText("");
+		vista.login.password.setText("");
+		
+		vista.registro.txtNombre.setText("");
+		vista.registro.txtApellidos.setText("");
+		vista.registro.rbtnMasc.setSelected(false);
+		vista.registro.rbtnFem.setSelected(false);
+		vista.registro.txtDni.setText("");
+		vista.registro.passwordField.setText("");
+		vista.registro.passwordField2.setText("");
 	}
 	
 }

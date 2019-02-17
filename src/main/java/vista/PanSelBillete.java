@@ -88,6 +88,7 @@ public class PanSelBillete extends JPanel {
 		rbtnIda = new JRadioButton("Simple");
 		FormatoDiseno.formatoRbtn(rbtnIda);
 		rbtnIda.setBounds(720, 340, 180, 50);
+		rbtnIda.setSelected(true);
 		rbtnGroupBillete.add(rbtnIda);
 		add(rbtnIda);
 		
