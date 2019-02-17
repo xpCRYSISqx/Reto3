@@ -1,19 +1,36 @@
-=== DATOS DEL BILLETE ===
-
-Línea: L1
-Origen: 7
-<<<<<<< HEAD
-Destino: 1
-=======
-Destino: 5
->>>>>>> 7fb6a6ccfacae95bd7d16b8af0b0a9d8cc5ec630
-Fecha: 2019-02-15
-
-
 === DATOS DEL CLIENTE ===
 
-DNI: 1
-Nombre: aaaaa
-Apellidos: aaaa
-Fecha nacimiento: 2019-02-10
-Sexo: M
+DNI: 15669566F
+Nombre: usta
+Apellidos: bueno
+Fecha nacimiento: 1990-12-15
+Sexo: V
+
+
+=== DATOS DEL BILLETE DE IDA ===
+
+Código Billete: L1
+Número de Trayecto: 1
+Línea: L1
+Origen: 3
+Destino: 7
+Autobus: 1001
+Fecha: 2019-02-17
+Hora: 11:00
+Precio: 2.95
+Fecha de compra: 2019/02/17 16:45:40
+
+
+=== DATOS DEL BILLETE DE VUELTA ===
+
+Código Billete: L1
+Número de Trayecto: 2
+Línea: L1
+Origen: 7
+Destino: 3
+Autobus: 1001
+Fecha: 2019-02-17
+Hora: 18:00
+Precio: 2.95
+Fecha de compra: 2019/02/17 16:45:40
+
