@@ -57,8 +57,10 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			
 			case "Cancelar":
 				
-				vista.bienvenida.setVisible(true);
-				vista.sel_fecha.setVisible(false);
+				//vista.bienvenida.setVisible(true);
+				//vista.sel_fecha.setVisible(false);
+				ControladorCancelar can = new ControladorCancelar(vista, modelo);
+				can.reset();
 				break;
 				
 			case "Inicio Sesión":
