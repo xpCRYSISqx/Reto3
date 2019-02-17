@@ -11,6 +11,7 @@ import com.toedter.calendar.JDateChooser;
 
 import modelo.Cliente;
 import modelo.Modelo;
+import modelo.ValidarDNI;
 import vista.MainFrame;
 
 /**
@@ -97,7 +98,7 @@ public class ControladorRegistro implements ActionListener {
 				ControladorLogin.panelOrigen = panelOrigen; // Guarda el panel del que venimos
 				break;
 				
-			case "Registrar":
+			case "Registrarse":
 
 				if(validarDatos()) {
 					
@@ -155,6 +156,7 @@ public class ControladorRegistro implements ActionListener {
 		String dni = vista.registro.txtDni.getText();
 		char[] contrasenaChar = vista.registro.passwordField.getPassword();
 		char[] contrasena2Char = vista.registro.passwordField2.getPassword();
+		ValidarDNI validarDNI = new ValidarDNI(dni);
 		String contrasena = new String(contrasenaChar);
 		String contrasena2 = new String(contrasena2Char);
 		
@@ -192,13 +194,13 @@ public class ControladorRegistro implements ActionListener {
 			this.sexo = 'V';
 		}
 		
-		// comprobamos que el dni no este vacio
-		if (dni.equals("")) {
-			JOptionPane.showMessageDialog(vista, "DNI no introducido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+		// comprobamos que el dni ha sido introducido correctamente
+		if (validarDNI.validar() == false) {
+			JOptionPane.showMessageDialog(vista, "DNI no introducido o el introducido no es valido.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
-		} else {
+		} 
+		else 
 			this.dni = dni;
-		}
 				
 		// comprobamos que la contraseña no este vacia
 		if (contrasena.equals("")) {
