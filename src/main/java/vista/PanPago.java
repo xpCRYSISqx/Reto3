@@ -4,10 +4,8 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import java.awt.Color;
 
 public class PanPago extends JPanel {

@@ -71,7 +71,7 @@ public class ControladorFinPago implements ActionListener {
 			     };
 			     
 			    // Empezamos dentro de 10ms y luego lanzamos la tarea cada 1000ms
-			    timer.schedule(task, 5000);
+			    timer.schedule(task, 10000);
 				
 				break;
 		
