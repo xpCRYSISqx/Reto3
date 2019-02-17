@@ -2,7 +2,6 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;

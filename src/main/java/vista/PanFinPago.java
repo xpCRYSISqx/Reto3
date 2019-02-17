@@ -2,7 +2,6 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -70,7 +69,7 @@ public class PanFinPago extends JPanel {
 		add(lblADevolver);
 		
 		txtDevolver = new JTextPane();
-		//FormatoDiseno.formatoTxt(txtDevolver);
+		FormatoDiseno.formatoPane(txtDevolver);
 		txtDevolver.setBounds(506, 400,180, 150);
 		txtDevolver.setFocusable(false);
 		add(txtDevolver);
