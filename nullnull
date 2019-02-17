@@ -12,25 +12,14 @@ Sexo: V
 Código Billete: L1
 Número de Trayecto: 1
 Línea: L1
-Origen: 3
+Origen: 4
 Destino: 7
 Autobus: 1001
 Fecha: 2019-02-17
 Hora: 11:00
-Precio: 2.95
-Fecha de compra: 2019/02/17 16:45:40
+Precio: 1.32
+Fecha de compra: 2019/02/17 17:14:35
 
 
 === DATOS DEL BILLETE DE VUELTA ===
-
-Código Billete: L1
-Número de Trayecto: 2
-Línea: L1
-Origen: 7
-Destino: 3
-Autobus: 1001
-Fecha: 2019-02-17
-Hora: 18:00
-Precio: 2.95
-Fecha de compra: 2019/02/17 16:45:40
 
