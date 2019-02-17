@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 public class PanDespedida extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	public JLabel lblIcono;
+	public JLabel lblIcono,lblElorrieta,lblBbilbao,lblUml;
 	public JLabel lblDespedida;
 	
 	public PanDespedida() {
@@ -29,8 +29,23 @@ public class PanDespedida extends JPanel {
 		// mensaje de despedida
 		lblDespedida = new JLabel("¡Que tenga un buen viaje!");
 		lblDespedida.setFont(new Font("Agency FB", Font.BOLD, 36));
-		lblDespedida.setBounds(380, 450, 300, 50);
+		lblDespedida.setBounds(380, 420, 300, 50);
 		add(lblDespedida);
+		
+		lblElorrieta = new JLabel("");
+		lblElorrieta.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/logo_elorrieta2.png")));
+		lblElorrieta.setBounds(349, 481, 326, 188);
+		add(lblElorrieta);
+		
+		lblBbilbao = new JLabel("");
+		lblBbilbao.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/Bbilbao2.jpg")));
+		lblBbilbao.setBounds(10, 512, 309, 157);
+		add(lblBbilbao);
+		
+		lblUml = new JLabel("");
+		lblUml.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/uml.png")));
+		lblUml.setBounds(698, 472, 309, 199);
+		add(lblUml);
 
 	}
 
