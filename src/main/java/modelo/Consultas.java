@@ -347,58 +347,6 @@ public class Consultas {
 
 		return disponible;
 	}
-	
-	
-	public float calcularPrecioBillete(float lat1, float lon1, float lat2, float lon2, Autobus autobus) {
-		
-		float precio = 0;
-		float distancia;
-		float consumo;
-		float beneficio;
-		
-		// calculamos la distancia en kilometros
-		distancia = calcularDistanciaKm(lat1, lon1, lat2, lon2);
-		
-		// calculamos el consumo del autobus
-		consumo = calcularConsumo(distancia, autobus);
-		
-		// calculamos el beneficio
-		beneficio = consumo * 0.2f;
-		
-		// calculamos el precio
-		precio = consumo + beneficio;
-		
-		// redondeamos el precio
-		precio = Math.round(precio*100.0f)/100.0f;
-		
-		return precio;
-	}
-	
-	// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
-	public float calcularDistanciaKm(float lat1, float lon1, float lat2, float lon2) {
-	  int R = 6371; // Radio de la tierra en km
-	  float dLat = deg2rad(lat2-lat1);
-	  float dLon = deg2rad(lon2-lon1); 
-	  float a = (float) ( 
-	    Math.sin(dLat/2) * Math.sin(dLat/2) +
-	    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
-	    Math.sin(dLon/2) * Math.sin(dLon/2)
-	   ); 
-	  float c = (float) (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))); 
-	  float d = R * c; // Distancia en km
-	  return d;
-	}
-
-	public float deg2rad(float deg) {
-	  return deg * (float)(Math.PI/180);
-	}
-	
-	public float calcularConsumo(float distancia, Autobus autobus) {
-		float consumoTotal;
-		float consumo = autobus.getConsumo();
-		consumoTotal = consumo * distancia * 0.8f;
-		return consumoTotal;
-	}
 
 	
 	/****************************************************************************************************************

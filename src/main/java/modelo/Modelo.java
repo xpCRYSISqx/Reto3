@@ -2,9 +2,8 @@ package modelo;
 
 public class Modelo {
 	
+	public Conexion conexion;
 	public Consultas consultas;
-	public Encriptacion encriptacion;
-	public Pagar pagar;
 	public Cliente cliente;
 	public Billete billeteIda;
 	public Billete billeteVuelta;
@@ -15,12 +14,13 @@ public class Modelo {
 	
 	public float precioTotal;
 	
-	public Modelo(Consultas consultas, Encriptacion encriptacion, Pagar pagar) {
+	public Modelo() {
 		
-		// iniciamos los objetos que usaremos para ir almacenando los datos introducidos por el cliente
-		this.consultas = consultas;
-		this.encriptacion = encriptacion;
-		this.pagar = pagar;
+		// creamos un objeto BBDD que se encargara de conectarse a la BBDD
+		conexion = new Conexion();
+				
+		// Creamos un objeto Consultas que se encargara de hacer consultas a la BBDD
+		consultas = new Consultas(conexion);
 		
 		cliente = null;
 		billeteIda = null;

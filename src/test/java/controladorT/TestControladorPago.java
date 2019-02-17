@@ -7,8 +7,6 @@ import org.junit.Test;
 import controlador.ControladorPago;
 import modelo.Conexion;
 import modelo.Consultas;
-import modelo.Encriptacion;
-import modelo.Ficheros;
 import modelo.Modelo;
 import modelo.Pagar;
 import vista.MainFrame;

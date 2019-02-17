@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import com.toedter.calendar.JDateChooser;
 
 import modelo.Cliente;
+import modelo.Funciones;
 import modelo.Modelo;
-import modelo.ValidarDNI;
 import vista.MainFrame;
 
 /**
@@ -156,7 +156,7 @@ public class ControladorRegistro implements ActionListener {
 		String dni = vista.registro.txtDni.getText();
 		char[] contrasenaChar = vista.registro.passwordField.getPassword();
 		char[] contrasena2Char = vista.registro.passwordField2.getPassword();
-		ValidarDNI validarDNI = new ValidarDNI(dni);
+		Funciones funciones = new Funciones();
 		String contrasena = new String(contrasenaChar);
 		String contrasena2 = new String(contrasena2Char);
 		
@@ -195,7 +195,7 @@ public class ControladorRegistro implements ActionListener {
 		}
 		
 		// comprobamos que el dni ha sido introducido correctamente
-		if (validarDNI.validar() == false) {
+		if (funciones.validarDNI(dni) == false) {
 			JOptionPane.showMessageDialog(vista, "DNI no introducido o el introducido no es valido.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
 		} 
@@ -220,7 +220,7 @@ public class ControladorRegistro implements ActionListener {
 			return false;
 		} else {
 			this.contrasena = contrasena;
-			this.contrasena = modelo.encriptacion.Encriptacion(this.contrasena);
+			this.contrasena = funciones.encriptacion(this.contrasena);
 		}
 		
 		return true;

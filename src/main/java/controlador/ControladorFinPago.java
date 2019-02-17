@@ -11,6 +11,7 @@ import java.util.TimerTask;
 
 import javax.swing.JButton;
 
+import modelo.Funciones;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -18,10 +19,12 @@ public class ControladorFinPago implements ActionListener {
 	
 	public MainFrame vista;
 	public Modelo modelo;
+	public Funciones funciones;
 	
 	public ControladorFinPago(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;
+		this.funciones = new Funciones();
 	}
 	
 	// añadimos listeners a los botones del panel 'fin_pago'
@@ -46,7 +49,7 @@ public class ControladorFinPago implements ActionListener {
 				String pathBillete = fDialog.getDirectory() + fDialog.getFile();
 				
 				// creamos los archivos de texto
-				modelo.ficheros.imprimirBillete(modelo.billeteIda, modelo.billeteVuelta, modelo.cliente, pathBillete);
+				funciones.imprimirBillete(modelo.billeteIda, modelo.billeteVuelta, modelo.cliente, pathBillete, modelo);
 				
 				// abrimos los archivos en el programa predeterminado
 				File file = new File(pathBillete);

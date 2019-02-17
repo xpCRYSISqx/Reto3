@@ -17,6 +17,7 @@ import com.toedter.calendar.JCalendar;
 
 import modelo.Autobus;
 import modelo.Billete;
+import modelo.Funciones;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -229,13 +230,17 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 	
 	public float calcularPrecioBillete(Billete billete) {
 		
+		Funciones funciones = new Funciones();
+		
 		float lat1 = modelo.paradaOrigen.getLatitud();
 		float lon1 = modelo.paradaOrigen.getLongitud();
 		float lat2 = modelo.paradaDestino.getLatitud();
-		float lon2 = modelo.paradaOrigen.getLongitud();
+		float lon2 = modelo.paradaDestino.getLongitud();
 		Autobus autobus = modelo.autobus;
+		float distancia = funciones.calcularDistanciaKm(lat1, lon1, lat2, lon2);
+		float precio = funciones.calcularPrecioBillete(autobus, distancia);
 		
-		return modelo.consultas.calcularPrecioBillete(lat1, lon1, lat2, lon2, autobus);
+		return precio;
 
 	}
 

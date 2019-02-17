@@ -35,6 +35,7 @@ public class ControladorPago implements ActionListener{
 	
 	private MainFrame vista; // Declara el objeto vista
 	private Modelo modelo; // Declara el objeto modelo
+	private Funciones funciones;
 	
 	
 	private JLabel introducido, restante; // Instancia los label del dinero para poder cambiarlos en la interfaz
@@ -49,6 +50,7 @@ public class ControladorPago implements ActionListener{
 		this.vista = vista;
 		this.modelo = modelo;
 		
+		this.funciones = new Funciones();
 		this.introducido = this.vista.pago.lblDineroIntro;
 		this.restante = this.vista.pago.lblDineroRest;
 		this.monedas = new float[0];
@@ -178,18 +180,17 @@ public class ControladorPago implements ActionListener{
 	}
 	
 	public void FuncionBotonDinero(float importe) { // Realiza las operaciones con el importe de cada boton, tambien almacena las cantidades que se ban introduciendo, se calcula el dinero que fala por introducir o lo que sobra.
-		RedimensionarArrayMayor redimensionMayor = new RedimensionarArrayMayor(); // Instancia la clase que se utiliza para redimensionar un array a uno menor
 		int posicion; // Guarda la posicion en la que se debe almacenar el importe del boton pulsado en al array de monedas
 		this.total = this.modelo.precioTotal; // Guarda el importe total que se debe introducir
 		dinero = dinero + importe; // Se suma el importe del boton pulsado al dinero que ya se habia introducido
 		dinero = Math.round(dinero*100); // Redondea el resultado
 		dinero = dinero/100;
-		monedas = redimensionMayor.redimensionarArray(monedas); // Redimensiona el array monedas a un array una posicion mayos para poder guardar el importe del boton pulsado
+		monedas = funciones.redimensionarArrayMayor(monedas); // Redimensiona el array monedas a un array una posicion mayos para poder guardar el importe del boton pulsado
 		posicion = monedas.length - 1;
 		monedas[posicion] = importe; // Guarda el importe en la ultima posicion del array
 		introducido.setText(Float.toString(dinero) + " €"); // Muestra en la interfaz el dinero que se ha introducido hasta el momento
 		if(dinero < total) { // Comprueba si todabia falta dinero para llegar al total
-			falta = modelo.pagar.Falta(total, dinero); // En caso de no llegar o sobrepasar el total necesario, se calcula el dinero faltante
+			falta = funciones.falta(total, dinero); // En caso de no llegar o sobrepasar el total necesario, se calcula el dinero faltante
 			restante.setText(Float.toString(falta) + " €"); // Muestra en la interfaz el dinero que falta para alcanzar el total
 		}
 		else
@@ -197,7 +198,6 @@ public class ControladorPago implements ActionListener{
 	}
 	
 	public void FuncionDevolver() { // Realiza las operaciones necesarias cuando el usuario pide que se le devuelva la ultima moneda introducida
-		RedimensionarArrayMenor redimensionMenor = new RedimensionarArrayMenor(); // Instancia la clase que se utiliza para redimensionar un array a uno menor
 		int posicion;
 		if(dinero > 0) {
 			posicion = monedas.length - 1;
@@ -206,9 +206,9 @@ public class ControladorPago implements ActionListener{
 			dinero = Math.round(dinero*100); 
 			dinero = dinero/100;
 			introducido.setText(Float.toString(dinero) + " €"); // Actualiza el indicador del dinero introducido en la interfaz, con el valor que tiene despues de sacar la ultima moneda introducida
-			monedas = redimensionMenor.redimensionarArray(monedas);
+			monedas = funciones.redimensionarArrayMenor(monedas);
 			if(dinero < total) { // Comprueba si despues de sacar la moneda el dinero introducido hasta el momento es menor que el total
-				falta = modelo.pagar.Falta(total, dinero); // Calcula el dinero que falta para llegar al total
+				falta = funciones.falta(total, dinero); // Calcula el dinero que falta para llegar al total
 				restante.setText(Float.toString(falta) + " €"); // Muestra en la interfaz el dinero que falta
 				this.vista.pago.btn001.setEnabled(true); // Vuelve a habilitar los botones con el dinero
 				this.vista.pago.btn002.setEnabled(true);
@@ -259,7 +259,7 @@ public class ControladorPago implements ActionListener{
 	}
 	
 	public void FuncionContinuar() { // Funcion del boton continuar
-		sobra = modelo.pagar.Sobra(total, dinero); // Calcula el dinero que sobra para devolverselo al usuario
+		sobra = funciones.sobra(total, dinero); // Calcula el dinero que sobra para devolverselo al usuario
 		vista.fin_pago.setVisible(true); // Pone el panel fin de pago visible
 		vista.pago.setVisible(false); // Pone el panel de pago en invisible
 		

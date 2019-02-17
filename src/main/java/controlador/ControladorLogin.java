@@ -6,7 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import modelo.ComprobarLogin;
+import modelo.Cliente;
+import modelo.Funciones;
 import modelo.Modelo;
 import vista.MainFrame;
 
@@ -80,8 +81,7 @@ public class ControladorLogin implements ActionListener {
 				String contString = new String(cont); // Transforma la contraseña que esta en un array de caracteres a String.
 				
 				// comprobamos si el usuario esta registrado
-				ComprobarLogin comprobar = new ComprobarLogin(); // Instancia de la clase ComprobarLogin.
-				modelo.cliente = comprobar.comprobarInicio(dni, contString, modelo); // Llamada a la funcion comprobarInicio.
+				modelo.cliente = comprobarInicio(dni, contString); // Llamada a la funcion comprobarInicio.
 			
 				// mostramos la pantalla adecuada
 				if(modelo.cliente != null) { // Comprueba si hay un cliente.
@@ -118,4 +118,26 @@ public class ControladorLogin implements ActionListener {
 				break;
 		}
 	}
+	
+	/*
+	 * Comprobar inicio de sesion
+	 */
+	public Cliente comprobarInicio(String usuario, String contrasena) {
+		
+		Cliente cliente = null;
+		Funciones funciones = new Funciones();
+		contrasena = funciones.encriptacion(contrasena);
+		
+		cliente = modelo.consultas.getClienteByDNI(usuario);
+		
+		if(cliente != null) {
+			if(!contrasena.equals(cliente.getContrasena())) {
+				cliente = null;
+			}
+		}
+		
+		return cliente;
+		
+	}
+	
 }

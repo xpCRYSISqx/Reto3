@@ -1,35 +1,32 @@
 package app;
 
+import static org.junit.Assert.assertEquals;
+
 import controlador.Controlador;
 import modelo.Conexion;
 import modelo.Consultas;
-import modelo.Encriptacion;
-import modelo.Ficheros;
+import modelo.Funciones;
 import modelo.Modelo;
-import modelo.Pagar;
 import vista.MainFrame;
 
 public class App {
 
 	public static void main(String[] args) {
-				
-		// creamos un objeto BBDD que se encargara de conectarse a la BBDD
-		Conexion conexion = new Conexion();
-				
-		// Creamos un objeto Consultas que se encargara de hacer consultas a la BBDD
-		Consultas consultas = new Consultas(conexion);
-				
-		// Creamos un objeto Encriptacion que usaremos para encriptar las contraseñas
-		Encriptacion encriptacion = new Encriptacion();
-				
-		// Creamos un objeto Pagar que usaremos para el realizar el pago
-		Pagar pagar = new Pagar();
+		
+		Funciones funciones = new Funciones();
 		
 		MainFrame vista = new MainFrame();
-		Modelo modelo = new Modelo(consultas, encriptacion, pagar);
+		Modelo modelo = new Modelo();
 		Controlador controlador = new Controlador(modelo, vista);
 		
 		controlador.inicializarInterfaz();
 		controlador.inicializarBotones();
+		
+
+		float total = 85.7f;
+		float dinero = 83.5f;
+		float falta = Math.round((total-dinero)*100);
+		
+		System.out.println(falta/100);	
 	}
 }
