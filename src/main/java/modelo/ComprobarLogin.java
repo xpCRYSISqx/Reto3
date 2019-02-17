@@ -5,10 +5,13 @@ public class ComprobarLogin {
 	Modelo modelo;
 	Cliente cliente;
 	
-	public Cliente comprobarInicio(String usuario, String contrasena, Modelo modelo) {
-	Cliente cliente = null;
-		
+	public ComprobarLogin(Modelo modelo) {
 		this.modelo = modelo;
+	}
+	
+	public Cliente comprobarInicio(String usuario, String contrasena) {
+	
+		Cliente cliente = null;
 		Encriptacion encriptar = new Encriptacion();
 		contrasena = encriptar.Encriptacion(contrasena);
 		

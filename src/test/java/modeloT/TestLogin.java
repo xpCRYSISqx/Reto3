@@ -4,11 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestLogin {
+import modelo.ComprobarLogin;
+import modelo.Modelo;
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+public class TestLogin {
+	
+//	Modelo modelo = new Modelo();
+//	
+//	ComprobarLogin comprobarLogin = new ComprobarLogin();
+//
+//	@Test
+//	public void testComprobarInicio() {
+//		
+//	}
 
 }

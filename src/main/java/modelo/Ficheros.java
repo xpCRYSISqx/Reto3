@@ -1,12 +1,6 @@
 package modelo;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.text.DateFormat;
@@ -19,39 +13,6 @@ public class Ficheros {
 	public Ficheros(Modelo modelo) {
 		this.modelo = modelo;
 	}
-	
-//	// lee los datos de conexion a la base de datos del archivo /resources/datosBBDD.txt
-//	public String[] getConnectionInfo() {
-//
-//		String filePath = "src/main/java/resources/datosBBDD.txt";
-//		FileReader fileReader;
-//		BufferedReader buffer = null;
-//		String[] datos = new String[4];
-//		String linea;
-//		int count = 0;
-//		
-//		// carga el archivo en un buffer
-//		try {
-//			fileReader = new FileReader(filePath);
-//			buffer = new BufferedReader(fileReader);
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		} 
-//		  
-//		// crea un array con una entrada por cada linea del archivo
-//		// cada linea es "filtrada" para que solo quede el dato necesario
-//		try {
-//			while ((linea = buffer.readLine()) != null) {
-//				datos[count] = linea.substring(linea.indexOf(":") + 2);
-//				count++;
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} 
-//		
-//		return datos;
-//		
-//	}
 	
 	public String imprimirBillete(Billete billeteIda, Billete billeteVuelta, Cliente cliente, String path) {
 		
