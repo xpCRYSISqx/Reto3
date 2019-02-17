@@ -3,6 +3,19 @@ package modelo;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Esta clase se utiliza para encriptar la contraseña que el usuario introduce en la interfaz
+ * 
+ * @author Mikel
+ * 
+ * @param ContraseñaEncriptar: Es la contraseña que se va a encriptar
+ * @param contraseñaGenerada: Es la contraseña una vez encriptada
+ * @param md: Instancia de MessageDigest, se utiliza para separar la contraseña en fragmentos para poder encriptarla
+ * @param bytes: Array que almacena los distintros trozos separados de la contraseña con MessageDigest transformados en bytes
+ * @param sb: Instancia de StringBuilder, se utiliza para volver a unir las diferentes partes de la contrasela vez encriptada
+ *
+ */
+
 public class Encriptacion {
 
 	public String Encriptacion(String contraseñaAEncriptar){

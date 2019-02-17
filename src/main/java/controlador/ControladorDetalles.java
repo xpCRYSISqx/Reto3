@@ -8,6 +8,19 @@ import javax.swing.JButton;
 import modelo.Modelo;
 import vista.MainFrame;
 
+/**
+ * Esta clase controla el panel de detalles y se encarga de enlazar esa parte de la vista con el modelo
+ * 
+ * @author Mikel, Ustaritz, Laura
+ * 
+ * @param vista: Instancia del main frame para poder utilizarlo
+ * @param modelo: Instancia del modelo para poder utilizarlo
+ * @param botonPulsado: Es utilizado para poder identificar el boton que esta siendo pulsado en esta parte de la interfaz
+ * @param precioIda: Es el precio del billete de ida
+ * @param precioVuelta: Es el precio del billete de vuelta, en caso de que el usuario haya seleccionado un billete de ida y vuelta
+ *
+ */
+
 public class ControladorDetalles implements ActionListener {
 	
 	public MainFrame vista;

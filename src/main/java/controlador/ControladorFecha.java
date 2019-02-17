@@ -20,6 +20,32 @@ import modelo.Billete;
 import modelo.Modelo;
 import vista.MainFrame;
 
+/**
+ * Esta clase se utiliza para controlar la seleccion de fecha para el billete, tambien comprueba que autobuses estan disponibles y se las asigna al ususario
+ * 
+ * @author Ustaritz, Laura, Mikel
+ * 
+ * @param vista, Instancia del main frame para poder utilizarlo
+ * @param modelo: Instancia del modelo para poder utilizarlo
+ * @param botonPulsado: Se utiliza para poder reconocer que boton es el que esta siendo pulsado en cada momento
+ * @param fechaIda: Es la fecha que ha seleccionado el usuario para el billete de ida
+ * @param autobusDisponible: Se utiliza para comprobar si hay algun autobus disponible para esa fecha
+ * @param fechaVuelta: Es la fecha que ha introducido el usuario para el billete de vuelta
+ * @param autibusIda: Guarda la informacion del autobus de ida
+ * @param autobusVuelta: Guarda la informacion del autobus de vuelta
+ * @param tablaIda: Muestra la informacion del billete de ida en una tabla en la interfaz
+ * @param tablaVuelta; Muestra la informacion del billete de vuelta en una tabla de la interfaz
+ * @param autobuses: ArrayList que almacena la informacion de los diferentes autobuses disponibles
+ * @param autobusDisponible: Almacena la informacion del autobus que este disponible
+ * @param plazaDisponible: Sirbe para comprobar si el autobus seleccionado tiene una plaza disponible
+ * @param datosBillete: Carga los datos del billete
+ * @param lat1: Guarda la latitid de la parada de salida
+ * @param lon1: Guarda la longitud de la parada de salida
+ * @param lat2: Guarda la latitud de la parada de destino
+ * @param lon2: Guarda la longitud de la parada de destino
+ *
+ */
+
 public class ControladorFecha implements ActionListener, PropertyChangeListener {
 	
 	public MainFrame vista;

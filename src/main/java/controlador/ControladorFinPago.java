@@ -14,6 +14,21 @@ import javax.swing.JButton;
 import modelo.Modelo;
 import vista.MainFrame;
 
+/**
+ * 
+ * @author Laura, Ustaritz
+ * 
+ * @param vista: Instancia del main frame para poder utilizarlo
+ * @param modelo: instancia del modelo para poder utilizarlo
+ * @param botonPulsado: Se utiliza para poder reconocer el boton que se esta pulsando
+ * @param fDiaLog: Se utiliza para la impresion del billete
+ * @param pathBillete: Señala la ruta en la que se va a imprimir el billete
+ * @param file: Crea el archivo para guardar el billete
+ * @param timer: Declara un temporizador
+ * @param task: Declara la tarea que va a realizar el temporizador
+ *
+ */
+
 public class ControladorFinPago implements ActionListener {
 	
 	public MainFrame vista;
