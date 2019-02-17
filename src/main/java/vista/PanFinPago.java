@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 public class PanFinPago extends JPanel {
 	/**
@@ -21,7 +22,8 @@ public class PanFinPago extends JPanel {
 	
 	public JLabel lblIcono,lblTitulo,lblTotal,lblPagado,lblADevolver,lblImprimir;
 	public JButton btnImprimir,btnSeparador;
-	public JTextField txtTotal,txtPagado,txtDevolver;
+	public JTextField txtTotal,txtPagado;
+	public JTextPane txtDevolver;
 	
 	public PanFinPago() {
 		setBackground(new Color(255, 255, 255));
@@ -67,9 +69,8 @@ public class PanFinPago extends JPanel {
 		lblADevolver.setBounds(387, 400, 120, 25);
 		add(lblADevolver);
 		
-		txtDevolver = new JTextField();
-		FormatoDiseno.formatoTxt(txtDevolver);
-		txtDevolver.setHorizontalAlignment(SwingConstants.CENTER);
+		txtDevolver = new JTextPane();
+		//FormatoDiseno.formatoTxt(txtDevolver);
 		txtDevolver.setBounds(506, 400,180, 150);
 		txtDevolver.setFocusable(false);
 		add(txtDevolver);
