@@ -15,7 +15,7 @@ public class ComprobarLogin {
 		cliente = modelo.consultas.getClienteByDNI(usuario);
 		
 		if(cliente != null) {
-			if(!contrasena.equals(cliente.getContraseña())) {
+			if(!contrasena.equals(cliente.getContrasena())) {
 				cliente = null;
 			}
 		}

@@ -163,32 +163,51 @@ public class ControladorBillete implements ActionListener {
 	
 	public void guardarDatos(Linea linea, Parada paradaOrigen, Parada paradaDestino, boolean simple) {
 		
+		ArrayList<Autobus> autobuses;
+		ArrayList<Municipio> municipios;
+		ArrayList<Integer> codParadas;
+		
+		// creamos el billete de ida
 		if (modelo.billeteIda == null) {
 			modelo.billeteIda = new Billete();
 		}
+		
+		// guardamos los datos de la linea en el modelo
 		modelo.linea = linea;
+		autobuses = modelo.consultas.getAutobusesByLinea(linea.getCodLinea());
+		municipios = modelo.consultas.getMunicipiosByLinea(linea.getCodLinea());
+		
+		// cargamos los codigos de las paradas
+		for(int i = 0;i<municipios.size();i++) {
+			codParadas = new ArrayList<Integer>();
+			paradas = modelo.consultas.getParadasByMunicipio(municipios.get(i).getCodPostal());
+			for(int j = 0;j<paradas.size();j++) {
+				codParadas.add(paradas.get(j).getCodParada());
+			}
+			municipios.get(i).setCodParadas(codParadas);
+		}
+		linea.setAutobuses(autobuses);
+		linea.setMunicipios(municipios);
+
+		// guardamos los datos de las paradas en el modelo
 		modelo.paradaOrigen = paradaOrigen;
 		modelo.paradaDestino = paradaDestino;
+		
+		// guardamos los datos del billete de ida en el modelo
 		modelo.billeteIda.setCodLinea(linea.getCodLinea());
 		modelo.billeteIda.setCodParadaInicio(paradaOrigen.getCodParada());
 		modelo.billeteIda.setCodParadaFin(paradaDestino.getCodParada());
 		modelo.billeteIda.setNTrayecto(1);
 		
 		// comprobamos si se ha seleccionado billete de tipo 'simple' o 'ida y vuelta'
-		if (simple) {
+		if (!simple) {
 			
-			// ocultamos el JCalendar para la fecha de vuelta en la siguiente pantalla
-			vista.sel_fecha.panFechaVuelta.setVisible(false);
-			
-		} else {
-			
-			// mostramos el JCalendar para la fecha de vuelta en la siguiente pantalla
-			vista.sel_fecha.panFechaVuelta.setVisible(true);
-			
-			// añadimos los datos al objeto billeteVuelta
+			// creamos el billete de vuelta
 			if (modelo.billeteVuelta == null) {
 				modelo.billeteVuelta = new Billete();
 			}
+			
+			// guardamos los datos del billete de vuelta en el modelo
 			modelo.billeteVuelta.setCodLinea(linea.getCodLinea());
 			modelo.billeteVuelta.setCodParadaInicio(paradaDestino.getCodParada());
 			modelo.billeteVuelta.setCodParadaFin(paradaOrigen.getCodParada());
@@ -221,12 +240,7 @@ public class ControladorBillete implements ActionListener {
 		vista.sel_fecha.fechaIda.setSelectableDateRange(new Date(),fechaLimite);
 		
 		// comprobamos si existe billete de vuelta
-		if (simple) {
-			
-			// ocultamos el JCalendar para la fecha de vuelta en la siguiente pantalla
-			vista.sel_fecha.panFechaVuelta.setVisible(false);
-			
-		} else {
+		if (!simple) {
 			
 			// mostramos el JCalendar para la fecha de vuelta en la siguiente pantalla
 			vista.sel_fecha.panFechaVuelta.setVisible(true);

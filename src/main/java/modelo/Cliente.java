@@ -9,20 +9,20 @@ public class Cliente {
 	private String apellidos;
 	private Date fechaNacimiento;
 	private char sexo;
-	private String contraseña;
+	private String contrasena;
 	
 	public Cliente() {
 		
 	}
 	
-	public Cliente(String dni, String nombre, String apellidos, Date fechaNacimiento, char sexo, String contraseña) {
+	public Cliente(String dni, String nombre, String apellidos, Date fechaNacimiento, char sexo, String contrasena) {
 		
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
 		this.sexo = sexo;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 	}
 
 	public String getDni() {
@@ -65,12 +65,12 @@ public class Cliente {
 		this.sexo = sexo;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 	
 }

@@ -73,6 +73,7 @@ public class PanSelFecha extends JPanel {
 		panFechaVuelta.setBounds(305, 320, 250, 260);
 		panFechaVuelta.setLayout(null);
 		add(panFechaVuelta);
+		panFechaVuelta.setVisible(false);
 		
 		// label seleccion fecha de vuelta
 		lblSeleccioneVuelta = new JLabel("Seleccione fecha de vuelta");

@@ -14,49 +14,55 @@ import java.text.SimpleDateFormat;
 
 public class Ficheros {
 	
-	public Ficheros() {
-		
+	Modelo modelo;
+	
+	public Ficheros(Modelo modelo) {
+		this.modelo = modelo;
 	}
 	
-	// lee los datos de conexion a la base de datos del archivo /resources/datosBBDD.txt
-	public String[] getConnectionInfo() {
-
-		String filePath = "src/main/java/resources/datosBBDD.txt";
-		FileReader fileReader;
-		BufferedReader buffer = null;
-		String[] datos = new String[4];
-		String linea;
-		int count = 0;
-		
-		// carga el archivo en un buffer
-		try {
-			fileReader = new FileReader(filePath);
-			buffer = new BufferedReader(fileReader);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		  
-		// crea un array con una entrada por cada linea del archivo
-		// cada linea es "filtrada" para que solo quede el dato necesario
-		try {
-			while ((linea = buffer.readLine()) != null) {
-				datos[count] = linea.substring(linea.indexOf(":") + 2);
-				count++;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		
-		return datos;
-		
-	}
+//	// lee los datos de conexion a la base de datos del archivo /resources/datosBBDD.txt
+//	public String[] getConnectionInfo() {
+//
+//		String filePath = "src/main/java/resources/datosBBDD.txt";
+//		FileReader fileReader;
+//		BufferedReader buffer = null;
+//		String[] datos = new String[4];
+//		String linea;
+//		int count = 0;
+//		
+//		// carga el archivo en un buffer
+//		try {
+//			fileReader = new FileReader(filePath);
+//			buffer = new BufferedReader(fileReader);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} 
+//		  
+//		// crea un array con una entrada por cada linea del archivo
+//		// cada linea es "filtrada" para que solo quede el dato necesario
+//		try {
+//			while ((linea = buffer.readLine()) != null) {
+//				datos[count] = linea.substring(linea.indexOf(":") + 2);
+//				count++;
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} 
+//		
+//		return datos;
+//		
+//	}
 	
 	public String imprimirBillete(Billete billeteIda, Billete billeteVuelta, Cliente cliente, String path) {
 		
 		FileWriter fichero = null;	
 		PrintWriter writer = null;
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyy HH:mm:ss");
+		Date fechaActual = new Date();
+		String sexo = "Mujer";
+		if (cliente.getSexo() == 'V') {
+			sexo = "Varon";
+		}
 		
 		try {
 			
@@ -69,7 +75,7 @@ public class Ficheros {
 			writer.println("Nombre: " + cliente.getNombre());
 			writer.println("Apellidos: " + cliente.getApellidos());
 			writer.println("Fecha nacimiento: " + cliente.getFechaNacimiento());
-			writer.println("Sexo: " + cliente.getSexo());
+			writer.println("Sexo: " + sexo);
 			writer.println();
 			writer.println();
 			
@@ -77,14 +83,14 @@ public class Ficheros {
 			writer.println();
 			writer.println("Código Billete: " + billeteIda.getCodLinea());
 			writer.println("Número de Trayecto: " + billeteIda.getNTrayecto());
-			writer.println("Línea: " + billeteIda.getCodLinea());
-			writer.println("Origen: " + billeteIda.getCodParadaInicio());
-			writer.println("Destino: " + billeteIda.getCodParadaFin());
+			writer.println("Línea: " + billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
+			writer.println("Origen: " + modelo.paradaOrigen.getNombre());
+			writer.println("Destino: " + modelo.paradaDestino.getNombre());
 			writer.println("Autobus: " + billeteIda.getCodBus());
 			writer.println("Fecha: " + billeteIda.getFecha());
 			writer.println("Hora: " + billeteIda.getHora());
-			writer.println("Precio: " + billeteIda.getPrecio());
-			writer.println("Fecha de compra: " + dateFormat.format(date));
+			writer.println("Precio: " + billeteIda.getPrecio() + "€");
+			writer.println("Fecha de compra: " + dateFormat.format(fechaActual));
 			writer.println();
 			writer.println();
 			
@@ -92,14 +98,14 @@ public class Ficheros {
 			writer.println();
 			writer.println("Código Billete: " + billeteVuelta.getCodLinea());
 			writer.println("Número de Trayecto: " + billeteVuelta.getNTrayecto());
-			writer.println("Línea: " + billeteVuelta.getCodLinea());
-			writer.println("Origen: " + billeteVuelta.getCodParadaInicio());
-			writer.println("Destino: " + billeteVuelta.getCodParadaFin());
+			writer.println("Línea: " + billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
+			writer.println("Origen: " +  modelo.paradaOrigen.getNombre());
+			writer.println("Destino: " + modelo.paradaDestino.getNombre());
 			writer.println("Autobus: " + billeteVuelta.getCodBus());
 			writer.println("Fecha: " + billeteVuelta.getFecha());
 			writer.println("Hora: " + billeteVuelta.getHora());
-			writer.println("Precio: " + billeteVuelta.getPrecio());
-			writer.println("Fecha de compra: " + dateFormat.format(date));
+			writer.println("Precio: " + billeteVuelta.getPrecio() + "€");
+			writer.println("Fecha de compra: " + dateFormat.format(fechaActual));
 			writer.println();
 			
 			writer.flush();

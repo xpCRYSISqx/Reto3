@@ -2,11 +2,8 @@ package modelo;
 
 public class Modelo {
 	
-	public Ficheros ficheros;
 	public Consultas consultas;
 	public Encriptacion encriptacion;
-	private String[] datosConexion;
-	private Conexion conexion;
 	public Pagar pagar;
 	public Cliente cliente;
 	public Billete billeteIda;
@@ -18,12 +15,9 @@ public class Modelo {
 	
 	public float precioTotal;
 	
-	public Modelo(Ficheros ficheros, String[] datosConexion, Conexion conexion, Consultas consultas, Encriptacion encriptacion, Pagar pagar) {
+	public Modelo(Consultas consultas, Encriptacion encriptacion, Pagar pagar) {
 		
 		// iniciamos los objetos que usaremos para ir almacenando los datos introducidos por el cliente
-		this.ficheros = ficheros;
-		this.datosConexion = datosConexion;
-		this.conexion = conexion;
 		this.consultas = consultas;
 		this.encriptacion = encriptacion;
 		this.pagar = pagar;

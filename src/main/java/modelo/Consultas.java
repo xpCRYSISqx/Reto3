@@ -29,10 +29,10 @@ public class Consultas {
 		
 		Linea linea = null;
 		ArrayList<Linea> lineas = new ArrayList<Linea>();
-		ArrayList<Autobus> autobuses;
-		ArrayList<Municipio> municipios;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		
+		String query = "SELECT * FROM linea";
 
 		try {
 			
@@ -40,7 +40,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT * FROM linea");
+			stmt = connection.prepareStatement(query);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
@@ -53,25 +53,9 @@ public class Consultas {
 				lineas.add(linea);
 			}
 			
-			// cargamos los codigos de los autobuses
-			for(int i = 0;i<lineas.size();i++) {
-				autobuses = getAutobusesByLinea(lineas.get(i).getCodLinea());
-				lineas.get(i).setAutobuses(autobuses);
-			}
-			
-			// cargamos los codigos de los municipios
-			for(int i = 0;i<lineas.size();i++) {
-				municipios = getMunicipiosByLinea(lineas.get(i).getCodLinea());
-				lineas.get(i).setMunicipios(municipios);
-			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
-			// cerramos los objetos ResultSet y PreparedStatement
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    
 		    // cerramos la conexion
 		    conexion.desconectar();
@@ -87,6 +71,8 @@ public class Consultas {
 		ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		
+		String query = "SELECT l.Cod_bus, N_plazas, Consumo_km, Color FROM `linea_autobus` l, `autobus` a where l.Cod_bus=a.Cod_bus and Cod_Linea = ?";
 
 		try {
 			
@@ -94,7 +80,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT l.Cod_bus, N_plazas, Consumo_km, Color FROM `linea_autobus` l, `autobus` a where l.Cod_bus=a.Cod_bus and Cod_Linea = ?");
+			stmt = connection.prepareStatement(query);
 			stmt.setString(1, codLinea);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -102,19 +88,18 @@ public class Consultas {
 			
 			// crea objetos Autobus con los resultados y los añade a un arrayList
 			while (result.next()) {
-				autobus = new Autobus();
-				autobus.setCodBus(result.getInt("Cod_bus"));
-				autobus.setNumPlazas(result.getInt("N_plazas"));
-				autobus.setConsumo(result.getFloat("Consumo_km"));
-				autobus.setColor(result.getString("Color"));
+				autobus = new Autobus(
+					result.getInt("Cod_bus"),
+					result.getInt("N_plazas"),
+					result.getFloat("Consumo_km"),
+					result.getString("Color")
+				);
 				autobuses.add(autobus);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}                
 		
@@ -122,14 +107,15 @@ public class Consultas {
 		
 	}
 	
-	private ArrayList<Municipio> getMunicipiosByLinea(String codLinea) {
+	public ArrayList<Municipio> getMunicipiosByLinea(String codLinea) {
 		
 		Municipio municipio = null;
 		ArrayList<Municipio> municipios = new ArrayList<Municipio>();
 		ArrayList<Parada> paradas = new ArrayList<Parada>();
-		ArrayList<Integer> codParadas;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		
+		String query = "SELECT * FROM `poblacion_parada`";
 
 		try {
 			
@@ -137,11 +123,12 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT * FROM `poblacion_parada`");
+			stmt = connection.prepareStatement(query);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			result = stmt.executeQuery();
 			
+			// carga las paradas de la linea
 			paradas = getParadasByLinea(codLinea);
 			
 			// crea objetos Municipio con los resultados y los añade a un arrayList
@@ -150,27 +137,14 @@ public class Consultas {
 					if (result.getInt("Cod_Parada") == paradas.get(i).getCodParada()) {
 						municipio = new Municipio();
 						municipio.setCodPostal(result.getInt("Cod_Postal"));
-	//					municipio = getInfoAutobus(municipio);
 						municipios.add(municipio);
 					}
 				}
 			}
 			
-			// cargamos los codigos de las paradas
-			for(int i = 0;i<municipios.size();i++) {
-				codParadas = new ArrayList<Integer>();
-				paradas = getParadasByMunicipio(municipios.get(i).getCodPostal());
-				for(int j = 0;j<paradas.size();j++) {
-					codParadas.add(paradas.get(j).getCodParada());
-				}
-				municipios.get(i).setCodParadas(codParadas);
-			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}                
 		
@@ -184,6 +158,8 @@ public class Consultas {
 		ArrayList<Parada> paradas = new ArrayList<Parada>();
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		
+		String query = "Select po.Cod_Parada, Nombre, Calle, Latitud, Longitud from `poblacion_parada` po, `parada` pa where po.Cod_Parada=pa.Cod_Parada and Cod_Postal = ?";
 
 		try {
 			
@@ -191,7 +167,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("Select po.Cod_Parada, Nombre, Calle, Latitud, Longitud from `poblacion_parada` po, `parada` pa where po.Cod_Parada=pa.Cod_Parada and Cod_Postal = ?");
+			stmt = connection.prepareStatement(query);
 			stmt.setInt(1, codMunicipio);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -199,20 +175,19 @@ public class Consultas {
 			
 			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
-				parada = new Parada();
-				parada.setCodParada(result.getInt("Cod_Parada"));
-				parada.setNombre(result.getString("Nombre"));
-				parada.setCalle(result.getString("Calle"));
-				parada.setLatitud(result.getFloat("Latitud"));
-				parada.setLongitud(result.getFloat("Longitud"));
+				parada = new Parada(
+					result.getInt("Cod_Parada"),
+					result.getString("Nombre"),
+					result.getString("Calle"),
+					result.getFloat("Latitud"),
+					result.getFloat("Longitud")
+				);
 				paradas.add(parada);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}       
 		
@@ -226,6 +201,8 @@ public class Consultas {
 		ArrayList<Parada> paradas = new ArrayList<Parada>();
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		
+		String query = "SELECT l.Cod_Parada, Nombre, Calle, Latitud, Longitud, SQRT(POWER(Latitud-(SELECT Latitud FROM `parada` WHERE Cod_Parada = 1),2)+POWER(Longitud-(SELECT Longitud FROM `parada` WHERE Cod_Parada = 1),2)) \"Distancia\" FROM `linea-parada` l, `parada` p WHERE l.Cod_Parada=p.Cod_Parada and Cod_Linea = ? ORDER BY Distancia ASC";
 
 		try {
 			
@@ -233,8 +210,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT l.Cod_Parada, Nombre, Calle, Latitud, Longitud, SQRT(POWER(Latitud-(SELECT Latitud FROM `parada` WHERE Cod_Parada = 1),2)+POWER(Longitud-(SELECT Longitud FROM `parada` WHERE Cod_Parada = 1),2)) \"Distancia\" FROM `linea-parada` l, `parada` p WHERE l.Cod_Parada=p.Cod_Parada and Cod_Linea = ? ORDER BY Distancia ASC");
-			//stmt = this.connection.prepareStatement("SELECT * `linea-parada` l, `parada` p WHERE l.Cod_Parada=p.Cod_Parada and Cod_Linea = ?");
+			stmt = connection.prepareStatement(query);
 			stmt.setString(1, codLinea);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -242,20 +218,19 @@ public class Consultas {
 			
 			// crea objetos Parada con los resultados y los añade a un arrayList
 			while (result.next()) {
-				parada = new Parada();
-				parada.setCodParada(result.getInt("Cod_Parada"));
-				parada.setNombre(result.getString("Nombre"));
-				parada.setCalle(result.getString("Calle"));
-				parada.setLatitud(result.getFloat("Latitud"));
-				parada.setLongitud(result.getFloat("Longitud"));
+				parada = new Parada(
+					result.getInt("Cod_Parada"),
+					result.getString("Nombre"),
+					result.getString("Calle"),
+					result.getFloat("Latitud"),
+					result.getFloat("Longitud")
+				);
 				paradas.add(parada);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}       
 		
@@ -268,6 +243,8 @@ public class Consultas {
 		Cliente cliente = null;
 		PreparedStatement stmt = null;
 		ResultSet result = null;
+		
+		String query = "SELECT * FROM cliente where DNI = ?";
 
 		try {
 			
@@ -275,7 +252,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT * FROM cliente where DNI = ?");
+			stmt = connection.prepareStatement(query);
 			stmt.setString(1, dni);
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -283,20 +260,19 @@ public class Consultas {
 			
 			// crea objetos con los resultados y los añade a un arrayList
 			while (result.next()) {
-				cliente = new Cliente();
-				cliente.setDni(result.getString("DNI"));
-				cliente.setNombre(result.getString("Nombre"));
-				cliente.setApellidos(result.getString("Apellidos"));
-				cliente.setFechaNacimiento(result.getDate("Fecha_nac"));
-				cliente.setSexo(result.getString("Sexo").charAt(0));
-				cliente.setContraseña(result.getString("Contraseña"));
+				cliente = new Cliente(
+					result.getString("DNI"),
+					result.getString("Nombre"),
+					result.getString("Apellidos"), 
+					result.getDate("Fecha_nac"),
+					result.getString("Sexo").charAt(0),
+					result.getString("Contraseña")
+				);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}                 
 		
@@ -311,6 +287,9 @@ public class Consultas {
 		Boolean disponible = false;
 		int plazasOcupadas = 0;
 		int plazasTotales = 0;
+		
+		String queryBillete = "SELECT count(*) FROM billete WHERE Cod_bus = ? and Fecha = ?";
+		String queryAutobus = "SELECT N_plazas FROM autobus WHERE Cod_bus = ?";
 
 		// comprobar las plazas ocupadas en un autobus
 		try {
@@ -319,7 +298,7 @@ public class Consultas {
 			connection = conexion.conectar();
 
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT count(*) FROM billete WHERE Cod_bus = ? and Fecha = ?");
+			stmt = connection.prepareStatement(queryBillete);
 			stmt.setInt(1, codBus);
 			stmt.setDate(2, fecha);
   
@@ -333,8 +312,6 @@ public class Consultas {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}   
 		
@@ -345,7 +322,7 @@ public class Consultas {
 			connection = conexion.conectar();
 
 			// preparamos la consulta SQL a la base de datos
-			stmt = connection.prepareStatement("SELECT N_plazas FROM autobus WHERE Cod_bus = ?");
+			stmt = connection.prepareStatement(queryAutobus);
 			stmt.setInt(1, codBus);
 
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
@@ -359,8 +336,6 @@ public class Consultas {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { result.close(); } catch (Exception e) { e.printStackTrace(); }
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}           
 
@@ -436,7 +411,7 @@ public class Consultas {
 	public void insertarCliente(Cliente cliente) {
 		
 		PreparedStatement stmt = null;
-		ResultSet result = null;
+		String query = "INSERT INTO cliente (DNI, Nombre, Apellidos, Fecha_nac, Sexo, Contraseña) VALUES (?, ?, ?, ?, ?, ?)";
 
 		try {
 			
@@ -444,7 +419,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta INSERT
-			stmt = connection.prepareStatement("INSERT INTO cliente (DNI, Nombre, Apellidos, Fecha_nac, Sexo, Contraseña) VALUES (?, ?, ?, ?, ?, ?)");
+			stmt = connection.prepareStatement(query);
 			
 			// añadimos los valores a insertar
 			stmt.setString(1, cliente.getDni());
@@ -452,7 +427,7 @@ public class Consultas {
 			stmt.setString(3, cliente.getApellidos());
 			stmt.setDate(4, cliente.getFechaNacimiento());
 			stmt.setString(5, String.valueOf(cliente.getSexo()));
-			stmt.setString(6, cliente.getContraseña());
+			stmt.setString(6, cliente.getContrasena());
 			
 			// Ejecuta la consulta y guarda los resultados en un objeto ResultSet   
 			stmt.executeUpdate();
@@ -460,7 +435,6 @@ public class Consultas {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}                 
 	}
@@ -471,6 +445,8 @@ public class Consultas {
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		int codBillete = 0;
+		
+		String query = "INSERT INTO billete (NTrayecto, Cod_Linea, Cod_Bus, Cod_Parada_Inicio, Cod_Parada_Fin, Fecha, Hora, DNI, Precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			
@@ -478,7 +454,7 @@ public class Consultas {
 			connection = conexion.conectar();
 			
 			// preparamos la consulta INSERT
-			stmt = connection.prepareStatement("INSERT INTO billete (NTrayecto, Cod_Linea, Cod_Bus, Cod_Parada_Inicio, Cod_Parada_Fin, Fecha, Hora, DNI, Precio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+			stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			// añadimos los valores a insertar
 			stmt.setInt(1, billete.getNTrayecto());
@@ -501,7 +477,6 @@ public class Consultas {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		    try { stmt.close(); } catch (Exception e) { e.printStackTrace(); }
 		    try { connection.close(); } catch (Exception e) { e.printStackTrace(); }
 		}
 		

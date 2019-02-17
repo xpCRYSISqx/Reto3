@@ -1,4 +1,4 @@
+host: localhost
 bd: termibusequipo5
 username: equipo5
 password: equipo5
-host: localhost

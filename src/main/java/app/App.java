@@ -12,17 +12,9 @@ import vista.MainFrame;
 public class App {
 
 	public static void main(String[] args) {
-		
-		// Instancia de las clases necesarias para el programa
-		
-		// creamos un objeto Ficheros que se encargara de leer y escribir en archivos de texto plano
-		Ficheros ficheros = new Ficheros();
-				
-		// cargamos los datos de conexion del archivo datosBBDD.txt
-		String[] datosConexion = ficheros.getConnectionInfo();
 				
 		// creamos un objeto BBDD que se encargara de conectarse a la BBDD
-		Conexion conexion = new Conexion(datosConexion);
+		Conexion conexion = new Conexion();
 				
 		// Creamos un objeto Consultas que se encargara de hacer consultas a la BBDD
 		Consultas consultas = new Consultas(conexion);
@@ -34,7 +26,7 @@ public class App {
 		Pagar pagar = new Pagar();
 		
 		MainFrame vista = new MainFrame();
-		Modelo modelo = new Modelo(ficheros, datosConexion, conexion, consultas, encriptacion, pagar);
+		Modelo modelo = new Modelo(consultas, encriptacion, pagar);
 		Controlador controlador = new Controlador(modelo, vista);
 		
 		controlador.inicializarInterfaz();
