@@ -11,7 +11,24 @@ import java.sql.SQLException;
 
 /**
  * Clase que permite conectar con la base de datos
- * @author laura
+ * 
+ * @author Laura
+ *
+ *@param bd: Nombre de la base de datos
+ *@param username: Numbre del ususario de la base de datos que se va a utilizar
+ *@param password: Contraseña del usuario de la base de datos que se va a utilizar
+ *@param host: Nombre del host que se va a utilizar
+ *@param url: Direccion en la que se encuentra la base de datos
+ *@param connection: Se utiliza para saber si se esta conectado a la base de datos o no
+ *@param datos: Array que almacena los datos de conexion
+ *@param filePath: Guarda la direccion en la que esta el archibo con los datos de conexion
+ *@param fileReader: Es utilizado para leer la informacion del conexion de un fichero
+ *@param buffer: Lee la informacion en el buffer
+ *@param linea: Guarda el codigo de la linea
+ *@param count: Se utiliza para recorrer el array de datos
+ *
+ *@return datos: Reotrna el array de datos con los valores adecuados
+ *@return connection: Retorna si el programa se ha podido conectar a la base de datos o no
  *
  */
 public class Conexion {

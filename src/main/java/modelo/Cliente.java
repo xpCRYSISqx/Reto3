@@ -1,7 +1,26 @@
 package modelo;
 
 import java.sql.Date;
-
+/**
+ * Este objeto se encarga de almacenar toda la informacion necesaria para registrar y logear a los clientes
+ * 
+ * @author Elorrieta Errekamari
+ * 
+ * @param dni: Guarda el DNI del cliente
+ * @param nombre: Guarda el nombre del cliente
+ * @parma apellidos: Guarda los apellidos del cliente
+ * @param fechaNacimiento: Guarda la fecha de nacimiento del cliente
+ * @param sexo: Guarda el sexo del cliente, en forma de caracter
+ * @param contrasena: Guarda la contraseña del cliente
+ * 
+ * @return dni: Retorna el DNI del cliente
+ * @return nombre: Retorna el nombre del cliente
+ * @return apellidos: Retorna los apellidos del cliente
+ * @return fechaNacimiento: Retorna la fecha de nacimiento del cliente
+ * @return sexo: Retorna el sexo del cliente, en forma de caracter
+ * @return contrasena: Retorna la contraseña del cliente
+ *
+ */
 public class Cliente {
 	
 	private String dni;
