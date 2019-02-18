@@ -2,29 +2,20 @@ package modeloT;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 import modelo.*;
 
 
-public class TestConexion {
+public class TestConexion {	
 
-	@Test //Linea 376
-	public void testCalcularPrecioBillete() {
-		float precio = 0, distancia = 22.2f, consumo = 10.5f, beneficio = 100.90f;
-		Autobus autocar = mock(Autobus.class);
-		Consultas consultas = new Consultas(Conexion);
+	@Test
+	public void testGetConnectionInfo() {
 		
+		Conexion conexion = new Conexion();
 		
-		consumo = 
+		String[] datosObtenido = conexion.getConnectionInfo();
+		String[] datosEsperado = { "localhost", "termibusequipo5", "equipo5", "equipo5" };
 		
-		
-		
-	}
-	
-
-	@Test //Linea 401
-	public void testCalcularDistanciaKm() {
-		
+		assertArrayEquals(datosObtenido, datosEsperado);
 	}
 
 }

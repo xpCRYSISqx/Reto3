@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import java.awt.Color;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -49,32 +48,32 @@ public class PanLogin extends JPanel {
 		// label usuario
 		lblUsuario = new JLabel("Usuario (DNI)");
 		lblUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		lblUsuario.setBounds(397, 263, 215, 25);
+		lblUsuario.setBounds(397, 283, 215, 25);
 		add(lblUsuario);
 		
 		// campo usuario
 		userField = new JTextField();
 		FormatoDiseno.formatoTxt(userField);
-		userField.setBounds(397, 288, 215, 30);
+		userField.setBounds(397, 308, 215, 30);
 		userField.setColumns(10);
 		add(userField);
 		
 		// label password
 		lblPassword = new JLabel("Password");
 		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPassword.setBounds(397, 333, 215, 25);
+		lblPassword.setBounds(397, 353, 215, 25);
 		add(lblPassword);
 		
 		// campo password
 		password = new JPasswordField();
 		FormatoDiseno.formatoTxt(password);
-		password.setBounds(397, 358, 215, 30);
+		password.setBounds(397, 378, 215, 30);
 		add(password);
 		
 		// boton de iniciar sesion
 		btnLogin = new JButton("Iniciar Sesi\u00F3n");
 		FormatoDiseno.formatoBtn(btnLogin);
-		btnLogin.setBounds(452, 421, 120, 40);
+		btnLogin.setBounds(452, 441, 120, 40);
 		add(btnLogin);
 		
 		// boton cancelar

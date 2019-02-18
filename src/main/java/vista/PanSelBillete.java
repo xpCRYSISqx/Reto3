@@ -5,7 +5,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -42,13 +41,13 @@ public class PanSelBillete extends JPanel {
 		lblLinea = new JLabel("Selecccione linea:");
 		lblLinea.setFont(new Font("Agency FB", Font.BOLD, 22));
 		lblLinea.setHorizontalAlignment(SwingConstants.LEFT);
-		lblLinea.setBounds(45, 190, 300, 40);
+		lblLinea.setBounds(45, 200, 300, 40);
 		add(lblLinea);
 		
 		// seleccion de linea
 		boxLineas = new JComboBox<Object>();
 		FormatoDiseno.formatoComboBox(boxLineas);
-		boxLineas.setBounds(45, 235, 327, 30);
+		boxLineas.setBounds(45, 245, 327, 30);
 		add(boxLineas);
 		
 		// label seleccion parada origen
@@ -88,6 +87,7 @@ public class PanSelBillete extends JPanel {
 		rbtnIda = new JRadioButton("Simple");
 		FormatoDiseno.formatoRbtn(rbtnIda);
 		rbtnIda.setBounds(720, 340, 180, 50);
+		rbtnIda.setSelected(true);
 		rbtnGroupBillete.add(rbtnIda);
 		add(rbtnIda);
 		

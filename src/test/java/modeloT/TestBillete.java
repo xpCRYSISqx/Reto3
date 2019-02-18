@@ -1,13 +1,23 @@
 package modeloT;
 
 import static org.junit.Assert.*;
-
-import java.sql.Date;
-import java.sql.Time;
 import org.junit.Test;
+import java.sql.Date;
 import modelo.Billete;
 
 public class TestBillete {
+	
+	private int codBillete = 001;
+	private int nTrayecto = 1;
+	private String codLinea = "L4";
+	private int codBus = 99;
+	private int codParadaInicio = 1;
+	private int codParadaFin = 2;
+	private Date fecha = new Date(31-01-2019);
+	private String hora = "11:00";
+	private String dni = "12345678X";
+	private float precio = 22.5f;
+	private Billete billete = new Billete();
 
 	@Test
 	public void testConstructorVacioBillete() {
@@ -15,38 +25,95 @@ public class TestBillete {
 		Billete billete = new Billete();
 		
 		//Assert
-		assertEquals(billete.getCodBillete(),0);
-		assertEquals(billete.getNTrayecto(),0);
-		assertEquals(billete.getCodLinea(),null);
-		assertEquals(billete.getCodBus(),0);
-		assertEquals(billete.getCodParadaInicio(),0);
-		assertEquals(billete.getCodParadaFin(),0);
-		assertEquals(billete.getFecha(),null);
-		assertEquals(billete.getHora(),null);
-		assertEquals(billete.getDni(),null);
-		assertEquals(billete.getPrecio(),0f,0);
+		assertEquals(0, billete.getCodBillete());
+		assertEquals(0, billete.getNTrayecto());
+		assertEquals(null, billete.getCodLinea());
+		assertEquals(0, billete.getCodBus());
+		assertEquals(0, billete.getCodParadaInicio());
+		assertEquals(0, billete.getCodParadaFin());
+		assertEquals(null, billete.getFecha());
+		assertEquals(null, billete.getHora());
+		assertEquals(null, billete.getDni());
+		assertEquals(0f, billete.getPrecio(),0);
 	}
 	
 	@Test
 	public void testConstructorBillete() {
-		Date date = new Date(31-01-2019);
-		String time = "11:00";
-		long a = date.getTime();
 		
 		//Arrange
-		Billete billete = new Billete(001,21,"L4",99,1212,1414,date,time,"45669566F",22.50f);
+		Billete billete = new Billete(codBillete,nTrayecto,codLinea,codBus,codParadaInicio,codParadaFin,fecha,hora,dni,precio);
 				
 		//Assert
-		assertEquals(billete.getCodBillete(),001);
-		assertEquals(billete.getNTrayecto(),21);
-		assertEquals(billete.getCodLinea(),"L4");
-		assertEquals(billete.getCodBus(),99);
-		assertEquals(billete.getCodParadaInicio(),1212);
-		assertEquals(billete.getCodParadaFin(),1414);
-		assertEquals(billete.getFecha(),date);
-		assertEquals(billete.getHora(),time);
-		assertEquals(billete.getDni(),"45669566F");
-		assertEquals(billete.getPrecio(),22.50f,0);
+		assertEquals(codBillete, billete.getCodBillete());
+		assertEquals(nTrayecto, billete.getNTrayecto());
+		assertEquals(codLinea, billete.getCodLinea());
+		assertEquals(codBus, billete.getCodBus());
+		assertEquals(codParadaInicio, billete.getCodParadaInicio());
+		assertEquals(codParadaFin, billete.getCodParadaFin());
+		assertEquals(fecha, billete.getFecha());
+		assertEquals(hora, billete.getHora());
+		assertEquals(dni, billete.getDni());
+		assertEquals(precio, billete.getPrecio(),0);
+	}
+	
+	@Test
+	public void testCodBillete() {
+		billete.setCodBillete(codBillete);
+		assertEquals(codBillete, billete.getCodBillete());
+	}
+	
+	@Test
+	public void testNumTrayecto() {
+		billete.setNTrayecto(nTrayecto);
+		assertEquals(nTrayecto, billete.getNTrayecto());
+	}
+
+	@Test
+	public void testCodLinea() {
+		billete.setCodLinea(codLinea);
+		assertEquals(codLinea, billete.getCodLinea());
+	}
+
+	@Test
+	public void testCodBus() {
+		billete.setCodBus(codBus);
+		assertEquals(codBus, billete.getCodBus());
+	}
+
+	@Test
+	public void testCodParadaInicio() {
+		billete.setCodParadaInicio(codParadaInicio);
+		assertEquals(codParadaInicio, billete.getCodParadaInicio());
+	}
+
+	@Test
+	public void testCodParadaFin() {
+		billete.setCodParadaFin(codParadaFin);
+		assertEquals(codParadaFin, billete.getCodParadaFin());
+	}
+
+	@Test
+	public void testFecha() {
+		billete.setFecha(fecha);
+		assertEquals(fecha, billete.getFecha());
+	}
+	
+	@Test
+	public void testHora() {
+		billete.setHora(hora);
+		assertEquals(hora, billete.getHora());
+	}
+
+	@Test
+	public void testDni() {
+		billete.setDni(dni);
+		assertEquals(dni, billete.getDni());
+	}
+
+	@Test
+	public void testPrecio() {
+		billete.setPrecio(precio);
+		assertEquals(billete.getPrecio(), precio, 0);
 	}
 
 }

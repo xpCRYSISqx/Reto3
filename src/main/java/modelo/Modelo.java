@@ -2,12 +2,11 @@ package modelo;
 
 public class Modelo {
 	
-	public Ficheros ficheros;
+	public Conexion conexion;
 	public Consultas consultas;
-	public Encriptacion encriptacion;
-	private String[] datosConexion;
-	private Conexion conexion;
-	public Pagar pagar;
+	public FuncionesBillete funcionesBillete;
+	public FuncionesPago funcionesPago;
+	public FuncionesRegistro funcionesRegistro;
 	public Cliente cliente;
 	public Billete billeteIda;
 	public Billete billeteVuelta;
@@ -18,15 +17,18 @@ public class Modelo {
 	
 	public float precioTotal;
 	
-	public Modelo(Ficheros ficheros, String[] datosConexion, Conexion conexion, Consultas consultas, Encriptacion encriptacion, Pagar pagar) {
+	public Modelo() {
 		
-		// iniciamos los objetos que usaremos para ir almacenando los datos introducidos por el cliente
-		this.ficheros = ficheros;
-		this.datosConexion = datosConexion;
-		this.conexion = conexion;
-		this.consultas = consultas;
-		this.encriptacion = encriptacion;
-		this.pagar = pagar;
+		// creamos un objeto BBDD que se encargara de conectarse a la BBDD
+		conexion = new Conexion();
+				
+		// Creamos un objeto Consultas que se encargara de hacer consultas a la BBDD
+		consultas = new Consultas(conexion);
+		
+		// Creamos objetos con las funciones generales del programa
+		funcionesBillete = new FuncionesBillete(this);
+		funcionesPago = new FuncionesPago(this);
+		funcionesRegistro = new FuncionesRegistro(this);
 		
 		cliente = null;
 		billeteIda = null;

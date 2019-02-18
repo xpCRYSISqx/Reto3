@@ -7,13 +7,14 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class PanBienvenida extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
 	public JButton btnContinuar;
-	public JLabel lblIcono;
+	public JLabel lblIcono,lblTocaPantalla;
 	
 	public PanBienvenida() throws IOException {
 		
@@ -24,12 +25,12 @@ public class PanBienvenida extends JPanel {
 		
 		// logo
 		lblIcono = new JLabel("");
-		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/logo-termibus.png")));
-		lblIcono.setBounds(368, 132, 301, 183);
+		lblIcono.setIcon(new ImageIcon(PanBienvenida.class.getResource("/img/image.png")));
+		lblIcono.setBounds(120, 130, 1024, 300);
 		add(lblIcono);
 		
 		// boton para comenzar
-		btnContinuar = new JButton("Toca la pantalla para comenzar");
+		btnContinuar = new JButton("");
 		btnContinuar.setSelectedIcon(null);
 		btnContinuar.setContentAreaFilled(false);
 		btnContinuar.setBorder(null);
@@ -40,6 +41,13 @@ public class PanBienvenida extends JPanel {
 		btnContinuar.setOpaque(false);
 		btnContinuar.setBorderPainted(false);
 		add(btnContinuar);
+		
+		lblTocaPantalla = new JLabel("Toca la pantalla para comenzar");
+		lblTocaPantalla.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTocaPantalla.setFont(new Font("Agency FB", Font.BOLD, 24));
+		lblTocaPantalla.setForeground(new Color(205, 48, 41));
+		lblTocaPantalla.setBounds(362, 440, 300, 30);
+		add(lblTocaPantalla);
 	
 	}
 }

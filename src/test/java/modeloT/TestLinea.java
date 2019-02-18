@@ -1,14 +1,17 @@
 package modeloT;
 
 import static org.junit.Assert.*;
-import java.util.ArrayList;
 import org.junit.Test;
+import java.util.ArrayList;
 import modelo.*;
 
 public class TestLinea {
-
-	ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
-	ArrayList<Municipio> municipios = new ArrayList<Municipio>();
+	
+	private String codLinea = "L66";
+	private String nombre = "Zeca-Meca";
+	private ArrayList<Autobus> autobuses = new ArrayList<Autobus>();
+	private ArrayList<Municipio> municipios = new ArrayList<Municipio>();
+	private Linea linea = new Linea();
 	
 	@Test
 	public void testConstructorVacioLinea() {
@@ -16,22 +19,54 @@ public class TestLinea {
 		Linea linea = new Linea();
 				
 		//Assert
-		assertEquals(linea.getCodLinea(),null);
-		assertEquals(linea.getNombre(),null);
-		assertEquals(linea.getAutobuses(),null);
-		assertEquals(linea.getMunicipios(),null);
+		assertEquals(null, linea.getCodLinea());
+		assertEquals(null, linea.getNombre());
+		assertEquals(null, linea.getAutobuses());
+		assertEquals(null, linea.getMunicipios());
 	}
 	
 	@Test
 	public void testConstructorLinea() {
 		//Arrange
-		Linea linea = new Linea("L66","Zeca-Meca", autobuses, municipios);
+		Linea linea = new Linea(codLinea,nombre, autobuses, municipios);
 				
 		//Assert
-		assertEquals(linea.getCodLinea(),"L66");
-		assertEquals(linea.getNombre(),"Zeca-Meca");
-		assertEquals(linea.getAutobuses(),autobuses);
-		assertEquals(linea.getMunicipios(),municipios);
+		assertEquals(codLinea, linea.getCodLinea());
+		assertEquals(nombre, linea.getNombre());
+		assertEquals(autobuses, linea.getAutobuses());
+		assertEquals(municipios, linea.getMunicipios());
 	}
+	
+	@Test
+	public void testCodLinea() {
+		linea.setCodLinea(codLinea);
+		assertEquals(codLinea, linea.getCodLinea());
+	}
+
+	@Test
+	public void testNombre() {
+		linea.setNombre(nombre);
+		assertEquals(nombre, linea.getNombre());
+	}
+	
+	@Test
+	public void testAutobuses() {
+		linea.setAutobuses(autobuses);
+		assertEquals(autobuses, linea.getAutobuses());
+	}
+	
+	@Test
+	public void testMunicipios() {
+		linea.setMunicipios(municipios);
+		assertEquals(municipios, linea.getMunicipios());
+	}
+	
+	@Test
+	public void testToString() {
+		linea.setCodLinea(codLinea);
+		linea.setNombre(nombre);
+		assertEquals("Linea " + codLinea + ": " + nombre, linea.toString());
+	}
+	
 
 }

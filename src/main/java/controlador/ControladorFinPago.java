@@ -6,11 +6,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JButton;
-
 import modelo.Modelo;
 import vista.MainFrame;
+
+/**
+ * 
+ * @author Laura, Ustaritz
+ * 
+ * @param vista: Instancia del main frame para poder utilizarlo
+ * @param modelo: instancia del modelo para poder utilizarlo
+ * @param botonPulsado: Se utiliza para poder reconocer el boton que se esta pulsando
+ * @param fDiaLog: Se utiliza para la impresion del billete
+ * @param pathBillete: Señala la ruta en la que se va a imprimir el billete
+ * @param file: Crea el archivo para guardar el billete
+ * @param timer: Declara un temporizador
+ * @param task: Declara la tarea que va a realizar el temporizador
+ *
+ */
 
 public class ControladorFinPago implements ActionListener {
 	
@@ -31,48 +46,34 @@ public class ControladorFinPago implements ActionListener {
 		
 		// guardamos el nombre del boton pulsado
 		String botonPulsado = ((JButton) e.getSource()).getActionCommand();
-		String urlBilleteIda = "";
-		String urlBilleteVuelta = "";
 		
 		// comprobamos que boton se ha pulsado y ejecutamos sus acciones
 		switch (botonPulsado) {
 		
 			case "Imprimir":
 				
-				// le pedimos al usuario que eliga donde guardarlo
-				FileDialog fDialog = new FileDialog(vista, "Save", FileDialog.SAVE);
-				fDialog.setFile("Billete-"+modelo.billeteIda.getCodBillete() + ".txt");
-				fDialog.setVisible(true);
-				String pathBilleteIda = fDialog.getDirectory() + fDialog.getFile();
-				String pathBilleteVuelta = "";
-				
-				// creamos los archivos de texto
-				modelo.ficheros.imprimirBillete(modelo.billeteIda, modelo.cliente, pathBilleteIda);
+				String filename;
 				
 				if(modelo.billeteVuelta != null) {
-					
-					// le pedimos al usuario que eliga donde guardarlo
-					fDialog.setFile("Billete-"+modelo.billeteVuelta.getCodBillete());
-					fDialog.setVisible(true);
-					pathBilleteVuelta = fDialog.getDirectory() + fDialog.getFile();
-					
-					// creamos los archivos de texto
-					modelo.ficheros.imprimirBillete(modelo.billeteVuelta, modelo.cliente, pathBilleteVuelta);
-				}				
-				
-				
-				// abrimos los archivos en el programa predeterminado
-				File file1 = new File(pathBilleteIda);
-				File file2 = new File(pathBilleteVuelta);
-				
-				try {
-					Desktop.getDesktop().open(file1);
-				} catch (IOException e1) {
-					e1.printStackTrace();
+					filename = "Billete-" + modelo.billeteIda.getCodBillete() + "-" + modelo.billeteVuelta.getCodBillete() + ".txt";
+				} else {
+					filename = "Billete-"+modelo.billeteIda.getCodBillete() + ".txt";
 				}
 				
+				// le pedimos al usuario que eliga donde guardarlo
+				FileDialog fDialog = new FileDialog(vista, "Save", FileDialog.SAVE);
+				fDialog.setFile(filename);
+				fDialog.setVisible(true);
+				String pathBillete = fDialog.getDirectory() + fDialog.getFile();
+				
+				// creamos los archivos de texto
+				modelo.funcionesBillete.imprimirBillete(pathBillete);
+				
+				// abrimos los archivos en el programa predeterminado
+				File file = new File(pathBillete);
+				
 				try {
-					Desktop.getDesktop().open(file2);
+					Desktop.getDesktop().open(file);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -80,6 +81,18 @@ public class ControladorFinPago implements ActionListener {
 				// mostrar siguiente panel 'agur'
 				vista.agur.setVisible(true);
 				vista.fin_pago.setVisible(false);
+				
+			    Timer timer = new Timer();
+
+			    TimerTask task = new TimerTask() {
+			        @Override
+			        public void run(){
+			        	vista.bienvenida.setVisible(true);
+			        }
+			     };
+			     
+			    // Empezamos dentro de 10ms y luego lanzamos la tarea cada 1000ms
+			    timer.schedule(task, 10000);
 				
 				break;
 		

@@ -2,7 +2,6 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -64,76 +63,76 @@ public class PanRegistro extends JPanel {
 		add(btnCancelar); 
 
 		lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(322, 259, 77, 14);
+		lblNombre.setBounds(322, 269, 77, 14);
 		add(lblNombre);
 		
 		txtNombre = new JTextField();
 		FormatoDiseno.formatoTxt(txtNombre);
-		txtNombre.setBounds(409, 256, 216, 20);
+		txtNombre.setBounds(409, 266, 216, 20);
 		txtNombre.setColumns(10);
 		add(txtNombre);
 		
 		lblApellidos = new JLabel("Apellidos");
-		lblApellidos.setBounds(322, 290, 77, 14);
+		lblApellidos.setBounds(322, 300, 77, 14);
 		add(lblApellidos);
 		
 		txtApellidos = new JTextField();
 		FormatoDiseno.formatoTxt(txtApellidos);
-		txtApellidos.setBounds(409, 287, 216, 20);
+		txtApellidos.setBounds(409, 297, 216, 20);
 		txtApellidos.setColumns(10);
 		add(txtApellidos);
 		
 		lblfechaNac = new JLabel("Fecha nacimiento");
-		lblfechaNac.setBounds(322, 318, 123, 20);
+		lblfechaNac.setBounds(322, 328, 123, 20);
 		add(lblfechaNac);
 		
 		dateChooser = new JDateChooser();
-		dateChooser.setBounds(455, 318, 170, 20);
+		dateChooser.setBounds(455, 328, 170, 20);
 		add(dateChooser);
 		
 		lblSexo = new JLabel("Sexo");
-		lblSexo.setBounds(322, 367, 77, 14);
+		lblSexo.setBounds(322, 377, 77, 14);
 		add(lblSexo);
 		
 		rbtnMasc = new JRadioButton("Masculino");
 		rbtnMasc.setBackground(Color.WHITE);
 		rbtnGroupSexo.add(rbtnMasc);
-		rbtnMasc.setBounds(462, 352, 112, 23);
+		rbtnMasc.setBounds(462, 362, 112, 23);
 		add(rbtnMasc);
 		
 		rbtnFem = new JRadioButton("Femenino");
 		rbtnFem.setBackground(Color.WHITE);
 		rbtnGroupSexo.add(rbtnFem);
-		rbtnFem.setBounds(462, 378, 112, 23);
+		rbtnFem.setBounds(462, 388, 112, 23);
 		add(rbtnFem);
 		
 		lblDni = new JLabel("DNI");
-		lblDni.setBounds(322, 411, 77, 14);
+		lblDni.setBounds(322, 421, 77, 14);
 		add(lblDni);
 		
 		txtDni = new JTextField();
 		FormatoDiseno.formatoTxt(txtDni);
-		txtDni.setBounds(409, 408, 216, 20);
+		txtDni.setBounds(409, 418, 216, 20);
 		txtDni.setColumns(10);
 		add(txtDni);
 		
 		lblPassword = new JLabel("Contraseña");
-		lblPassword.setBounds(322, 445, 109, 14);
+		lblPassword.setBounds(322, 455, 109, 14);
 		add(lblPassword);
 		
 		passwordField = new JPasswordField();
 		FormatoDiseno.formatoTxt(passwordField);
-		passwordField.setBounds(450, 442, 140, 20);
+		passwordField.setBounds(450, 452, 140, 20);
 		add(passwordField);
 		
 		lblPassword2 = new JLabel("Confirmar contraseña");
 		lblPassword2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword2.setBounds(260, 476, 170, 14);
+		lblPassword2.setBounds(260, 486, 170, 14);
 		add(lblPassword2);
 		
 		passwordField2 = new JPasswordField();
 		FormatoDiseno.formatoTxt(passwordField2);
-		passwordField2.setBounds(450, 473, 140, 20);
+		passwordField2.setBounds(450, 483, 140, 20);
 		add(passwordField2);
 		
 	}

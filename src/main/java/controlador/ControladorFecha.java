@@ -20,6 +20,32 @@ import modelo.Billete;
 import modelo.Modelo;
 import vista.MainFrame;
 
+/**
+ * Esta clase se utiliza para controlar la seleccion de fecha para el billete, tambien comprueba que autobuses estan disponibles y se las asigna al ususario
+ * 
+ * @author Ustaritz, Laura, Mikel
+ * 
+ * @param vista, Instancia del main frame para poder utilizarlo
+ * @param modelo: Instancia del modelo para poder utilizarlo
+ * @param botonPulsado: Se utiliza para poder reconocer que boton es el que esta siendo pulsado en cada momento
+ * @param fechaIda: Es la fecha que ha seleccionado el usuario para el billete de ida
+ * @param autobusDisponible: Se utiliza para comprobar si hay algun autobus disponible para esa fecha
+ * @param fechaVuelta: Es la fecha que ha introducido el usuario para el billete de vuelta
+ * @param autibusIda: Guarda la informacion del autobus de ida
+ * @param autobusVuelta: Guarda la informacion del autobus de vuelta
+ * @param tablaIda: Muestra la informacion del billete de ida en una tabla en la interfaz
+ * @param tablaVuelta; Muestra la informacion del billete de vuelta en una tabla de la interfaz
+ * @param autobuses: ArrayList que almacena la informacion de los diferentes autobuses disponibles
+ * @param autobusDisponible: Almacena la informacion del autobus que este disponible
+ * @param plazaDisponible: Sirbe para comprobar si el autobus seleccionado tiene una plaza disponible
+ * @param datosBillete: Carga los datos del billete
+ * @param lat1: Guarda la latitid de la parada de salida
+ * @param lon1: Guarda la longitud de la parada de salida
+ * @param lat2: Guarda la latitud de la parada de destino
+ * @param lon2: Guarda la longitud de la parada de destino
+ *
+ */
+
 public class ControladorFecha implements ActionListener, PropertyChangeListener {
 	
 	public MainFrame vista;
@@ -59,6 +85,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 				
 				vista.bienvenida.setVisible(true);
 				vista.sel_fecha.setVisible(false);
+				reset();
 				break;
 				
 			case "Inicio Sesión":
@@ -140,7 +167,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			modelo.billeteIda.setCodBus(autobusIda.getCodBus());;
 			modelo.billeteIda.setFecha(fechaIda);
 			modelo.billeteIda.setHora("11:00");
-			modelo.billeteIda.setPrecio(calcularPrecioBillete(modelo.billeteIda));
+			modelo.billeteIda.setPrecio(modelo.funcionesBillete.calcularPrecioBillete(modelo.billeteIda));
 		}  else {
 			JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de ida diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 			return false;
@@ -158,7 +185,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 				modelo.billeteVuelta.setCodBus(autobusVuelta.getCodBus());
 				modelo.billeteVuelta.setFecha(fechaVuelta);
 				modelo.billeteVuelta.setHora("18:00");
-				modelo.billeteVuelta.setPrecio(calcularPrecioBillete(modelo.billeteVuelta));
+				modelo.billeteVuelta.setPrecio(modelo.funcionesBillete.calcularPrecioBillete(modelo.billeteVuelta));
 			}  else {
 				JOptionPane.showMessageDialog(vista, "No hay plazas disponibles para la fecha elegida. Por favor, seleccione una fecha de vuelta diferente.", "Aviso", JOptionPane.WARNING_MESSAGE);
 				return false;
@@ -181,10 +208,14 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			
 			DefaultTableModel tablaVuelta = (DefaultTableModel) vista.detalles_compra.detallesVuelta.getModel();
 			mostrarBillete(modelo.billeteVuelta, tablaVuelta);
-			
+			vista.detalles_compra.detallesVuelta.setVisible(true);
+			vista.detalles_compra.scrollPaneVuelta.setVisible(true);
+			vista.detalles_compra.lblBilleteVuelta.setVisible(true);
 		} else {
 			vista.detalles_compra.detallesVuelta.setVisible(false);
 			vista.detalles_compra.scrollPaneVuelta.setVisible(false);
+			vista.detalles_compra.lblBilleteVuelta.setVisible(false);
+			
 		}
 		
 		// muestra el siguiente panel 'detalles_compra'
@@ -214,6 +245,7 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 	public void mostrarBillete(Billete billete, DefaultTableModel tabla) {
 		
 		Object[] datosBillete = new Object[7];
+		tabla.setRowCount(0);
 		datosBillete[0] = billete.getCodLinea() + ": " + modelo.linea.getNombre();
 		datosBillete[1] = modelo.paradaOrigen.getNombre();
 		datosBillete[2] = modelo.paradaDestino.getNombre();
@@ -226,16 +258,29 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		
 	}
 	
-	public float calcularPrecioBillete(Billete billete) {
+	public void reset() {
+		modelo.cliente = null;
+		modelo.billeteIda = null;
+		modelo.billeteVuelta = null;
+		modelo.linea = null;
+		modelo.paradaOrigen = null;
+		modelo.paradaDestino = null;
+		modelo.autobus = null;
+		modelo.precioTotal = 0;
 		
-		float lat1 = modelo.paradaOrigen.getLatitud();
-		float lon1 = modelo.paradaOrigen.getLongitud();
-		float lat2 = modelo.paradaDestino.getLatitud();
-		float lon2 = modelo.paradaOrigen.getLongitud();
-		Autobus autobus = modelo.autobus;
+		vista.sel_billete.rbtnIda.setSelected(true);
+		vista.sel_billete.rbtnVuelta.setSelected(false);
 		
-		return modelo.consultas.calcularPrecioBillete(lat1, lon1, lat2, lon2, autobus);
-
+		vista.login.userField.setText("");
+		vista.login.password.setText("");
+		
+		vista.registro.txtNombre.setText("");
+		vista.registro.txtApellidos.setText("");
+		vista.registro.rbtnMasc.setSelected(false);
+		vista.registro.rbtnFem.setSelected(false);
+		vista.registro.txtDni.setText("");
+		vista.registro.passwordField.setText("");
+		vista.registro.passwordField2.setText("");
 	}
 
 }

@@ -2,14 +2,10 @@ package vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-
 import java.awt.Color;
-import java.awt.Font;
-
 import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 public class PanSelFecha extends JPanel {
 	
@@ -35,24 +31,24 @@ public class PanSelFecha extends JPanel {
 		
 		lblOrigen = new JLabel("Origen");
 		FormatoDiseno.formatoLbl(lblOrigen);
-		lblOrigen.setBounds(45, 195, 100, 25);
+		lblOrigen.setBounds(45, 210, 100, 25);
 		add(lblOrigen);
-		
-		lblDestino = new JLabel("Destino");
-		FormatoDiseno.formatoLbl(lblDestino);
-		lblDestino.setBounds(45, 230, 100, 25);
-		add(lblDestino);
 		
 		txtOrigen = new JTextField();
 		FormatoDiseno.formatoTxt(txtOrigen);
 		txtOrigen.setEditable(false);
-		txtOrigen.setBounds(130, 195, 250, 25);
+		txtOrigen.setBounds(130, 215, 250, 25);
 		add(txtOrigen);
+		
+		lblDestino = new JLabel("Destino");
+		FormatoDiseno.formatoLbl(lblDestino);
+		lblDestino.setBounds(45, 245, 100, 25);
+		add(lblDestino);
 		
 		txtDestino = new JTextField();
 		FormatoDiseno.formatoTxt(txtDestino);
 		txtDestino.setEditable(false);
-		txtDestino.setBounds(130, 230, 250, 25);
+		txtDestino.setBounds(130, 245, 250, 25);
 		add(txtDestino);
 		
 		// label seleccion fecha de ida
@@ -73,6 +69,7 @@ public class PanSelFecha extends JPanel {
 		panFechaVuelta.setBounds(305, 320, 250, 260);
 		panFechaVuelta.setLayout(null);
 		add(panFechaVuelta);
+		panFechaVuelta.setVisible(false);
 		
 		// label seleccion fecha de vuelta
 		lblSeleccioneVuelta = new JLabel("Seleccione fecha de vuelta");
@@ -85,46 +82,6 @@ public class PanSelFecha extends JPanel {
 		FormatoDiseno.formatoCalendario(fechaVuelta);
 		fechaVuelta.setBounds(10, 30, 200, 175);
 		panFechaVuelta.add(fechaVuelta);
-		
-		// Panel donde se muestran los datos del pago al instante
-		panelTotales = new JPanel();
-		panelTotales.setBackground(Color.GRAY);
-		panelTotales.setBounds(600, 195, 350, 170);
-		add(panelTotales);
-		panelTotales.setLayout(null);
-		
-		lblBilleteIda = new JLabel("Billete Ida");
-		lblBilleteIda.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblBilleteIda.setBounds(20, 20, 150, 32);
-		panelTotales.add(lblBilleteIda);
-		
-		lblPrecioBilleteIda = new JLabel("0 \u20AC");
-		lblPrecioBilleteIda.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrecioBilleteIda.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblPrecioBilleteIda.setBounds(190, 20, 121, 32);
-		panelTotales.add(lblPrecioBilleteIda);
-		
-		lblBilleteVuelta = new JLabel("Billete Vuelta");
-		lblBilleteVuelta.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblBilleteVuelta.setBounds(20, 70, 150, 32);
-		panelTotales.add(lblBilleteVuelta);
-		
-		lblPrecioBilleteVuelta = new JLabel("0 \u20AC");
-		lblPrecioBilleteVuelta.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrecioBilleteVuelta.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblPrecioBilleteVuelta.setBounds(190, 70, 121, 32);
-		panelTotales.add(lblPrecioBilleteVuelta);
-		
-		lblTotal = new JLabel("Total");
-		lblTotal.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblTotal.setBounds(20, 120, 150, 32);
-		panelTotales.add(lblTotal);
-		
-		lblPrecioTotal = new JLabel("0 \u20AC");
-		lblPrecioTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPrecioTotal.setFont(new Font("Arial", Font.PLAIN, 20));
-		lblPrecioTotal.setBounds(190, 120, 121, 32);
-		panelTotales.add(lblPrecioTotal);
 		
 		/*
 		 * Botones

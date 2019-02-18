@@ -5,28 +5,16 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 
 import controlador.ControladorPago;
-import modelo.Conexion;
-import modelo.Consultas;
-import modelo.Encriptacion;
-import modelo.Ficheros;
+
+import modelo.FuncionesPago;
 import modelo.Modelo;
-import modelo.Pagar;
 import vista.MainFrame;
 public class TestControladorPago {
 
 	@Test
 	public void testFuncionBotonDineroDineroMasGrandeTotal() {
 		MainFrame vista = new MainFrame();
-		Ficheros ficherosMock = mock(Ficheros.class);
-		String[] datosConexion = null;
-		String[] datosConexionMock = {"ab", "cd", "ef", "gh"};
-		when(ficherosMock.getConnectionInfo()).thenReturn(datosConexionMock);
-		datosConexion = ficherosMock.getConnectionInfo();
-		Conexion conexion = new Conexion(datosConexion);
-		Consultas consultas = new Consultas(conexion);
-		Encriptacion encriptacion = new Encriptacion();
-		Pagar pagarMock = mock(Pagar.class);
-		Modelo modelo = new Modelo(ficherosMock, datosConexion, conexion, consultas, encriptacion, pagarMock);
+		Modelo modelo = new Modelo();
 		ControladorPago controladorPago = new ControladorPago(vista, modelo);
 		
 		controladorPago.dinero = 10f;
@@ -39,41 +27,25 @@ public class TestControladorPago {
 	@Test
 	public void testFuncionBotonDineroDineroMasPequeñoTotal() {
 		MainFrame vista = new MainFrame();
-		float importe = 1f;
-		Ficheros ficherosMock = mock(Ficheros.class);
-		String[] datosConexion = null;
-		String[] datosConexionMock = {"ab", "cd", "ef", "gh"};
-		when(ficherosMock.getConnectionInfo()).thenReturn(datosConexionMock);
-		datosConexion = ficherosMock.getConnectionInfo();
-		Conexion conexion = new Conexion(datosConexion);
-		Consultas consultas = new Consultas(conexion);
-		Encriptacion encriptacion = new Encriptacion();
-		Pagar pagarMock = mock(Pagar.class);
-		Modelo modelo = new Modelo(ficherosMock, datosConexion, conexion, consultas, encriptacion, pagarMock);
+		Modelo modelo = new Modelo();
 		ControladorPago controladorPago = new ControladorPago(vista, modelo);
+		FuncionesPago pagarMock = mock(FuncionesPago.class);
 		
+		float importe = 1f;
 		controladorPago.dinero = 10f;
 		controladorPago.total = 15f;
 		
 		controladorPago.FuncionBotonDinero(importe);
 		
-		verify(pagarMock, times(1)).Falta(controladorPago.total, controladorPago.dinero);
+		verify(pagarMock, times(1)).falta(controladorPago.total, controladorPago.dinero);
 	}
 	
 	@Test
 	public void testFuncionDevolverDineroMayorQueCeroYMenorQueTotal() {
 		MainFrame vista = new MainFrame();
-		Ficheros ficherosMock = mock(Ficheros.class);
-		String[] datosConexion = null;
-		String[] datosConexionMock = {"ab", "cd", "ef", "gh"};
-		when(ficherosMock.getConnectionInfo()).thenReturn(datosConexionMock);
-		datosConexion = ficherosMock.getConnectionInfo();
-		Conexion conexion = new Conexion(datosConexion);
-		Consultas consultas = new Consultas(conexion);
-		Encriptacion encriptacion = new Encriptacion();
-		Pagar pagarMock = mock(Pagar.class);
-		Modelo modelo = new Modelo(ficherosMock, datosConexion, conexion, consultas, encriptacion, pagarMock);
+		Modelo modelo = new Modelo();
 		ControladorPago controladorPago = new ControladorPago(vista, modelo);
+		FuncionesPago pagarMock = mock(FuncionesPago.class);
 		
 		controladorPago.total = 20f;
 		controladorPago.dinero = 10f;
@@ -81,22 +53,13 @@ public class TestControladorPago {
 		controladorPago.monedas = monedas;
 		controladorPago.FuncionDevolver();
 		
-		verify(pagarMock, times(1)).Falta(controladorPago.total, controladorPago.dinero);
+		verify(pagarMock, times(1)).falta(controladorPago.total, controladorPago.dinero);
 	}
 	
 	@Test
 	public void testFuncionDevolverDineroMayorQueCeroYMayorQueTotal() {
 		MainFrame vista = new MainFrame();
-		Ficheros ficherosMock = mock(Ficheros.class);
-		String[] datosConexion = null;
-		String[] datosConexionMock = {"ab", "cd", "ef", "gh"};
-		when(ficherosMock.getConnectionInfo()).thenReturn(datosConexionMock);
-		datosConexion = ficherosMock.getConnectionInfo();
-		Conexion conexion = new Conexion(datosConexion);
-		Consultas consultas = new Consultas(conexion);
-		Encriptacion encriptacion = new Encriptacion();
-		Pagar pagarMock = mock(Pagar.class);
-		Modelo modelo = new Modelo(ficherosMock, datosConexion, conexion, consultas, encriptacion, pagarMock);
+		Modelo modelo = new Modelo();
 		ControladorPago controladorPago = new ControladorPago(vista, modelo);
 		
 		controladorPago.total = 20f;
@@ -109,16 +72,7 @@ public class TestControladorPago {
 	@Test
 	public void testFuncionDevolverDineroIgualACero() {
 		MainFrame vista = new MainFrame();
-		Ficheros ficherosMock = mock(Ficheros.class);
-		String[] datosConexion = null;
-		String[] datosConexionMock = {"ab", "cd", "ef", "gh"};
-		when(ficherosMock.getConnectionInfo()).thenReturn(datosConexionMock);
-		datosConexion = ficherosMock.getConnectionInfo();
-		Conexion conexion = new Conexion(datosConexion);
-		Consultas consultas = new Consultas(conexion);
-		Encriptacion encriptacion = new Encriptacion();
-		Pagar pagarMock = mock(Pagar.class);
-		Modelo modelo = new Modelo(ficherosMock, datosConexion, conexion, consultas, encriptacion, pagarMock);
+		Modelo modelo = new Modelo();
 		ControladorPago controladorPago = new ControladorPago(vista, modelo);
 		
 		controladorPago.total = 20f;
@@ -131,23 +85,15 @@ public class TestControladorPago {
 	@Test
 	public void testFuncionContinuar() {
 		MainFrame vista = new MainFrame();
-		Ficheros ficherosMock = mock(Ficheros.class);
-		String[] datosConexion = null;
-		String[] datosConexionMock = {"ab", "cd", "ef", "gh"};
-		when(ficherosMock.getConnectionInfo()).thenReturn(datosConexionMock);
-		datosConexion = ficherosMock.getConnectionInfo();
-		Conexion conexion = new Conexion(datosConexion);
-		Consultas consultas = new Consultas(conexion);
-		Encriptacion encriptacion = new Encriptacion();
-		Pagar pagarMock = mock(Pagar.class);
-		Modelo modelo = new Modelo(ficherosMock, datosConexion, conexion, consultas, encriptacion, pagarMock);
+		Modelo modelo = new Modelo();
 		ControladorPago controladorPago = new ControladorPago(vista, modelo);
+		FuncionesPago pagarMock = mock(FuncionesPago.class);
 		
 		controladorPago.total = 20f;
 		controladorPago.dinero = 25f;
 		controladorPago.FuncionContinuar();
 		
-		verify(pagarMock, times(1)).Sobra(controladorPago.total, controladorPago.dinero);
+		verify(pagarMock, times(1)).sobra(controladorPago.total, controladorPago.dinero);
 	}
 
 }
