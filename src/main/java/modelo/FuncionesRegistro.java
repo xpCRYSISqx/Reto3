@@ -18,6 +18,8 @@ import java.security.NoSuchAlgorithmException;
  * @param bytes: Array que almacena los distintros trozos separados de la contraseña con MessageDigest transformados en bytes
  * @param sb: Instancia de StringBuilder, se utiliza para volver a unir las diferentes partes de la contrasela vez encriptada
  *
+ * @return false: Retorna si el DNI ha dado error en la validacion
+ * @return true: Reotrna si la validacion del DNI ha sido exitosa
  */
 public class FuncionesRegistro {
 	
