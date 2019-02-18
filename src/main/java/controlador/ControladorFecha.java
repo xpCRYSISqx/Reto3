@@ -268,8 +268,15 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		Object[] datosBillete = new Object[7];
 		tabla.setRowCount(0);
 		datosBillete[0] = billete.getCodLinea() + ": " + modelo.linea.getNombre();
-		datosBillete[1] = modelo.paradaOrigen.getNombre();
-		datosBillete[2] = modelo.paradaDestino.getNombre();
+		
+		if (billete.getNTrayecto() == 1) {
+			datosBillete[1] = modelo.paradaOrigen.getNombre();
+			datosBillete[2] = modelo.paradaDestino.getNombre();
+		} else {
+			datosBillete[1] = modelo.paradaDestino.getNombre();
+			datosBillete[2] = modelo.paradaOrigen.getNombre();
+		}
+		
 		datosBillete[3] = billete.getCodBus();
 		datosBillete[4] = billete.getFecha();
 		datosBillete[5] = billete.getHora();

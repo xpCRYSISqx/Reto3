@@ -137,19 +137,23 @@ public class FuncionesBillete {
 			writer.println();
 			writer.println();
 			
-			writer.println("=== DATOS DEL BILLETE DE VUELTA ===");
-			writer.println();
-			writer.println("Código Billete: " + modelo.billeteVuelta.getCodBillete());
-			writer.println("Número de Trayecto: " + modelo.billeteVuelta.getNTrayecto());
-			writer.println("Línea: " + modelo.billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
-			writer.println("Parada Origen: " +  modelo.paradaOrigen.getNombre());
-			writer.println("Parada Destino: " + modelo.paradaDestino.getNombre());
-			writer.println("Autobus: " + modelo.billeteVuelta.getCodBus());
-			writer.println("Fecha Vuelta: " + modelo.billeteVuelta.getFecha());
-			writer.println("Hora: " + modelo.billeteVuelta.getHora());
-			writer.println("Precio: " + modelo.billeteVuelta.getPrecio() + "€");
-			writer.println("Fecha de compra: " + dateFormat.format(fechaActual));
-			writer.println();
+			if (modelo.billeteVuelta != null) {
+			
+				writer.println("=== DATOS DEL BILLETE DE VUELTA ===");
+				writer.println();
+				writer.println("Código Billete: " + modelo.billeteVuelta.getCodBillete());
+				writer.println("Número de Trayecto: " + modelo.billeteVuelta.getNTrayecto());
+				writer.println("Línea: " + modelo.billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
+				writer.println("Parada Origen: " +  modelo.paradaDestino.getNombre());
+				writer.println("Parada Destino: " + modelo.paradaOrigen.getNombre());
+				writer.println("Autobus: " + modelo.billeteVuelta.getCodBus());
+				writer.println("Fecha Vuelta: " + modelo.billeteVuelta.getFecha());
+				writer.println("Hora: " + modelo.billeteVuelta.getHora());
+				writer.println("Precio: " + modelo.billeteVuelta.getPrecio() + "€");
+				writer.println("Fecha de compra: " + dateFormat.format(fechaActual));
+				writer.println();
+				
+			}
 			
 			writer.flush();
 			
