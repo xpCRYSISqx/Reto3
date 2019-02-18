@@ -15,6 +15,23 @@ import javax.swing.JOptionPane;
 import modelo.*;
 import vista.MainFrame;
 
+/**
+ * Esta clase se utiliza pra controlar el panel de billete y enlazarlo con el modelo
+ * 
+ * @author Ustaritz, Laura, Mikel
+ * 
+ * @param vista: Instancia del main frame para poder utilizarlo
+ * @param modelo: Instancia del modelo para poder utilizarlo
+ * @param paradas: ArrayList del objeto paradas, se utiliza para almacenar la informacion de las diferentes paradas
+ * @param linea: Crea el objeto linea, para almacenar la informacion que seleccione el usuario
+ * @param paradaOrigen: Crea el objeto paradaOrigen, para guardar la parada de origen del usuario
+ * @param paradaDestino: Crea el objeto paradaDestino, para guardar la informacion de la parada de destino del usuario
+ * @param billeteSimple: Le dice al programa si el usuario ha seleccionado una billete simple o uno de ida y vuelta
+ * @param botonPulsado: Se utiliza para poder saber que boton es el que ha sido pulsado
+ * @param df: Es utilizado para indicar el formato de la fechaç
+ * @param fechaLimite: Almacena la informacion de la fecha seleccionada
+ *
+ */
 public class ControladorBillete implements ActionListener {
 	
 	public MainFrame vista;

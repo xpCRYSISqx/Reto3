@@ -9,8 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import com.toedter.calendar.JCalendar;
 
@@ -52,6 +56,7 @@ public class FormatoDiseno {
 	
 	public static void formatoTxt(JTextField campoTxt) {
 		campoTxt.setFont(new Font("Agency FB", Font.PLAIN, 18));
+		campoTxt.setHorizontalAlignment(SwingConstants.CENTER);
 		campoTxt.setForeground(new Color(0, 0, 0));
 		campoTxt.setBackground(new Color(204, 150, 150));
 		campoTxt.setBorder(null);
@@ -116,6 +121,19 @@ public class FormatoDiseno {
 		list.setForeground(new Color(0, 0, 0));
 		list.setBackground(new Color(204, 150, 150));
 		list.setRequestFocusEnabled(false);
+	}
+	
+	public static void formatoPane(JTextPane txtDevolver) {
+		txtDevolver.setFont(new Font("Agency FB", Font.PLAIN, 20));
+		txtDevolver.setAlignmentX(SwingConstants.CENTER);
+		txtDevolver.setForeground(new Color(0, 0, 0));
+		txtDevolver.setBackground(new Color(204, 150, 150));
+		txtDevolver.setRequestFocusEnabled(false);
+		
+		StyledDocument doc = txtDevolver.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
 	}
 	
 	public static void formatoComboBox(JComboBox<Object> comboBox) {
