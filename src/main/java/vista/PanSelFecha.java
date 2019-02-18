@@ -29,7 +29,7 @@ public class PanSelFecha extends JPanel {
 		setBounds(0, 0, 1024, 720);
 		
 		// logo
-		lblIcono = new JLabel("SELECCI\u00D3N DE FECHA");
+		lblIcono = new JLabel("");
 		FormatoDiseno.formatoIcono(lblIcono);
 		add(lblIcono);
 		
