@@ -2,6 +2,23 @@ package modelo;
 
 import java.util.ArrayList;
 
+/**
+ * Clase constructor del objeto "Linea"
+ * 
+ * @author Uztaritz, Mikel. Laura
+ * 
+ * @param codLinea: Obtiene el codigo de cada linea
+ * @param nombre: Obtiene el nombre de cada linea
+ * @param autobuses: Obtiene el autobus de cada linea
+ * @param municipio: Obtiene el municipio de cada linea
+ * 
+ * @return codLinea: Devuelve el codigo de cada linea
+ * @return nombre: Devuelve el codigo de cada linea
+ * @return autobuses: Devuelve el codigo de cada linea
+ * @return municipio: Devuelve el codigo de cada linea
+ *  
+ */
+
 public class Linea {
 	
 	private String codLinea;

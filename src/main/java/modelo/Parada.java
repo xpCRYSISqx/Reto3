@@ -1,5 +1,24 @@
 package modelo;
 
+/**
+ * Clase constructor del objeto "Parada"
+ * 
+ * @author Uztaritz, Mikel. Laura
+ * 
+ * @param codParada: Obtiene el código de cada parada
+ * @param nombre: Obtiene el nombre de cada parada
+ * @param calle: Obtiene la calle de cada parada
+ * @param latitud: Obtiene el latitud de cada parada
+ * @param longitud: Obtiene el longitud de cada parada
+ * 
+ * @return codParada: Devuelve el código de la parada solicitada
+ * @return nombre: Devuelve el nombre de la parada solicitada
+ * @return calle: Devuelve la calle de la parada solicitada
+ * @return latitud: Devuelve el latitud de la parada solicitada
+ * @return longitud: Devuelve el longitud de la parada solicitada  
+ *  
+ */
+
 public class Parada {
 	
 	private int codParada;
