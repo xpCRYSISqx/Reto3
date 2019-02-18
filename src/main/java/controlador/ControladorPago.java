@@ -309,5 +309,27 @@ public class ControladorPago implements ActionListener{
 		vista.registro.txtDni.setText("");
 		vista.registro.passwordField.setText("");
 		vista.registro.passwordField2.setText("");
+		
+		this.introducido.setText("0 \u20AC");
+		this.restante.setText("0 \u20AC");
+		this.monedas = new float[0];
+		
+		this.vista.pago.btn001.setEnabled(true); // Deshabilita todo los botones de dinero
+		this.vista.pago.btn002.setEnabled(true);
+		this.vista.pago.btn005.setEnabled(true);
+		this.vista.pago.btn010.setEnabled(true);
+		this.vista.pago.btn020.setEnabled(true);
+		this.vista.pago.btn050.setEnabled(true);
+		this.vista.pago.btn1.setEnabled(true);
+		this.vista.pago.btn2.setEnabled(true);
+		this.vista.pago.btn5.setEnabled(true);
+		this.vista.pago.btn10.setEnabled(true);
+		this.vista.pago.btn20.setEnabled(true);
+		this.vista.pago.btn50.setEnabled(true);
+		this.vista.pago.btn100.setEnabled(true);
+		this.vista.pago.btn200.setEnabled(true);
+		
+		this.vista.pago.btnContinuar.setVisible(false); // Habilita y vuelve visible en boton de continuar
+		this.vista.pago.btnContinuar.setEnabled(false);
 	}
 }

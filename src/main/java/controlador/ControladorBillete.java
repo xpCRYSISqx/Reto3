@@ -218,7 +218,13 @@ public class ControladorBillete implements ActionListener {
 		modelo.billeteIda.setNTrayecto(1);
 		
 		// comprobamos si se ha seleccionado billete de tipo 'simple' o 'ida y vuelta'
-		if (!simple) {
+		if (simple) {
+			// creamos el billete de vuelta
+			if (modelo.billeteVuelta != null) {
+				modelo.billeteVuelta = null;
+			}
+			
+		} else {
 			
 			// creamos el billete de vuelta
 			if (modelo.billeteVuelta == null) {
@@ -258,7 +264,12 @@ public class ControladorBillete implements ActionListener {
 		vista.sel_fecha.fechaIda.setSelectableDateRange(new Date(),fechaLimite);
 		
 		// comprobamos si existe billete de vuelta
-		if (!simple) {
+		if (simple) {
+			
+			// mostramos el JCalendar para la fecha de vuelta en la siguiente pantalla
+			vista.sel_fecha.panFechaVuelta.setVisible(false);
+			
+		} else {
 			
 			// mostramos el JCalendar para la fecha de vuelta en la siguiente pantalla
 			vista.sel_fecha.panFechaVuelta.setVisible(true);

@@ -208,10 +208,14 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 			
 			DefaultTableModel tablaVuelta = (DefaultTableModel) vista.detalles_compra.detallesVuelta.getModel();
 			mostrarBillete(modelo.billeteVuelta, tablaVuelta);
-			
+			vista.detalles_compra.detallesVuelta.setVisible(true);
+			vista.detalles_compra.scrollPaneVuelta.setVisible(true);
+			vista.detalles_compra.lblBilleteVuelta.setVisible(true);
 		} else {
 			vista.detalles_compra.detallesVuelta.setVisible(false);
 			vista.detalles_compra.scrollPaneVuelta.setVisible(false);
+			vista.detalles_compra.lblBilleteVuelta.setVisible(false);
+			
 		}
 		
 		// muestra el siguiente panel 'detalles_compra'

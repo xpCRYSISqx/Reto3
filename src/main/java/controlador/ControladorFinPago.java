@@ -52,9 +52,17 @@ public class ControladorFinPago implements ActionListener {
 		
 			case "Imprimir":
 				
+				String filename;
+				
+				if(modelo.billeteVuelta != null) {
+					filename = "Billete-" + modelo.billeteIda.getCodBillete() + "-" + modelo.billeteVuelta.getCodBillete() + ".txt";
+				} else {
+					filename = "Billete-"+modelo.billeteIda.getCodBillete() + ".txt";
+				}
+				
 				// le pedimos al usuario que eliga donde guardarlo
 				FileDialog fDialog = new FileDialog(vista, "Save", FileDialog.SAVE);
-				fDialog.setFile("Billete-"+modelo.billeteIda.getCodBillete() + ".txt");
+				fDialog.setFile(filename);
 				fDialog.setVisible(true);
 				String pathBillete = fDialog.getDirectory() + fDialog.getFile();
 				

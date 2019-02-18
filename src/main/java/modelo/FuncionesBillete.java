@@ -100,7 +100,7 @@ public class FuncionesBillete {
 			
 			writer.println("=== DATOS DEL BILLETE DE IDA ===");
 			writer.println();
-			writer.println("Código Billete: " + modelo.billeteIda.getCodLinea());
+			writer.println("Código Billete: " + modelo.billeteIda.getCodBillete());
 			writer.println("Número de Trayecto: " + modelo.billeteIda.getNTrayecto());
 			writer.println("Línea: " + modelo.billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
 			writer.println("Origen: " + modelo.paradaOrigen.getNombre());
@@ -115,7 +115,7 @@ public class FuncionesBillete {
 			
 			writer.println("=== DATOS DEL BILLETE DE VUELTA ===");
 			writer.println();
-			writer.println("Código Billete: " + modelo.billeteVuelta.getCodLinea());
+			writer.println("Código Billete: " + modelo.billeteVuelta.getCodBillete());
 			writer.println("Número de Trayecto: " + modelo.billeteVuelta.getNTrayecto());
 			writer.println("Línea: " + modelo.billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
 			writer.println("Origen: " +  modelo.paradaOrigen.getNombre());
