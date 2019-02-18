@@ -8,6 +8,45 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * Clase encargada de junto con la clase conexion, de atender peticiones a bbdd. Clase encargada de gestiona y ordenar la informacion que adquiere de la bbdd
+ * 
+ * @author Uztaritz, Mikel. Laura
+ * 
+ * @param conexion: clase encargada de la conexion a bbdd
+ * @param connection: Atribut de la clase conexion, almacena la conexion
+ * @param linea: 
+ * @param lineas: 
+ * @param stmt: 
+ * @param result: 
+ * @param query:
+ * 
+ * @param autobus: 
+ * @param autobuses: 
+ * 
+ * @param municipio: 
+ * @param municipios:
+ * 
+ * @param parada:
+ * @param paradas:
+ * 
+ * @param cliente:  
+ * 
+ * @param disponible:
+ * @param plazasOcupadas:
+ * @param plazasTotales:
+ * 
+ * @param codBillete:     
+ * 
+ * @return lineas: 
+ * @return autobuses: 
+ * @return municipios: 
+ * @return paradas: 
+ * @return cliente: 
+ * @return disponible: 
+ * @return codBillete: 
+ */
+
 public class Consultas {
 	
 	private Conexion conexion;

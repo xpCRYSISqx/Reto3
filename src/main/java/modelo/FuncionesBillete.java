@@ -17,16 +17,16 @@ import java.util.Date;
  * @param lat2: obtiene los datos de la latitud de otra parada
  * @param lon1: obtiene los datos de la longitud de una parada
  * @param lon2: obtiene los datos de la longitud de otra parada
- * @param autobus: otbtiene el objeto autobus
- * @param distancia:
- * @param precio:
- * @param consumo:
- * @param beneficio:
- * @param iva:
+ * @param autobus: obtiene los datos del objeto autobus
+ * @param distancia: variable para calcular la distancia entre paradas
+ * @param precio: variable para calcular el precio acorde a la distancia entre paradas
+ * @param consumo: variable para calcular el consumo de combustible acorde a la distancia entre paradas
+ * @param beneficio: variable para calcular el beneficio teniendo en cuenta las anteriores variables
+ * @param iva: variable para calcular el importe del iva para el precio
  * 
  * 
- * @return precio: Devuelve el codigo de cada linea
- * @return d:
+ * @return precio: Devuelve el precio del billete
+ * @return d: Devuelve la distancia calculada entre paradas
  *  
  */
 
