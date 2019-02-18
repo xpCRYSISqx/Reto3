@@ -1,5 +1,9 @@
 <<<<<<< HEAD
 /.gradle/
+<<<<<<< HEAD
+=======
+/bin/
+>>>>>>> 124518b09dba37b61431a1d08bf26e1b9141fa9b
 =======
 
 # Created by https://www.gitignore.io/api/java,gradle,eclipse
@@ -55,4 +59,8 @@ gradle-app.setting
 **/build/
 
 # End of https://www.gitignore.io/api/java,gradle,eclipse
+<<<<<<< HEAD
 >>>>>>> mvc
+=======
+>>>>>>> todojunto2
+>>>>>>> 124518b09dba37b61431a1d08bf26e1b9141fa9b
