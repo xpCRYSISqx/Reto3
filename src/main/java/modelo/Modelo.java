@@ -1,5 +1,25 @@
 package modelo;
 
+/**
+ * Clase encargada del calculo logico del programa
+ * 
+ * @author Uztaritz, Mikel. Laura
+ * 
+ * @param conexion: instancia de la conexion a bbdd
+ * @param consultas: instancia de las consultas a bbdd
+ * @param funcionesBillete: instancia de la clase donde se calculan las funciones necesarias para el billete
+ * @param funcionesPago: instancia de la clase donde se calculan las funciones necesarias para el pago
+ * @param funcionesRegistro: instancia de la clase donde se calculan las funciones necesarias para el registro
+ * @param funciones cliente: instancia de la clase donde se realizan las funciones necesarias para la gestion del cliente
+ * @param billeteIda: instancia de la clase donde se calculan las funciones necesarias para el billete de ida
+ * @param billeteVuelta: instancia de la clase donde se calculan las funciones necesarias para el billete de vuelta
+ * @param linea: instancia de la clase donde se calculan las funciones necesarias para la linea de trayecto
+ * @param paradaOrigen: instancia de la clase donde se calculan las funciones necesarias para las paradas (Origen)
+ * @param paradaDestino: instancia de la clase donde se calculan las funciones necesarias para el paradas (Destino)
+ * @param autobus: instancia de la clase donde se calculan las funciones necesarias para la gestion del autobus
+ *  
+ */
+
 public class Modelo {
 	
 	public Conexion conexion;

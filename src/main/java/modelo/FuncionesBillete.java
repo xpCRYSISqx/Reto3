@@ -6,6 +6,30 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Clase encargada del calculo de objeto billete. 
+ * Calcula el precio del trayecto  teniendo en cuenta la relacion de consumo del autobus por kilometro
+ * Tiene los datos necesario para imiprimir el ticket del billete al final de la compra
+ * 
+ * @author Uztaritz, Mikel. Laura
+ * 
+ * @param lat1: obtiene los datos de la latitud de una parada
+ * @param lat2: obtiene los datos de la latitud de otra parada
+ * @param lon1: obtiene los datos de la longitud de una parada
+ * @param lon2: obtiene los datos de la longitud de otra parada
+ * @param autobus: otbtiene el objeto autobus
+ * @param distancia:
+ * @param precio:
+ * @param consumo:
+ * @param beneficio:
+ * @param iva:
+ * 
+ * 
+ * @return precio: Devuelve el codigo de cada linea
+ * @return d:
+ *  
+ */
+
 public class FuncionesBillete {
 	
 	Modelo modelo;
@@ -80,7 +104,7 @@ public class FuncionesBillete {
 		Date fechaActual = new Date();
 		String sexo = "Mujer";
 		if (modelo.cliente.getSexo() == 'V') {
-			sexo = "Varon";
+			sexo = "Varón";
 		}
 		
 		try {
@@ -106,7 +130,7 @@ public class FuncionesBillete {
 			writer.println("Origen: " + modelo.paradaOrigen.getNombre());
 			writer.println("Destino: " + modelo.paradaDestino.getNombre());
 			writer.println("Autobus: " + modelo.billeteIda.getCodBus());
-			writer.println("Fecha: " + modelo.billeteIda.getFecha());
+			writer.println("Fecha Ida: " + modelo.billeteIda.getFecha());
 			writer.println("Hora: " + modelo.billeteIda.getHora());
 			writer.println("Precio: " + modelo.billeteIda.getPrecio() + "€");
 			writer.println("Fecha de compra: " + dateFormat.format(fechaActual));
@@ -118,10 +142,10 @@ public class FuncionesBillete {
 			writer.println("Código Billete: " + modelo.billeteVuelta.getCodBillete());
 			writer.println("Número de Trayecto: " + modelo.billeteVuelta.getNTrayecto());
 			writer.println("Línea: " + modelo.billeteIda.getCodLinea() + ": " + modelo.linea.getNombre());
-			writer.println("Origen: " +  modelo.paradaOrigen.getNombre());
-			writer.println("Destino: " + modelo.paradaDestino.getNombre());
+			writer.println("Parada Origen: " +  modelo.paradaOrigen.getNombre());
+			writer.println("Parada Destino: " + modelo.paradaDestino.getNombre());
 			writer.println("Autobus: " + modelo.billeteVuelta.getCodBus());
-			writer.println("Fecha: " + modelo.billeteVuelta.getFecha());
+			writer.println("Fecha Vuelta: " + modelo.billeteVuelta.getFecha());
 			writer.println("Hora: " + modelo.billeteVuelta.getHora());
 			writer.println("Precio: " + modelo.billeteVuelta.getPrecio() + "€");
 			writer.println("Fecha de compra: " + dateFormat.format(fechaActual));
