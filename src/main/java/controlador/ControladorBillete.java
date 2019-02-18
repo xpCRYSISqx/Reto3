@@ -17,19 +17,6 @@ import vista.MainFrame;
 
 /**
  * Esta clase se utiliza pra controlar el panel de billete y enlazarlo con el modelo
- * 
- * @author Ustaritz, Laura, Mikel
- * 
- * @param vista: Instancia del main frame para poder utilizarlo
- * @param modelo: Instancia del modelo para poder utilizarlo
- * @param paradas: ArrayList del objeto paradas, se utiliza para almacenar la informacion de las diferentes paradas
- * @param linea: Crea el objeto linea, para almacenar la informacion que seleccione el usuario
- * @param paradaOrigen: Crea el objeto paradaOrigen, para guardar la parada de origen del usuario
- * @param paradaDestino: Crea el objeto paradaDestino, para guardar la informacion de la parada de destino del usuario
- * @param billeteSimple: Le dice al programa si el usuario ha seleccionado una billete simple o uno de ida y vuelta
- * @param botonPulsado: Se utiliza para poder saber que boton es el que ha sido pulsado
- * @param df: Es utilizado para indicar el formato de la fechaç
- * @param fechaLimite: Almacena la informacion de la fecha seleccionada
  *
  */
 public class ControladorBillete implements ActionListener {
@@ -41,13 +28,18 @@ public class ControladorBillete implements ActionListener {
 	Parada paradaOrigen;
 	Parada paradaDestino;
 	boolean billeteSimple;
-	
+	/**
+	 * 
+	 * @param vista Instancia del main frame para poder utilizarlo
+	 * @param modelo Instancia del modelo para poder utilizarlo
+	 */
 	public ControladorBillete(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;		
 	}
-	
-	// añadimos listeners a los botones del panel 'sel_billete'
+	/**
+	 * Se crean los listeners del panel
+	 */
 	public void addListeners() {
 		vista.sel_billete.btnCancelar.addActionListener(this);
 		vista.sel_billete.btnLogin.addActionListener(this);
@@ -55,7 +47,9 @@ public class ControladorBillete implements ActionListener {
 		vista.sel_billete.btnContinuar.addActionListener(this);
 		vista.sel_billete.boxLineas.addActionListener(this);
 	}
-	
+	/**
+	 * Accion de los distintos listeners
+	 */
 	public void actionPerformed(ActionEvent e) {
 				
 		Object sourceObject = e.getSource();
@@ -139,7 +133,11 @@ public class ControladorBillete implements ActionListener {
 		}
 		
 	}
-	
+	/**
+	 * Esta funcion valida los datos en la seleccion del billete
+	 * 
+	 * @return Retorna si los datos son correctos o no
+	 */
 	public boolean validarDatos() {
 		
 		// guardar linea
@@ -178,7 +176,14 @@ public class ControladorBillete implements ActionListener {
 		return true;
 		
 	}
-	
+	/**
+	 * Guarda los datos del billete
+	 * 
+	 * @param linea Crea el objeto linea, para almacenar la informacion que seleccione el usuario
+	 * @param paradaOrigen Crea el objeto paradaOrigen, para guardar la parada de origen del usuario
+	 * @param paradaDestino Crea el objeto paradaDestino, para guardar la informacion de la parada de destino del usuario
+	 * @param simple Se utiliza para comprobar si el billete es solo de ida o de idsa y vuelta
+	 */
 	public void guardarDatos(Linea linea, Parada paradaOrigen, Parada paradaDestino, boolean simple) {
 		
 		ArrayList<Autobus> autobuses;
@@ -240,7 +245,13 @@ public class ControladorBillete implements ActionListener {
 		}
 		
 	}
-	
+	/**
+	 * Actualiza los datos en la interfaz
+	 * 
+	 * @param paradaOrigen Crea el objeto paradaOrigen, para guardar la parada de origen del usuario
+	 * @param paradaDestino Crea el objeto paradaDestino, para guardar la informacion de la parada de destino del usuario
+	 * @param simple Se utiliza para comprobar si el billete es solo de ida o de idsa y vuelta
+	 */
 	public void actualizarFrame(Parada paradaOrigen, Parada paradaDestino, boolean simple) {
 		
 		// limpia los textFields de la siguiente pantalla
@@ -284,7 +295,9 @@ public class ControladorBillete implements ActionListener {
 		vista.sel_billete.setVisible(false);
 		
 	}
-	
+	/**
+	 * Control del boton de cancelar
+	 */
 	public void reset() {
 		modelo.cliente = null;
 		modelo.billeteIda = null;

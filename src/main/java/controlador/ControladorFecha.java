@@ -23,10 +23,6 @@ import vista.MainFrame;
 /**
  * Esta clase se utiliza para controlar la seleccion de fecha para el billete, tambien comprueba que autobuses estan disponibles y se las asigna al ususario
  * 
- * @author Ustaritz, Laura, Mikel
- * 
- * @param vista, Instancia del main frame para poder utilizarlo
- * @param modelo: Instancia del modelo para poder utilizarlo
  * @param botonPulsado: Se utiliza para poder reconocer que boton es el que esta siendo pulsado en cada momento
  * @param fechaIda: Es la fecha que ha seleccionado el usuario para el billete de ida
  * @param autobusDisponible: Se utiliza para comprobar si hay algun autobus disponible para esa fecha
@@ -50,13 +46,19 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 	
 	public MainFrame vista;
 	public Modelo modelo;
-	
+	/**
+	 * Constructor del controlador del panel de seleccion de fecha
+	 * 
+	 * @param vista Instancia del main frame para poder utilizarlo
+	 * @param modelo Instancia del modelo para poder utilizarlo
+	 */
 	public ControladorFecha(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;
 	}
-	
-	// añadimos listeners a los botones del panel 'sel_fecha'
+	/**
+	 * Creacion de los diferentes listeners del panel
+	 */
 	public void addListeners() {
 		vista.sel_fecha.btnAtras.addActionListener(this);
 		vista.sel_fecha.btnCancelar.addActionListener(this);
@@ -66,7 +68,9 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		vista.sel_fecha.fechaIda.addPropertyChangeListener(this);
 		vista.sel_fecha.fechaVuelta.addPropertyChangeListener(this);
 	}
-	
+	/**
+	 * Acciones de los distintos elementos del panel
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		// guardamos el nombre del boton pulsado
@@ -116,7 +120,9 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		}
 		
 	}
-
+	/**
+	 * Listener de la fecha
+	 */
 	@Override
 	public void propertyChange(PropertyChangeEvent e) {
 
@@ -155,7 +161,11 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		}		
 		
 	}
-	
+	/**
+	 * Funcion encargada de validar los datos introducidos en la interfaz
+	 *  
+	 * @return Retorna si los datos son validados correctamente o no
+	 */
 	public boolean validarDatos() {
 		
 		// comprobamos si hay plazas disponibles para la fecha de Ida
@@ -196,7 +206,9 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		return true;
 		
 	}
-	
+	/**
+	 * Funcion encargada de actualizar la informacion que se muestra en la interfaz
+	 */
 	public void actualizarFrame() {
 		
 		// mostramos los datos del billete en la siguiente pantalla 'detalles_compra'
@@ -223,7 +235,12 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		vista.sel_fecha.setVisible(false);
 		
 	}
-	
+	/**
+	 * Metodo que comprueba si hay algun autobus disponible para la fecha seleccionada
+	 * 
+	 * @param fecha Fecha para la cual se quiere comprar el billete
+	 * @return Retorna un objeto autobus con la informacion del autobus que este disponible
+	 */
 	public Autobus comprobarAutobusDisponible(Date fecha) {
 		
 		ArrayList<Autobus> autobuses = modelo.linea.getAutobuses();
@@ -241,7 +258,11 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		return autobusDisponible;
 		
 	}
-	
+	/**
+	 * 
+	 * @param billete Objeto con la informacion del billete
+	 * @param tabla Tabla que se rellena con la informacion del billete
+	 */
 	public void mostrarBillete(Billete billete, DefaultTableModel tabla) {
 		
 		Object[] datosBillete = new Object[7];
@@ -257,7 +278,9 @@ public class ControladorFecha implements ActionListener, PropertyChangeListener 
 		tabla.addRow(datosBillete);
 		
 	}
-	
+	/**
+	 * Funciones del boton de cancelar
+	 */
 	public void reset() {
 		modelo.cliente = null;
 		modelo.billeteIda = null;

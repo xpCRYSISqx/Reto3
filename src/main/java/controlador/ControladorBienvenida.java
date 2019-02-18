@@ -11,30 +11,32 @@ import vista.MainFrame;
 /**
  * Esta clase se encarga de controlar los eventos del panel de bienvenida, y tambien de enlazar la vista y el modelo en el panel de bienvenida
  * 
- * @author Laura, Mikel, Ustaritz
- * 
- * @param vista: Instancia de la vista, para poder utilizarla
- * @param modelo: Instancia del modelo, para poder utilizarlo
- * @param lineas: ArrayList que se utiliza para guardar una lista de objetos lineas, cada uno contiene la informacion de las diferentes lineas
- *
  */
-
 public class ControladorBienvenida implements ActionListener {
 	
 	private MainFrame vista;
 	private Modelo modelo;
 	private ArrayList<Linea> lineas;
-	
+	/**
+	 * Constructor del controlador del panel de bienvenida
+	 * 
+	 * @param vista Instancia de la vista, para poder utilizarla
+	 * @param modelo Instancia del modelo, para poder utilizarlo
+	 */
 	public ControladorBienvenida(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;
 	}
 	
-	// añadimos listeners a los botones del panel 'bienvenida'
+	/**
+	 * Agrega los listener que sean necesarios
+	 */
 	public void addListeners() {
 		vista.bienvenida.btnContinuar.addActionListener(this);
 	}
-	
+	/**
+	 * Accion del listener
+	 */
 	public void actionPerformed(ActionEvent e) { 
 		
 		// muestra el siguiente panel 'sel_linea'

@@ -11,27 +11,24 @@ import vista.MainFrame;
 /**
  * Esta clase controla el panel de detalles y se encarga de enlazar esa parte de la vista con el modelo
  * 
- * @author Mikel, Ustaritz, Laura
- * 
- * @param vista: Instancia del main frame para poder utilizarlo
- * @param modelo: Instancia del modelo para poder utilizarlo
- * @param botonPulsado: Es utilizado para poder identificar el boton que esta siendo pulsado en esta parte de la interfaz
- * @param precioIda: Es el precio del billete de ida
- * @param precioVuelta: Es el precio del billete de vuelta, en caso de que el usuario haya seleccionado un billete de ida y vuelta
- *
  */
-
 public class ControladorDetalles implements ActionListener {
 	
 	public MainFrame vista;
 	public Modelo modelo;
-	
+	/**
+	 * Constructor del controlador de detalles
+	 * 
+	 * @param vista Instancia del main frame para poder utilizarlo
+	 * @param modelo Instancia del modelo para poder utilizarlo
+	 */
 	public ControladorDetalles(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;		
 	}
-	
-	// añadimos listeners a los botones del panel 'detalles_compra'
+	/**
+	 * Creacion de los listeners para los distintos elementos del panel
+	 */
 	public void addListeners() {
 		vista.detalles_compra.btnAtras.addActionListener(this);
 		vista.detalles_compra.btnCancelar.addActionListener(this);
@@ -39,7 +36,9 @@ public class ControladorDetalles implements ActionListener {
 		vista.detalles_compra.btnRegistro.addActionListener(this);
 		vista.detalles_compra.btnContinuar.addActionListener(this);
 	}
-	
+	/**
+	 * Acciones de los distintos componentes del panel
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		// guardamos el nombre del boton pulsado
@@ -105,7 +104,9 @@ public class ControladorDetalles implements ActionListener {
 		}
 		
 	}
-	
+	/**
+	 * Funciones del boton de clancelar
+	 */
 	public void reset() {
 		modelo.cliente = null;
 		modelo.billeteIda = null;

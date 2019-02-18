@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * Clase encargada de junto con la clase conexion, de atender peticiones a bbdd. Clase encargada de gestiona y ordenar la informacion que adquiere de la bbdd
+ * Clase encargada, junto con la clase conexion, de atender peticiones a bbdd. Gestiona y ordena la informacion que adquiere de la bbdd
  * 
  * @author Uztaritz, Mikel. Laura
  * 
