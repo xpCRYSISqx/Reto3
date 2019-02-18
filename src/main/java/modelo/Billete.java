@@ -2,6 +2,34 @@ package modelo;
 
 import java.sql.Date;
 
+/**
+ * Este objeto se encarga de almacenar toda la informacion necesaria para imprimir el billete
+ * 
+ * @author Ustaritz, Laura, Mikel
+ * 
+ * @param codBillete: Almacena el codigo del billete
+ * @param nTrayecto: Guarda el numero del trayecto del billete
+ * @param codLinea: Almacena el codigo de la linea que ocupa el billete
+ * @param codBus: Almacena el codigo del autobus del cual se ha comprado el billete
+ * @param codParadaInicio: Guarda el codigo de la parada de origen
+ * @param codParadaFin: Guarda el codigo de la parada de destino
+ * @param fecha: Guarda la fecha para la que se ha comprado el billete
+ * @param hora: Guarda la hora para la cual se ha comprado el billete
+ * @param dni: Guarda el DNI del usuario que ha comprado el billete
+ * @param precio: Guarda el precio del billete
+ * 
+ * @return codBillete: Retorna el codigo del billete
+ * @return nTrayecto: Retorna el numero del trayecto del billete
+ * @return codLinea: Retorna el codigo de la linea que ocupa el billete
+ * @return codBus: Retorna el codigo del autobus del cual se ha comprado el billete
+ * @return codParadaInicio: Retorna el codigo de la parada de origen
+ * @return codParadaFin: Retorna el codigo de la parada de destino
+ * @return fecha: Retorna la fecha para la que se ha comprado el billete
+ * @return hora: Retorna la hora para la cual se ha comprado el billete
+ * @return dni: Retorna el DNI del usuario que ha comprado el billete
+ * @return precio: Retorna el precio del billete
+ *
+ */
 public class Billete {
 	
 	private int codBillete;
