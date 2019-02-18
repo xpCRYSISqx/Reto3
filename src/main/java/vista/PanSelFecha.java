@@ -6,7 +6,6 @@ import java.awt.Color;
 import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 public class PanSelFecha extends JPanel {
 	

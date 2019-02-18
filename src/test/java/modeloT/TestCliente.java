@@ -32,7 +32,6 @@ public class TestCliente {
 	
 	@Test
 	public void testConstructorCliente() {
-		Date date = new Date(28-11-1990);
 		
 		//Arrange
 		Cliente cliente = new Cliente(dni,nombre,apellidos, fechaNacimiento, sexo, contrasena);

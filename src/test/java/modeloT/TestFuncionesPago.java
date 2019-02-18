@@ -2,7 +2,6 @@ package modeloT;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 import modelo.*;
 
 public class TestFuncionesPago {
