@@ -10,48 +10,17 @@ import java.util.ArrayList;
 
 /**
  * Clase encargada, junto con la clase conexion, de atender peticiones a bbdd. Gestiona y ordena la informacion que adquiere de la bbdd
- * 
- * @author Uztaritz, Mikel. Laura
- * 
- * @param conexion: clase encargada de la conexion a bbdd
- * @param connection: Atribut de la clase conexion, almacena la conexion
- * @param linea: 
- * @param lineas: 
- * @param stmt: 
- * @param result: 
- * @param query:
- * 
- * @param autobus: 
- * @param autobuses: 
- * 
- * @param municipio: 
- * @param municipios:
- * 
- * @param parada:
- * @param paradas:
- * 
- * @param cliente:  
- * 
- * @param disponible:
- * @param plazasOcupadas:
- * @param plazasTotales:
- * 
- * @param codBillete:     
- * 
- * @return lineas: 
- * @return autobuses: 
- * @return municipios: 
- * @return paradas: 
- * @return cliente: 
- * @return disponible: 
- * @return codBillete: 
  */
 
 public class Consultas {
 	
 	private Conexion conexion;
 	private Connection connection;
-	
+	/**
+	 * Contructor de la clase consultas
+	 * 
+	 * @param conexion Clase encargada de la conexion a la base de datos
+	 */
 	public Consultas(Conexion conexion) {
 		this.conexion = conexion;
 		this.connection = null;
@@ -63,7 +32,11 @@ public class Consultas {
 	 * 
 	 ****************************************************************************************************************/
 	
-	
+	/**
+	 * Metodo encargado de conseguir la informacion de las diferentes lineas de la base de datos
+	 * 
+	 * @return Retorna un array list con una lista de objetos linea, cada uno de ellos tiene la informacion de una linea diferente
+	 */
 	public ArrayList<Linea> getLineas() {
 		
 		Linea linea = null;
@@ -103,7 +76,13 @@ public class Consultas {
 		return lineas;
 		
 	}
-	
+	/**
+	 * Metodo encargado de buscar la informacion de los autobuses de una linea concreta
+	 * 
+	 * @param codLinea Codigo de la linea de la cual se quieren saber los autobuses
+	 * 
+	 * @return Retorna un array list con una lista de objetos ded tipo autobus, cada uno de ellos tiene la informacion de un autobus concreto
+	 */
 	public ArrayList<Autobus> getAutobusesByLinea(String codLinea) {
 		
 		Autobus autobus = null;
@@ -145,7 +124,13 @@ public class Consultas {
 		return autobuses;
 		
 	}
-	
+	/**
+	 * Metodo encargado de conseguir la informacion de los municipios por los cuales pasa una linea
+	 * 
+	 * @param codLinea Codigo de la linea de la cual se quieren saber los municipios
+	 * 
+	 * @return Retorna un array list de objetos municipio
+	 */
 	public ArrayList<Municipio> getMunicipiosByLinea(String codLinea) {
 		
 		Municipio municipio = null;
@@ -190,7 +175,13 @@ public class Consultas {
 		return municipios;
 		
 	}
-	
+	/**
+	 * Metodo encargado de conseguir la informacion de las paradas de un municipio
+	 * 
+	 * @param codMunicipio Codigo del municipio del cual se quieren saber las paradas
+	 * 
+	 * @return Retorna un array list de objetos parada
+	 */
 	public ArrayList<Parada> getParadasByMunicipio(int codMunicipio) {
 		
 		Parada parada = null;
@@ -233,7 +224,13 @@ public class Consultas {
 		return paradas;
 		
 	}
-	
+	/**
+	 * Metodo que se encarga de buscar las paradas de una linea
+	 * 
+	 * @param codLinea Codigo de la linea, se utiliza para saber que paradas hay en esa linea
+	 * 
+	 * @return Retorna un array list de objetos parada
+	 */
 	public ArrayList<Parada> getParadasByLinea(String codLinea) {
 		
 		Parada parada = null;
@@ -276,7 +273,12 @@ public class Consultas {
 		return paradas;
 		
 	}
-	
+	/**
+	 * Metodo encargado de buscar el cliente con un DNI especifico
+	 * 
+	 * @param dni DNI del cliente que se quiere buscar
+	 * @return Retorna un objeto con la informacion del cliente
+	 */
 	public Cliente getClienteByDNI(String dni) {
 		
 		Cliente cliente = null;
@@ -318,7 +320,14 @@ public class Consultas {
 		return cliente;
 		
 	}
-	
+	/**
+	 * Metodo encargado de comprobar si el autobus tiene plazas libres
+	 * 
+	 * @param codBus Codigo del autobus que se quiere comprobar
+	 * @param fecha Fecha para la cual se quiere mirar si hay plazas
+	 * 
+	 * @return Retorna true o false en funcion de si hay plazas o no respectibamente
+	 */
 	public Boolean comprobarPlazasBillete(int codBus, Date fecha) {
 
 		PreparedStatement stmt = null;
@@ -394,7 +403,11 @@ public class Consultas {
 	 * 
 	 ****************************************************************************************************************/
 	
-	// inserta los atributos de un objetos cliente en la BBDD
+	/**
+	 * Inserta los atributos de un objetos cliente en la base de datos
+	 * 
+	 * @param cliente objeto cliente que se quiere insertar en la base de datos
+	 */
 	public void insertarCliente(Cliente cliente) {
 		
 		PreparedStatement stmt = null;
@@ -426,7 +439,13 @@ public class Consultas {
 		}                 
 	}
 	
-	// inserta los atributos de un objetos billete en la BBDD
+	/**
+	 * Inserta los atributos de un objetos billete en la base de datos
+	 * 
+	 * @param billete Objeto billete que se quiere introducir en la base de datos
+	 * 
+	 * @return Retorna el codigo del billete, generado de manera aleatoria
+	 */
 	public int insertarBillete(Billete billete) {
 		
 		PreparedStatement stmt = null;

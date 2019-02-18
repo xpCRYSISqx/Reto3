@@ -16,28 +16,6 @@ import vista.MainFrame;
 /**
  * Esta clase se encarga de controlar las funciones del panel de registro.
  * 
- * Ademas comprueba que los datos hayan.
- * 
- * @author Laura, Mikel y Ustaritz.
- * 
- * @param vista: Guarda el objeto vista para poder utilizar los distintos elementos de la interfaz.
- * @param modelo: Guarda el objeto modelo para poder acceder a los metodos del modelo.
- * @param panelOrigen: Esta variable guarda la ventana desde la cual se ha ido al panel de inicio de sesion.
- * @param detalles: Si se viene del panel de detalles, esta variable es true, si no es false. Sirve para saber si una vez logeado tiene que pasar a la ventana de pago o continuar en la que estaba.
- * @param nombre: Guarda el nombre del usuario que quiere registrarse, coge el valor de la interfaz.
- * @param apelidos: Guarda los apellidos del usuario que quiere registrarse, coge el valor de la interfaz.
- * @param dni: Guarda el DNI del usuario, coge el valor de la interfaz.
- * @param fecha: Guarda la fecha de nacimiento del usuario, coge el valor de la interfaz.
- * @param sexo: Guarda el sexo del usuario, tiene formato char, coge el valor de la interfaz.
- * @param contrasena: Guarda la contraseña del usuario, al cogerla de la interfaz tiene formato de array de caracteres, por lo que hay que transformarlo a String.
- * @param botonPulsado: Guarda el texto del boton que ha sido pulsado, para luego poder identificarlo mediante un switch.
- * 
- * La funcion validarDatos retorna un boolean.
- * 
- * @return false: Al retornar false, indica que el usuario ha metido mal alguno de los datos, dentro de la misma funcion de validarDatos le indica al usuario el error que ha cometido con una alerta, despues devuelve false
- * @return true: Al retornar true, indica que todos los datos de registro han sido introducidos satisfactoriamente, lo que hace que el usuario sea registrado y le devuelve al panel en el que estaba, si el ususario estaba
- * 		   en el panel de inicio de sesion, le devuelve a la ventada desde la cual habia ido al panel de inicio de sesion.
- * 
  */
 
 public class ControladorRegistro implements ActionListener {
@@ -54,22 +32,30 @@ public class ControladorRegistro implements ActionListener {
 	
 	public static JPanel panelOrigen; // Guarda el panel del que se viene al panel de registro
 	public static Boolean detalles; // Indica si se viene de la ventana de detalles
-	
+	/**
+	 * Constructor del controlador de registro
+	 * 
+	 * @param vista: Guarda el objeto vista para poder utilizar los distintos elementos de la interfaz
+	 * @param modelo: Guarda el objeto modelo para poder acceder a los metodos del modelo
+	 */
 	public ControladorRegistro(MainFrame vista, Modelo modelo) { // Constructor
 		this.vista = vista;
 		this.modelo = modelo;
 		panelOrigen = null;
 		detalles = false;
 	}
-	
-	// añadimos listeners a los botones del panel 'registro'
+	/**
+	 * Creamos los listeners necesarios para el panel
+	 */
 	public void addListeners() {
 		vista.registro.btnAtras.addActionListener(this);
 		vista.registro.btnCancelar.addActionListener(this);
 		vista.registro.btnLogin.addActionListener(this);
 		vista.registro.btnRegistro.addActionListener(this);
 	}
-	
+	/**
+	 * Asignamos la accion para cada uno de los listeners
+	 */
 	public void actionPerformed(ActionEvent e) { // Accion de los botones de la ventana de registro
 		
 		// guardamos el nombre del boton pulsado
@@ -144,8 +130,11 @@ public class ControladorRegistro implements ActionListener {
 			}
 		
 	}
-	
-	
+	/**
+	 * Funcion que valida los datos de registro
+	 * 
+	 * @return Retorna false si los datos han dado un fallo en la validacion e inica cual es el fallo. Retorna true si la validacion ha sido correcta
+	 */
 	public boolean validarDatos() { // Funcion que valida los datos de registro
 		
 		String nombre = vista.registro.txtNombre.getText(); // Guarda la informacion de la interfaz en diferentes variables
@@ -225,7 +214,9 @@ public class ControladorRegistro implements ActionListener {
 		return true;
 		
 	}
-	
+	/**
+	 * Funcion del boton de cancelar
+	 */
 	public void reset() {
 		modelo.cliente = null;
 		modelo.billeteIda = null;

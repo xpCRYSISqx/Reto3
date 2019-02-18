@@ -1,36 +1,24 @@
 package modelo;
 /**
  * Esta clase se encarga de los calculos del dinero del programa
- * 
- * @author Mikel.
- * 
- * @param arrayRedimensionar: Es el array que se desea redimensionar, se le para como parametro a la funcion.
- * @param tamano: Es el tamaño al que se desea redimensionar el array, en este caso genera un array con una posición mas que el array que se desea redimensionar.
- * @param arrayRedimensionado: es el array una vez redimensionado, se declara con un espacio mas que el array que se desea redimensionar.
- * @param arrayRedimensionar: Es el array que se desea redimensionar, se le para como parametro a la funcion.
- * @param tamano: Es el tamaño al que se desea redimensionar el array, en este caso genera un array con una posición menos que el array que se desea redimensionar.
- * @param arrayRedimensionado: es el array una vez redimensionado, se declara con un espacio mas que el array que se desea redimensionar.
- * @param dinero: es la variable que almacena la cantidad de dinero introducida por el usuario.
- * @param total: guarda el dinero a pagar en total por todos los productos seleccionados.
- * @param sobra: guarda el dinero sobrante despues de introducir el pago en la maquina.
- * @param falta: guarda el dinero faltante despues de introducir el pago en la maquina.
- * @param cont: guarda la cantidad de monedas de cada tipo que tiene que devolver.
- * 
- * @return arrayRedimensionado: devuelve el array una vez ha sido redimensionado y se ha copiado el contenido del array que se queria redimensionar.
- * @return arrayRedimensionado: devuelve el array una vez ha sido redimensionado y se ha copiado el contenido del array que se queria redimensionar.
- * @return falta: devuelve el valor total de cada producto seleccionado.
- * @return devolver: devuelve la cantidad de monedas y billetes que hay que devolver al usuario de la maquina expendedora si fuese necesario.
  */
 public class FuncionesPago {
 	
 	Modelo modelo;
-	
+	/**
+	 * Constructor de la clase FuncionesPago
+	 * 
+	 * @param modelo Instancia de la clase modelo para poder utilizarlo
+	 */
 	public FuncionesPago (Modelo modelo) {
 		this.modelo = modelo;
 	}
-	
-	/*
-	 * Esta clase se encarga de redimensionar un array que se le pasa por parametro.
+	/**
+	 * Metodo que se encarga de redimensionar un array que se le pasa por parametro a uno una posicion mayor
+	 * 
+	 * @param arrayRedimensionar Es el array que se desea redimensionar, se le para como parametro a la funcion
+	 * 
+	 * @return Devuelve el array una vez ha sido redimensionado y se ha copiado el contenido del array que se queria redimensionar
 	 */
 	public float[] redimensionarArrayMayor(float[] arrayRedimensionar) {
 		int tamano = arrayRedimensionar.length + 1;
@@ -39,11 +27,13 @@ public class FuncionesPago {
 		System.arraycopy(arrayRedimensionar, 0, arrayRedimensionado, 0, arrayRedimensionar.length); // Copia arrayRedimensionar en arrayRedimensionado, el cuel es una posicion mas largo.
 		return arrayRedimensionado; // Devuelve el resultado.
 	}
-	
-	/*
-	 * Esta clase se encarga de redimensionar un array que se le pasa por parametro.
+	/**
+	 * Metodo que se encarga de redimensionar un array que se le pasa por parametro a uno una posicion menor
+	 * 
+	 * @param arrayRedimensionar Es el array que se desea redimensionar, se le para como parametro a la funcion
+	 * 
+	 * @return Devuelve el array una vez ha sido redimensionado y se ha copiado el contenido del array que se queria redimensionar
 	 */
-	
 	public float[] redimensionarArrayMenor(float[] arrayRedimensionar) {
 		int tamano = arrayRedimensionar.length - 1;
 		float[] arrayRedimensionado = new float[tamano];
@@ -51,14 +41,14 @@ public class FuncionesPago {
 		System.arraycopy(arrayRedimensionar, 0, arrayRedimensionado, 0, arrayRedimensionar.length - 1); // Copia arrayRedimensionar en arrayRedimensionado, el cuel es una posicion mas largo.
 		return arrayRedimensionado; // Devuelve el resultado.
 	}
-	
-	/*
-	 * Esta clase se encarga de hacer todos los calculos necesarios con el dinero.
+	/**
+	 * Metodo que se encarga de calcular el dinero faltante
 	 * 
-	 * Ademas de hacer los calculos necesarios, tambien muestra el dinero total a pagar, asi como el dinero faltante que el ususario debe introducir.
-	 * Una vez introducido todo el dinero necesario, tambien se encarga de devolver el dinero sobrante al usuario si fuese necesario.
+	 * @param total Dinero total que se debe introducir
+	 * @param dinero Dinero que se ha introducido hasta el momento
+	 * 
+	 * @return Retorna el dinero que falta por introducir
 	 */
-
 	public float falta(float total, float dinero){	
 		
 		float falta = 0f;//dinero que le falta por introducir.
@@ -69,7 +59,14 @@ public class FuncionesPago {
 						 		
 		return falta;						
 	}
-
+	/**
+	 * Metodo que se encarga de calcular el menor numero de monedas que se tienen que dar de devolucion
+	 * 
+	 * @param total Dinero total que se debe introducir
+	 * @param dinero Dinero total que se ha introducido
+	 * 
+	 * @return Retorna el menor numero de monedas que se deben retornar
+	 */
 	public String sobra(float total, float dinero){
 		float sobra = 0f;
 		int cont = 0;
@@ -185,7 +182,6 @@ public class FuncionesPago {
 			if(sobra >= 1)
 			{
 				cont = (int) (sobra/1);
-				//sobra = (float) (sobra%0.01);
 				devolver = devolver+Integer.toString(cont)+" monedas de 0,01€" + "\n";	
 			}    		
 		}

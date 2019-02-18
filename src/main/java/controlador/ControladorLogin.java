@@ -11,15 +11,6 @@ import vista.MainFrame;
 
 /**
  * Esta clase controla las distintas funciones de la ventana de inicio de sesion
- * 
- * @author Mikel, Ustaritz, Laura
- * 
- * @param vista: Guarda el objeto vista para poder utilizar los distintos elementos de la interfaz.
- * @param modelo: Guarda el objeto modelo para poder acceder a los metodos del modelo.
- * @param panelOrigen: Esta variable guarda la ventana desde la cual se ha ido al panel de inicio de sesion.
- * @param detalles: Si se viene del panel de detalles, esta variable es true, si no es false. Sirve para saber si una vez logeado tiene que pasar a la ventana de pago o continuar en la que estaba.
- * 
- *
  */
 
 public class ControladorLogin implements ActionListener {
@@ -28,22 +19,30 @@ public class ControladorLogin implements ActionListener {
 	private Modelo modelo; // Instancia del Modelo.
 	public static JPanel panelOrigen; // Guarda el panel del que se viene al panel de registro.
 	public static Boolean detalles; // Indica si se viene de la ventana de detalles.
-	
+	/**
+	 * Constructor del controlador de inicio de sesion
+	 * 
+	 * @param vista Guarda el objeto vista para poder utilizar los distintos elementos de la interfaz
+ 	 * @param modelo Guarda el objeto modelo para poder acceder a los metodos del modelo
+	 */
 	public ControladorLogin(MainFrame vista, Modelo modelo) { // Constructor
 		this.vista = vista;
 		this.modelo = modelo;
 		panelOrigen = null;
 		detalles = false;
 	}
-	
-	// añadimos listeners a los botones del panel 'login'
+	/**
+	 * Creamos los listeners del panel de inicio de sesion
+	 */
 	public void addListeners() {
 		vista.login.btnAtras.addActionListener(this);
 		vista.login.btnCancelar.addActionListener(this);
 		vista.login.btnRegistro.addActionListener(this);
 		vista.login.btnLogin.addActionListener(this);
 	}
-
+	/**
+	 * Metodo que designa la accion realizada por cada listener
+	 */
 	public void actionPerformed(ActionEvent e) { // Acciones de los botones de la ventana de inicio de sesion.
 		
 		// guardamos el nombre del boton pulsado
@@ -117,7 +116,9 @@ public class ControladorLogin implements ActionListener {
 				break;
 		}
 	}
-	
+	/**
+	 * Metodo del boton de cancelar del panel de inicio de sesion
+	 */
 	public void reset() {
 		modelo.cliente = null;
 		modelo.billeteIda = null;

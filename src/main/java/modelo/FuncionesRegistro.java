@@ -24,13 +24,20 @@ import java.security.NoSuchAlgorithmException;
 public class FuncionesRegistro {
 	
 	Modelo modelo;
-	
+	/**
+	 * Contructor de la clase FuncionesRegistro
+	 * 
+	 * @param modelo Instancia del modelo para poder utilizarlo
+	 */
 	public FuncionesRegistro (Modelo modelo) {
 		this.modelo = modelo;
 	}
-	
-	/*
-	 * Funciones validar dni
+	/**
+	 * Metodo que se encarga de validar el DNI
+	 * 
+	 * @param dni DNI que se quiere validar
+	 * 
+	 * @return Retorna true o false si el DNI ha sido validad satisfactoriamente o no respectivamente
 	 */
 	public boolean validarDNI(String dni) {
 		String letraMayuscula = "";
@@ -42,7 +49,13 @@ public class FuncionesRegistro {
 		else
 			return false;
 	}
-	
+	/**
+	 * Metodo que comprueba que los 8 primeros caracteres del DNI son solo numeros
+	 * 
+	 * @param dni DNI que se quiere comprobar
+	 * 
+	 * @return Retorna true o false si la comprobacion ha dado un resultado satisfactoriamente o no respectivamente
+	 */
 	public boolean soloNumeros(String dni) {
 		String numero = "";
 		String dni2 = "";
@@ -60,7 +73,13 @@ public class FuncionesRegistro {
 		else
 			return true;
 	}
-	
+	/**
+	 * Metodo que comprueba que la letra del DNI sea valida
+	 * 
+	 * @param dni DNI que se quiere comprobar
+	 * 
+	 * @return Reotrna la letra valida
+	 */
 	public String letraDNI(String dni) {
 		int dni2 = Integer.parseInt(dni.substring(0, 8));
 		int posicion = 0;
@@ -72,11 +91,13 @@ public class FuncionesRegistro {
 		
 		return letra;
 	}
-	
-	/*
-	 * Esta clase se utiliza para encriptar la contraseña que el usuario introduce en la interfaz
+	/**
+	 * Metodo que se ancarga de encriptar la contraseña
+	 * 
+	 * @param contraseñaAEncriptar Contraseña que se quiere encriptar
+	 * 
+	 * @return Retorna la contraseña encriptada
 	 */
-	 
 	public String encriptacion(String contraseñaAEncriptar){
         String contraseñaGenerada = null;
         try {
@@ -100,9 +121,13 @@ public class FuncionesRegistro {
         }
         return contraseñaGenerada;
     }
-	
-	/*
-	 * Comprobar inicio de sesion
+	/**
+	 * Metodo que comprueba si el usuario existe a la hora de iniciar sesion
+	 * 
+	 * @param usuario DNI del usuario que se quiere comprobar
+	 * @param contrasena Contraseña del usuario que se quiere comprobar
+	 * 
+	 * @return Retorna un objeto cliente con los datos del usuario
 	 */
 	public Cliente comprobarInicio(String usuario, String contrasena) {
 		

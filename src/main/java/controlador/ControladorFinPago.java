@@ -13,35 +13,32 @@ import modelo.Modelo;
 import vista.MainFrame;
 
 /**
- * 
- * @author Laura, Ustaritz
- * 
- * @param vista: Instancia del main frame para poder utilizarlo
- * @param modelo: instancia del modelo para poder utilizarlo
- * @param botonPulsado: Se utiliza para poder reconocer el boton que se esta pulsando
- * @param fDiaLog: Se utiliza para la impresion del billete
- * @param pathBillete: Señala la ruta en la que se va a imprimir el billete
- * @param file: Crea el archivo para guardar el billete
- * @param timer: Declara un temporizador
- * @param task: Declara la tarea que va a realizar el temporizador
- *
+ * Esta clase se encarga de controlar el panel de fin de pago
  */
 
 public class ControladorFinPago implements ActionListener {
 	
 	public MainFrame vista;
 	public Modelo modelo;
-	
+	/**
+	 * Constructor del controlador de fin de pago
+	 * 
+	 * @param vista Instancia del main frame para poder utilizarlo
+	 * @param modelo instancia del modelo para poder utilizarlo
+	 */
 	public ControladorFinPago(MainFrame vista, Modelo modelo) {
 		this.vista = vista;
 		this.modelo = modelo;
 	}
-	
-	// añadimos listeners a los botones del panel 'fin_pago'
+	/**
+	 * Creamos los listeners del panel de fin de pago
+	 */
 	public void addListeners() {
 		vista.fin_pago.btnImprimir.addActionListener(this);
 	}
-	
+	/**
+	 * Funcion que realiza la accion del listener
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		// guardamos el nombre del boton pulsado

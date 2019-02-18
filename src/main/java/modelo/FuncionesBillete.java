@@ -10,37 +10,27 @@ import java.util.Date;
  * Clase encargada del calculo de objeto billete. 
  * Calcula el precio del trayecto  teniendo en cuenta la relacion de consumo del autobus por kilometro
  * Tiene los datos necesario para imiprimir el ticket del billete al final de la compra
- * 
- * @author Uztaritz, Mikel. Laura
- * 
- * @param lat1: obtiene los datos de la latitud de una parada
- * @param lat2: obtiene los datos de la latitud de otra parada
- * @param lon1: obtiene los datos de la longitud de una parada
- * @param lon2: obtiene los datos de la longitud de otra parada
- * @param autobus: obtiene los datos del objeto autobus
- * @param distancia: variable para calcular la distancia entre paradas
- * @param precio: variable para calcular el precio acorde a la distancia entre paradas
- * @param consumo: variable para calcular el consumo de combustible acorde a la distancia entre paradas
- * @param beneficio: variable para calcular el beneficio teniendo en cuenta las anteriores variables
- * @param iva: variable para calcular el importe del iva para el precio
- * 
- * 
- * @return precio: Devuelve el precio del billete
- * @return d: Devuelve la distancia calculada entre paradas
- *  
  */
 
 public class FuncionesBillete {
 	
 	Modelo modelo;
-	
+	/**
+	 * Constructor de la clase FuncionesBillete
+	 * 
+	 * @param modelo Instancia de la clase modelo para poder utilizarla
+	 */
 	public FuncionesBillete (Modelo modelo) {
 		this.modelo = modelo;
 	}
 	
 	
-	/*
-	 * Metodos para calcular el precio
+	/**
+	 * Metodo para calcular el precio del billete
+	 * 
+	 * @param billete Objeto con la informacion del billete
+	 * 
+	 * @return Retorna el precio del billete
 	 */
 	public float calcularPrecioBillete(Billete billete) {
 		
@@ -55,7 +45,14 @@ public class FuncionesBillete {
 		return precio;
 
 	}
-	
+	/**
+	 * Calcula el precio de un trayecto
+	 * 
+	 * @param autobus Objeto autobus con la informacion del autobus que se va a utilizar
+	 * @param distancia Distancia que va a ser recorrida
+	 * 
+	 * @return Retorna el precio del trayecto
+	 */
 	public float calcularPrecioTrayecto(Autobus autobus, float distancia) {
 		
 		float precio = 0;
@@ -71,7 +68,16 @@ public class FuncionesBillete {
 		
 		return precio;
 	}
-	
+	/**
+	 * Metodo que calcula la dsitancia en Km entre dos paradas
+	 * 
+	 * @param lat1 Obtiene los datos de la latitud de la primera parada
+	 * @param lat2 Obtiene los datos de la latitud de la segunda parada
+	 * @param lon1 Obtiene los datos de la longitud de la primera parada
+	 * @param lon2 Obtiene los datos de la longitud de la segunda parada
+	 * 
+	 * @return Retorna la distancia en Km
+	 */
 	public float calcularDistanciaKm(float lat1, float lon1, float lat2, float lon2) {
 		
 		// https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
@@ -88,13 +94,23 @@ public class FuncionesBillete {
 		float d = R * c; // Distancia en km
 		return d;
 	}
-
+	/**
+	 * Transfroma los grados decigrados en radianes
+	 * 
+	 * @param deg Grados en decigrados
+	 * 
+	 * @return Grados en radianes
+	 */
 	public float deg2rad(float deg) {
 		return deg * (float)(Math.PI/180);
 	}
 	
-	/*
-	 * Imprimir billete
+	/**
+	 * Metodo que imprime el billete
+	 * 
+	 * @param path Ruta de impresion del billete
+	 * 
+	 * @return Retorna la ruta del billete
 	 */
 	public String imprimirBillete(String path) {
 		
